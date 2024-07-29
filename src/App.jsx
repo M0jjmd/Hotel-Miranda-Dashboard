@@ -1,4 +1,3 @@
-
 import Bookings from './pages/Bookings.jsx'
 import Contacts from './pages/Contacts.jsx'
 import Rooms from './pages/Rooms.jsx'
@@ -7,15 +6,15 @@ import Header from './components/Header.jsx'
 import Sidebar from './components/Sidebar.jsx'
 import { Routes, Route } from 'react-router-dom'
 
-// import './App.css'
+import './App.css'
 
 function App() {
 
   return (
     <>
-      <div>
+      <div className='app-container'>
         <Sidebar />
-        <div>
+        <div className='main-content'>
           <Header />
           <Routes>
             <Route path='bookings' element={<Bookings />} />

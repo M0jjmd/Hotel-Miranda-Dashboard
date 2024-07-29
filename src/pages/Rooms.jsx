@@ -1,11 +1,10 @@
-function Rooms() {
-
+const Rooms = () => {
     return (
         <>
-
-            <p>
-                Rooms
-            </p>
+            <div className="rooms">
+                <h2>Rooms</h2>
+                <p>Contenido de la página de rooms...</p>
+            </div>
         </>
     )
 }
