@@ -38,7 +38,7 @@ function App() {
           <Routes>
             <Route path='' element={<Dasboard />} />
             <Route path='/bookings' element={<Bookings />} />
-            <Route path='/contacts' element={<Contacts />} />
+            <Route path='/contact' element={<Contacts />} />
             <Route path='/rooms' element={<Rooms />} />
             <Route path='/users' element={<Users />} />
           </Routes>
