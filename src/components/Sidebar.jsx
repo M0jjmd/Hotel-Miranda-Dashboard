@@ -48,7 +48,7 @@ const Sidebar = ({ isVisible }) => {
       <SidebarContainer isVisible={isVisible}>
         <Logo src={logo} alt="logo" />
         <SidebarList>
-          <SidebarItem><SidebarLink to="/"><DashboardImgs as={LuLayoutDashboard} /> Dashboard</SidebarLink></SidebarItem>
+          <SidebarItem><SidebarLink to="/dashboard"><DashboardImgs as={LuLayoutDashboard} /> Dashboard</SidebarLink></SidebarItem>
           <SidebarItem><SidebarLink to="/bookings"><DashboardImgs as={LuCalendarRange} /> Bookings</SidebarLink></SidebarItem>
           <SidebarItem><SidebarLink to="/rooms"><DashboardImgs as={LuKeyRound} /> Rooms</SidebarLink></SidebarItem>
           <SidebarItem><SidebarLink to="/contact"><DashboardImgs as={LuPhoneCall} /> Contact</SidebarLink></SidebarItem>

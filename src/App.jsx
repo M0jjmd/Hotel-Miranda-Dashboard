@@ -9,6 +9,8 @@ import { Routes, Route } from 'react-router-dom'
 
 import { useState } from 'react'
 import styled from 'styled-components'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
+import Login from './pages/Login.jsx'
 
 const AppContainer = styled.div`
   display: flex;
@@ -36,29 +38,17 @@ function App() {
         <MainContent>
           <Header toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} />
           <Routes>
-            <Route path='' element={<Dasboard />} />
-            <Route path='/bookings' element={<Bookings />} />
-            <Route path='/contact' element={<Contacts />} />
-            <Route path='/rooms' element={<Rooms />} />
-            <Route path='/users' element={<Users />} />
+            <Route path="/login" element={<Login />} />
+            <Route path='/' element={<ProtectedRoute />}>
+              <Route path="dashboard" element={<Dasboard />} />
+              <Route path="bookings" element={<Bookings />} />
+              <Route path="contact" element={<Contacts />} />
+              <Route path="rooms" element={<Rooms />} />
+              <Route path="users" element={<Users />} />
+            </Route>
           </Routes>
         </MainContent>
       </AppContainer>
-      {/* <div className='app-container'>
-        <Sidebar />
-        <div className='main-content'>
-          <Header toggleSidebar={toggleSidebar} isVisible={isVisible} />
-          <Routes>
-            <Route path='' element={<Dasboard />} />
-            <Route path='bookings' element={<Bookings />} />
-            <Route path='contacts' element={<Contacts />} />
-            <Route path='rooms' element={<Rooms />} />
-            <Route path='users' element={<Users />} />
-          </Routes>
-        </div>
-
-
-      </div> */}
     </>
   )
 }

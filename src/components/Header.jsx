@@ -1,5 +1,6 @@
-import styled from 'styled-components';
-import { AiOutlineMenuUnfold, AiOutlineMenuFold, AiOutlineSearch, AiOutlineMail, AiOutlineBell, AiOutlineLogout } from "react-icons/ai"
+import styled from 'styled-components'
+import { AiOutlineMenuUnfold, AiOutlineMenuFold, AiOutlineSearch, AiOutlineMail, AiOutlineBell, AiOutlineLogout } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
 
 const HeaderContent = styled.header`
   display: flex;
@@ -61,6 +62,13 @@ const Icon = styled.div`
 `
 
 const Header = ({ toggleSidebar, isSidebarVisible }) => {
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    localStorage.clear('authToken')
+    navigate("/login")
+  }
+
   return (
     <>
       <HeaderContent>
@@ -78,7 +86,7 @@ const Header = ({ toggleSidebar, isSidebarVisible }) => {
           <IconSection>
             <Icon as={AiOutlineMail} />
             <Icon as={AiOutlineBell} />
-            <Icon as={AiOutlineLogout} />
+            <Icon as={AiOutlineLogout} onClick={logOut} />
           </IconSection>
         </HeaderMenu>
       </HeaderContent>

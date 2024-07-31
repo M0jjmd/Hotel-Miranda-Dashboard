@@ -1,0 +1,202 @@
+[
+    {
+        "Foto": "https://example.com/photos/emp1.jpg",
+        "NombreCompleto": "Ana López",
+        "IDdeEmpleado": "EMP001",
+        "Email": "ana.lopez@empresa.com",
+        "FechaDeAlta": "2021-03-15",
+        "DescripciónDelPuesto": "Gerente de Proyecto",
+        "Teléfono": "+34 600 123 001",
+        "Estado": "ACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp2.jpg",
+        "NombreCompleto": "Carlos García",
+        "IDdeEmpleado": "EMP002",
+        "Email": "carlos.garcia@empresa.com",
+        "FechaDeAlta": "2019-11-22",
+        "DescripciónDelPuesto": "Analista de Datos",
+        "Teléfono": "+34 600 123 002",
+        "Estado": "ACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp3.jpg",
+        "NombreCompleto": "Lucía Martínez",
+        "IDdeEmpleado": "EMP003",
+        "Email": "lucia.martinez@empresa.com",
+        "FechaDeAlta": "2020-01-10",
+        "DescripciónDelPuesto": "Diseñadora Gráfica",
+        "Teléfono": "+34 600 123 003",
+        "Estado": "INACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp4.jpg",
+        "NombreCompleto": "Miguel Torres",
+        "IDdeEmpleado": "EMP004",
+        "Email": "miguel.torres@empresa.com",
+        "FechaDeAlta": "2018-07-24",
+        "DescripciónDelPuesto": "Desarrollador Web",
+        "Teléfono": "+34 600 123 004",
+        "Estado": "ACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp5.jpg",
+        "NombreCompleto": "Elena Rodríguez",
+        "IDdeEmpleado": "EMP005",
+        "Email": "elena.rodriguez@empresa.com",
+        "FechaDeAlta": "2022-05-16",
+        "DescripciónDelPuesto": "Especialista en Marketing",
+        "Teléfono": "+34 600 123 005",
+        "Estado": "INACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp6.jpg",
+        "NombreCompleto": "Jorge Sánchez",
+        "IDdeEmpleado": "EMP006",
+        "Email": "jorge.sanchez@empresa.com",
+        "FechaDeAlta": "2021-09-03",
+        "DescripciónDelPuesto": "Administrador de Sistemas",
+        "Teléfono": "+34 600 123 006",
+        "Estado": "ACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp7.jpg",
+        "NombreCompleto": "María Díaz",
+        "IDdeEmpleado": "EMP007",
+        "Email": "maria.diaz@empresa.com",
+        "FechaDeAlta": "2020-06-14",
+        "DescripciónDelPuesto": "Recursos Humanos",
+        "Teléfono": "+34 600 123 007",
+        "Estado": "INACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp8.jpg",
+        "NombreCompleto": "Raúl Pérez",
+        "IDdeEmpleado": "EMP008",
+        "Email": "raul.perez@empresa.com",
+        "FechaDeAlta": "2019-04-20",
+        "DescripciónDelPuesto": "Contador",
+        "Teléfono": "+34 600 123 008",
+        "Estado": "ACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp9.jpg",
+        "NombreCompleto": "Isabel Gómez",
+        "IDdeEmpleado": "EMP009",
+        "Email": "isabel.gomez@empresa.com",
+        "FechaDeAlta": "2018-02-11",
+        "DescripciónDelPuesto": "Asistente Ejecutiva",
+        "Teléfono": "+34 600 123 009",
+        "Estado": "INACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp10.jpg",
+        "NombreCompleto": "David Fernández",
+        "IDdeEmpleado": "EMP010",
+        "Email": "david.fernandez@empresa.com",
+        "FechaDeAlta": "2022-11-02",
+        "DescripciónDelPuesto": "Ingeniero de Software",
+        "Teléfono": "+34 600 123 010",
+        "Estado": "ACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp11.jpg",
+        "NombreCompleto": "Silvia Ruiz",
+        "IDdeEmpleado": "EMP011",
+        "Email": "silvia.ruiz@empresa.com",
+        "FechaDeAlta": "2021-08-23",
+        "DescripciónDelPuesto": "Especialista en UX/UI",
+        "Teléfono": "+34 600 123 011",
+        "Estado": "ACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp12.jpg",
+        "NombreCompleto": "Pedro Romero",
+        "IDdeEmpleado": "EMP012",
+        "Email": "pedro.romero@empresa.com",
+        "FechaDeAlta": "2020-03-05",
+        "DescripciónDelPuesto": "Soporte Técnico",
+        "Teléfono": "+34 600 123 012",
+        "Estado": "INACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp13.jpg",
+        "NombreCompleto": "Laura Jiménez",
+        "IDdeEmpleado": "EMP013",
+        "Email": "laura.jimenez@empresa.com",
+        "FechaDeAlta": "2019-12-18",
+        "DescripciónDelPuesto": "Coordinadora de Eventos",
+        "Teléfono": "+34 600 123 013",
+        "Estado": "ACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp14.jpg",
+        "NombreCompleto": "Antonio Ortega",
+        "IDdeEmpleado": "EMP014",
+        "Email": "antonio.ortega@empresa.com",
+        "FechaDeAlta": "2018-10-30",
+        "DescripciónDelPuesto": "Jefe de Seguridad",
+        "Teléfono": "+34 600 123 014",
+        "Estado": "INACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp15.jpg",
+        "NombreCompleto": "Rosa Navarro",
+        "IDdeEmpleado": "EMP015",
+        "Email": "rosa.navarro@empresa.com",
+        "FechaDeAlta": "2021-07-19",
+        "DescripciónDelPuesto": "Redactora de Contenidos",
+        "Teléfono": "+34 600 123 015",
+        "Estado": "ACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp16.jpg",
+        "NombreCompleto": "Alberto Morales",
+        "IDdeEmpleado": "EMP016",
+        "Email": "alberto.morales@empresa.com",
+        "FechaDeAlta": "2020-02-25",
+        "DescripciónDelPuesto": "Consultor de Negocios",
+        "Teléfono": "+34 600 123 016",
+        "Estado": "INACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp17.jpg",
+        "NombreCompleto": "Gloria Hernández",
+        "IDdeEmpleado": "EMP017",
+        "Email": "gloria.hernandez@empresa.com",
+        "FechaDeAlta": "2019-08-13",
+        "DescripciónDelPuesto": "Administrativa",
+        "Teléfono": "+34 600 123 017",
+        "Estado": "ACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp18.jpg",
+        "NombreCompleto": "Manuel Gutiérrez",
+        "IDdeEmpleado": "EMP018",
+        "Email": "manuel.gutierrez@empresa.com",
+        "FechaDeAlta": "2018-06-27",
+        "DescripciónDelPuesto": "Director de Operaciones",
+        "Teléfono": "+34 600 123 018",
+        "Estado": "INACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp19.jpg",
+        "NombreCompleto": "Patricia Reyes",
+        "IDdeEmpleado": "EMP019",
+        "Email": "patricia.reyes@empresa.com",
+        "FechaDeAlta": "2021-04-09",
+        "DescripciónDelPuesto": "Investigadora de Mercado",
+        "Teléfono": "+34 600 123 019",
+        "Estado": "ACTIVE"
+    },
+    {
+        "Foto": "https://example.com/photos/emp20.jpg",
+        "NombreCompleto": "Sergio Delgado",
+        "IDdeEmpleado": "EMP020",
+        "Email": "sergio.delgado@empresa.com",
+        "FechaDeAlta": "2020-09-17",
+        "DescripciónDelPuesto": "Especialista en SEO",
+        "Teléfono": "+34 006 132 009",
+        "Estado": "INACTIVE"
+    }
+]
