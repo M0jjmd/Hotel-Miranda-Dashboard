@@ -1,31 +1,26 @@
+import Dasboard from './pages/Dashboard.jsx'
 import Bookings from './pages/Bookings.jsx'
 import Contacts from './pages/Contacts.jsx'
 import Rooms from './pages/Rooms.jsx'
 import Users from './pages/Users.jsx'
-import Header from './components/Header.jsx'
-import Sidebar from './components/Sidebar.jsx'
 import { Routes, Route } from 'react-router-dom'
 
-import './App.css'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
+import Login from './pages/Login.jsx'
 
-function App() {
-
+const App = () => {
   return (
     <>
-      <div className='app-container'>
-        <Sidebar />
-        <div className='main-content'>
-          <Header />
-          <Routes>
-            <Route path='bookings' element={<Bookings />} />
-            <Route path='contacts' element={<Contacts />} />
-            <Route path='rooms' element={<Rooms />} />
-            <Route path='users' element={<Users />} />
-          </Routes>
-        </div>
-
-
-      </div>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="dashboard" element={<Dasboard />} />
+          <Route path="bookings" element={<Bookings />} />
+          <Route path="contact" element={<Contacts />} />
+          <Route path="rooms" element={<Rooms />} />
+          <Route path="users" element={<Users />} />
+        </Route>
+      </Routes>
     </>
   )
 }
