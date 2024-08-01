@@ -3,11 +3,11 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   width: 100%;
-  padding: 20px;
+  padding: 1rem;
 `
 
 const FilterContainer = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 1.1rem;
 `
 
 const Button = styled.button`
@@ -15,8 +15,8 @@ const Button = styled.button`
   color: ${props => (props.active ? '#fff' : '#007bff')};
   border: 1px solid #007bff;
   border-radius: 4px;
-  padding: 10px 20px;
-  margin-right: 10px;
+  padding: 0.8rem 1.2rem;
+  margin-right: 1rem;
   cursor: pointer;
   
   &:hover {
@@ -27,7 +27,7 @@ const Button = styled.button`
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
+  margin: 1.1rem 0;
 `
 
 const TableHeader = styled.thead`
@@ -35,7 +35,7 @@ const TableHeader = styled.thead`
 `
 
 const HeaderCell = styled.th`
-  padding: 12px;
+  padding: 0.8rem;
   text-align: left;
   border-bottom: 2px solid #ddd;
 `
@@ -49,7 +49,7 @@ const TableRow = styled.tr`
 `
 
 const TableCell = styled.td`
-  padding: 12px;
+  padding: 0.8rem;
   border-bottom: 1px solid #ddd;
 `
 
@@ -60,35 +60,20 @@ const GuestList = ({ bookings }) => {
         setFilter(newFilter);
     }
 
-    const getFilteredBookings = () => {
-        const now = new Date()
-        return bookings.filter(booking => {
-            if (filter === 'CHECKING_IN') {
-                return new Date(booking.CheckIn) >= now
-            } else if (filter === 'CHECKING_OUT') {
-                return new Date(booking.CheckOut) >= now
-            } else if (filter === 'IN_PROGRESS') {
-                const checkIn = new Date(booking.CheckIn)
-                const checkOut = new Date(booking.CheckOut)
-                return checkIn <= now && checkOut >= now
-            }
-            return true
-        }).sort((a, b) => {
-            const dateA = new Date(filter === 'CHECKING_OUT' ? a.CheckOut : a.CheckIn)
-            const dateB = new Date(filter === 'CHECKING_OUT' ? b.CheckOut : b.CheckIn)
-            return dateB - dateA
-        })
-    }
-
-    const filteredBookings = getFilteredBookings()
+    const filteredBookings = bookings.filter(bookings => {
+        if (filter === 'CHECK-IN') return bookings.Status === 'CHECK-IN'
+        if (filter === 'CHECK-OUT') return bookings.Status === 'CHECK-OUT'
+        if (filter === 'IN-PROGRESS') return bookings.Status === 'IN-PROGRESS'
+        return true
+    })
 
     return (
         <Container>
             <FilterContainer>
                 <Button active={filter === 'ALL'} onClick={() => handleFilterChange('ALL')}>All Bookings</Button>
-                <Button active={filter === 'CHECKING_IN'} onClick={() => handleFilterChange('CHECKING_IN')}>Checking In</Button>
-                <Button active={filter === 'CHECKING_OUT'} onClick={() => handleFilterChange('CHECKING_OUT')}>Checking Out</Button>
-                <Button active={filter === 'IN_PROGRESS'} onClick={() => handleFilterChange('IN_PROGRESS')}>In Progress</Button>
+                <Button active={filter === 'CHECK-IN'} onClick={() => handleFilterChange('CHECK-IN')}>Checking In</Button>
+                <Button active={filter === 'CHECK-OUT'} onClick={() => handleFilterChange('CHECK-OUT')}>Checking Out</Button>
+                <Button active={filter === 'IN-PROGRESS'} onClick={() => handleFilterChange('IN-PROGRESS')}>In Progress</Button>
             </FilterContainer>
             <Table>
                 <TableHeader>
@@ -119,13 +104,3 @@ const GuestList = ({ bookings }) => {
 }
 
 export default GuestList
-
-// import React from 'react'
-
-// function GuestList() {
-//   return (
-//     <div>GuestList</div>
-//   )
-// }
-
-// export default GuestList

@@ -12,7 +12,7 @@
             "Type": "Suite",
             "RoomNumber": "101"
         },
-        "Status": "Check In"
+        "Status": "CHECK-IN"
     },
     {
         "Guest": {
@@ -27,7 +27,7 @@
             "Type": "Doble",
             "RoomNumber": "202"
         },
-        "Status": "In Progress"
+        "Status": "IN-PROGRESS"
     },
     {
         "Guest": {
@@ -42,7 +42,7 @@
             "Type": "Individual",
             "RoomNumber": "303"
         },
-        "Status": "Check Out"
+        "Status": "CHECK-OUT"
     },
     {
         "Guest": {
@@ -57,7 +57,7 @@
             "Type": "Suite",
             "RoomNumber": "104"
         },
-        "Status": "Check In"
+        "Status": "CHECK-IN"
     },
     {
         "Guest": {
@@ -72,7 +72,7 @@
             "Type": "Doble",
             "RoomNumber": "205"
         },
-        "Status": "In Progress"
+        "Status": "IN-PROGRESS"
     },
     {
         "Guest": {
@@ -87,7 +87,7 @@
             "Type": "Individual",
             "RoomNumber": "306"
         },
-        "Status": "Check In"
+        "Status": "CHECK-IN"
     },
     {
         "Guest": {
@@ -102,7 +102,7 @@
             "Type": "Suite",
             "RoomNumber": "107"
         },
-        "Status": "In Progress"
+        "Status": "IN-PROGRESS"
     },
     {
         "Guest": {
@@ -117,7 +117,7 @@
             "Type": "Doble",
             "RoomNumber": "208"
         },
-        "Status": "Check Out"
+        "Status": "CHECK-OUT"
     },
     {
         "Guest": {
@@ -132,7 +132,7 @@
             "Type": "Individual",
             "RoomNumber": "309"
         },
-        "Status": "Check In"
+        "Status": "CHECK-IN"
     },
     {
         "Guest": {
@@ -147,7 +147,7 @@
             "Type": "Suite",
             "RoomNumber": "110"
         },
-        "Status": "In Progress"
+        "Status": "IN-PROGRESS"
     },
     {
         "Guest": {
@@ -162,7 +162,7 @@
             "Type": "Doble",
             "RoomNumber": "211"
         },
-        "Status": "Check Out"
+        "Status": "CHECK-OUT"
     },
     {
         "Guest": {
@@ -177,7 +177,7 @@
             "Type": "Individual",
             "RoomNumber": "312"
         },
-        "Status": "Check In"
+        "Status": "CHECK-IN"
     },
     {
         "Guest": {
@@ -192,7 +192,7 @@
             "Type": "Suite",
             "RoomNumber": "113"
         },
-        "Status": "In Progress"
+        "Status": "IN-PROGRESS"
     },
     {
         "Guest": {
@@ -207,7 +207,7 @@
             "Type": "Doble",
             "RoomNumber": "214"
         },
-        "Status": "Check Out"
+        "Status": "CHECK-OUT"
     },
     {
         "Guest": {
@@ -222,7 +222,7 @@
             "Type": "Individual",
             "RoomNumber": "315"
         },
-        "Status": "Check In"
+        "Status": "CHECK-IN"
     },
     {
         "Guest": {
@@ -237,7 +237,7 @@
             "Type": "Suite",
             "RoomNumber": "116"
         },
-        "Status": "In Progress"
+        "Status": "IN-PROGRESS"
     },
     {
         "Guest": {
@@ -252,7 +252,7 @@
             "Type": "Doble",
             "RoomNumber": "217"
         },
-        "Status": "Check Out"
+        "Status": "CHECK-OUT"
     },
     {
         "Guest": {
@@ -267,7 +267,7 @@
             "Type": "Individual",
             "RoomNumber": "318"
         },
-        "Status": "Check In"
+        "Status": "CHECK-IN"
     },
     {
         "Guest": {
@@ -282,7 +282,7 @@
             "Type": "Suite",
             "RoomNumber": "119"
         },
-        "Status": "In Progress"
+        "Status": "IN-PROGRESS"
     },
     {
         "Guest": {
@@ -297,7 +297,7 @@
             "Type": "Doble",
             "RoomNumber": "220"
         },
-        "Status": "Check Out"
+        "Status": "CHECK-OUT"
     },
     {
         "Guest": {
@@ -312,7 +312,7 @@
             "Type": "Individual",
             "RoomNumber": "321"
         },
-        "Status": "Check In"
+        "Status": "CHECK-IN"
     },
     {
         "Guest": {
@@ -327,7 +327,7 @@
             "Type": "Suite",
             "RoomNumber": "122"
         },
-        "Status": "In Progress"
+        "Status": "IN-PROGRESS"
     },
     {
         "Guest": {
@@ -342,7 +342,7 @@
             "Type": "Doble",
             "RoomNumber": "223"
         },
-        "Status": "Check Out"
+        "Status": "CHECK-OUT"
     },
     {
         "Guest": {
@@ -357,7 +357,7 @@
             "Type": "Individual",
             "RoomNumber": "324"
         },
-        "Status": "Check In"
+        "Status": "CHECK-IN"
     },
     {
         "Guest": {
@@ -372,7 +372,7 @@
             "Type": "Suite",
             "RoomNumber": "125"
         },
-        "Status": "In Progress"
+        "Status": "IN-PROGRESS"
     },
     {
         "Guest": {
@@ -387,7 +387,7 @@
             "Type": "Doble",
             "RoomNumber": "226"
         },
-        "Status": "Check Out"
+        "Status": "CHECK-OUT"
     },
     {
         "Guest": {
@@ -402,7 +402,7 @@
             "Type": "Individual",
             "RoomNumber": "327"
         },
-        "Status": "Check In"
+        "Status": "CHECK-IN"
     },
     {
         "Guest": {
@@ -417,7 +417,7 @@
             "Type": "Suite",
             "RoomNumber": "128"
         },
-        "Status": "In Progress"
+        "Status": "IN-PROGRESS"
     },
     {
         "Guest": {
@@ -432,6 +432,6 @@
             "Type": "Doble",
             "RoomNumber": "229"
         },
-        "Status": "Check Out"
+        "Status": "CHECK-OUT"
     }
 ]

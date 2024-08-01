@@ -24,6 +24,7 @@ const Bookings = () => {
 
     return (
         <div>
+            {console.log(bookings.Status)}
             <GuestList bookings={bookings} />
         </div>
     )
