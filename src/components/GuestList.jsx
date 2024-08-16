@@ -17,11 +17,19 @@ const Button = styled.button`
   border-radius: 4px;
   padding: 0.8rem 1.2rem;
   margin-right: 1rem;
+  font-size: 0.9rem;
   cursor: pointer;
   
   &:hover {
     background-color: ${props => (props.active ? '#0056b3' : '#e2e6ea')};
   }
+`
+
+const SearchInput = styled.input`
+  padding: 0.8rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
 `
 
 const Table = styled.table`
@@ -55,15 +63,20 @@ const TableCell = styled.td`
 
 const GuestList = ({ bookings }) => {
   const [filter, setFilter] = useState('ALL')
+  const [searchTerm, setSearchTerm] = useState('')
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
   }
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value.toLowerCase());
+  }
+
   const sortedRooms = bookings.sort((a, b) => {
     const dateA = new Date(a.OrderDate)
     const dateB = new Date(b.OrderDate)
-    return dateB - dateA // Orden descendente (de la más reciente a la más antigua)
+    return dateB - dateA
   })
 
   const filteredBookings = sortedRooms
@@ -81,6 +94,12 @@ const GuestList = ({ bookings }) => {
         <Button active={filter === 'CHECK-IN'} onClick={() => handleFilterChange('CHECK-IN')}>Checking In</Button>
         <Button active={filter === 'CHECK-OUT'} onClick={() => handleFilterChange('CHECK-OUT')}>Checking Out</Button>
         <Button active={filter === 'IN-PROGRESS'} onClick={() => handleFilterChange('IN-PROGRESS')}>In Progress</Button>
+        <SearchInput
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
       </FilterContainer>
       <Table>
         <TableHeader>
