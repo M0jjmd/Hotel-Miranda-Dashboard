@@ -30,6 +30,14 @@ const SortButton = styled(Button)`
   border: 1px solid #28a745;
 `
 
+const SearchInput = styled.input`
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  width: 200px;
+`
+
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
@@ -67,62 +75,76 @@ const RoomPhoto = styled.img`
 `
 
 const RoomList = ({ rooms }) => {
-    const [filterStatus, setFilterStatus] = useState('ALL')
-    const [isDescending, setIsDescending] = useState(false)
+  const [filterStatus, setFilterStatus] = useState('ALL')
+  const [isDescending, setIsDescending] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
 
-    const handleStatusFilterChange = (status) => {
-        setFilterStatus(status)
-    }
+  const handleStatusFilterChange = (status) => {
+    setFilterStatus(status)
+  }
 
-    const toggleSortOrder = () => {
-        setIsDescending(!isDescending)
-    }
+  const toggleSortOrder = () => {
+    setIsDescending(!isDescending)
+  }
 
-    const filteredRooms = rooms
-        .filter(room => {
-            if (filterStatus !== 'ALL' && room.Status !== filterStatus) return false
-            return true
-        })
-        .sort((a, b) => isDescending ? b.OfferPrice - a.OfferPrice : a.OfferPrice - b.OfferPrice)
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value.toLowerCase());
+  }
 
-    return (
-        <Container>
-            <FilterContainer>
-                <Button active={filterStatus === 'ALL'} onClick={() => handleStatusFilterChange('ALL')}>All Rooms</Button>
-                <Button active={filterStatus === 'Available'} onClick={() => handleStatusFilterChange('Available')}>Available</Button>
-                <Button active={filterStatus === 'Booked'} onClick={() => handleStatusFilterChange('Booked')}>Booked</Button>
-                <SortButton onClick={toggleSortOrder}>
-                    Sort by Price (Desc)
-                </SortButton>
-            </FilterContainer>
-            <Table>
-                <TableHeader>
-                    <tr>
-                        <HeaderCell>Photo</HeaderCell>
-                        <HeaderCell>Room Number</HeaderCell>
-                        <HeaderCell>Bed Type</HeaderCell>
-                        <HeaderCell>Facilities</HeaderCell>
-                        <HeaderCell>Rate</HeaderCell>
-                        <HeaderCell>Offer Price</HeaderCell>
-                        <HeaderCell>Status</HeaderCell>
-                    </tr>
-                </TableHeader>
-                <TableBody>
-                    {filteredRooms.map(room => (
-                        <TableRow key={room.RoomID}>
-                            <TableCell><RoomPhoto src={room.Photo} alt={room.RoomNumber} /></TableCell>
-                            <TableCell>{room.RoomNumber}</TableCell>
-                            <TableCell>{room.BedType}</TableCell>
-                            <TableCell>{room.Facilities.join(', ')}</TableCell>
-                            <TableCell>${room.Rate}</TableCell>
-                            <TableCell>${room.OfferPrice}</TableCell>
-                            <TableCell>{room.Status}</TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </Container>
-    )
+  const filteredRooms = rooms
+    .filter(room => {
+      if (filterStatus !== 'ALL' && room.Status !== filterStatus) return false
+      if (searchTerm && !room.RoomNumber.toString().toLowerCase().includes(searchTerm) && !room.BedType.toLowerCase().includes(searchTerm)) {
+        return false;
+      }
+      return true
+    })
+    .sort((a, b) => isDescending ? b.OfferPrice - a.OfferPrice : a.OfferPrice - b.OfferPrice)
+
+  return (
+    <Container>
+      <FilterContainer>
+        <Button active={filterStatus === 'ALL'} onClick={() => handleStatusFilterChange('ALL')}>All Rooms</Button>
+        <Button active={filterStatus === 'Available'} onClick={() => handleStatusFilterChange('Available')}>Available</Button>
+        <Button active={filterStatus === 'Booked'} onClick={() => handleStatusFilterChange('Booked')}>Booked</Button>
+        <SortButton onClick={toggleSortOrder}>
+          Sort by Price (Desc)
+        </SortButton>
+        <SearchInput
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </FilterContainer>
+      <Table>
+        <TableHeader>
+          <tr>
+            <HeaderCell>Photo</HeaderCell>
+            <HeaderCell>Room Number</HeaderCell>
+            <HeaderCell>Bed Type</HeaderCell>
+            <HeaderCell>Facilities</HeaderCell>
+            <HeaderCell>Rate</HeaderCell>
+            <HeaderCell>Offer Price</HeaderCell>
+            <HeaderCell>Status</HeaderCell>
+          </tr>
+        </TableHeader>
+        <TableBody>
+          {filteredRooms.map(room => (
+            <TableRow key={room.RoomID}>
+              <TableCell><RoomPhoto src={room.Photo} alt={room.RoomNumber} /></TableCell>
+              <TableCell>{room.RoomNumber}</TableCell>
+              <TableCell>{room.BedType}</TableCell>
+              <TableCell>{room.Facilities.join(', ')}</TableCell>
+              <TableCell>${room.Rate}</TableCell>
+              <TableCell>${room.OfferPrice}</TableCell>
+              <TableCell>{room.Status}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Container>
+  )
 }
 
 export default RoomList
