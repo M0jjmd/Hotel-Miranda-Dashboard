@@ -80,22 +80,22 @@ function Employees({ employees }) {
     setSearchTerm(e.target.value.toLowerCase());
   }
 
-  const filteredEmployees = employees.filter(employee => {
-    if (filter === 'ACTIVE') return employee.Estado === 'ACTIVE'
-    if (filter === 'INACTIVE') return employee.Estado === 'INACTIVE'
-    const searchFields = [
-      employee.NombreCompleto.toLowerCase(),
-      employee.IDdeEmpleado.toLowerCase(),
-      employee.Email.toLowerCase(),
-      employee.FechaDeAlta.toLowerCase(),
-      employee.DescripciónDelPuesto.toLowerCase(),
-      employee.Teléfono.toLowerCase(),
-      employee.Estado.toLowerCase(),
-    ]
-    const searchMatch = searchFields.some(field => field.includes(searchTerm))
-    if (searchTerm && !searchMatch) return false
-    return true
-  })
+  const filteredEmployees = employees
+    .filter(employee => {
+      if (filter !== 'ALL' && employee.Estado !== filter) return false
+      const searchFields = [
+        employee.NombreCompleto.toLowerCase(),
+        employee.IDdeEmpleado.toLowerCase(),
+        employee.Email.toLowerCase(),
+        employee.FechaDeAlta.toLowerCase(),
+        employee.DescripciónDelPuesto.toLowerCase(),
+        employee.Teléfono.toLowerCase(),
+        employee.Estado.toLowerCase(),
+      ]
+      const searchMatch = searchFields.some(field => field.includes(searchTerm))
+      if (searchTerm && !searchMatch) return false
+      return true
+    })
 
   return (
     <Container>

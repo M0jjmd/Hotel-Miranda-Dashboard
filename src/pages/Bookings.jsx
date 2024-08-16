@@ -24,6 +24,7 @@ const Bookings = () => {
 
     return (
         <div>
+            
             <GuestList bookings={bookings} />
         </div>
     )
