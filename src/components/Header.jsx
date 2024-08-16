@@ -1,20 +1,20 @@
 import styled from 'styled-components'
 import { AiOutlineMenuUnfold, AiOutlineMenuFold, AiOutlineSearch, AiOutlineMail, AiOutlineBell, AiOutlineLogout } from 'react-icons/ai'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 const HeaderContent = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0.8rem 1.2rem;
   background-color: #f0f0f0;
-  height: 60px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 `
 const HeaderTitle = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.8rem;
 `
 
 const ToggleButton = styled.button`
@@ -62,7 +62,23 @@ const Icon = styled.div`
 `
 
 const Header = ({ toggleSidebar, isSidebarVisible }) => {
-  const navigate = useNavigate();
+  const [title, setTitle] = useState()
+
+  const location = useLocation()
+  const navigate = useNavigate()
+
+
+  useEffect(() => {
+    const titles = {
+      '/dashboard': 'Dashboard',
+      '/bookings': 'Bookings',
+      '/rooms': 'Rooms',
+      '/contact': 'Contact',
+      '/users': 'Users',
+    }
+
+    setTitle(titles[location.pathname] || 'Page Not Found');
+  }, [[location.pathname]])
 
   const logOut = () => {
     localStorage.clear('authToken')
@@ -76,7 +92,7 @@ const Header = ({ toggleSidebar, isSidebarVisible }) => {
           <ToggleButton onClick={toggleSidebar}>
             {isSidebarVisible ? <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}
           </ToggleButton>
-          <h1>Dashboard</h1>
+          <h1>{title}</h1>
         </HeaderTitle>
         <HeaderMenu>
           <SearchContainer>
