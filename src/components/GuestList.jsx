@@ -54,53 +54,60 @@ const TableCell = styled.td`
 `
 
 const GuestList = ({ bookings }) => {
-    const [filter, setFilter] = useState('ALL')
+  const [filter, setFilter] = useState('ALL')
 
-    const handleFilterChange = (newFilter) => {
-        setFilter(newFilter);
-    }
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter);
+  }
 
-    const filteredBookings = bookings.filter(bookings => {
-        if (filter === 'CHECK-IN') return bookings.Status === 'CHECK-IN'
-        if (filter === 'CHECK-OUT') return bookings.Status === 'CHECK-OUT'
-        if (filter === 'IN-PROGRESS') return bookings.Status === 'IN-PROGRESS'
-        return true
+  const sortedRooms = bookings.sort((a, b) => {
+    const dateA = new Date(a.OrderDate)
+    const dateB = new Date(b.OrderDate)
+    return dateB - dateA // Orden descendente (de la más reciente a la más antigua)
+  })
+
+  const filteredBookings = sortedRooms
+    .filter(bookings => {
+      if (filter === 'CHECK-IN') return bookings.Status === 'CHECK-IN'
+      if (filter === 'CHECK-OUT') return bookings.Status === 'CHECK-OUT'
+      if (filter === 'IN-PROGRESS') return bookings.Status === 'IN-PROGRESS'
+      return true
     })
 
-    return (
-        <Container>
-            <FilterContainer>
-                <Button active={filter === 'ALL'} onClick={() => handleFilterChange('ALL')}>All Bookings</Button>
-                <Button active={filter === 'CHECK-IN'} onClick={() => handleFilterChange('CHECK-IN')}>Checking In</Button>
-                <Button active={filter === 'CHECK-OUT'} onClick={() => handleFilterChange('CHECK-OUT')}>Checking Out</Button>
-                <Button active={filter === 'IN-PROGRESS'} onClick={() => handleFilterChange('IN-PROGRESS')}>In Progress</Button>
-            </FilterContainer>
-            <Table>
-                <TableHeader>
-                    <tr>
-                        <HeaderCell>Guest</HeaderCell>
-                        <HeaderCell>Reservation ID</HeaderCell>
-                        <HeaderCell>Check-In</HeaderCell>
-                        <HeaderCell>Check-Out</HeaderCell>
-                        <HeaderCell>Room</HeaderCell>
-                        <HeaderCell>Status</HeaderCell>
-                    </tr>
-                </TableHeader>
-                <TableBody>
-                    {filteredBookings.map(booking => (
-                        <TableRow key={booking.Guest.ReservationID}>
-                            <TableCell>{booking.Guest.Name}</TableCell>
-                            <TableCell>{booking.Guest.ReservationID}</TableCell>
-                            <TableCell>{booking.CheckIn}</TableCell>
-                            <TableCell>{booking.CheckOut}</TableCell>
-                            <TableCell>{`${booking.RoomType.Type} (${booking.RoomType.RoomNumber})`}</TableCell>
-                            <TableCell>{booking.Status}</TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </Container>
-    )
+  return (
+    <Container>
+      <FilterContainer>
+        <Button active={filter === 'ALL'} onClick={() => handleFilterChange('ALL')}>All Bookings</Button>
+        <Button active={filter === 'CHECK-IN'} onClick={() => handleFilterChange('CHECK-IN')}>Checking In</Button>
+        <Button active={filter === 'CHECK-OUT'} onClick={() => handleFilterChange('CHECK-OUT')}>Checking Out</Button>
+        <Button active={filter === 'IN-PROGRESS'} onClick={() => handleFilterChange('IN-PROGRESS')}>In Progress</Button>
+      </FilterContainer>
+      <Table>
+        <TableHeader>
+          <tr>
+            <HeaderCell>Guest</HeaderCell>
+            <HeaderCell>Order Date</HeaderCell>
+            <HeaderCell>Check-In</HeaderCell>
+            <HeaderCell>Check-Out</HeaderCell>
+            <HeaderCell>Room</HeaderCell>
+            <HeaderCell>Status</HeaderCell>
+          </tr>
+        </TableHeader>
+        <TableBody>
+          {filteredBookings.map(booking => (
+            <TableRow key={booking.Guest.ReservationID}>
+              <TableCell>{booking.Guest.Name}</TableCell>
+              <TableCell>{booking.OrderDate}</TableCell>
+              <TableCell>{booking.CheckIn}</TableCell>
+              <TableCell>{booking.CheckOut}</TableCell>
+              <TableCell>{`${booking.RoomType.Type} (${booking.RoomType.RoomNumber})`}</TableCell>
+              <TableCell>{booking.Status}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Container>
+  )
 }
 
 export default GuestList
