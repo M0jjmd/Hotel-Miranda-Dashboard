@@ -3,11 +3,11 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   width: 100%;
-  padding: 20px;
+  padding: 1.3rem;
 `
 
 const FilterContainer = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 1.3rem;
 `
 
 const Button = styled.button`
@@ -15,8 +15,8 @@ const Button = styled.button`
   color: ${props => (props.active ? '#fff' : '#007bff')};
   border: 1px solid #007bff;
   border-radius: 4px;
-  padding: 10px 20px;
-  margin-right: 10px;
+  padding: 0.8rem 1.3rem;
+  margin-right: 0.8rem;
   cursor: pointer;
   
   &:hover {
@@ -25,17 +25,16 @@ const Button = styled.button`
 `
 
 const SearchInput = styled.input`
-  padding: 10px;
-  font-size: 16px;
+  padding: 0.8rem;
+  font-size: 1rem;
   border-radius: 4px;
   border: 1px solid #ddd;
-  width: 200px;
 `
 
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
+  margin: 1.3rem 0;
 `
 
 const TableHeader = styled.thead`
@@ -43,7 +42,7 @@ const TableHeader = styled.thead`
 `
 
 const HeaderCell = styled.th`
-  padding: 12px;
+  padding: 0.9rem;
   text-align: left;
   border-bottom: 2px solid #ddd;
 `
@@ -57,7 +56,7 @@ const TableRow = styled.tr`
 `
 
 const TableCell = styled.td`
-  padding: 12px;
+  padding: 0.9rem;
   border-bottom: 1px solid #ddd;
 `
 
@@ -66,6 +65,13 @@ const EmployeePhoto = styled.img`
   width: 50px;
   height: 50px;
   object-fit: cover;
+`
+
+const NoResults = styled.div`
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #666;
+  text-align: center;
 `
 
 function Employees({ employees }) {
@@ -83,18 +89,8 @@ function Employees({ employees }) {
   const filteredEmployees = employees
     .filter(employee => {
       if (filter !== 'ALL' && employee.Estado !== filter) return false
-      const searchFields = [
-        employee.NombreCompleto.toLowerCase(),
-        employee.IDdeEmpleado.toLowerCase(),
-        employee.Email.toLowerCase(),
-        employee.FechaDeAlta.toLowerCase(),
-        employee.DescripciónDelPuesto.toLowerCase(),
-        employee.Teléfono.toLowerCase(),
-        employee.Estado.toLowerCase(),
-      ]
-      const searchMatch = searchFields.some(field => field.includes(searchTerm))
-      if (searchTerm && !searchMatch) return false
-      return true
+      const combinedString = JSON.stringify(employee).toLowerCase()
+      return combinedString.includes(searchTerm)
     })
 
   return (
@@ -110,32 +106,38 @@ function Employees({ employees }) {
           onChange={handleSearchChange}
         />
       </FilterContainer>
-      <Table>
-        <TableHeader>
-          <tr>
-            <HeaderCell>Name</HeaderCell>
-            <HeaderCell>Job Desk</HeaderCell>
-            <HeaderCell>Schedule</HeaderCell>
-            <HeaderCell>Contact</HeaderCell>
-            <HeaderCell>Status</HeaderCell>
-          </tr>
-        </TableHeader>
-        <TableBody>
-          {filteredEmployees.map(employee => (
-            <TableRow key={employee.IDdeEmpleado}>
-              <TableCell>
-                <EmployeePhoto src={employee.Foto} alt={employee.NombreCompleto} />
-                {employee.NombreCompleto}
-              </TableCell>
-              <TableCell>{employee.DescripciónDelPuesto}</TableCell>
-              <TableCell>{employee.FechaDeAlta}</TableCell>
-              <TableCell>{employee.Teléfono}</TableCell>
-              <TableCell>{employee.Estado}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Container>
+
+      {filteredEmployees.length > 0 ? (
+        <Table>
+          <TableHeader>
+            <tr>
+              <HeaderCell>Name</HeaderCell>
+              <HeaderCell>Job Desk</HeaderCell>
+              <HeaderCell>Schedule</HeaderCell>
+              <HeaderCell>Contact</HeaderCell>
+              <HeaderCell>Status</HeaderCell>
+            </tr>
+          </TableHeader>
+          <TableBody>
+            {filteredEmployees.map(employee => (
+              <TableRow key={employee.IDdeEmpleado}>
+                <TableCell>
+                  <EmployeePhoto src={employee.Foto} alt={employee.NombreCompleto} />
+                  {employee.NombreCompleto}
+                </TableCell>
+                <TableCell>{employee.DescripciónDelPuesto}</TableCell>
+                <TableCell>{employee.FechaDeAlta}</TableCell>
+                <TableCell>{employee.Teléfono}</TableCell>
+                <TableCell>{employee.Estado}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      ) : (
+        <NoResults>No search results found</NoResults>
+      )
+      }
+    </Container >
   )
 }
 

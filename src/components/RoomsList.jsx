@@ -3,11 +3,11 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   width: 100%;
-  padding: 20px;
+  padding: 1.3rem;
 `
 
 const FilterContainer = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 1.3rem;
 `
 
 const Button = styled.button`
@@ -15,8 +15,8 @@ const Button = styled.button`
   color: ${props => (props.active ? '#fff' : '#007bff')};
   border: 1px solid #007bff;
   border-radius: 4px;
-  padding: 10px 20px;
-  margin-right: 10px;
+  padding: 0.8rem 1.3rem;
+  margin-right: 0.8rem;
   cursor: pointer;
   
   &:hover {
@@ -24,24 +24,17 @@ const Button = styled.button`
   }
 `
 
-const SortButton = styled(Button)`
-  background-color: #28a745;
-  color: white;
-  border: 1px solid #28a745;
-`
-
 const SearchInput = styled.input`
-  padding: 10px;
-  font-size: 16px;
+  padding: 0.8rem;
+  font-size: 1rem;
   border-radius: 4px;
   border: 1px solid #ddd;
-  width: 200px;
 `
 
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
+  margin: 1.3rem 0;
 `
 
 const TableHeader = styled.thead`
@@ -49,7 +42,7 @@ const TableHeader = styled.thead`
 `
 
 const HeaderCell = styled.th`
-  padding: 12px;
+  padding: 0.9rem;
   text-align: left;
   border-bottom: 2px solid #ddd;
 `
@@ -63,8 +56,21 @@ const TableRow = styled.tr`
 `
 
 const TableCell = styled.td`
-  padding: 12px;
+  padding: 0.9rem;
   border-bottom: 1px solid #ddd;
+`
+
+const NoResults = styled.div`
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #666;
+  text-align: center;
+`
+
+const SortButton = styled(Button)`
+  background-color: #28a745;
+  color: white;
+  border: 1px solid #28a745;
 `
 
 const RoomPhoto = styled.img`
@@ -94,10 +100,8 @@ const RoomList = ({ rooms }) => {
   const filteredRooms = rooms
     .filter(room => {
       if (filterStatus !== 'ALL' && room.Status !== filterStatus) return false
-      if (searchTerm && !room.RoomNumber.toString().toLowerCase().includes(searchTerm) && !room.BedType.toLowerCase().includes(searchTerm)) {
-        return false;
-      }
-      return true
+      const combinedString = JSON.stringify(room).toLowerCase()
+      return combinedString.includes(searchTerm)
     })
     .sort((a, b) => isDescending ? b.OfferPrice - a.OfferPrice : a.OfferPrice - b.OfferPrice)
 
@@ -117,32 +121,37 @@ const RoomList = ({ rooms }) => {
           onChange={handleSearchChange}
         />
       </FilterContainer>
-      <Table>
-        <TableHeader>
-          <tr>
-            <HeaderCell>Photo</HeaderCell>
-            <HeaderCell>Room Number</HeaderCell>
-            <HeaderCell>Bed Type</HeaderCell>
-            <HeaderCell>Facilities</HeaderCell>
-            <HeaderCell>Rate</HeaderCell>
-            <HeaderCell>Offer Price</HeaderCell>
-            <HeaderCell>Status</HeaderCell>
-          </tr>
-        </TableHeader>
-        <TableBody>
-          {filteredRooms.map(room => (
-            <TableRow key={room.RoomID}>
-              <TableCell><RoomPhoto src={room.Photo} alt={room.RoomNumber} /></TableCell>
-              <TableCell>{room.RoomNumber}</TableCell>
-              <TableCell>{room.BedType}</TableCell>
-              <TableCell>{room.Facilities.join(', ')}</TableCell>
-              <TableCell>${room.Rate}</TableCell>
-              <TableCell>${room.OfferPrice}</TableCell>
-              <TableCell>{room.Status}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      {filteredRooms.length > 0 ? (
+        <Table>
+          <TableHeader>
+            <tr>
+              <HeaderCell>Photo</HeaderCell>
+              <HeaderCell>Room Number</HeaderCell>
+              <HeaderCell>Bed Type</HeaderCell>
+              <HeaderCell>Facilities</HeaderCell>
+              <HeaderCell>Rate</HeaderCell>
+              <HeaderCell>Offer Price</HeaderCell>
+              <HeaderCell>Status</HeaderCell>
+            </tr>
+          </TableHeader>
+          <TableBody>
+            {filteredRooms.map(room => (
+              <TableRow key={room.RoomID}>
+                <TableCell><RoomPhoto src={room.Photo} alt={room.RoomNumber} /></TableCell>
+                <TableCell>{room.RoomNumber}</TableCell>
+                <TableCell>{room.BedType}</TableCell>
+                <TableCell>{room.Facilities.join(', ')}</TableCell>
+                <TableCell>${room.Rate}</TableCell>
+                <TableCell>${room.OfferPrice}</TableCell>
+                <TableCell>{room.Status}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      ) : (
+        <NoResults>No search results found</NoResults>
+      )}
+
     </Container>
   )
 }
