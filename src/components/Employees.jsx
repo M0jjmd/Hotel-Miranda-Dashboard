@@ -24,6 +24,14 @@ const Button = styled.button`
   }
 `
 
+const SearchInput = styled.input`
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  width: 200px;
+`
+
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
@@ -62,14 +70,30 @@ const EmployeePhoto = styled.img`
 
 function Employees({ employees }) {
   const [filter, setFilter] = useState('ALL')
+  const [searchTerm, setSearchTerm] = useState('')
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter)
   }
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value.toLowerCase());
+  }
+
   const filteredEmployees = employees.filter(employee => {
     if (filter === 'ACTIVE') return employee.Estado === 'ACTIVE'
     if (filter === 'INACTIVE') return employee.Estado === 'INACTIVE'
+    const searchFields = [
+      employee.NombreCompleto.toLowerCase(),
+      employee.IDdeEmpleado.toLowerCase(),
+      employee.Email.toLowerCase(),
+      employee.FechaDeAlta.toLowerCase(),
+      employee.DescripciónDelPuesto.toLowerCase(),
+      employee.Teléfono.toLowerCase(),
+      employee.Estado.toLowerCase(),
+    ]
+    const searchMatch = searchFields.some(field => field.includes(searchTerm))
+    if (searchTerm && !searchMatch) return false
     return true
   })
 
@@ -79,6 +103,12 @@ function Employees({ employees }) {
         <Button active={filter === 'ALL'} onClick={() => handleFilterChange('ALL')}>All Employees</Button>
         <Button active={filter === 'ACTIVE'} onClick={() => handleFilterChange('ACTIVE')}>Active Employees</Button>
         <Button active={filter === 'INACTIVE'} onClick={() => handleFilterChange('INACTIVE')}>Inactive Employees</Button>
+        <SearchInput
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
       </FilterContainer>
       <Table>
         <TableHeader>
