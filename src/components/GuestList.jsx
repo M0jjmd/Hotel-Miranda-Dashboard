@@ -61,12 +61,19 @@ const TableCell = styled.td`
   border-bottom: 1px solid #ddd;
 `
 
+const NoResults = styled.div`
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #666;
+  text-align: center;
+`
+
 const GuestList = ({ bookings }) => {
-  const [filter, setFilter] = useState('ALL')
+  const [filterStatus, setFilterStatus] = useState('ALL')
   const [searchTerm, setSearchTerm] = useState('')
 
   const handleFilterChange = (newFilter) => {
-    setFilter(newFilter);
+    setFilterStatus(newFilter);
   }
 
   const handleSearchChange = (e) => {
@@ -81,19 +88,18 @@ const GuestList = ({ bookings }) => {
 
   const filteredBookings = sortedRooms
     .filter(bookings => {
-      if (filter === 'CHECK-IN') return bookings.Status === 'CHECK-IN'
-      if (filter === 'CHECK-OUT') return bookings.Status === 'CHECK-OUT'
-      if (filter === 'IN-PROGRESS') return bookings.Status === 'IN-PROGRESS'
-      return true
+      if (filterStatus !== 'ALL' && bookings.Status !== filterStatus) return false
+      const combinedString = JSON.stringify(bookings).toLowerCase()
+      return combinedString.includes(searchTerm)
     })
 
   return (
     <Container>
       <FilterContainer>
-        <Button active={filter === 'ALL'} onClick={() => handleFilterChange('ALL')}>All Bookings</Button>
-        <Button active={filter === 'CHECK-IN'} onClick={() => handleFilterChange('CHECK-IN')}>Checking In</Button>
-        <Button active={filter === 'CHECK-OUT'} onClick={() => handleFilterChange('CHECK-OUT')}>Checking Out</Button>
-        <Button active={filter === 'IN-PROGRESS'} onClick={() => handleFilterChange('IN-PROGRESS')}>In Progress</Button>
+        <Button active={filterStatus === 'ALL'} onClick={() => handleFilterChange('ALL')}>All Bookings</Button>
+        <Button active={filterStatus === 'CHECK-IN'} onClick={() => handleFilterChange('CHECK-IN')}>Checking In</Button>
+        <Button active={filterStatus === 'CHECK-OUT'} onClick={() => handleFilterChange('CHECK-OUT')}>Checking Out</Button>
+        <Button active={filterStatus === 'IN-PROGRESS'} onClick={() => handleFilterChange('IN-PROGRESS')}>In Progress</Button>
         <SearchInput
           type="text"
           placeholder="Search..."
@@ -101,30 +107,35 @@ const GuestList = ({ bookings }) => {
           onChange={handleSearchChange}
         />
       </FilterContainer>
-      <Table>
-        <TableHeader>
-          <tr>
-            <HeaderCell>Guest</HeaderCell>
-            <HeaderCell>Order Date</HeaderCell>
-            <HeaderCell>Check-In</HeaderCell>
-            <HeaderCell>Check-Out</HeaderCell>
-            <HeaderCell>Room</HeaderCell>
-            <HeaderCell>Status</HeaderCell>
-          </tr>
-        </TableHeader>
-        <TableBody>
-          {filteredBookings.map(booking => (
-            <TableRow key={booking.Guest.ReservationID}>
-              <TableCell>{booking.Guest.Name}</TableCell>
-              <TableCell>{booking.OrderDate}</TableCell>
-              <TableCell>{booking.CheckIn}</TableCell>
-              <TableCell>{booking.CheckOut}</TableCell>
-              <TableCell>{`${booking.RoomType.Type} (${booking.RoomType.RoomNumber})`}</TableCell>
-              <TableCell>{booking.Status}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      {filteredBookings.length > 0 ? (
+        <Table>
+          <TableHeader>
+            <tr>
+              <HeaderCell>Guest</HeaderCell>
+              <HeaderCell>Order Date</HeaderCell>
+              <HeaderCell>Check-In</HeaderCell>
+              <HeaderCell>Check-Out</HeaderCell>
+              <HeaderCell>Room</HeaderCell>
+              <HeaderCell>Status</HeaderCell>
+            </tr>
+          </TableHeader>
+          <TableBody>
+            {filteredBookings.map(booking => (
+              <TableRow key={booking.Guest.ReservationID}>
+                <TableCell>{booking.Guest.Name}</TableCell>
+                <TableCell>{booking.OrderDate}</TableCell>
+                <TableCell>{booking.CheckIn}</TableCell>
+                <TableCell>{booking.CheckOut}</TableCell>
+                <TableCell>{`${booking.RoomType.Type} (${booking.RoomType.RoomNumber})`}</TableCell>
+                <TableCell>{booking.Status}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      ) : (
+        <NoResults>No search results found</NoResults>
+      )}
+
     </Container>
   )
 }
