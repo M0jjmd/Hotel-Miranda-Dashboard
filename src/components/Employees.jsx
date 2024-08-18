@@ -33,16 +33,15 @@ function Employees({ employees }) {
   return (
     <S.Container>
       <S.FilterContainer>
-        <S.Button active={filter === 'ALL'} onClick={() => handleFilterChange('ALL')}>All Employees</S.Button>
-        <S.Button active={filter === 'ACTIVE'} onClick={() => handleFilterChange('ACTIVE')}>Active Employees</S.Button>
-        <S.Button active={filter === 'INACTIVE'} onClick={() => handleFilterChange('INACTIVE')}>Inactive Employees</S.Button>
         <S.SearchInput
           type="text"
           placeholder="Search..."
           value={searchTerm}
           onChange={handleSearchChange}
         />
-
+        <S.Button active={filter === 'ALL'} onClick={() => handleFilterChange('ALL')}>All Employees</S.Button>
+        <S.Button active={filter === 'ACTIVE'} onClick={() => handleFilterChange('ACTIVE')}>Active Employees</S.Button>
+        <S.Button active={filter === 'INACTIVE'} onClick={() => handleFilterChange('INACTIVE')}>Inactive Employees</S.Button>
         <S.AddButton onClick={handleFormToggle}>Add Booking</S.AddButton>
       </S.FilterContainer>
 
