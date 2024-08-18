@@ -1,0 +1,422 @@
+[
+    {
+        "date": "2024-08-18T10:05:00Z",
+        "id": "001",
+        "customer": {
+            "name": "Ana Martínez",
+            "email": "ana.martinez@example.com",
+            "phone": "+34123456789"
+        },
+        "subject": "Consulta sobre disponibilidad",
+        "comment": "Hola, me gustaría saber si hay habitaciones disponibles para el 25 de agosto.",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T10:10:00Z",
+        "id": "002",
+        "customer": {
+            "name": "Carlos García",
+            "email": "carlos.garcia@example.com",
+            "phone": "+34987654321"
+        },
+        "subject": "Pregunta sobre servicios",
+        "comment": "¿El hotel cuenta con servicio de traslado al aeropuerto?",
+        "actions": {
+            "archive": false
+        }
+    },
+    {
+        "date": "2024-08-18T10:15:00Z",
+        "id": "003",
+        "customer": {
+            "name": "Laura Sánchez",
+            "email": "laura.sanchez@example.com",
+            "phone": "+34123456780"
+        },
+        "subject": "Reserva cancelada",
+        "comment": "He tenido que cancelar mi reserva. ¿Cómo puedo solicitar un reembolso?",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T10:20:00Z",
+        "id": "004",
+        "customer": {
+            "name": "Miguel Rodríguez",
+            "email": "miguel.rodriguez@example.com",
+            "phone": "+34123456781"
+        },
+        "subject": "Problema con la habitación",
+        "comment": "La habitación asignada no coincide con la descripción. ¿Podrían ayudarme?",
+        "actions": {
+            "archive": false
+        }
+    },
+    {
+        "date": "2024-08-18T10:25:00Z",
+        "id": "005",
+        "customer": {
+            "name": "María López",
+            "email": "maria.lopez@example.com",
+            "phone": "+34123456782"
+        },
+        "subject": "Consulta sobre desayuno",
+        "comment": "¿El desayuno está incluido en la tarifa de la habitación?",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T10:30:00Z",
+        "id": "006",
+        "customer": {
+            "name": "Pedro Fernández",
+            "email": "pedro.fernandez@example.com",
+            "phone": "+34123456783"
+        },
+        "subject": "Reserva de grupo",
+        "comment": "Quiero reservar habitaciones para un grupo de 10 personas. ¿Hay descuento?",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T10:35:00Z",
+        "id": "007",
+        "customer": {
+            "name": "Lucía Ramírez",
+            "email": "lucia.ramirez@example.com",
+            "phone": "+34123456784"
+        },
+        "subject": "Consulta sobre gimnasio",
+        "comment": "¿El gimnasio está abierto las 24 horas?",
+        "actions": {
+            "archive": false
+        }
+    },
+    {
+        "date": "2024-08-18T10:40:00Z",
+        "id": "008",
+        "customer": {
+            "name": "Javier Torres",
+            "email": "javier.torres@example.com",
+            "phone": "+34123456785"
+        },
+        "subject": "Consulta sobre piscina",
+        "comment": "¿La piscina está climatizada?",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T10:45:00Z",
+        "id": "009",
+        "customer": {
+            "name": "Sara Ruiz",
+            "email": "sara.ruiz@example.com",
+            "phone": "+34123456786"
+        },
+        "subject": "Pregunta sobre check-in",
+        "comment": "¿A qué hora es el check-in?",
+        "actions": {
+            "archive": false
+        }
+    },
+    {
+        "date": "2024-08-18T10:50:00Z",
+        "id": "010",
+        "customer": {
+            "name": "David Jiménez",
+            "email": "david.jimenez@example.com",
+            "phone": "+34123456787"
+        },
+        "subject": "Tarifa de estacionamiento",
+        "comment": "¿Cuál es la tarifa diaria para estacionar un coche?",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T10:55:00Z",
+        "id": "011",
+        "customer": {
+            "name": "Cristina Moreno",
+            "email": "cristina.moreno@example.com",
+            "phone": "+34123456788"
+        },
+        "subject": "Solicitud de cuna",
+        "comment": "¿Es posible añadir una cuna a la habitación?",
+        "actions": {
+            "archive": false
+        }
+    },
+    {
+        "date": "2024-08-18T11:00:00Z",
+        "id": "012",
+        "customer": {
+            "name": "Juan Pérez",
+            "email": "juan.perez@example.com",
+            "phone": "+34123456789"
+        },
+        "subject": "Consulta sobre conexión Wi-Fi",
+        "comment": "¿El hotel ofrece Wi-Fi gratuito?",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T11:05:00Z",
+        "id": "013",
+        "customer": {
+            "name": "Beatriz Herrera",
+            "email": "beatriz.herrera@example.com",
+            "phone": "+34123456790"
+        },
+        "subject": "Habitaciones para discapacitados",
+        "comment": "¿Tienen habitaciones accesibles para personas con discapacidades?",
+        "actions": {
+            "archive": false
+        }
+    },
+    {
+        "date": "2024-08-18T11:10:00Z",
+        "id": "014",
+        "customer": {
+            "name": "Sergio Gómez",
+            "email": "sergio.gomez@example.com",
+            "phone": "+34123456791"
+        },
+        "subject": "Servicio de limpieza",
+        "comment": "¿El servicio de limpieza es diario?",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T11:15:00Z",
+        "id": "015",
+        "customer": {
+            "name": "Marta Díaz",
+            "email": "marta.diaz@example.com",
+            "phone": "+34123456792"
+        },
+        "subject": "Animales de compañía",
+        "comment": "¿Aceptan mascotas en el hotel?",
+        "actions": {
+            "archive": false
+        }
+    },
+    {
+        "date": "2024-08-18T11:20:00Z",
+        "id": "016",
+        "customer": {
+            "name": "Ricardo Gil",
+            "email": "ricardo.gil@example.com",
+            "phone": "+34123456793"
+        },
+        "subject": "Pregunta sobre facturación",
+        "comment": "¿Podrían enviarme la factura de mi última estancia?",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T11:25:00Z",
+        "id": "017",
+        "customer": {
+            "name": "Paula Vázquez",
+            "email": "paula.vazquez@example.com",
+            "phone": "+34123456794"
+        },
+        "subject": "Consulta sobre restaurante",
+        "comment": "¿El restaurante del hotel ofrece menú vegetariano?",
+        "actions": {
+            "archive": false
+        }
+    },
+    {
+        "date": "2024-08-18T11:30:00Z",
+        "id": "018",
+        "customer": {
+            "name": "Alejandro Romero",
+            "email": "alejandro.romero@example.com",
+            "phone": "+34123456795"
+        },
+        "subject": "Horas de check-out",
+        "comment": "¿Es posible hacer un check-out tarde?",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T11:35:00Z",
+        "id": "019",
+        "customer": {
+            "name": "Elena Navarro",
+            "email": "elena.navarro@example.com",
+            "phone": "+34123456796"
+        },
+        "subject": "Solicito cambio de fecha",
+        "comment": "¿Puedo cambiar la fecha de mi reserva?",
+        "actions": {
+            "archive": false
+        }
+    },
+    {
+        "date": "2024-08-18T11:40:00Z",
+        "id": "020",
+        "customer": {
+            "name": "José Ortiz",
+            "email": "jose.ortiz@example.com",
+            "phone": "+34123456797"
+        },
+        "subject": "Confirmación de reserva",
+        "comment": "¿Podrían confirmar mi reserva para el próximo fin de semana?",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T11:45:00Z",
+        "id": "021",
+        "customer": {
+            "name": "Clara Castillo",
+            "email": "clara.castillo@example.com",
+            "phone": "+34123456798"
+        },
+        "subject": "Solicitud de información adicional",
+        "comment": "Me gustaría saber si organizan actividades turísticas.",
+        "actions": {
+            "archive": false
+        }
+    },
+    {
+        "date": "2024-08-18T11:50:00Z",
+        "id": "022",
+        "customer": {
+            "name": "Luis Herrera",
+            "email": "luis.herrera@example.com",
+            "phone": "+34123456799"
+        },
+        "subject": "Consulta sobre cancelaciones",
+        "comment": "¿Cuáles son las políticas de cancelación?",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T11:55:00Z",
+        "id": "023",
+        "customer": {
+            "name": "Isabel Méndez",
+            "email": "isabel.mendez@example.com",
+            "phone": "+34123456800"
+        },
+        "subject": "Pregunta sobre seguridad",
+        "comment": "¿El hotel cuenta con caja fuerte en las habitaciones?",
+        "actions": {
+            "archive": false
+        }
+    },
+    {
+        "date": "2024-08-18T12:00:00Z",
+        "id": "024",
+        "customer": {
+            "name": "Alberto Ruiz",
+            "email": "alberto.ruiz@example.com",
+            "phone": "+34123456801"
+        },
+        "subject": "Solicitud de mejora de habitación",
+        "comment": "¿Puedo mejorar mi habitación a una suite?",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T12:05:00Z",
+        "id": "025",
+        "customer": {
+            "name": "Verónica González",
+            "email": "veronica.gonzalez@example.com",
+            "phone": "+34123456802"
+        },
+        "subject": "Problemas con la reserva",
+        "comment": "No puedo acceder a mi reserva en su sitio web. ¿Podrían ayudarme?",
+        "actions": {
+            "archive": false
+        }
+    },
+    {
+        "date": "2024-08-18T12:10:00Z",
+        "id": "026",
+        "customer": {
+            "name": "Jorge Castro",
+            "email": "jorge.castro@example.com",
+            "phone": "+34123456803"
+        },
+        "subject": "Política de pago",
+        "comment": "¿Cuáles son las políticas de pago? ¿Aceptan tarjetas de débito?",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T12:15:00Z",
+        "id": "027",
+        "customer": {
+            "name": "Patricia Vega",
+            "email": "patricia.vega@example.com",
+            "phone": "+34123456804"
+        },
+        "subject": "Pregunta sobre reservas en línea",
+        "comment": "¿Es seguro reservar a través de su página web?",
+        "actions": {
+            "archive": false
+        }
+    },
+    {
+        "date": "2024-08-18T12:20:00Z",
+        "id": "028",
+        "customer": {
+            "name": "Antonio Aguilar",
+            "email": "antonio.aguilar@example.com",
+            "phone": "+34123456805"
+        },
+        "subject": "Opinión sobre estancia",
+        "comment": "Quería dejar una opinión sobre mi última estancia. ¿Dónde puedo hacerlo?",
+        "actions": {
+            "archive": true
+        }
+    },
+    {
+        "date": "2024-08-18T12:25:00Z",
+        "id": "029",
+        "customer": {
+            "name": "Raquel Molina",
+            "email": "raquel.molina@example.com",
+            "phone": "+34123456806"
+        },
+        "subject": "Cambio de datos de reserva",
+        "comment": "Necesito cambiar el nombre de un huésped en mi reserva. ¿Cómo puedo hacerlo?",
+        "actions": {
+            "archive": false
+        }
+    },
+    {
+        "date": "2024-08-18T12:30:00Z",
+        "id": "030",
+        "customer": {
+            "name": "Gonzalo Lara",
+            "email": "gonzalo.lara@example.com",
+            "phone": "+34123456807"
+        },
+        "subject": "Consulta sobre habitaciones familiares",
+        "comment": "¿Tienen habitaciones familiares disponibles?",
+        "actions": {
+            "archive": true
+        }
+    }
+]
