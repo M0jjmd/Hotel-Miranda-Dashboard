@@ -72,8 +72,9 @@ const Login = () => {
 
       if (user) {
         alert('Login successful!')
-        console.log('Auth Token:', user.authToken)
         localStorage.setItem('authToken', user.authToken)
+        localStorage.setItem('name', user.user.username)
+        localStorage.setItem('email', user.user.email)
         navigate('/dashboard')
         setError('')
       } else {
