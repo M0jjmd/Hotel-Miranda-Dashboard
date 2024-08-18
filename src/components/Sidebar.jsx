@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 import logo from '../assets/dashboardLogo.png'
+import profileImg from '../assets/profileImg.jpeg'
 import { LuLayoutDashboard, LuKeyRound, LuCalendarRange, LuUser2, LuPhoneCall } from "react-icons/lu";
 import styled from "styled-components"
+import { useState } from "react";
 
 const SidebarContainer = styled.aside`
   flex: 1 0 15%;
@@ -42,7 +44,71 @@ const DashboardImgs = styled.div`
   font-size: 1rem;
 `
 
+const ProfileSection = styled.div`
+  margin-top: 2rem;
+  border-top: 1px solid #ddd;
+  padding-top: 1rem;
+  text-align: center;
+  background-color: #d3c6c6;
+`
+
+const ProfilePic = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+`
+
+const ProfileName = styled.h4`
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #333;
+`
+
+const ProfileEmail = styled.p`
+  margin: 0.5rem 0;
+  font-size: 0.875rem;
+  color: #666;
+`
+
+const EditButton = styled.button`
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  outline: none;
+  
+  &:hover {
+    background-color: #0056b3;
+  }
+`
+
 const Sidebar = ({ isVisible }) => {
+  const name = localStorage.getItem('name')
+  const email = localStorage.getItem('email')
+
+  const [isEditing, setIsEditing] = useState(false)
+  const [newName, setNewName] = useState(name);
+  const [newEmail, setNewEmail] = useState(email);
+
+  const handleEditButtonClick = () => {
+    setIsEditing(true);
+  }
+
+  const handleClosePopup = () => {
+    setIsEditing(false);
+  }
+
+  const handleSaveChanges = () => {
+    localStorage.setItem('name', newName)
+    localStorage.setItem('email', newEmail)
+    setIsEditing(false)
+  }
+
   return (
     <>
       <SidebarContainer isVisible={isVisible}>
@@ -54,7 +120,37 @@ const Sidebar = ({ isVisible }) => {
           <SidebarItem><SidebarLink to="/contact"><DashboardImgs as={LuPhoneCall} /> Contact</SidebarLink></SidebarItem>
           <SidebarItem><SidebarLink to="/users"><DashboardImgs as={LuUser2} /> Users</SidebarLink></SidebarItem>
         </SidebarList>
+        <ProfileSection>
+          <ProfilePic src={profileImg} alt="profile-pic" />
+          <ProfileName>{name}</ProfileName>
+          <ProfileEmail>{email}</ProfileEmail>
+          <EditButton onClick={handleEditButtonClick}>Edit Profile</EditButton>
+        </ProfileSection>
       </SidebarContainer>
+
+      {isEditing && (
+        <div className="popup">
+          <h2>Edit Profile</h2>
+          <label>
+            Name:
+            <input
+              type="text"
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+            />
+          </label>
+          <label>
+            Email:
+            <input
+              type="email"
+              value={newEmail}
+              onChange={(e) => setNewEmail(e.target.value)}
+            />
+          </label>
+          <button onClick={handleSaveChanges}>Save</button>
+          <button onClick={handleClosePopup}>Cancel</button>
+        </div>
+      )}
     </>
   )
 }
