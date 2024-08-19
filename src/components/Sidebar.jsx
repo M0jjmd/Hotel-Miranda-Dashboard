@@ -4,6 +4,7 @@ import profileImg from '../assets/profileImg.jpeg'
 import { LuLayoutDashboard, LuKeyRound, LuCalendarRange, LuUser2, LuPhoneCall } from "react-icons/lu";
 import styled from "styled-components"
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 const SidebarContainer = styled.aside`
   flex: 1 0 15%;
@@ -88,24 +89,30 @@ const EditButton = styled.button`
 `
 
 const Sidebar = ({ isVisible }) => {
-  const name = localStorage.getItem('name')
-  const email = localStorage.getItem('email')
+  const { state, dispatch } = useAuth()
+  const localName = localStorage.getItem('name')
+  const localEmail = localStorage.getItem('email')
 
   const [isEditing, setIsEditing] = useState(false)
-  const [newName, setNewName] = useState(name);
-  const [newEmail, setNewEmail] = useState(email);
+  const [name, setName] = useState(localName)
+  const [email, setEmail] = useState(localEmail)
 
   const handleEditButtonClick = () => {
-    setIsEditing(true);
+    setIsEditing(true)
   }
 
   const handleClosePopup = () => {
-    setIsEditing(false);
+    setIsEditing(false)
   }
 
   const handleSaveChanges = () => {
-    localStorage.setItem('name', newName)
-    localStorage.setItem('email', newEmail)
+    dispatch({
+      type: 'EDIT',
+      payload: { name, email }
+    })
+
+    localStorage.setItem('name', name)
+    localStorage.setItem('email', email)
     setIsEditing(false)
   }
 
@@ -135,16 +142,16 @@ const Sidebar = ({ isVisible }) => {
             Name:
             <input
               type="text"
-              value={newName}
-              onChange={(e) => setNewName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </label>
           <label>
             Email:
             <input
               type="email"
-              value={newEmail}
-              onChange={(e) => setNewEmail(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </label>
           <button onClick={handleSaveChanges}>Save</button>

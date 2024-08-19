@@ -17,7 +17,7 @@ const MainContent = styled.div`
 `
 
 const isAuthenticated = () => {
-    return !!localStorage.getItem('name')
+    return localStorage.getItem('isAuthenticated')
 };
 
 const ProtectedRoute = () => {
