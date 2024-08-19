@@ -13,18 +13,20 @@ const usersSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(AuthentificateUser.prending, (state) => {
-                state.status("loading")
+            .addCase(AuthentificateUser.pending, (state) => {
+                console.log("test loading")
+                state.status = "loading"
             })
             .addCase(AuthentificateUser.fulfilled, (state, action) => {
-                state.status("fulfilled")
+                console.log("test loading23")
+                state.status = "fulfilled"
                 state.isAuthenticated = action.payload.isAuthenticated
                 state.name = action.payload.name
                 state.email = action.payload.email
                 state.error = null
             })
             .addCase(AuthentificateUser.rejected, (state, action) => {
-                state.status("failed")
+                state.status = "failed"
                 state.isAuthenticated = false;
                 state.name = '';
                 state.email = '';
