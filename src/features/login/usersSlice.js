@@ -7,19 +7,18 @@ const usersSlice = createSlice({
     initialState: {
         status: "idle",
         error: null,
-        isAuthentificated: false,
+        isAuthenticated: false,
         name: '',
         email: '',
     },
     extraReducers: (builder) => {
         builder
             .addCase(AuthentificateUser.pending, (state) => {
-                console.log("test loading")
                 state.status = "loading"
             })
             .addCase(AuthentificateUser.fulfilled, (state, action) => {
-                console.log("test loading23")
                 state.status = "fulfilled"
+                console.log(action.payload.isAuthenticated)
                 state.isAuthenticated = action.payload.isAuthenticated
                 state.name = action.payload.name
                 state.email = action.payload.email

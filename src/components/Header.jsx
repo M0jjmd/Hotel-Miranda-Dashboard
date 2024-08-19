@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { AiOutlineMenuUnfold, AiOutlineMenuFold, AiOutlineSearch, AiOutlineMail, AiOutlineBell, AiOutlineLogout } from 'react-icons/ai'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { useAuth } from '../context/AuthContext'
 
 const HeaderContent = styled.header`
   display: flex;
@@ -62,6 +63,7 @@ const Icon = styled.div`
 `
 
 const Header = ({ toggleSidebar, isSidebarVisible }) => {
+  const { state, dispatch } = useAuth()
   const [title, setTitle] = useState()
 
   const location = useLocation()
@@ -81,7 +83,12 @@ const Header = ({ toggleSidebar, isSidebarVisible }) => {
   }, [[location.pathname]])
 
   const logOut = () => {
-    localStorage.clear('name')
+    localStorage.removeItem('isAuthenticated')
+    localStorage.removeItem('name')
+    localStorage.removeItem('email')
+
+    dispatch({ type: 'LOGOUT' });
+
     navigate("/")
   }
 

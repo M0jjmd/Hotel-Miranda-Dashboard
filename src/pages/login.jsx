@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { AuthentificateUser } from '../features/login/authenticateUserThunk'
+import { useAuth } from '../context/AuthContext'
 
 const LoginContainer = styled.div`
   display: flex;
@@ -59,7 +60,8 @@ const ErrorMessage = styled.p`
 const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { status, error, isAuthenticated, name, email } = useSelector(state => state.users)
+  const { isAuthenticated, name, email } = useSelector(state => state.users)
+  const { state, dispatch: authDispatch } = useAuth();
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -71,12 +73,19 @@ const Login = () => {
 
     try {
       dispatch(AuthentificateUser({ username, password }))
-
+      
+      console.log(isAuthenticated)
       if (isAuthenticated) {
         alert('Login successful!')
         localStorage.setItem('isAuthenticated', isAuthenticated)
         localStorage.setItem('name', name)
         localStorage.setItem('email', email)
+
+        authDispatch({
+          type: 'LOGIN',
+          payload: { name, email }
+        })
+
         navigate('/dashboard')
       } else {
         setLocalError('Invalid username or password')
@@ -88,7 +97,6 @@ const Login = () => {
 
   return (
     <LoginContainer>
-
       <LoginForm onSubmit={handleLogin}>
         <LoginTitle>Login<br />johndoe<br />password123</LoginTitle>
         <InputField
@@ -104,9 +112,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         {localError && <ErrorMessage>{localError}</ErrorMessage>}
-        <SubmitButton type="submit" disabled={status === 'loading'}>
-          {status === 'loading' ? 'Logging in...' : 'Login'}
-        </SubmitButton>
+        <SubmitButton type="submit">Login</SubmitButton>
       </LoginForm>
     </LoginContainer>
   )
