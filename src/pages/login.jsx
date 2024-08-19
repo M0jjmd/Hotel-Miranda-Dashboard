@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { AuthentificateUser } from '../features/login/authenticateUserThunk'
 
 const LoginContainer = styled.div`
   display: flex;
@@ -55,34 +57,32 @@ const ErrorMessage = styled.p`
 `
 
 const Login = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { status, error, isAuthenticated, name, email } = useSelector(state => state.users)
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const navigate = useNavigate()
+  const [localError, setLocalError] = useState('')
 
   const handleLogin = async (e) => {
     e.preventDefault()
+    setLocalError('')
+
     try {
-      const response = await fetch('../users.json')
-      const data = await response.json()
+      dispatch(AuthentificateUser({ username, password }))
 
-      const user = data.data.find(
-        (user) => user.user.username === username && user.user.password === password
-      )
-
-      if (user) {
+      if (isAuthenticated) {
         alert('Login successful!')
-        localStorage.setItem('authToken', user.authToken)
-        localStorage.setItem('name', user.user.username)
-        localStorage.setItem('email', user.user.email)
+        localStorage.setItem('isAuthenticated', isAuthenticated)
+        localStorage.setItem('name', name)
+        localStorage.setItem('email', email)
         navigate('/dashboard')
-        setError('')
       } else {
-        setError('Invalid username or password')
+        setLocalError('Invalid username or password')
       }
-
     } catch (error) {
-      setError('An error occurred. Please try again.')
+      setLocalError('An error occurred. Please try again.')
     }
   }
 
@@ -103,8 +103,10 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-        <SubmitButton type="submit">Login</SubmitButton>
+        {localError && <ErrorMessage>{localError}</ErrorMessage>}
+        <SubmitButton type="submit" disabled={status === 'loading'}>
+          {status === 'loading' ? 'Logging in...' : 'Login'}
+        </SubmitButton>
       </LoginForm>
     </LoginContainer>
   )

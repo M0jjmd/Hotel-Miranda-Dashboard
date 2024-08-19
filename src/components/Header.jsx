@@ -81,7 +81,7 @@ const Header = ({ toggleSidebar, isSidebarVisible }) => {
   }, [[location.pathname]])
 
   const logOut = () => {
-    localStorage.clear('authToken')
+    localStorage.clear('name')
     navigate("/")
   }
 

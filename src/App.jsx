@@ -7,20 +7,24 @@ import { Routes, Route } from 'react-router-dom'
 
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import Login from './pages/Login.jsx'
+import store from './app/store.js'
+import { Provider } from 'react-redux'
 
 const App = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path="dashboard" element={<Dasboard />} />
-          <Route path="bookings" element={<Bookings />} />
-          <Route path="contact" element={<Contacts />} />
-          <Route path="rooms" element={<Rooms />} />
-          <Route path="users" element={<Users />} />
-        </Route>
-      </Routes>
+      <Provider store={store}>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="dashboard" element={<Dasboard />} />
+            <Route path="bookings" element={<Bookings />} />
+            <Route path="contact" element={<Contacts />} />
+            <Route path="rooms" element={<Rooms />} />
+            <Route path="users" element={<Users />} />
+          </Route>
+        </Routes>
+      </Provider>
     </>
   )
 }
