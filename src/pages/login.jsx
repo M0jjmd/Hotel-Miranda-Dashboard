@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -55,10 +56,16 @@ const ErrorMessage = styled.p`
 `
 
 const Login = () => {
+  const dispatch = useDispatch()
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const navigate = useNavigate()
+
+  useEffect(() => {
+
+  }, [])
 
   const handleLogin = async (e) => {
     e.preventDefault()
