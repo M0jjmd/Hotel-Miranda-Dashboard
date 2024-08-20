@@ -18,7 +18,6 @@ const usersSlice = createSlice({
             })
             .addCase(AuthentificateUser.fulfilled, (state, action) => {
                 state.status = "fulfilled"
-                console.log(action.payload.isAuthenticated)
                 state.isAuthenticated = action.payload.isAuthenticated
                 state.name = action.payload.name
                 state.email = action.payload.email
@@ -26,9 +25,9 @@ const usersSlice = createSlice({
             })
             .addCase(AuthentificateUser.rejected, (state, action) => {
                 state.status = "failed"
-                state.isAuthenticated = false;
-                state.name = '';
-                state.email = '';
+                state.isAuthenticated = false
+                state.name = ''
+                state.email = ''
                 state.error = action.error.message
             })
     }

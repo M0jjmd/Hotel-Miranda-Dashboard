@@ -1,10 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as S from '../styles/tablesForm'
+import { useDispatch, useSelector } from 'react-redux'
+import { GetBookings } from '../features/bookings/bookingsThunk'
 
-const GuestList = ({ bookings }) => {
+const GuestList = () => {
   const [filterStatus, setFilterStatus] = useState('ALL')
   const [searchTerm, setSearchTerm] = useState('')
   const [isFormOpen, setIsFormOpen] = useState(false)
+
+  const dispatch = useDispatch()
+  const bookings = useSelector((state) => state.bookings.data)
+  const bookingsStatus = useSelector((state) => state.bookings.status)
+
+  useEffect(() => {
+    if (bookingsStatus === 'idle') {
+      dispatch(GetBookings())
+    }
+  }, [dispatch, bookingsStatus])
+
+  const sortedBookings = [...bookings].sort((a, b) => {
+    const dateA = new Date(a.OrderDate)
+    const dateB = new Date(b.OrderDate)
+    return dateB - dateA
+  })
+
+  console.log("listaFinal" + bookings)
 
   const handleFilterChange = (newFilter) => {
     setFilterStatus(newFilter)
@@ -22,12 +42,6 @@ const GuestList = ({ bookings }) => {
     alert("Booking succesfully saved.")
     setIsFormOpen(false)
   }
-
-  const sortedBookings = bookings.sort((a, b) => {
-    const dateA = new Date(a.OrderDate)
-    const dateB = new Date(b.OrderDate)
-    return dateB - dateA
-  })
 
   const filteredBookings = sortedBookings
     .filter(booking => {
