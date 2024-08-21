@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { GetBookings } from './bookingsThunk'
+import { GetBookings, EditBooking, DeleteBooking } from './bookingsThunk'
 
 const bookingsSlice = createSlice({
     name: 'bookings',
@@ -17,11 +17,19 @@ const bookingsSlice = createSlice({
             .addCase(GetBookings.fulfilled, (state, action) => {
                 state.status = "fulfilled"
                 state.data = action.payload
-                console.log(action.payload)
             })
             .addCase(GetBookings.rejected, (state, action) => {
                 state.status = "failed"
                 state.error = action.error.message
+            })
+            .addCase(EditBooking.fulfilled, (state, action) => {
+                state.data = state.data.map(booking =>
+                    booking.id === action.payload.id ? action.payload : booking
+                )
+            })
+            // Handle delete booking (DELETE)
+            .addCase(DeleteBooking.fulfilled, (state, action) => {
+                state.data = state.data.filter(booking => booking.id !== action.payload)
             })
     },
 })

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import * as S from '../styles/tablesForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { GetBookings } from '../features/bookings/bookingsThunk'
+import EditableRow from './bookings/EditableRow'
 
 const GuestList = () => {
   const [filterStatus, setFilterStatus] = useState('ALL')
   const [searchTerm, setSearchTerm] = useState('')
   const [isFormOpen, setIsFormOpen] = useState(false)
+  // const [menuOpenId, setMenuOpenId] = useState(null)
 
   const dispatch = useDispatch()
   const bookings = useSelector((state) => state.bookings.data)
@@ -23,8 +25,6 @@ const GuestList = () => {
     const dateB = new Date(b.OrderDate)
     return dateB - dateA
   })
-
-  console.log("listaFinal" + bookings)
 
   const handleFilterChange = (newFilter) => {
     setFilterStatus(newFilter)
@@ -49,6 +49,8 @@ const GuestList = () => {
       const combinedString = JSON.stringify(booking).toLowerCase()
       return combinedString.includes(searchTerm)
     })
+
+
 
   return (
     <S.Container>
@@ -131,9 +133,11 @@ const GuestList = () => {
                   <S.HeaderCell>Check-Out</S.HeaderCell>
                   <S.HeaderCell>Room</S.HeaderCell>
                   <S.HeaderCell>Status</S.HeaderCell>
+                  <S.HeaderCell>Actions</S.HeaderCell>
                 </tr>
               </S.TableHeader>
-              <S.TableBody>
+              <EditableRow filteredBookings={filteredBookings} />
+              {/* <S.TableBody>
                 {filteredBookings.map(booking => (
                   <S.TableRow key={booking.Guest.ReservationID}>
                     <S.TableCell>{booking.Guest.Name}</S.TableCell>
@@ -142,9 +146,22 @@ const GuestList = () => {
                     <S.TableCell>{booking.CheckOut}</S.TableCell>
                     <S.TableCell>{`${booking.RoomType.Type} (${booking.RoomType.RoomNumber})`}</S.TableCell>
                     <S.TableCell>{booking.Status}</S.TableCell>
+                    <S.TableCell>
+                      <S.ActionMenu>
+                        <S.MoreButton onClick={() => handleMenuToggle(booking.Guest.ReservationID)}>
+                          &#x22EE;
+                        </S.MoreButton>
+                        {menuOpenId === booking.Guest.ReservationID && (
+                          <S.Menu>
+                            <S.MenuItem onClick={() => handleEditBooking(booking.Guest.ReservationID)}>Edit</S.MenuItem>
+                            <S.MenuItem onClick={() => handleDeleteBooking(booking.Guest.ReservationID)}>Delete</S.MenuItem>
+                          </S.Menu>
+                        )}
+                      </S.ActionMenu>
+                    </S.TableCell>
                   </S.TableRow>
                 ))}
-              </S.TableBody>
+              </S.TableBody> */}
             </S.Table>
           ) : (
             <S.NoResults>No search results found</S.NoResults>

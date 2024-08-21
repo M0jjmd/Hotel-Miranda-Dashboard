@@ -83,10 +83,6 @@ const Header = ({ toggleSidebar, isSidebarVisible }) => {
   }, [[location.pathname]])
 
   const logOut = () => {
-    localStorage.removeItem('isAuthenticated')
-    localStorage.removeItem('name')
-    localStorage.removeItem('email')
-
     dispatch({ type: 'LOGOUT' });
 
     navigate("/")

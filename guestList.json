@@ -1,440 +1,453 @@
 {
-    "success": true,
-    "data": [
-        {
-            "Guest": {
-                "Name": "Juan Perez",
-                "ReservationID": "12345"
-            },
-            "OrderDate": "2023-07-15",
-            "CheckIn": "2023-08-01",
-            "CheckOut": "2023-08-05",
-            "SpecialRequest": "Habitación con vista al mar, llegada tarde",
-            "RoomType": {
-                "Type": "Suite",
-                "RoomNumber": "101"
-            },
-            "Status": "CHECK-IN"
-        },
-        {
-            "Guest": {
-                "Name": "Maria Gomez",
-                "ReservationID": "67890"
-            },
-            "OrderDate": "2023-07-20",
-            "CheckIn": "2023-08-02",
-            "CheckOut": "2023-08-06",
-            "SpecialRequest": "Cuna para bebé",
-            "RoomType": {
-                "Type": "Doble",
-                "RoomNumber": "202"
-            },
-            "Status": "IN-PROGRESS"
-        },
-        {
-            "Guest": {
-                "Name": "Carlos Sanchez",
-                "ReservationID": "54321"
-            },
-            "OrderDate": "2023-07-25",
-            "CheckIn": "2023-07-30",
-            "CheckOut": "2023-08-03",
-            "SpecialRequest": "Sin peticiones especiales",
-            "RoomType": {
-                "Type": "Individual",
-                "RoomNumber": "303"
-            },
-            "Status": "CHECK-OUT"
-        },
-        {
-            "Guest": {
-                "Name": "Ana Martinez",
-                "ReservationID": "23456"
-            },
-            "OrderDate": "2023-07-10",
-            "CheckIn": "2023-08-01",
-            "CheckOut": "2023-08-07",
-            "SpecialRequest": "Desayuno sin gluten",
-            "RoomType": {
-                "Type": "Suite",
-                "RoomNumber": "104"
-            },
-            "Status": "CHECK-IN"
-        },
-        {
-            "Guest": {
-                "Name": "Luis Fernandez",
-                "ReservationID": "98765"
-            },
-            "OrderDate": "2023-07-18",
-            "CheckIn": "2023-08-03",
-            "CheckOut": "2023-08-08",
-            "SpecialRequest": "Acceso para silla de ruedas",
-            "RoomType": {
-                "Type": "Doble",
-                "RoomNumber": "205"
-            },
-            "Status": "IN-PROGRESS"
-        },
-        {
-            "Guest": {
-                "Name": "Isabel Garcia",
-                "ReservationID": "11111"
-            },
-            "OrderDate": "2023-07-12",
-            "CheckIn": "2023-08-04",
-            "CheckOut": "2023-08-09",
-            "SpecialRequest": "No fumar en la habitación",
-            "RoomType": {
-                "Type": "Individual",
-                "RoomNumber": "306"
-            },
-            "Status": "CHECK-IN"
-        },
-        {
-            "Guest": {
-                "Name": "Miguel Ruiz",
-                "ReservationID": "22222"
-            },
-            "OrderDate": "2023-07-05",
-            "CheckIn": "2023-08-02",
-            "CheckOut": "2023-08-06",
-            "SpecialRequest": "Habitación silenciosa",
-            "RoomType": {
-                "Type": "Suite",
-                "RoomNumber": "107"
-            },
-            "Status": "IN-PROGRESS"
-        },
-        {
-            "Guest": {
-                "Name": "Carmen Morales",
-                "ReservationID": "33333"
-            },
-            "OrderDate": "2023-07-14",
-            "CheckIn": "2023-07-29",
-            "CheckOut": "2023-08-03",
-            "SpecialRequest": "Cama extra",
-            "RoomType": {
-                "Type": "Doble",
-                "RoomNumber": "208"
-            },
-            "Status": "CHECK-OUT"
-        },
-        {
-            "Guest": {
-                "Name": "David Rodriguez",
-                "ReservationID": "44444"
-            },
-            "OrderDate": "2023-07-19",
-            "CheckIn": "2023-08-05",
-            "CheckOut": "2023-08-10",
-            "SpecialRequest": "Desayuno vegano",
-            "RoomType": {
-                "Type": "Individual",
-                "RoomNumber": "309"
-            },
-            "Status": "CHECK-IN"
-        },
-        {
-            "Guest": {
-                "Name": "Sofia Lopez",
-                "ReservationID": "55555"
-            },
-            "OrderDate": "2023-07-22",
-            "CheckIn": "2023-08-04",
-            "CheckOut": "2023-08-07",
-            "SpecialRequest": "Almohadas hipoalergénicas",
-            "RoomType": {
-                "Type": "Suite",
-                "RoomNumber": "110"
-            },
-            "Status": "IN-PROGRESS"
-        },
-        {
-            "Guest": {
-                "Name": "Jorge Hernandez",
-                "ReservationID": "66666"
-            },
-            "OrderDate": "2023-07-16",
-            "CheckIn": "2023-07-30",
-            "CheckOut": "2023-08-04",
-            "SpecialRequest": "Mini bar lleno",
-            "RoomType": {
-                "Type": "Doble",
-                "RoomNumber": "211"
-            },
-            "Status": "CHECK-OUT"
-        },
-        {
-            "Guest": {
-                "Name": "Elena Ramirez",
-                "ReservationID": "77777"
-            },
-            "OrderDate": "2023-07-21",
-            "CheckIn": "2023-08-06",
-            "CheckOut": "2023-08-11",
-            "SpecialRequest": "Horario flexible para check-in",
-            "RoomType": {
-                "Type": "Individual",
-                "RoomNumber": "312"
-            },
-            "Status": "CHECK-IN"
-        },
-        {
-            "Guest": {
-                "Name": "Laura Ortega",
-                "ReservationID": "88888"
-            },
-            "OrderDate": "2023-07-13",
-            "CheckIn": "2023-08-03",
-            "CheckOut": "2023-08-08",
-            "SpecialRequest": "Cama doble",
-            "RoomType": {
-                "Type": "Suite",
-                "RoomNumber": "113"
-            },
-            "Status": "IN-PROGRESS"
-        },
-        {
-            "Guest": {
-                "Name": "Alberto Diaz",
-                "ReservationID": "99999"
-            },
-            "OrderDate": "2023-07-17",
-            "CheckIn": "2023-07-31",
-            "CheckOut": "2023-08-02",
-            "SpecialRequest": "Habitación cerca del ascensor",
-            "RoomType": {
-                "Type": "Doble",
-                "RoomNumber": "214"
-            },
-            "Status": "CHECK-OUT"
-        },
-        {
-            "Guest": {
-                "Name": "Rosa Perez",
-                "ReservationID": "00000"
-            },
-            "OrderDate": "2023-07-11",
-            "CheckIn": "2023-08-01",
-            "CheckOut": "2023-08-05",
-            "SpecialRequest": "Sin peticiones especiales",
-            "RoomType": {
-                "Type": "Individual",
-                "RoomNumber": "315"
-            },
-            "Status": "CHECK-IN"
-        },
-        {
-            "Guest": {
-                "Name": "Pablo Torres",
-                "ReservationID": "11223"
-            },
-            "OrderDate": "2023-07-18",
-            "CheckIn": "2023-08-02",
-            "CheckOut": "2023-08-07",
-            "SpecialRequest": "Vista al jardín",
-            "RoomType": {
-                "Type": "Suite",
-                "RoomNumber": "116"
-            },
-            "Status": "IN-PROGRESS"
-        },
-        {
-            "Guest": {
-                "Name": "Cristina Rivas",
-                "ReservationID": "33445"
-            },
-            "OrderDate": "2023-07-20",
-            "CheckIn": "2023-07-28",
-            "CheckOut": "2023-08-01",
-            "SpecialRequest": "Sin peticiones especiales",
-            "RoomType": {
-                "Type": "Doble",
-                "RoomNumber": "217"
-            },
-            "Status": "CHECK-OUT"
-        },
-        {
-            "Guest": {
-                "Name": "Raul Flores",
-                "ReservationID": "55667"
-            },
-            "OrderDate": "2023-07-22",
-            "CheckIn": "2023-08-05",
-            "CheckOut": "2023-08-09",
-            "SpecialRequest": "Menú sin lactosa",
-            "RoomType": {
-                "Type": "Individual",
-                "RoomNumber": "318"
-            },
-            "Status": "CHECK-IN"
-        },
-        {
-            "Guest": {
-                "Name": "Adriana Santos",
-                "ReservationID": "77889"
-            },
-            "OrderDate": "2023-07-25",
-            "CheckIn": "2023-08-06",
-            "CheckOut": "2023-08-10",
-            "SpecialRequest": "Toallas adicionales",
-            "RoomType": {
-                "Type": "Suite",
-                "RoomNumber": "119"
-            },
-            "Status": "IN-PROGRESS"
-        },
-        {
-            "Guest": {
-                "Name": "Esteban Jimenez",
-                "ReservationID": "99001"
-            },
-            "OrderDate": "2023-07-14",
-            "CheckIn": "2023-07-29",
-            "CheckOut": "2023-08-02",
-            "SpecialRequest": "Sin peticiones especiales",
-            "RoomType": {
-                "Type": "Doble",
-                "RoomNumber": "220"
-            },
-            "Status": "CHECK-OUT"
-        },
-        {
-            "Guest": {
-                "Name": "Victoria Vargas",
-                "ReservationID": "21345"
-            },
-            "OrderDate": "2023-07-15",
-            "CheckIn": "2023-08-01",
-            "CheckOut": "2023-08-07",
-            "SpecialRequest": "Almohadas extra",
-            "RoomType": {
-                "Type": "Individual",
-                "RoomNumber": "321"
-            },
-            "Status": "CHECK-IN"
-        },
-        {
-            "Guest": {
-                "Name": "Pedro Alvarez",
-                "ReservationID": "32345"
-            },
-            "OrderDate": "2023-07-18",
-            "CheckIn": "2023-08-03",
-            "CheckOut": "2023-08-06",
-            "SpecialRequest": "Balcón privado",
-            "RoomType": {
-                "Type": "Suite",
-                "RoomNumber": "122"
-            },
-            "Status": "IN-PROGRESS"
-        },
-        {
-            "Guest": {
-                "Name": "Claudia Nuñez",
-                "ReservationID": "43567"
-            },
-            "OrderDate": "2023-07-16",
-            "CheckIn": "2023-07-30",
-            "CheckOut": "2023-08-03",
-            "SpecialRequest": "Habitación en piso alto",
-            "RoomType": {
-                "Type": "Doble",
-                "RoomNumber": "223"
-            },
-            "Status": "CHECK-OUT"
-        },
-        {
-            "Guest": {
-                "Name": "Francisco Peña",
-                "ReservationID": "54678"
-            },
-            "OrderDate": "2023-07-21",
-            "CheckIn": "2023-08-05",
-            "CheckOut": "2023-08-09",
-            "SpecialRequest": "Cama matrimonial",
-            "RoomType": {
-                "Type": "Individual",
-                "RoomNumber": "324"
-            },
-            "Status": "CHECK-IN"
-        },
-        {
-            "Guest": {
-                "Name": "Gabriela Rojas",
-                "ReservationID": "65789"
-            },
-            "OrderDate": "2023-07-25",
-            "CheckIn": "2023-08-06",
-            "CheckOut": "2023-08-10",
-            "SpecialRequest": "Desayuno vegetariano",
-            "RoomType": {
-                "Type": "Suite",
-                "RoomNumber": "125"
-            },
-            "Status": "IN-PROGRESS"
-        },
-        {
-            "Guest": {
-                "Name": "Javier Vargas",
-                "ReservationID": "76890"
-            },
-            "OrderDate": "2023-07-13",
-            "CheckIn": "2023-07-28",
-            "CheckOut": "2023-08-01",
-            "SpecialRequest": "Habitación con bañera",
-            "RoomType": {
-                "Type": "Doble",
-                "RoomNumber": "226"
-            },
-            "Status": "CHECK-OUT"
-        },
-        {
-            "Guest": {
-                "Name": "Cecilia Blanco",
-                "ReservationID": "87901"
-            },
-            "OrderDate": "2023-07-19",
-            "CheckIn": "2023-08-01",
-            "CheckOut": "2023-08-05",
-            "SpecialRequest": "Late check-out",
-            "RoomType": {
-                "Type": "Individual",
-                "RoomNumber": "327"
-            },
-            "Status": "CHECK-IN"
-        },
-        {
-            "Guest": {
-                "Name": "Mauricio Castillo",
-                "ReservationID": "98012"
-            },
-            "OrderDate": "2023-07-23",
-            "CheckIn": "2023-08-04",
-            "CheckOut": "2023-08-08",
-            "SpecialRequest": "Servicio de lavandería",
-            "RoomType": {
-                "Type": "Suite",
-                "RoomNumber": "128"
-            },
-            "Status": "IN-PROGRESS"
-        },
-        {
-            "Guest": {
-                "Name": "Luisa Fernandez",
-                "ReservationID": "09123"
-            },
-            "OrderDate": "2023-07-17",
-            "CheckIn": "2023-07-30",
-            "CheckOut": "2023-08-03",
-            "SpecialRequest": "Silencio total",
-            "RoomType": {
-                "Type": "Doble",
-                "RoomNumber": "229"
-            },
-            "Status": "CHECK-OUT"
-        }
-    ]
+  "success": true,
+  "data": [
+    {
+      "Guest": {
+        "Name": "Juan Perez",
+        "ReservationID": "12345"
+      },
+      "OrderDate": "2023-07-15",
+      "CheckIn": "2023-08-01",
+      "CheckOut": "2023-08-05",
+      "SpecialRequest": "Habitación con vista al mar, llegada tarde",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "101"
+      },
+      "Status": "CHECK-IN",
+      "id": "4804"
+    },
+    {
+      "Guest": {
+        "Name": "Maria Gomez",
+        "ReservationID": "67890"
+      },
+      "OrderDate": "2023-07-20",
+      "CheckIn": "2023-08-02",
+      "CheckOut": "2023-08-06",
+      "SpecialRequest": "Cuna para bebé",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "202"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "42f6"
+    },
+    {
+      "Guest": {
+        "Name": "Ana Martinez",
+        "ReservationID": "23456"
+      },
+      "OrderDate": "2023-07-10",
+      "CheckIn": "2023-08-01",
+      "CheckOut": "2023-08-07",
+      "SpecialRequest": "Desayuno sin gluten",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "104"
+      },
+      "Status": "CHECK-IN",
+      "id": "ff2d"
+    },
+    {
+      "Guest": {
+        "Name": "Luis Fernandez",
+        "ReservationID": "98765"
+      },
+      "OrderDate": "2023-07-18",
+      "CheckIn": "2023-08-03",
+      "CheckOut": "2023-08-08",
+      "SpecialRequest": "Acceso para silla de ruedas",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "205"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "5fd9"
+    },
+    {
+      "Guest": {
+        "Name": "Isabel Garcia",
+        "ReservationID": "11111"
+      },
+      "OrderDate": "2023-07-12",
+      "CheckIn": "2023-08-04",
+      "CheckOut": "2023-08-09",
+      "SpecialRequest": "No fumar en la habitación",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "306"
+      },
+      "Status": "CHECK-IN",
+      "id": "60af"
+    },
+    {
+      "Guest": {
+        "Name": "Miguel Ruiz",
+        "ReservationID": "22222"
+      },
+      "OrderDate": "2023-07-05",
+      "CheckIn": "2023-08-02",
+      "CheckOut": "2023-08-06",
+      "SpecialRequest": "Habitación silenciosa",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "107"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "0396"
+    },
+    {
+      "Guest": {
+        "Name": "Carmen Morales",
+        "ReservationID": "33333"
+      },
+      "OrderDate": "2023-07-14",
+      "CheckIn": "2023-07-29",
+      "CheckOut": "2023-08-03",
+      "SpecialRequest": "Cama extra",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "208"
+      },
+      "Status": "CHECK-OUT",
+      "id": "a309"
+    },
+    {
+      "Guest": {
+        "Name": "David Rodriguez",
+        "ReservationID": "44444"
+      },
+      "OrderDate": "2023-07-19",
+      "CheckIn": "2023-08-05",
+      "CheckOut": "2023-08-10",
+      "SpecialRequest": "Desayuno vegano",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "309"
+      },
+      "Status": "CHECK-IN",
+      "id": "ecd0"
+    },
+    {
+      "Guest": {
+        "Name": "Sofia Lopez",
+        "ReservationID": "55555"
+      },
+      "OrderDate": "2023-07-22",
+      "CheckIn": "2023-08-04",
+      "CheckOut": "2023-08-07",
+      "SpecialRequest": "Almohadas hipoalergénicas",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "110"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "e19c"
+    },
+    {
+      "Guest": {
+        "Name": "Jorge Hernandez",
+        "ReservationID": "66666"
+      },
+      "OrderDate": "2023-07-16",
+      "CheckIn": "2023-07-30",
+      "CheckOut": "2023-08-04",
+      "SpecialRequest": "Mini bar lleno",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "211"
+      },
+      "Status": "CHECK-OUT",
+      "id": "05cd"
+    },
+    {
+      "Guest": {
+        "Name": "Elena Ramirez",
+        "ReservationID": "77777"
+      },
+      "OrderDate": "2023-07-21",
+      "CheckIn": "2023-08-06",
+      "CheckOut": "2023-08-11",
+      "SpecialRequest": "Horario flexible para check-in",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "312"
+      },
+      "Status": "CHECK-IN",
+      "id": "5197"
+    },
+    {
+      "Guest": {
+        "Name": "Laura Ortega",
+        "ReservationID": "88888"
+      },
+      "OrderDate": "2023-07-13",
+      "CheckIn": "2023-08-03",
+      "CheckOut": "2023-08-08",
+      "SpecialRequest": "Cama doble",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "113"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "8922"
+    },
+    {
+      "Guest": {
+        "Name": "Alberto Diaz",
+        "ReservationID": "99999"
+      },
+      "OrderDate": "2023-07-17",
+      "CheckIn": "2023-07-31",
+      "CheckOut": "2023-08-02",
+      "SpecialRequest": "Habitación cerca del ascensor",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "214"
+      },
+      "Status": "CHECK-OUT",
+      "id": "19bb"
+    },
+    {
+      "Guest": {
+        "Name": "Rosa Perez",
+        "ReservationID": "00000"
+      },
+      "OrderDate": "2023-07-11",
+      "CheckIn": "2023-08-01",
+      "CheckOut": "2023-08-05",
+      "SpecialRequest": "Sin peticiones especiales",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "315"
+      },
+      "Status": "CHECK-IN",
+      "id": "4db9"
+    },
+    {
+      "Guest": {
+        "Name": "Pablo Torres",
+        "ReservationID": "11223"
+      },
+      "OrderDate": "2023-07-18",
+      "CheckIn": "2023-08-02",
+      "CheckOut": "2023-08-07",
+      "SpecialRequest": "Vista al jardín",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "116"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "6b16"
+    },
+    {
+      "Guest": {
+        "Name": "Cristina Rivas",
+        "ReservationID": "33445"
+      },
+      "OrderDate": "2023-07-20",
+      "CheckIn": "2023-07-28",
+      "CheckOut": "2023-08-01",
+      "SpecialRequest": "Sin peticiones especiales",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "217"
+      },
+      "Status": "CHECK-OUT",
+      "id": "ddd9"
+    },
+    {
+      "Guest": {
+        "Name": "Raul Flores",
+        "ReservationID": "55667"
+      },
+      "OrderDate": "2023-07-22",
+      "CheckIn": "2023-08-05",
+      "CheckOut": "2023-08-09",
+      "SpecialRequest": "Menú sin lactosa",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "318"
+      },
+      "Status": "CHECK-IN",
+      "id": "6d5f"
+    },
+    {
+      "Guest": {
+        "Name": "Adriana Santo",
+        "ReservationID": "77889"
+      },
+      "OrderDate": "2023-07-25",
+      "CheckIn": "2023-08-06",
+      "CheckOut": "2023-08-10",
+      "SpecialRequest": "Toallas adicionales",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "119"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "3686"
+    },
+    {
+      "Guest": {
+        "Name": "Esteban Jimenez",
+        "ReservationID": "99001"
+      },
+      "OrderDate": "2023-07-14",
+      "CheckIn": "2023-07-29",
+      "CheckOut": "2023-08-02",
+      "SpecialRequest": "Sin peticiones especiales",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "220"
+      },
+      "Status": "CHECK-OUT",
+      "id": "171a"
+    },
+    {
+      "Guest": {
+        "Name": "Victoria Vargas",
+        "ReservationID": "21345"
+      },
+      "OrderDate": "2023-07-15",
+      "CheckIn": "2023-08-01",
+      "CheckOut": "2023-08-07",
+      "SpecialRequest": "Almohadas extra",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "321"
+      },
+      "Status": "CHECK-IN",
+      "id": "1da9"
+    },
+    {
+      "Guest": {
+        "Name": "Pedro Alvarez",
+        "ReservationID": "32345"
+      },
+      "OrderDate": "2023-07-18",
+      "CheckIn": "2023-08-03",
+      "CheckOut": "2023-08-06",
+      "SpecialRequest": "Balcón privado",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "122"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "9fb1"
+    },
+    {
+      "Guest": {
+        "Name": "Claudia Nuñez",
+        "ReservationID": "43567"
+      },
+      "OrderDate": "2023-07-16",
+      "CheckIn": "2023-07-30",
+      "CheckOut": "2023-08-03",
+      "SpecialRequest": "Habitación en piso alto",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "223"
+      },
+      "Status": "CHECK-OUT",
+      "id": "02ae"
+    },
+    {
+      "Guest": {
+        "Name": "Francisco Peña",
+        "ReservationID": "54678"
+      },
+      "OrderDate": "2023-07-21",
+      "CheckIn": "2023-08-05",
+      "CheckOut": "2023-08-09",
+      "SpecialRequest": "Cama matrimonial",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "324"
+      },
+      "Status": "CHECK-IN",
+      "id": "2e81"
+    },
+    {
+      "Guest": {
+        "Name": "Gabriela Rojas",
+        "ReservationID": "65789"
+      },
+      "OrderDate": "2023-07-25",
+      "CheckIn": "2023-08-06",
+      "CheckOut": "2023-08-10",
+      "SpecialRequest": "Desayuno vegetariano",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "125"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "8686"
+    },
+    {
+      "Guest": {
+        "Name": "Javier Vargas",
+        "ReservationID": "76890"
+      },
+      "OrderDate": "2023-07-13",
+      "CheckIn": "2023-07-28",
+      "CheckOut": "2023-08-01",
+      "SpecialRequest": "Habitación con bañera",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "226"
+      },
+      "Status": "CHECK-OUT",
+      "id": "5cd8"
+    },
+    {
+      "Guest": {
+        "Name": "Cecilia Blanco",
+        "ReservationID": "87901"
+      },
+      "OrderDate": "2023-07-19",
+      "CheckIn": "2023-08-01",
+      "CheckOut": "2023-08-05",
+      "SpecialRequest": "Late check-out",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "327"
+      },
+      "Status": "CHECK-IN",
+      "id": "13af"
+    },
+    {
+      "Guest": {
+        "Name": "Mauricio Castillo",
+        "ReservationID": "98012"
+      },
+      "OrderDate": "2023-07-23",
+      "CheckIn": "2023-08-04",
+      "CheckOut": "2023-08-08",
+      "SpecialRequest": "Servicio de lavandería",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "128"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "3841"
+    },
+    {
+      "Guest": {
+        "Name": "Luisa Fernandez",
+        "ReservationID": "09123"
+      },
+      "OrderDate": "2023-07-17",
+      "CheckIn": "2023-07-30",
+      "CheckOut": "2023-08-03",
+      "SpecialRequest": "Silencio total",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "229"
+      },
+      "Status": "CHECK-OUT",
+      "id": "cb4a"
+    }
+  ]
 }
