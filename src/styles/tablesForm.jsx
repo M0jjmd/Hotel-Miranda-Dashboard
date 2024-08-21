@@ -82,7 +82,6 @@ export const FormContainer = styled.div`
   border-radius: 0.8rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 1.3rem;
-  display: ${({ open }) => (open ? 'flex' : 'none')};
 `
 
 export const Input = styled.input`

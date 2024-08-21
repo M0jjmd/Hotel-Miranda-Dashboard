@@ -3,22 +3,23 @@ import * as S from '../styles/tablesForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { GetBookings } from '../features/bookings/bookingsThunk'
 import EditableRow from './bookings/EditableRow'
+import { useAuth } from '../context/AuthContext'
+import AddBooking from './bookings/AddBooking'
 
 const GuestList = () => {
   const [filterStatus, setFilterStatus] = useState('ALL')
   const [searchTerm, setSearchTerm] = useState('')
-  const [isFormOpen, setIsFormOpen] = useState(false)
-  // const [menuOpenId, setMenuOpenId] = useState(null)
+  const { state, dispatch } = useAuth()
 
-  const dispatch = useDispatch()
+  const dispatchBooking = useDispatch()
   const bookings = useSelector((state) => state.bookings.data)
   const bookingsStatus = useSelector((state) => state.bookings.status)
 
   useEffect(() => {
     if (bookingsStatus === 'idle') {
-      dispatch(GetBookings())
+      dispatchBooking(GetBookings())
     }
-  }, [dispatch, bookingsStatus])
+  }, [dispatchBooking, bookingsStatus])
 
   const sortedBookings = [...bookings].sort((a, b) => {
     const dateA = new Date(a.OrderDate)
@@ -35,12 +36,11 @@ const GuestList = () => {
   }
 
   const handleFormToggle = () => {
-    setIsFormOpen(!isFormOpen)
-  }
-
-  const handleAddBooking = () => {
-    alert("Booking succesfully saved.")
-    setIsFormOpen(false)
+    if (state.isFormOpen) {
+      dispatch({ type: 'CLOSE_FORM' });
+    } else {
+      dispatch({ type: 'OPEN_FORM' });
+    }
   }
 
   const filteredBookings = sortedBookings
@@ -49,8 +49,6 @@ const GuestList = () => {
       const combinedString = JSON.stringify(booking).toLowerCase()
       return combinedString.includes(searchTerm)
     })
-
-
 
   return (
     <S.Container>
@@ -67,61 +65,11 @@ const GuestList = () => {
         <S.Button active={filterStatus === 'IN-PROGRESS'} onClick={() => handleFilterChange('IN-PROGRESS')}>In Progress</S.Button>
         <S.AddButton onClick={handleFormToggle}>Add Booking</S.AddButton>
       </S.FilterContainer>
-
-      <S.FormContainer open={isFormOpen}>
-        <h3>Add New Booking</h3>
-        <label>Guest Name</label>
-        <S.Input
-          type="text"
-          name="Guest.Name"
-          placeholder="Guest Name"
-          value={""}
-        />
-        <label>Reservation ID</label>
-        <S.Input
-          type="text"
-          name="Guest.ReservationID"
-          placeholder="Reservation ID"
-          value={""}
-        />
-        <label>Order Date</label>
-        <S.Input
-          type="date"
-          name="OrderDate"
-          placeholder="Order Date"
-          value={""}
-        />
-        <label>Check-In Date</label>
-        <S.Input
-          type="date"
-          name="CheckIn"
-          placeholder="Check-In Date"
-          value={""}
-        />
-        <label>Check-Out Date</label>
-        <S.Input
-          type="date"
-          name="CheckOut"
-          placeholder="Check-Out Date"
-          value={""}
-        />
-        <label>Room Type</label>
-        <S.Input
-          type="text"
-          name="RoomType.Type"
-          placeholder="Room Type"
-          value={""}
-        />
-        <label>Room Number</label>
-        <S.Input
-          type="text"
-          name="RoomType.RoomNumber"
-          placeholder="Room Number"
-          value={""}
-        />
-        <S.Button onClick={handleAddBooking}>Add Booking</S.Button>
-      </S.FormContainer>
-      {!isFormOpen && (
+      {state.isFormOpen ? (
+        <>
+          <AddBooking />
+        </>
+      ) : (
         <>
           {filteredBookings.length > 0 ? (
             <S.Table>
@@ -137,31 +85,6 @@ const GuestList = () => {
                 </tr>
               </S.TableHeader>
               <EditableRow filteredBookings={filteredBookings} />
-              {/* <S.TableBody>
-                {filteredBookings.map(booking => (
-                  <S.TableRow key={booking.Guest.ReservationID}>
-                    <S.TableCell>{booking.Guest.Name}</S.TableCell>
-                    <S.TableCell>{booking.OrderDate}</S.TableCell>
-                    <S.TableCell>{booking.CheckIn}</S.TableCell>
-                    <S.TableCell>{booking.CheckOut}</S.TableCell>
-                    <S.TableCell>{`${booking.RoomType.Type} (${booking.RoomType.RoomNumber})`}</S.TableCell>
-                    <S.TableCell>{booking.Status}</S.TableCell>
-                    <S.TableCell>
-                      <S.ActionMenu>
-                        <S.MoreButton onClick={() => handleMenuToggle(booking.Guest.ReservationID)}>
-                          &#x22EE;
-                        </S.MoreButton>
-                        {menuOpenId === booking.Guest.ReservationID && (
-                          <S.Menu>
-                            <S.MenuItem onClick={() => handleEditBooking(booking.Guest.ReservationID)}>Edit</S.MenuItem>
-                            <S.MenuItem onClick={() => handleDeleteBooking(booking.Guest.ReservationID)}>Delete</S.MenuItem>
-                          </S.Menu>
-                        )}
-                      </S.ActionMenu>
-                    </S.TableCell>
-                  </S.TableRow>
-                ))}
-              </S.TableBody> */}
             </S.Table>
           ) : (
             <S.NoResults>No search results found</S.NoResults>

@@ -1,0 +1,1731 @@
+{
+  "success": true,
+  "users": [
+    {
+      "user": {
+        "id": "1",
+        "username": "johndoe",
+        "email": "johndoe@example.com",
+        "name": "John Doe",
+        "roles": [
+          "user"
+        ],
+        "password": "password123"
+      },
+      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNjE2MjgwMDAwfQ.1nzw2ZrnlpH9Vyk8HLJ9Ey-91Z9AaH0MB4D6mYhLkDk",
+      "id": "5fea"
+    },
+    {
+      "user": {
+        "id": "2",
+        "username": "janedoe",
+        "email": "janedoe@example.com",
+        "name": "Jane Doe",
+        "roles": [
+          "user"
+        ],
+        "password": "password456"
+      },
+      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkxIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNjE2MjgwMDAwfQ.B8Zij-N4_OyHiME1b6HwP2yN6K0cJlz5RdJ8Gzjk3Ek",
+      "id": "23ec"
+    },
+    {
+      "user": {
+        "id": "3",
+        "username": "michaelj",
+        "email": "michaelj@example.com",
+        "name": "Michael Johnson",
+        "roles": [
+          "user"
+        ],
+        "password": "password789"
+      },
+      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkyIiwibmFtZSI6Ik1pY2hhZWwgSm9obnNvbiIsImlhdCI6MTYxNjI4MDAwMH0.4V0brprj2JP4F8GzeSO5zq1VqGsgkZlXIaw1jk9b48c",
+      "id": "c5ab"
+    },
+    {
+      "user": {
+        "id": "4",
+        "username": "emilyr",
+        "email": "emilyr@example.com",
+        "name": "Emily Rogers",
+        "roles": [
+          "user"
+        ],
+        "password": "password012"
+      },
+      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkzIiwibmFtZSI6IkVtaWx5IFJvZ2VycyIsImlhdCI6MTYxNjI4MDAwMH0.5cOdP3bR8LeTh8GR66s9EovWhDh1Oyb14sT8UyKqrTI",
+      "id": "e064"
+    },
+    {
+      "user": {
+        "id": "5",
+        "username": "alexs",
+        "email": "alexs@example.com",
+        "name": "Alex Smith",
+        "roles": [
+          "user"
+        ],
+        "password": "password345"
+      },
+      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODk0IiwibmFtZSI6IkFsZXggU21pdGgiLCJpYXQiOjE2MTYyODAwMDB9.PmP4mH7oHGXj16Q3opPFRy3U8IGy6gFbmXkYpC8LwEc",
+      "id": "725b"
+    },
+    {
+      "user": {
+        "id": "6",
+        "username": "sarahb",
+        "email": "sarahb@example.com",
+        "name": "Sarah Brown",
+        "roles": [
+          "user"
+        ],
+        "password": "password678"
+      },
+      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODk1IiwibmFtZSI6IkNhcmFoIEJyb3duIiwiaWF0IjoxNjE2MjgwMDAwfQ.7Nyrz2ZTYffkF9XKdH9z2ZbYh8p7oX8-VEXGR0V-YI",
+      "id": "2b52"
+    },
+    {
+      "user": {
+        "id": "7",
+        "username": "danielk",
+        "email": "danielk@example.com",
+        "name": "Daniel Kim",
+        "roles": [
+          "user"
+        ],
+        "password": "password901"
+      },
+      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODk2IiwibmFtZSI6IkRhbmllbCBLaW0iLCJpYXQiOjE2MTYyODAwMDB9.dUDdztRo5_kT9tu0pMcFtAZ4aX9G3vK24zw8eG8cs7s",
+      "id": "d066"
+    },
+    {
+      "user": {
+        "id": "8",
+        "username": "laurac",
+        "email": "laurac@example.com",
+        "name": "Laura Carter",
+        "roles": [
+          "user"
+        ],
+        "password": "password234"
+      },
+      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODk3IiwibmFtZSI6IkxhdXJhIENhcnRlciIsImlhdCI6MTYxNjI4MDAwMH0.2oc0V0r1J4XvnS3_A_R2svQ_5G1U_5ibXKJ3LtZj0A",
+      "id": "2ad3"
+    },
+    {
+      "user": {
+        "id": "9",
+        "username": "matthewp",
+        "email": "matthewp@example.com",
+        "name": "Matthew Parker",
+        "roles": [
+          "user"
+        ],
+        "password": "password567"
+      },
+      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODk4IiwibmFtZSI6Ik1hdHRoZXcgUGFya2VyIiwiaWF0IjoxNjE2MjgwMDAwfQ.43xJ2tsoHwZ7w6kOoLcnAUVU_VdSPeM5cXZz2R2H5JI",
+      "id": "bfb2"
+    },
+    {
+      "user": {
+        "id": "10",
+        "username": "natalieb",
+        "email": "natalieb@example.com",
+        "name": "Natalie Brooks",
+        "roles": [
+          "user"
+        ],
+        "password": "password678"
+      },
+      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODk5IiwibmFtZSI6Ik5hdGFsIEJyb29rcyIsImlhdCI6MTYxNjI4MDAwMH0.Uh1XzF8CnKThw5OEBQw9gDj98zJ47WqZqL7ikA5zJd8",
+      "id": "143e"
+    },
+    {
+      "user": {
+        "id": "11",
+        "username": "jamesm",
+        "email": "jamesm@example.com",
+        "name": "James Miller",
+        "roles": [
+          "user"
+        ],
+        "password": "password789"
+      },
+      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3OTAwIiwibmFtZSI6IkphbWVzIE1pbGxlciIsImlhdCI6MTYxNjI4MDAwMH0.WrYwAETGxmqX8CsZToTn7KzBh4F03ccKQH-tZcDDt1E",
+      "id": "74f8"
+    },
+    {
+      "id": "3c04",
+      "username": "johndoe",
+      "password": "password123"
+    },
+    {
+      "id": "0423",
+      "username": "johndoe",
+      "password": "password123"
+    },
+    {
+      "id": "1d33",
+      "username": "johndoe",
+      "password": "password123"
+    }
+  ],
+  "rooms": [
+    {
+      "Photo": "https://example.com/images/room1.jpg",
+      "RoomNumber": "101",
+      "RoomID": "R001",
+      "BedType": "Suite",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Air Conditioning",
+        "Mini Bar"
+      ],
+      "Rate": 200,
+      "OfferPrice": 180,
+      "Status": "Available",
+      "id": "283c"
+    },
+    {
+      "Photo": "https://example.com/images/room2.jpg",
+      "RoomNumber": "102",
+      "RoomID": "R002",
+      "BedType": "Double Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar"
+      ],
+      "Rate": 150,
+      "OfferPrice": 135,
+      "Status": "Booked",
+      "id": "2fd4"
+    },
+    {
+      "Photo": "https://example.com/images/room3.jpg",
+      "RoomNumber": "103",
+      "RoomID": "R003",
+      "BedType": "Single Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV"
+      ],
+      "Rate": 100,
+      "OfferPrice": 90,
+      "Status": "Available",
+      "id": "04fc"
+    },
+    {
+      "Photo": "https://example.com/images/room4.jpg",
+      "RoomNumber": "104",
+      "RoomID": "R004",
+      "BedType": "Double Superior",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Air Conditioning",
+        "Mini Bar",
+        "Balcony"
+      ],
+      "Rate": 180,
+      "OfferPrice": 162,
+      "Status": "Booked",
+      "id": "40c0"
+    },
+    {
+      "Photo": "https://example.com/images/room5.jpg",
+      "RoomNumber": "105",
+      "RoomID": "R005",
+      "BedType": "Suite",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar",
+        "Air Conditioning"
+      ],
+      "Rate": 220,
+      "OfferPrice": 198,
+      "Status": "Available",
+      "id": "6544"
+    },
+    {
+      "Photo": "https://example.com/images/room6.jpg",
+      "RoomNumber": "106",
+      "RoomID": "R006",
+      "BedType": "Double Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar"
+      ],
+      "Rate": 140,
+      "OfferPrice": 126,
+      "Status": "Booked",
+      "id": "1fe8"
+    },
+    {
+      "Photo": "https://example.com/images/room7.jpg",
+      "RoomNumber": "107",
+      "RoomID": "R007",
+      "BedType": "Single Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV"
+      ],
+      "Rate": 90,
+      "OfferPrice": 81,
+      "Status": "Available",
+      "id": "aec6"
+    },
+    {
+      "Photo": "https://example.com/images/room8.jpg",
+      "RoomNumber": "108",
+      "RoomID": "R008",
+      "BedType": "Suite",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Air Conditioning",
+        "Mini Bar",
+        "Balcony"
+      ],
+      "Rate": 250,
+      "OfferPrice": 225,
+      "Status": "Booked",
+      "id": "2a61"
+    },
+    {
+      "Photo": "https://example.com/images/room9.jpg",
+      "RoomNumber": "109",
+      "RoomID": "R009",
+      "BedType": "Double Superior",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar"
+      ],
+      "Rate": 160,
+      "OfferPrice": 144,
+      "Status": "Available",
+      "id": "ffca"
+    },
+    {
+      "Photo": "https://example.com/images/room10.jpg",
+      "RoomNumber": "110",
+      "RoomID": "R010",
+      "BedType": "Double Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar",
+        "Air Conditioning"
+      ],
+      "Rate": 130,
+      "OfferPrice": 117,
+      "Status": "Available",
+      "id": "2731"
+    },
+    {
+      "Photo": "https://example.com/images/room11.jpg",
+      "RoomNumber": "111",
+      "RoomID": "R011",
+      "BedType": "Single Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV"
+      ],
+      "Rate": 85,
+      "OfferPrice": 76.5,
+      "Status": "Booked",
+      "id": "dc6a"
+    },
+    {
+      "Photo": "https://example.com/images/room12.jpg",
+      "RoomNumber": "112",
+      "RoomID": "R012",
+      "BedType": "Suite",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Air Conditioning",
+        "Mini Bar",
+        "Balcony"
+      ],
+      "Rate": 230,
+      "OfferPrice": 207,
+      "Status": "Available",
+      "id": "7889"
+    },
+    {
+      "Photo": "https://example.com/images/room13.jpg",
+      "RoomNumber": "113",
+      "RoomID": "R013",
+      "BedType": "Double Superior",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar"
+      ],
+      "Rate": 175,
+      "OfferPrice": 157.5,
+      "Status": "Booked",
+      "id": "5167"
+    },
+    {
+      "Photo": "https://example.com/images/room14.jpg",
+      "RoomNumber": "114",
+      "RoomID": "R014",
+      "BedType": "Double Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Air Conditioning"
+      ],
+      "Rate": 125,
+      "OfferPrice": 112.5,
+      "Status": "Available",
+      "id": "e622"
+    },
+    {
+      "Photo": "https://example.com/images/room15.jpg",
+      "RoomNumber": "115",
+      "RoomID": "R015",
+      "BedType": "Single Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV"
+      ],
+      "Rate": 95,
+      "OfferPrice": 85.5,
+      "Status": "Available",
+      "id": "7c2b"
+    },
+    {
+      "Photo": "https://example.com/images/room16.jpg",
+      "RoomNumber": "116",
+      "RoomID": "R016",
+      "BedType": "Suite",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar",
+        "Air Conditioning"
+      ],
+      "Rate": 240,
+      "OfferPrice": 216,
+      "Status": "Booked",
+      "id": "2d82"
+    },
+    {
+      "Photo": "https://example.com/images/room17.jpg",
+      "RoomNumber": "117",
+      "RoomID": "R017",
+      "BedType": "Double Superior",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar",
+        "Air Conditioning",
+        "Balcony"
+      ],
+      "Rate": 185,
+      "OfferPrice": 166.5,
+      "Status": "Available",
+      "id": "9891"
+    },
+    {
+      "Photo": "https://example.com/images/room18.jpg",
+      "RoomNumber": "118",
+      "RoomID": "R018",
+      "BedType": "Double Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar"
+      ],
+      "Rate": 145,
+      "OfferPrice": 130.5,
+      "Status": "Available",
+      "id": "7afa"
+    },
+    {
+      "Photo": "https://example.com/images/room19.jpg",
+      "RoomNumber": "119",
+      "RoomID": "R019",
+      "BedType": "Single Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV"
+      ],
+      "Rate": 90,
+      "OfferPrice": 81,
+      "Status": "Booked",
+      "id": "9bc7"
+    },
+    {
+      "Photo": "https://example.com/images/room20.jpg",
+      "RoomNumber": "120",
+      "RoomID": "R020",
+      "BedType": "Suite",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Air Conditioning",
+        "Mini Bar",
+        "Balcony"
+      ],
+      "Rate": 255,
+      "OfferPrice": 229.5,
+      "Status": "Available",
+      "id": "f221"
+    },
+    {
+      "Photo": "https://example.com/images/room21.jpg",
+      "RoomNumber": "121",
+      "RoomID": "R021",
+      "BedType": "Double Superior",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar"
+      ],
+      "Rate": 170,
+      "OfferPrice": 153,
+      "Status": "Booked",
+      "id": "4a2d"
+    },
+    {
+      "Photo": "https://example.com/images/room22.jpg",
+      "RoomNumber": "122",
+      "RoomID": "R022",
+      "BedType": "Double Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar"
+      ],
+      "Rate": 135,
+      "OfferPrice": 121.5,
+      "Status": "Available",
+      "id": "60e4"
+    },
+    {
+      "Photo": "https://example.com/images/room23.jpg",
+      "RoomNumber": "123",
+      "RoomID": "R023",
+      "BedType": "Single Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV"
+      ],
+      "Rate": 100,
+      "OfferPrice": 90,
+      "Status": "Available",
+      "id": "3485"
+    },
+    {
+      "Photo": "https://example.com/images/room24.jpg",
+      "RoomNumber": "124",
+      "RoomID": "R024",
+      "BedType": "Suite",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar",
+        "Air Conditioning",
+        "Balcony"
+      ],
+      "Rate": 245,
+      "OfferPrice": 220.5,
+      "Status": "Booked",
+      "id": "db3e"
+    },
+    {
+      "Photo": "https://example.com/images/room25.jpg",
+      "RoomNumber": "125",
+      "RoomID": "R025",
+      "BedType": "Double Superior",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar"
+      ],
+      "Rate": 180,
+      "OfferPrice": 162,
+      "Status": "Available",
+      "id": "bd71"
+    },
+    {
+      "Photo": "https://example.com/images/room26.jpg",
+      "RoomNumber": "126",
+      "RoomID": "R026",
+      "BedType": "Double Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Air Conditioning"
+      ],
+      "Rate": 140,
+      "OfferPrice": 126,
+      "Status": "Booked",
+      "id": "e0d0"
+    },
+    {
+      "Photo": "https://example.com/images/room27.jpg",
+      "RoomNumber": "127",
+      "RoomID": "R027",
+      "BedType": "Single Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV"
+      ],
+      "Rate": 95,
+      "OfferPrice": 85.5,
+      "Status": "Available",
+      "id": "d4c7"
+    },
+    {
+      "Photo": "https://example.com/images/room28.jpg",
+      "RoomNumber": "128",
+      "RoomID": "R028",
+      "BedType": "Suite",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar",
+        "Air Conditioning"
+      ],
+      "Rate": 250,
+      "OfferPrice": 225,
+      "Status": "Booked",
+      "id": "d664"
+    },
+    {
+      "Photo": "https://example.com/images/room29.jpg",
+      "RoomNumber": "129",
+      "RoomID": "R029",
+      "BedType": "Double Superior",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar",
+        "Balcony"
+      ],
+      "Rate": 190,
+      "OfferPrice": 171,
+      "Status": "Available",
+      "id": "997c"
+    },
+    {
+      "Photo": "https://example.com/images/room30.jpg",
+      "RoomNumber": "130",
+      "RoomID": "R030",
+      "BedType": "Double Bed",
+      "Facilities": [
+        "Wi-Fi",
+        "TV",
+        "Mini Bar"
+      ],
+      "Rate": 145,
+      "OfferPrice": 130.5,
+      "Status": "Booked",
+      "id": "98fb"
+    }
+  ],
+  "messages": [
+    {
+      "date": "2024-08-18T10:05:00Z",
+      "id": "001",
+      "customer": {
+        "name": "Ana Martínez",
+        "email": "ana.martinez@example.com",
+        "phone": "+34123456789"
+      },
+      "subject": "Consulta sobre disponibilidad",
+      "comment": "Hola, me gustaría saber si hay habitaciones disponibles para el 25 de agosto.",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T10:10:00Z",
+      "id": "002",
+      "customer": {
+        "name": "Carlos García",
+        "email": "carlos.garcia@example.com",
+        "phone": "+34987654321"
+      },
+      "subject": "Pregunta sobre servicios",
+      "comment": "¿El hotel cuenta con servicio de traslado al aeropuerto?",
+      "actions": {
+        "archive": false
+      }
+    },
+    {
+      "date": "2024-08-18T10:15:00Z",
+      "id": "003",
+      "customer": {
+        "name": "Laura Sánchez",
+        "email": "laura.sanchez@example.com",
+        "phone": "+34123456780"
+      },
+      "subject": "Reserva cancelada",
+      "comment": "He tenido que cancelar mi reserva. ¿Cómo puedo solicitar un reembolso?",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T10:20:00Z",
+      "id": "004",
+      "customer": {
+        "name": "Miguel Rodríguez",
+        "email": "miguel.rodriguez@example.com",
+        "phone": "+34123456781"
+      },
+      "subject": "Problema con la habitación",
+      "comment": "La habitación asignada no coincide con la descripción. ¿Podrían ayudarme?",
+      "actions": {
+        "archive": false
+      }
+    },
+    {
+      "date": "2024-08-18T10:25:00Z",
+      "id": "005",
+      "customer": {
+        "name": "María López",
+        "email": "maria.lopez@example.com",
+        "phone": "+34123456782"
+      },
+      "subject": "Consulta sobre desayuno",
+      "comment": "¿El desayuno está incluido en la tarifa de la habitación?",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T10:30:00Z",
+      "id": "006",
+      "customer": {
+        "name": "Pedro Fernández",
+        "email": "pedro.fernandez@example.com",
+        "phone": "+34123456783"
+      },
+      "subject": "Reserva de grupo",
+      "comment": "Quiero reservar habitaciones para un grupo de 10 personas. ¿Hay descuento?",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T10:35:00Z",
+      "id": "007",
+      "customer": {
+        "name": "Lucía Ramírez",
+        "email": "lucia.ramirez@example.com",
+        "phone": "+34123456784"
+      },
+      "subject": "Consulta sobre gimnasio",
+      "comment": "¿El gimnasio está abierto las 24 horas?",
+      "actions": {
+        "archive": false
+      }
+    },
+    {
+      "date": "2024-08-18T10:40:00Z",
+      "id": "008",
+      "customer": {
+        "name": "Javier Torres",
+        "email": "javier.torres@example.com",
+        "phone": "+34123456785"
+      },
+      "subject": "Consulta sobre piscina",
+      "comment": "¿La piscina está climatizada?",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T10:45:00Z",
+      "id": "009",
+      "customer": {
+        "name": "Sara Ruiz",
+        "email": "sara.ruiz@example.com",
+        "phone": "+34123456786"
+      },
+      "subject": "Pregunta sobre check-in",
+      "comment": "¿A qué hora es el check-in?",
+      "actions": {
+        "archive": false
+      }
+    },
+    {
+      "date": "2024-08-18T10:50:00Z",
+      "id": "010",
+      "customer": {
+        "name": "David Jiménez",
+        "email": "david.jimenez@example.com",
+        "phone": "+34123456787"
+      },
+      "subject": "Tarifa de estacionamiento",
+      "comment": "¿Cuál es la tarifa diaria para estacionar un coche?",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T10:55:00Z",
+      "id": "011",
+      "customer": {
+        "name": "Cristina Moreno",
+        "email": "cristina.moreno@example.com",
+        "phone": "+34123456788"
+      },
+      "subject": "Solicitud de cuna",
+      "comment": "¿Es posible añadir una cuna a la habitación?",
+      "actions": {
+        "archive": false
+      }
+    },
+    {
+      "date": "2024-08-18T11:00:00Z",
+      "id": "012",
+      "customer": {
+        "name": "Juan Pérez",
+        "email": "juan.perez@example.com",
+        "phone": "+34123456789"
+      },
+      "subject": "Consulta sobre conexión Wi-Fi",
+      "comment": "¿El hotel ofrece Wi-Fi gratuito?",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T11:05:00Z",
+      "id": "013",
+      "customer": {
+        "name": "Beatriz Herrera",
+        "email": "beatriz.herrera@example.com",
+        "phone": "+34123456790"
+      },
+      "subject": "Habitaciones para discapacitados",
+      "comment": "¿Tienen habitaciones accesibles para personas con discapacidades?",
+      "actions": {
+        "archive": false
+      }
+    },
+    {
+      "date": "2024-08-18T11:10:00Z",
+      "id": "014",
+      "customer": {
+        "name": "Sergio Gómez",
+        "email": "sergio.gomez@example.com",
+        "phone": "+34123456791"
+      },
+      "subject": "Servicio de limpieza",
+      "comment": "¿El servicio de limpieza es diario?",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T11:15:00Z",
+      "id": "015",
+      "customer": {
+        "name": "Marta Díaz",
+        "email": "marta.diaz@example.com",
+        "phone": "+34123456792"
+      },
+      "subject": "Animales de compañía",
+      "comment": "¿Aceptan mascotas en el hotel?",
+      "actions": {
+        "archive": false
+      }
+    },
+    {
+      "date": "2024-08-18T11:20:00Z",
+      "id": "016",
+      "customer": {
+        "name": "Ricardo Gil",
+        "email": "ricardo.gil@example.com",
+        "phone": "+34123456793"
+      },
+      "subject": "Pregunta sobre facturación",
+      "comment": "¿Podrían enviarme la factura de mi última estancia?",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T11:25:00Z",
+      "id": "017",
+      "customer": {
+        "name": "Paula Vázquez",
+        "email": "paula.vazquez@example.com",
+        "phone": "+34123456794"
+      },
+      "subject": "Consulta sobre restaurante",
+      "comment": "¿El restaurante del hotel ofrece menú vegetariano?",
+      "actions": {
+        "archive": false
+      }
+    },
+    {
+      "date": "2024-08-18T11:30:00Z",
+      "id": "018",
+      "customer": {
+        "name": "Alejandro Romero",
+        "email": "alejandro.romero@example.com",
+        "phone": "+34123456795"
+      },
+      "subject": "Horas de check-out",
+      "comment": "¿Es posible hacer un check-out tarde?",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T11:35:00Z",
+      "id": "019",
+      "customer": {
+        "name": "Elena Navarro",
+        "email": "elena.navarro@example.com",
+        "phone": "+34123456796"
+      },
+      "subject": "Solicito cambio de fecha",
+      "comment": "¿Puedo cambiar la fecha de mi reserva?",
+      "actions": {
+        "archive": false
+      }
+    },
+    {
+      "date": "2024-08-18T11:40:00Z",
+      "id": "020",
+      "customer": {
+        "name": "José Ortiz",
+        "email": "jose.ortiz@example.com",
+        "phone": "+34123456797"
+      },
+      "subject": "Confirmación de reserva",
+      "comment": "¿Podrían confirmar mi reserva para el próximo fin de semana?",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T11:45:00Z",
+      "id": "021",
+      "customer": {
+        "name": "Clara Castillo",
+        "email": "clara.castillo@example.com",
+        "phone": "+34123456798"
+      },
+      "subject": "Solicitud de información adicional",
+      "comment": "Me gustaría saber si organizan actividades turísticas.",
+      "actions": {
+        "archive": false
+      }
+    },
+    {
+      "date": "2024-08-18T11:50:00Z",
+      "id": "022",
+      "customer": {
+        "name": "Luis Herrera",
+        "email": "luis.herrera@example.com",
+        "phone": "+34123456799"
+      },
+      "subject": "Consulta sobre cancelaciones",
+      "comment": "¿Cuáles son las políticas de cancelación?",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T11:55:00Z",
+      "id": "023",
+      "customer": {
+        "name": "Isabel Méndez",
+        "email": "isabel.mendez@example.com",
+        "phone": "+34123456800"
+      },
+      "subject": "Pregunta sobre seguridad",
+      "comment": "¿El hotel cuenta con caja fuerte en las habitaciones?",
+      "actions": {
+        "archive": false
+      }
+    },
+    {
+      "date": "2024-08-18T12:00:00Z",
+      "id": "024",
+      "customer": {
+        "name": "Alberto Ruiz",
+        "email": "alberto.ruiz@example.com",
+        "phone": "+34123456801"
+      },
+      "subject": "Solicitud de mejora de habitación",
+      "comment": "¿Puedo mejorar mi habitación a una suite?",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T12:05:00Z",
+      "id": "025",
+      "customer": {
+        "name": "Verónica González",
+        "email": "veronica.gonzalez@example.com",
+        "phone": "+34123456802"
+      },
+      "subject": "Problemas con la reserva",
+      "comment": "No puedo acceder a mi reserva en su sitio web. ¿Podrían ayudarme?",
+      "actions": {
+        "archive": false
+      }
+    },
+    {
+      "date": "2024-08-18T12:10:00Z",
+      "id": "026",
+      "customer": {
+        "name": "Jorge Castro",
+        "email": "jorge.castro@example.com",
+        "phone": "+34123456803"
+      },
+      "subject": "Política de pago",
+      "comment": "¿Cuáles son las políticas de pago? ¿Aceptan tarjetas de débito?",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T12:15:00Z",
+      "id": "027",
+      "customer": {
+        "name": "Patricia Vega",
+        "email": "patricia.vega@example.com",
+        "phone": "+34123456804"
+      },
+      "subject": "Pregunta sobre reservas en línea",
+      "comment": "¿Es seguro reservar a través de su página web?",
+      "actions": {
+        "archive": false
+      }
+    },
+    {
+      "date": "2024-08-18T12:20:00Z",
+      "id": "028",
+      "customer": {
+        "name": "Antonio Aguilar",
+        "email": "antonio.aguilar@example.com",
+        "phone": "+34123456805"
+      },
+      "subject": "Opinión sobre estancia",
+      "comment": "Quería dejar una opinión sobre mi última estancia. ¿Dónde puedo hacerlo?",
+      "actions": {
+        "archive": true
+      }
+    },
+    {
+      "date": "2024-08-18T12:25:00Z",
+      "id": "029",
+      "customer": {
+        "name": "Raquel Molina",
+        "email": "raquel.molina@example.com",
+        "phone": "+34123456806"
+      },
+      "subject": "Cambio de datos de reserva",
+      "comment": "Necesito cambiar el nombre de un huésped en mi reserva. ¿Cómo puedo hacerlo?",
+      "actions": {
+        "archive": false
+      }
+    },
+    {
+      "date": "2024-08-18T12:30:00Z",
+      "id": "030",
+      "customer": {
+        "name": "Gonzalo Lara",
+        "email": "gonzalo.lara@example.com",
+        "phone": "+34123456807"
+      },
+      "subject": "Consulta sobre habitaciones familiares",
+      "comment": "¿Tienen habitaciones familiares disponibles?",
+      "actions": {
+        "archive": true
+      }
+    }
+  ],
+  "employees": [
+    {
+      "Foto": "https://example.com/photos/emp1.jpg",
+      "NombreCompleto": "Ana López",
+      "IDdeEmpleado": "EMP001",
+      "Email": "ana.lopez@empresa.com",
+      "FechaDeAlta": "2021-03-15",
+      "DescripciónDelPuesto": "Gerente de Proyecto",
+      "Teléfono": "+34 600 123 001",
+      "Estado": "ACTIVE",
+      "id": "cea2"
+    },
+    {
+      "Foto": "https://example.com/photos/emp2.jpg",
+      "NombreCompleto": "Carlos García",
+      "IDdeEmpleado": "EMP002",
+      "Email": "carlos.garcia@empresa.com",
+      "FechaDeAlta": "2019-11-22",
+      "DescripciónDelPuesto": "Analista de Datos",
+      "Teléfono": "+34 600 123 002",
+      "Estado": "ACTIVE",
+      "id": "1145"
+    },
+    {
+      "Foto": "https://example.com/photos/emp3.jpg",
+      "NombreCompleto": "Lucía Martínez",
+      "IDdeEmpleado": "EMP003",
+      "Email": "lucia.martinez@empresa.com",
+      "FechaDeAlta": "2020-01-10",
+      "DescripciónDelPuesto": "Diseñadora Gráfica",
+      "Teléfono": "+34 600 123 003",
+      "Estado": "INACTIVE",
+      "id": "0827"
+    },
+    {
+      "Foto": "https://example.com/photos/emp4.jpg",
+      "NombreCompleto": "Miguel Torres",
+      "IDdeEmpleado": "EMP004",
+      "Email": "miguel.torres@empresa.com",
+      "FechaDeAlta": "2018-07-24",
+      "DescripciónDelPuesto": "Desarrollador Web",
+      "Teléfono": "+34 600 123 004",
+      "Estado": "ACTIVE",
+      "id": "3c93"
+    },
+    {
+      "Foto": "https://example.com/photos/emp5.jpg",
+      "NombreCompleto": "Elena Rodríguez",
+      "IDdeEmpleado": "EMP005",
+      "Email": "elena.rodriguez@empresa.com",
+      "FechaDeAlta": "2022-05-16",
+      "DescripciónDelPuesto": "Especialista en Marketing",
+      "Teléfono": "+34 600 123 005",
+      "Estado": "INACTIVE",
+      "id": "fb6a"
+    },
+    {
+      "Foto": "https://example.com/photos/emp6.jpg",
+      "NombreCompleto": "Jorge Sánchez",
+      "IDdeEmpleado": "EMP006",
+      "Email": "jorge.sanchez@empresa.com",
+      "FechaDeAlta": "2021-09-03",
+      "DescripciónDelPuesto": "Administrador de Sistemas",
+      "Teléfono": "+34 600 123 006",
+      "Estado": "ACTIVE",
+      "id": "52b5"
+    },
+    {
+      "Foto": "https://example.com/photos/emp7.jpg",
+      "NombreCompleto": "María Díaz",
+      "IDdeEmpleado": "EMP007",
+      "Email": "maria.diaz@empresa.com",
+      "FechaDeAlta": "2020-06-14",
+      "DescripciónDelPuesto": "Recursos Humanos",
+      "Teléfono": "+34 600 123 007",
+      "Estado": "INACTIVE",
+      "id": "bfcb"
+    },
+    {
+      "Foto": "https://example.com/photos/emp8.jpg",
+      "NombreCompleto": "Raúl Pérez",
+      "IDdeEmpleado": "EMP008",
+      "Email": "raul.perez@empresa.com",
+      "FechaDeAlta": "2019-04-20",
+      "DescripciónDelPuesto": "Contador",
+      "Teléfono": "+34 600 123 008",
+      "Estado": "ACTIVE",
+      "id": "585c"
+    },
+    {
+      "Foto": "https://example.com/photos/emp9.jpg",
+      "NombreCompleto": "Isabel Gómez",
+      "IDdeEmpleado": "EMP009",
+      "Email": "isabel.gomez@empresa.com",
+      "FechaDeAlta": "2018-02-11",
+      "DescripciónDelPuesto": "Asistente Ejecutiva",
+      "Teléfono": "+34 600 123 009",
+      "Estado": "INACTIVE",
+      "id": "12b9"
+    },
+    {
+      "Foto": "https://example.com/photos/emp10.jpg",
+      "NombreCompleto": "David Fernández",
+      "IDdeEmpleado": "EMP010",
+      "Email": "david.fernandez@empresa.com",
+      "FechaDeAlta": "2022-11-02",
+      "DescripciónDelPuesto": "Ingeniero de Software",
+      "Teléfono": "+34 600 123 010",
+      "Estado": "ACTIVE",
+      "id": "402d"
+    },
+    {
+      "Foto": "https://example.com/photos/emp11.jpg",
+      "NombreCompleto": "Silvia Ruiz",
+      "IDdeEmpleado": "EMP011",
+      "Email": "silvia.ruiz@empresa.com",
+      "FechaDeAlta": "2021-08-23",
+      "DescripciónDelPuesto": "Especialista en UX/UI",
+      "Teléfono": "+34 600 123 011",
+      "Estado": "ACTIVE",
+      "id": "4651"
+    },
+    {
+      "Foto": "https://example.com/photos/emp12.jpg",
+      "NombreCompleto": "Pedro Romero",
+      "IDdeEmpleado": "EMP012",
+      "Email": "pedro.romero@empresa.com",
+      "FechaDeAlta": "2020-03-05",
+      "DescripciónDelPuesto": "Soporte Técnico",
+      "Teléfono": "+34 600 123 012",
+      "Estado": "INACTIVE",
+      "id": "870b"
+    },
+    {
+      "Foto": "https://example.com/photos/emp13.jpg",
+      "NombreCompleto": "Laura Jiménez",
+      "IDdeEmpleado": "EMP013",
+      "Email": "laura.jimenez@empresa.com",
+      "FechaDeAlta": "2019-12-18",
+      "DescripciónDelPuesto": "Coordinadora de Eventos",
+      "Teléfono": "+34 600 123 013",
+      "Estado": "ACTIVE",
+      "id": "d07e"
+    },
+    {
+      "Foto": "https://example.com/photos/emp14.jpg",
+      "NombreCompleto": "Antonio Ortega",
+      "IDdeEmpleado": "EMP014",
+      "Email": "antonio.ortega@empresa.com",
+      "FechaDeAlta": "2018-10-30",
+      "DescripciónDelPuesto": "Jefe de Seguridad",
+      "Teléfono": "+34 600 123 014",
+      "Estado": "INACTIVE",
+      "id": "88e7"
+    },
+    {
+      "Foto": "https://example.com/photos/emp15.jpg",
+      "NombreCompleto": "Rosa Navarro",
+      "IDdeEmpleado": "EMP015",
+      "Email": "rosa.navarro@empresa.com",
+      "FechaDeAlta": "2021-07-19",
+      "DescripciónDelPuesto": "Redactora de Contenidos",
+      "Teléfono": "+34 600 123 015",
+      "Estado": "ACTIVE",
+      "id": "4138"
+    },
+    {
+      "Foto": "https://example.com/photos/emp16.jpg",
+      "NombreCompleto": "Alberto Morales",
+      "IDdeEmpleado": "EMP016",
+      "Email": "alberto.morales@empresa.com",
+      "FechaDeAlta": "2020-02-25",
+      "DescripciónDelPuesto": "Consultor de Negocios",
+      "Teléfono": "+34 600 123 016",
+      "Estado": "INACTIVE",
+      "id": "3344"
+    },
+    {
+      "Foto": "https://example.com/photos/emp17.jpg",
+      "NombreCompleto": "Gloria Hernández",
+      "IDdeEmpleado": "EMP017",
+      "Email": "gloria.hernandez@empresa.com",
+      "FechaDeAlta": "2019-08-13",
+      "DescripciónDelPuesto": "Administrativa",
+      "Teléfono": "+34 600 123 017",
+      "Estado": "ACTIVE",
+      "id": "3c7f"
+    },
+    {
+      "Foto": "https://example.com/photos/emp18.jpg",
+      "NombreCompleto": "Manuel Gutiérrez",
+      "IDdeEmpleado": "EMP018",
+      "Email": "manuel.gutierrez@empresa.com",
+      "FechaDeAlta": "2018-06-27",
+      "DescripciónDelPuesto": "Director de Operaciones",
+      "Teléfono": "+34 600 123 018",
+      "Estado": "INACTIVE",
+      "id": "a2e7"
+    },
+    {
+      "Foto": "https://example.com/photos/emp19.jpg",
+      "NombreCompleto": "Patricia Reyes",
+      "IDdeEmpleado": "EMP019",
+      "Email": "patricia.reyes@empresa.com",
+      "FechaDeAlta": "2021-04-09",
+      "DescripciónDelPuesto": "Investigadora de Mercado",
+      "Teléfono": "+34 600 123 019",
+      "Estado": "ACTIVE",
+      "id": "b75c"
+    },
+    {
+      "Foto": "https://example.com/photos/emp20.jpg",
+      "NombreCompleto": "Sergio Delgado",
+      "IDdeEmpleado": "EMP020",
+      "Email": "sergio.delgado@empresa.com",
+      "FechaDeAlta": "2020-09-17",
+      "DescripciónDelPuesto": "Especialista en SEO",
+      "Teléfono": "+34 006 132 009",
+      "Estado": "INACTIVE",
+      "id": "d532"
+    }
+  ],
+  "guests": [
+    {
+      "Guest": {
+        "Name": "Juan Perez",
+        "ReservationID": "12345"
+      },
+      "OrderDate": "2023-07-15",
+      "CheckIn": "2023-08-01",
+      "CheckOut": "2023-08-05",
+      "SpecialRequest": "Habitación con vista al mar, llegada tarde",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "101"
+      },
+      "Status": "CHECK-IN",
+      "id": "4804"
+    },
+    {
+      "Guest": {
+        "Name": "Maria Gomez",
+        "ReservationID": "67890"
+      },
+      "OrderDate": "2023-07-20",
+      "CheckIn": "2023-08-02",
+      "CheckOut": "2023-08-06",
+      "SpecialRequest": "Cuna para bebé",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "202"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "42f6"
+    },
+    {
+      "Guest": {
+        "Name": "Ana Martinez",
+        "ReservationID": "23456"
+      },
+      "OrderDate": "2023-07-10",
+      "CheckIn": "2023-08-01",
+      "CheckOut": "2023-08-07",
+      "SpecialRequest": "Desayuno sin gluten",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "104"
+      },
+      "Status": "CHECK-IN",
+      "id": "ff2d"
+    },
+    {
+      "Guest": {
+        "Name": "Luis Fernandez",
+        "ReservationID": "98765"
+      },
+      "OrderDate": "2023-07-18",
+      "CheckIn": "2023-08-03",
+      "CheckOut": "2023-08-08",
+      "SpecialRequest": "Acceso para silla de ruedas",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "205"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "5fd9"
+    },
+    {
+      "Guest": {
+        "Name": "Isabel Garcia",
+        "ReservationID": "11111"
+      },
+      "OrderDate": "2023-07-12",
+      "CheckIn": "2023-08-04",
+      "CheckOut": "2023-08-09",
+      "SpecialRequest": "No fumar en la habitación",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "306"
+      },
+      "Status": "CHECK-IN",
+      "id": "60af"
+    },
+    {
+      "Guest": {
+        "Name": "Miguel Ruiz",
+        "ReservationID": "22222"
+      },
+      "OrderDate": "2023-07-05",
+      "CheckIn": "2023-08-02",
+      "CheckOut": "2023-08-06",
+      "SpecialRequest": "Habitación silenciosa",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "107"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "0396"
+    },
+    {
+      "Guest": {
+        "Name": "Carmen Morales",
+        "ReservationID": "33333"
+      },
+      "OrderDate": "2023-07-14",
+      "CheckIn": "2023-07-29",
+      "CheckOut": "2023-08-03",
+      "SpecialRequest": "Cama extra",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "208"
+      },
+      "Status": "CHECK-OUT",
+      "id": "a309"
+    },
+    {
+      "Guest": {
+        "Name": "David Rodriguez",
+        "ReservationID": "44444"
+      },
+      "OrderDate": "2023-07-19",
+      "CheckIn": "2023-08-05",
+      "CheckOut": "2023-08-10",
+      "SpecialRequest": "Desayuno vegano",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "309"
+      },
+      "Status": "CHECK-IN",
+      "id": "ecd0"
+    },
+    {
+      "Guest": {
+        "Name": "Sofia Lopez",
+        "ReservationID": "55555"
+      },
+      "OrderDate": "2023-07-22",
+      "CheckIn": "2023-08-04",
+      "CheckOut": "2023-08-07",
+      "SpecialRequest": "Almohadas hipoalergénicas",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "110"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "e19c"
+    },
+    {
+      "Guest": {
+        "Name": "Jorge Hernandez",
+        "ReservationID": "66666"
+      },
+      "OrderDate": "2023-07-16",
+      "CheckIn": "2023-07-30",
+      "CheckOut": "2023-08-04",
+      "SpecialRequest": "Mini bar lleno",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "211"
+      },
+      "Status": "CHECK-OUT",
+      "id": "05cd"
+    },
+    {
+      "Guest": {
+        "Name": "Elena Ramirez",
+        "ReservationID": "77777"
+      },
+      "OrderDate": "2023-07-21",
+      "CheckIn": "2023-08-06",
+      "CheckOut": "2023-08-11",
+      "SpecialRequest": "Horario flexible para check-in",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "312"
+      },
+      "Status": "CHECK-IN",
+      "id": "5197"
+    },
+    {
+      "Guest": {
+        "Name": "Laura Ortega",
+        "ReservationID": "88888"
+      },
+      "OrderDate": "2023-07-13",
+      "CheckIn": "2023-08-03",
+      "CheckOut": "2023-08-08",
+      "SpecialRequest": "Cama doble",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "113"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "8922"
+    },
+    {
+      "Guest": {
+        "Name": "Alberto Diaz",
+        "ReservationID": "99999"
+      },
+      "OrderDate": "2023-07-17",
+      "CheckIn": "2023-07-31",
+      "CheckOut": "2023-08-02",
+      "SpecialRequest": "Habitación cerca del ascensor",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "214"
+      },
+      "Status": "CHECK-OUT",
+      "id": "19bb"
+    },
+    {
+      "Guest": {
+        "Name": "Rosa Perez",
+        "ReservationID": "00000"
+      },
+      "OrderDate": "2023-07-11",
+      "CheckIn": "2023-08-01",
+      "CheckOut": "2023-08-05",
+      "SpecialRequest": "Sin peticiones especiales",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "315"
+      },
+      "Status": "CHECK-IN",
+      "id": "4db9"
+    },
+    {
+      "Guest": {
+        "Name": "Pablo Torres",
+        "ReservationID": "11223"
+      },
+      "OrderDate": "2023-07-18",
+      "CheckIn": "2023-08-02",
+      "CheckOut": "2023-08-07",
+      "SpecialRequest": "Vista al jardín",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "116"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "6b16"
+    },
+    {
+      "Guest": {
+        "Name": "Cristina Rivas",
+        "ReservationID": "33445"
+      },
+      "OrderDate": "2023-07-20",
+      "CheckIn": "2023-07-28",
+      "CheckOut": "2023-08-01",
+      "SpecialRequest": "Sin peticiones especiales",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "217"
+      },
+      "Status": "CHECK-OUT",
+      "id": "ddd9"
+    },
+    {
+      "Guest": {
+        "Name": "Raul Flores",
+        "ReservationID": "55667"
+      },
+      "OrderDate": "2023-07-22",
+      "CheckIn": "2023-08-05",
+      "CheckOut": "2023-08-09",
+      "SpecialRequest": "Menú sin lactosa",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "318"
+      },
+      "Status": "CHECK-IN",
+      "id": "6d5f"
+    },
+    {
+      "Guest": {
+        "Name": "Adriana Sant",
+        "ReservationID": "77889"
+      },
+      "OrderDate": "2023-07-25",
+      "CheckIn": "2023-08-06",
+      "CheckOut": "2023-08-10",
+      "SpecialRequest": "Toallas adicionales",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "119"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "3686"
+    },
+    {
+      "Guest": {
+        "Name": "Esteban Jimenez",
+        "ReservationID": "99001"
+      },
+      "OrderDate": "2023-07-14",
+      "CheckIn": "2023-07-29",
+      "CheckOut": "2023-08-02",
+      "SpecialRequest": "Sin peticiones especiales",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "220"
+      },
+      "Status": "CHECK-OUT",
+      "id": "171a"
+    },
+    {
+      "Guest": {
+        "Name": "Victoria Vargas",
+        "ReservationID": "21345"
+      },
+      "OrderDate": "2023-07-15",
+      "CheckIn": "2023-08-01",
+      "CheckOut": "2023-08-07",
+      "SpecialRequest": "Almohadas extra",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "321"
+      },
+      "Status": "CHECK-IN",
+      "id": "1da9"
+    },
+    {
+      "Guest": {
+        "Name": "Pedro Alvarez",
+        "ReservationID": "32345"
+      },
+      "OrderDate": "2023-07-18",
+      "CheckIn": "2023-08-03",
+      "CheckOut": "2023-08-06",
+      "SpecialRequest": "Balcón privado",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "122"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "9fb1"
+    },
+    {
+      "Guest": {
+        "Name": "Claudia Nuñez",
+        "ReservationID": "43567"
+      },
+      "OrderDate": "2023-07-16",
+      "CheckIn": "2023-07-30",
+      "CheckOut": "2023-08-03",
+      "SpecialRequest": "Habitación en piso alto",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "223"
+      },
+      "Status": "CHECK-OUT",
+      "id": "02ae"
+    },
+    {
+      "Guest": {
+        "Name": "Francisco Peña",
+        "ReservationID": "54678"
+      },
+      "OrderDate": "2023-07-21",
+      "CheckIn": "2023-08-05",
+      "CheckOut": "2023-08-09",
+      "SpecialRequest": "Cama matrimonial",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "324"
+      },
+      "Status": "CHECK-IN",
+      "id": "2e81"
+    },
+    {
+      "Guest": {
+        "Name": "Gabriela Rojas",
+        "ReservationID": "65789"
+      },
+      "OrderDate": "2023-07-25",
+      "CheckIn": "2023-08-06",
+      "CheckOut": "2023-08-10",
+      "SpecialRequest": "Desayuno vegetariano",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "125"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "8686"
+    },
+    {
+      "Guest": {
+        "Name": "Javier Vargas",
+        "ReservationID": "76890"
+      },
+      "OrderDate": "2023-07-13",
+      "CheckIn": "2023-07-28",
+      "CheckOut": "2023-08-01",
+      "SpecialRequest": "Habitación con bañera",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "226"
+      },
+      "Status": "CHECK-OUT",
+      "id": "5cd8"
+    },
+    {
+      "Guest": {
+        "Name": "Cecilia Blanco",
+        "ReservationID": "87901"
+      },
+      "OrderDate": "2023-07-19",
+      "CheckIn": "2023-08-01",
+      "CheckOut": "2023-08-05",
+      "SpecialRequest": "Late check-out",
+      "RoomType": {
+        "Type": "Individual",
+        "RoomNumber": "327"
+      },
+      "Status": "CHECK-IN",
+      "id": "13af"
+    },
+    {
+      "Guest": {
+        "Name": "Mauricio Castillo",
+        "ReservationID": "98012"
+      },
+      "OrderDate": "2023-07-23",
+      "CheckIn": "2023-08-04",
+      "CheckOut": "2023-08-08",
+      "SpecialRequest": "Servicio de lavandería",
+      "RoomType": {
+        "Type": "Suite",
+        "RoomNumber": "128"
+      },
+      "Status": "IN-PROGRESS",
+      "id": "3841"
+    },
+    {
+      "Guest": {
+        "Name": "Luisa Fernandez",
+        "ReservationID": "09123"
+      },
+      "OrderDate": "2023-07-17",
+      "CheckIn": "2023-07-30",
+      "CheckOut": "2023-08-03",
+      "SpecialRequest": "Silencio total",
+      "RoomType": {
+        "Type": "Doble",
+        "RoomNumber": "229"
+      },
+      "Status": "CHECK-OUT",
+      "id": "cb4a"
+    }
+  ]
+}

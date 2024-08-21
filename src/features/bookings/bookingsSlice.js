@@ -27,7 +27,6 @@ const bookingsSlice = createSlice({
                     booking.id === action.payload.id ? action.payload : booking
                 )
             })
-            // Handle delete booking (DELETE)
             .addCase(DeleteBooking.fulfilled, (state, action) => {
                 state.data = state.data.filter(booking => booking.id !== action.payload)
             })

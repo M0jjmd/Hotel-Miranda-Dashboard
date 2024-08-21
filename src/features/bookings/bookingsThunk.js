@@ -4,7 +4,7 @@ export const GetBookings = createAsyncThunk(
     "bookings/getBookings",
     async () => {
         try {
-            const req = await fetch(`http://localhost:4001/data`)
+            const req = await fetch(`http://localhost:4000/guests`)
 
             if (!req.ok) {
                 throw new Error('Authentication failed.')
@@ -22,8 +22,9 @@ export const GetBookings = createAsyncThunk(
 export const EditBooking = createAsyncThunk(
     "bookings/editBooking",
     async (updatedBooking) => {
+        console.log(updatedBooking)
         try {
-            const response = await fetch(`http://localhost:4001/data/${updatedBooking.id}`, {
+            const response = await fetch(`http://localhost:4000/guests/${updatedBooking.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -48,8 +49,7 @@ export const DeleteBooking = createAsyncThunk(
     "bookings/deleteBooking",
     async (bookingId) => {
         try {
-            console.log(bookingId)
-            const response = await fetch(`http://localhost:4001/data/${bookingId}`, {
+            const response = await fetch(`http://localhost:4000/guests/${bookingId}`, {
                 method: 'DELETE',
             })
 
@@ -61,6 +61,31 @@ export const DeleteBooking = createAsyncThunk(
         } catch (error) {
             console.error('Error deleting booking:', error)
             throw new Error('Failed to delete booking.')
+        }
+    }
+)
+
+export const CreateBooking = createAsyncThunk(
+    "bookings/createBooking",
+    async (newBooking) => {
+        try {
+            const response = await fetch('http://localhost:4000/guests', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newBooking)
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to create booking.')
+            }
+
+            const json = await response.json()
+            return json
+        } catch (error) {
+            console.error('Error creating booking:', error)
+            throw new Error('Failed to add booking.')
         }
     }
 )
