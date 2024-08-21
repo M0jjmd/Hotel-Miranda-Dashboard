@@ -19,6 +19,9 @@ const authReducer = (state, action) => {
                 email: action.payload.email,
             }
         case 'LOGOUT':
+            localStorage.removeItem('isAuthenticated')
+            localStorage.removeItem('name')
+            localStorage.removeItem('email')
             return initialState
         case 'EDIT':
             return {

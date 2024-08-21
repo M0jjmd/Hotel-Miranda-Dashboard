@@ -147,3 +147,30 @@ export const SortButton = styled(Button)`
   border: 1px solid #28a745;
 `
 
+export const ActionMenu = styled.div`
+  position: relative;
+`
+
+export const MoreButton = styled.button`
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+`
+
+export const Menu = styled.div`
+  position: absolute;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+`
+
+export const MenuItem = styled.div`
+  padding: 8px 16px;
+  cursor: pointer;
+  &:hover {
+    background-color: #f0f0f0;
+  }
+`
