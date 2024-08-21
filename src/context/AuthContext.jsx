@@ -6,10 +6,10 @@ const initialState = {
     isAuthenticated: false,
     name: '',
     email: '',
+    isFormOpen: false,
 }
 
 const authReducer = (state, action) => {
-    console.log(action.type)
     switch (action.type) {
         case 'LOGIN':
             return {
@@ -28,6 +28,16 @@ const authReducer = (state, action) => {
                 ...state,
                 name: action.payload.name,
                 email: action.payload.email,
+            }
+        case 'OPEN_FORM':
+            return {
+                ...state,
+                isFormOpen: true,
+            }
+        case 'CLOSE_FORM':
+            return {
+                ...state,
+                isFormOpen: false,
             }
         default:
             return state

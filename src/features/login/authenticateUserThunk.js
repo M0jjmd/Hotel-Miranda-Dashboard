@@ -4,7 +4,7 @@ export const AuthentificateUser = createAsyncThunk
     ("users/authentificateUser",
         async ({ username, password }) => {
             try {
-                const req = await fetch(`http://localhost:4000/data`)
+                const req = await fetch(`http://localhost:4000/users`)
 
                 if (!req.ok) {
                     throw new Error('Authentication failed.');
