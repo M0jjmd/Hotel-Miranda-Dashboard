@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit"
-import usersReducer from "../features/login/usersSlice"
+import loginUserReducer from "../features/login/loginUserSlice"
 import bookingsReducer from "../features/bookings/bookingsSlice"
 import roomsReducer from "../features/rooms/roomsSlice"
+import usersReducer from "../features/users/usersSlice"
 
 const store = configureStore({
     reducer: {
-        users: usersReducer,
+        loginUser: loginUserReducer,
         bookings: bookingsReducer,
         rooms: roomsReducer,
+        users: usersReducer,
     },
 })
 
