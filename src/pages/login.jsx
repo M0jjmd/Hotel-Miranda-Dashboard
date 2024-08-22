@@ -60,7 +60,7 @@ const ErrorMessage = styled.p`
 const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { isAuthenticated, name, email } = useSelector(state => state.users)
+  const { isAuthenticated, name, email } = useSelector(state => state.loginUser)
   const { state, dispatch: authDispatch } = useAuth();
 
   const [username, setUsername] = useState('')

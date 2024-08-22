@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
 export const AuthentificateUser = createAsyncThunk
-    ("users/authentificateUser",
+    ("loginUser/authentificateUser",
         async ({ username, password }) => {
             try {
                 const req = await fetch(`http://localhost:4000/users`)

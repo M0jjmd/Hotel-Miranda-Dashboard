@@ -3,7 +3,7 @@ import { AuthentificateUser } from "./authenticateUserThunk"
 
 
 const usersSlice = createSlice({
-    name: "users",
+    name: "loginUser",
     initialState: {
         status: "idle",
         error: null,
