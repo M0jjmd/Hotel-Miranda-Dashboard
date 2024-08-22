@@ -9,7 +9,6 @@ import AddUsers from './users/AddUsers'
 function Employees() {
   const [filter, setFilter] = useState('ALL')
   const [searchTerm, setSearchTerm] = useState('')
-  // const [isFormOpen, setIsFormOpen] = useState(false)
   const { state, dispatch } = useAuth()
 
   const dipatchRooms = useDispatch()
@@ -29,15 +28,9 @@ function Employees() {
   }
 
   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value.toLowerCase());
+    setSearchTerm(e.target.value.toLowerCase())
   }
 
-  // const filteredEmployees = users
-  //   .filter(user => {
-  //     if (filter !== 'ALL' && user.Estado !== filter) return false
-  //     const combinedString = JSON.stringify(user).toLowerCase()
-  //     return combinedString.includes(searchTerm)
-  //   })
   const filteredUsers = users
     .filter(user => {
       if (filter !== 'ALL' && user.State !== filter) return false
@@ -45,15 +38,11 @@ function Employees() {
       return combinedString.includes(searchTerm)
     })
 
-  // const handleFormToggle = () => {
-  //   setIsFormOpen(!isFormOpen)
-  // }
-
   const handleFormToggle = () => {
     if (state.isFormOpen) {
-      dispatch({ type: 'CLOSE_FORM' });
+      dispatch({ type: 'CLOSE_FORM' })
     } else {
-      dispatch({ type: 'OPEN_FORM' });
+      dispatch({ type: 'OPEN_FORM' })
     }
   }
 

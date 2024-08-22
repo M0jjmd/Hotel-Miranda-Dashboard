@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 import logo from '../assets/dashboardLogo.png'
 import profileImg from '../assets/profileImg.jpeg'
-import { LuLayoutDashboard, LuKeyRound, LuCalendarRange, LuUser2, LuPhoneCall } from "react-icons/lu";
+import { LuLayoutDashboard, LuKeyRound, LuCalendarRange, LuUser2, LuPhoneCall } from "react-icons/lu"
 import styled from "styled-components"
-import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useState } from "react"
+import { useAuth } from "../context/AuthContext"
 
 const SidebarContainer = styled.aside`
   flex: 1 0 15%;

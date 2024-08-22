@@ -7,7 +7,6 @@ function EditableRow({ filteredUsers }) {
     const [editRowId, setEditRowId] = useState(null)
     const [editedUser, setEditedUser] = useState({})
     const [menuOpenId, setMenuOpenId] = useState(null)
-    console.log("test de user" + filteredUsers)
 
     const dispatch = useDispatch()
 

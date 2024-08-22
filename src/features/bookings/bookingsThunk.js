@@ -19,25 +19,6 @@ export const GetBookings = createAsyncThunk(
     }
 )
 
-export const GetSingleBooking = createAsyncThunk(
-    "bookings/getSingleBooking",
-    async (bookingId) => {
-        try {
-            const req = await fetch(`http://localhost:4000/guests/${bookingId}`)
-
-            if (!req.ok) {
-                throw new Error('Authentication failed.')
-            }
-
-            const json = await req.json()
-            return json
-        } catch (error) {
-            console.error('Error fetching bookings:', error)
-            throw Error('Failed to fetch bookings.')
-        }
-    }
-)
-
 export const EditBooking = createAsyncThunk(
     "bookings/editBooking",
     async (updatedBooking) => {
@@ -94,7 +75,7 @@ export const CreateBooking = createAsyncThunk(
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(newBooking)
-            });
+            })
 
             if (!response.ok) {
                 throw new Error('Failed to create booking.')

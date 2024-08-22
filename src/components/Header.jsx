@@ -79,11 +79,11 @@ const Header = ({ toggleSidebar, isSidebarVisible }) => {
       '/users': 'Users',
     }
 
-    setTitle(titles[location.pathname] || 'Page Not Found');
+    setTitle(titles[location.pathname] || 'Page Not Found')
   }, [[location.pathname]])
 
   const logOut = () => {
-    dispatch({ type: 'LOGOUT' });
+    dispatch({ type: 'LOGOUT' })
 
     navigate("/")
   }

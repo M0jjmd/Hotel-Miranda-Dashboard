@@ -7,7 +7,7 @@ export const AuthentificateUser = createAsyncThunk
                 const req = await fetch(`http://localhost:4000/users`)
 
                 if (!req.ok) {
-                    throw new Error('Authentication failed.');
+                    throw new Error('Authentication failed.')
                 }
 
                 const result = await req.json()
@@ -20,7 +20,7 @@ export const AuthentificateUser = createAsyncThunk
                         email: user.user.email,
                     }
                 } else {
-                    throw new Error(result.message || 'Authentication failed.');
+                    throw new Error(result.message || 'Authentication failed.')
                 }
 
             } catch (error) {
