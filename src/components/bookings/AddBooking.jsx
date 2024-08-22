@@ -60,10 +60,24 @@ const AddBooking = () => {
         addDispatch(CreateBooking(bookingWithId))
             .then(() => {
                 addDispatch(GetBookings())
+                setFormValues({
+                    Guest: {
+                        Name: '',
+                        ReservationID: '',
+                    },
+                    OrderDate: '',
+                    CheckIn: '',
+                    CheckOut: '',
+                    RoomType: {
+                        Type: '',
+                        RoomNumber: '',
+                    },
+                    Status: 'CHECK-IN',
+                })
                 dispatch({ type: 'CLOSE_FORM' })
             })
             .catch((error) => {
-                alert('Failed to create booking.')
+                console.error('Error creating booking:', error)
             })
     }
 
