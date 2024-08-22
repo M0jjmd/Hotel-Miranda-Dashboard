@@ -94,7 +94,7 @@ export const CreateRoom = createAsyncThunk(
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(newRoom)
-            });
+            })
 
             if (!response.ok) {
                 throw new Error('Failed to create booking.')

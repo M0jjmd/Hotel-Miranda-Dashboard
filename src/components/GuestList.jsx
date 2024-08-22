@@ -38,9 +38,9 @@ const GuestList = () => {
 
   const handleFormToggle = () => {
     if (state.isFormOpen) {
-      dispatch({ type: 'CLOSE_FORM' });
+      dispatch({ type: 'CLOSE_FORM' })
     } else {
-      dispatch({ type: 'OPEN_FORM' });
+      dispatch({ type: 'OPEN_FORM' })
     }
   }
 

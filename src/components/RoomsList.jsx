@@ -31,7 +31,7 @@ const RoomList = () => {
   }
 
   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value.toLowerCase());
+    setSearchTerm(e.target.value.toLowerCase())
   }
 
   const filteredRooms = rooms

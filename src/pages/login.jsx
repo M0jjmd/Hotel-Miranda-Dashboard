@@ -61,7 +61,7 @@ const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { isAuthenticated, name, email } = useSelector(state => state.loginUser)
-  const { dispatch: authDispatch } = useAuth();
+  const { dispatch: authDispatch } = useAuth()
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')

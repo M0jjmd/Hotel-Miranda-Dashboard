@@ -19,25 +19,6 @@ export const GetUsers = createAsyncThunk(
     }
 )
 
-export const GetSingleUser = createAsyncThunk(
-    "users/getSingleUsers",
-    async (userId) => {
-        try {
-            const req = await fetch(`http://localhost:4000/users/${userId}`)
-
-            if (!req.ok) {
-                throw new Error('Authentication failed.')
-            }
-
-            const json = await req.json()
-            return json
-        } catch (error) {
-            console.error('Error fetching Users:', error)
-            throw Error('Failed to fetch Users.')
-        }
-    }
-)
-
 export const EditUser = createAsyncThunk(
     "users/editUsers",
     async (updatedUser) => {
@@ -94,7 +75,7 @@ export const CreateUser = createAsyncThunk(
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(newUser)
-            });
+            })
 
             if (!response.ok) {
                 throw new Error('Failed to create user.')

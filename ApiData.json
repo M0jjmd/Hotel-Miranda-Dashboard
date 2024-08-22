@@ -660,7 +660,7 @@
       "subject": "Pregunta sobre servicios",
       "comment": "¿El hotel cuenta con servicio de traslado al aeropuerto?",
       "actions": {
-        "archive": false
+        "archive": true
       }
     },
     {
@@ -688,7 +688,7 @@
       "subject": "Problema con la habitación",
       "comment": "La habitación asignada no coincide con la descripción. ¿Podrían ayudarme?",
       "actions": {
-        "archive": false
+        "archive": true
       }
     },
     {
@@ -702,7 +702,7 @@
       "subject": "Consulta sobre desayuno",
       "comment": "¿El desayuno está incluido en la tarifa de la habitación?",
       "actions": {
-        "archive": true
+        "archive": false
       }
     },
     {
@@ -884,7 +884,7 @@
       "subject": "Horas de check-out",
       "comment": "¿Es posible hacer un check-out tarde?",
       "actions": {
-        "archive": true
+        "archive": false
       }
     },
     {
@@ -912,7 +912,7 @@
       "subject": "Confirmación de reserva",
       "comment": "¿Podrían confirmar mi reserva para el próximo fin de semana?",
       "actions": {
-        "archive": true
+        "archive": false
       }
     },
     {
@@ -968,7 +968,7 @@
       "subject": "Solicitud de mejora de habitación",
       "comment": "¿Puedo mejorar mi habitación a una suite?",
       "actions": {
-        "archive": true
+        "archive": false
       }
     },
     {
@@ -1010,7 +1010,7 @@
       "subject": "Pregunta sobre reservas en línea",
       "comment": "¿Es seguro reservar a través de su página web?",
       "actions": {
-        "archive": false
+        "archive": true
       }
     },
     {
@@ -1038,7 +1038,7 @@
       "subject": "Cambio de datos de reserva",
       "comment": "Necesito cambiar el nombre de un huésped en mi reserva. ¿Cómo puedo hacerlo?",
       "actions": {
-        "archive": false
+        "archive": true
       }
     },
     {
@@ -1276,28 +1276,6 @@
       "Phone": "+34 006 132 009",
       "State": "INACTIVE",
       "id": "d532"
-    },
-    {
-      "id": "5485",
-      "Photo": "",
-      "FullName": "test",
-      "EmployeeId": "daw",
-      "Email": "daw",
-      "EntryDate": "",
-      "PositionDescription": "test",
-      "Phone": "test",
-      "State": "INACTIVE"
-    },
-    {
-      "id": "6325",
-      "Photo": "wad",
-      "FullName": "dwa",
-      "EmployeeId": "daw",
-      "Email": "daw",
-      "EntryDate": "",
-      "PositionDescription": "dwa",
-      "Phone": "adw",
-      "State": "INACTIVE"
     }
   ],
   "guests": [

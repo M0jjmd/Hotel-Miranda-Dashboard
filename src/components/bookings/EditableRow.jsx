@@ -131,7 +131,7 @@ const EditableRow = ({ filteredBookings }) => {
                             ) : (
                                 <S.ActionMenu>
                                     <S.MoreButton onClick={() => handleMenuToggle(booking.id)}>
-                                        &#x22EE
+                                        &#x22EE;
                                     </S.MoreButton>
                                     {menuOpenId === booking.id && (
                                         <S.Menu>
