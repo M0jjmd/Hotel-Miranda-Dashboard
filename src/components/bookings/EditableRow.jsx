@@ -35,13 +35,11 @@ const EditableRow = ({ filteredBookings }) => {
 
     const handleSaveBooking = () => {
         dispatch(EditBooking(editedBooking))
-        alert(`Booking saved for ID: ${editedBooking.id}`)
         setEditRowId(null)
     }
 
     const handleDeleteBooking = (id) => {
         dispatch(DeleteBooking(id))
-        alert(`Deleting booking with ID: ${id}`)
         setMenuOpenId(null)
     }
 
@@ -133,7 +131,7 @@ const EditableRow = ({ filteredBookings }) => {
                             ) : (
                                 <S.ActionMenu>
                                     <S.MoreButton onClick={() => handleMenuToggle(booking.id)}>
-                                        &#x22EE;
+                                        &#x22EE
                                     </S.MoreButton>
                                     {menuOpenId === booking.id && (
                                         <S.Menu>

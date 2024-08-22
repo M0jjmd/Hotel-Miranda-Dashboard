@@ -76,6 +76,7 @@ export const NoResults = styled.div`
 `
 
 export const FormContainer = styled.div`
+  display: flex;
   flex-direction: column;
   background: white;
   padding: 1.3rem;
@@ -111,16 +112,80 @@ export const TextArea = styled.textarea`
   min-height: 100px;
 `
 
+export const SelectContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+export const Option = styled.div`
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    background: ${props => props.isSelected ? '#e0e0e0' : 'transparent'};
+    border: 1px solid ${props => props.isSelected ? '#c0c0c0' : '#d0d0d0'};
+    border-radius: 4px;
+    margin: 2px 0;
+    transition: background 0.3s, border-color 0.3s;
+    
+    &:hover {
+        background: #f5f5f5;
+    }
+`;
+
+export const Dot = styled.span`
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: ${props => props.isSelected ? '#007bff' : '#ccc'};
+    margin-right: 8px;
+`;
 export const Select = styled.select`
-  margin-bottom: 0.8rem;
-  padding: 0.8rem;
-  font-size: 1rem;
-  border-radius: 4px;
-  border: 1px solid #ddd;
   width: 100%;
-  appearance: none; 
+  height: auto;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   background-color: #fff;
+  font-size: 16px;
+  appearance: none;
+  outline: none;
+
+  option {
+    padding: 8px;
+    background-color: #fff;
+    color: #333;
+
+    &:checked {
+      background-color: #4caf50;
+      color: #fff;
+    }
+  }
+
+  &:focus {
+    border-color: #4caf50;
+  }
 `
+
+// export const Option = styled.option`
+//   background-color: ${({ selected }) => (selected ? '#4caf50' : '#fff')};
+//   color: ${({ selected }) => (selected ? '#fff' : '#000')};
+//   padding: 8px;
+//   &:hover {
+//     background-color: #f1f1f1;
+//   }
+// `
+
+// export const Dot = styled.span`
+//   height: 10px;
+//   width: 10px;
+//   border-radius: 50%;
+//   background-color: ${({ isSelected }) => (isSelected ? '#4caf50' : '#ccc')};
+//   margin-right: 10px;
+//   transition: background-color 0.3s;
+// `
 
 export const ToggleButton = styled.button`
   padding: 0.8rem 1.2rem;

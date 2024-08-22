@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
-export const GetBookings = createAsyncThunk(
-    "bookings/getBookings",
+export const GetRooms = createAsyncThunk(
+    "rooms/getRooms",
     async () => {
         try {
-            const req = await fetch(`http://localhost:4000/guests`)
+            const req = await fetch(`http://localhost:4000/rooms`)
 
             if (!req.ok) {
                 throw new Error('Authentication failed.')
@@ -13,17 +13,17 @@ export const GetBookings = createAsyncThunk(
             const json = await req.json()
             return json
         } catch (error) {
-            console.error('Error fetching bookings:', error)
-            throw Error('Failed to fetch bookings.')
+            console.error('Error fetching Rooms:', error)
+            throw Error('Failed to fetch Rooms.')
         }
     }
 )
 
-export const GetSingleBooking = createAsyncThunk(
-    "bookings/getSingleBooking",
-    async (bookingId) => {
+export const GetSingleRoom = createAsyncThunk(
+    "rooms/getSingleRooms",
+    async (roomId) => {
         try {
-            const req = await fetch(`http://localhost:4000/guests/${bookingId}`)
+            const req = await fetch(`http://localhost:4000/rooms/${roomId}`)
 
             if (!req.ok) {
                 throw new Error('Authentication failed.')
@@ -32,23 +32,23 @@ export const GetSingleBooking = createAsyncThunk(
             const json = await req.json()
             return json
         } catch (error) {
-            console.error('Error fetching bookings:', error)
-            throw Error('Failed to fetch bookings.')
+            console.error('Error fetching Rooms:', error)
+            throw Error('Failed to fetch Rooms.')
         }
     }
 )
 
-export const EditBooking = createAsyncThunk(
-    "bookings/editBooking",
-    async (updatedBooking) => {
-        console.log(updatedBooking)
+export const EditRoom = createAsyncThunk(
+    "rooms/editRooms",
+    async (updatedRoom) => {
+        console.log(updatedRoom)
         try {
-            const response = await fetch(`http://localhost:4000/guests/${updatedBooking.id}`, {
+            const response = await fetch(`http://localhost:4000/rooms/${updatedRoom.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(updatedBooking),
+                body: JSON.stringify(updatedRoom),
             })
 
             if (!response.ok) {
@@ -64,11 +64,11 @@ export const EditBooking = createAsyncThunk(
     }
 )
 
-export const DeleteBooking = createAsyncThunk(
-    "bookings/deleteBooking",
-    async (bookingId) => {
+export const DeleteRoom = createAsyncThunk(
+    "rooms/deleteRooms",
+    async (RoomId) => {
         try {
-            const response = await fetch(`http://localhost:4000/guests/${bookingId}`, {
+            const response = await fetch(`http://localhost:4000/rooms/${RoomId}`, {
                 method: 'DELETE',
             })
 
@@ -76,7 +76,7 @@ export const DeleteBooking = createAsyncThunk(
                 throw new Error('Failed to delete booking.')
             }
 
-            return bookingId
+            return RoomId
         } catch (error) {
             console.error('Error deleting booking:', error)
             throw new Error('Failed to delete booking.')
@@ -84,16 +84,16 @@ export const DeleteBooking = createAsyncThunk(
     }
 )
 
-export const CreateBooking = createAsyncThunk(
-    "bookings/createBooking",
-    async (newBooking) => {
+export const CreateRoom = createAsyncThunk(
+    "rooms/createRooms",
+    async (newRoom) => {
         try {
-            const response = await fetch('http://localhost:4000/guests', {
+            const response = await fetch('http://localhost:4000/rooms', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(newBooking)
+                body: JSON.stringify(newRoom)
             });
 
             if (!response.ok) {
