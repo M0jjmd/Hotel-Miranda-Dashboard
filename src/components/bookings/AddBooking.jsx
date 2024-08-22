@@ -59,20 +59,16 @@ const AddBooking = () => {
 
         addDispatch(CreateBooking(bookingWithId))
             .then(() => {
-                alert('Booking successfully created!');
                 addDispatch(GetBookings())
                 dispatch({ type: 'CLOSE_FORM' })
-                alert("Booking succesfully saved.")
             })
             .catch((error) => {
-                console.error('Error creating booking:', error);
-                alert('Failed to create booking.');
+                alert('Failed to create booking.')
             })
     }
 
     return (
         <>
-            <h1>TEST</h1>
             <S.FormContainer>
                 <h3>Add New Booking</h3>
                 <label>Guest Name</label>

@@ -18,6 +18,7 @@ const GuestList = () => {
   useEffect(() => {
     if (bookingsStatus === 'idle') {
       dispatchBooking(GetBookings())
+      dispatch({ type: 'CLOSE_FORM' })
     }
   }, [dispatchBooking, bookingsStatus])
 

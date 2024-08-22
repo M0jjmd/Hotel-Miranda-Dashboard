@@ -26,7 +26,6 @@ function Employees({ employees }) {
   }
 
   const handleAddUser = () => {
-    alert("Booking succesfully saved.")
     setIsFormOpen(false)
   }
 

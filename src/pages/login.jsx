@@ -73,10 +73,9 @@ const Login = () => {
 
     try {
       dispatch(AuthentificateUser({ username, password }))
-      
+
       console.log(isAuthenticated)
       if (isAuthenticated) {
-        alert('Login successful!')
         localStorage.setItem('isAuthenticated', isAuthenticated)
         localStorage.setItem('name', name)
         localStorage.setItem('email', email)
