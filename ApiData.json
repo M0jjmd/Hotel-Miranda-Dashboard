@@ -646,7 +646,7 @@
       "subject": "Consulta sobre disponibilidad",
       "comment": "Hola, me gustaría saber si hay habitaciones disponibles para el 25 de agosto.",
       "actions": {
-        "archive": true
+        "archive": false
       }
     },
     {
@@ -660,7 +660,7 @@
       "subject": "Pregunta sobre servicios",
       "comment": "¿El hotel cuenta con servicio de traslado al aeropuerto?",
       "actions": {
-        "archive": true
+        "archive": false
       }
     },
     {
@@ -674,7 +674,7 @@
       "subject": "Reserva cancelada",
       "comment": "He tenido que cancelar mi reserva. ¿Cómo puedo solicitar un reembolso?",
       "actions": {
-        "archive": true
+        "archive": false
       }
     },
     {
@@ -688,7 +688,7 @@
       "subject": "Problema con la habitación",
       "comment": "La habitación asignada no coincide con la descripción. ¿Podrían ayudarme?",
       "actions": {
-        "archive": true
+        "archive": false
       }
     },
     {
@@ -716,7 +716,7 @@
       "subject": "Reserva de grupo",
       "comment": "Quiero reservar habitaciones para un grupo de 10 personas. ¿Hay descuento?",
       "actions": {
-        "archive": true
+        "archive": false
       }
     },
     {
@@ -744,7 +744,7 @@
       "subject": "Consulta sobre piscina",
       "comment": "¿La piscina está climatizada?",
       "actions": {
-        "archive": true
+        "archive": false
       }
     },
     {
@@ -1553,10 +1553,10 @@
     },
     {
       "Guest": {
-        "Name": "Adriana Sant",
+        "Name": "Adriana Sa",
         "ReservationID": "77889"
       },
-      "OrderDate": "2023-07-25",
+      "OrderDate": "2023-07-06",
       "CheckIn": "2023-08-06",
       "CheckOut": "2023-08-10",
       "SpecialRequest": "Toallas adicionales",
