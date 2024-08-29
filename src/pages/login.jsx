@@ -96,7 +96,7 @@ const Login = () => {
 
   return (
     <LoginContainer>
-      <LoginForm onSubmit={handleLogin}>
+      <LoginForm onSubmit={handleLogin} data-cy="login-username">
         <LoginTitle>Login<br />johndoe<br />password123</LoginTitle>
         <InputField
           type="text"
