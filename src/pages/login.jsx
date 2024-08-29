@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -72,27 +72,27 @@ const Login = () => {
     setLocalError('')
 
     try {
-      dispatch(AuthentificateUser({ username, password }))
-
-      console.log(isAuthenticated)
-      if (isAuthenticated) {
-        localStorage.setItem('isAuthenticated', isAuthenticated)
-        localStorage.setItem('name', name)
-        localStorage.setItem('email', email)
-
-        authDispatch({
-          type: 'LOGIN',
-          payload: { name, email }
-        })
-
-        navigate('/dashboard')
-      } else {
-        setLocalError('Invalid username or password')
-      }
+      const actionResult = await dispatch(AuthentificateUser({ username, password })).unwrap();
     } catch (error) {
-      setLocalError('An error occurred. Please try again.')
+      setLocalError(error.message || 'Invalid username or password')
     }
   }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      localStorage.setItem('isAuthenticated', isAuthenticated)
+      localStorage.setItem('name', name)
+      localStorage.setItem('email', email)
+
+      authDispatch({
+        type: 'LOGIN',
+        payload: { name, email }
+      })
+
+      navigate('/dashboard')
+    }
+  }, [isAuthenticated, name, email, authDispatch, navigate])
+
 
   return (
     <LoginContainer>
@@ -103,15 +103,17 @@ const Login = () => {
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          data-cy="username"
         />
         <InputField
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          data-cy="password"
         />
         {localError && <ErrorMessage>{localError}</ErrorMessage>}
-        <SubmitButton type="submit">Login</SubmitButton>
+        <SubmitButton type="submit" data-cy="submit">Login</SubmitButton>
       </LoginForm>
     </LoginContainer>
   )

@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 
 export const AuthentificateUser = createAsyncThunk
     ("loginUser/authentificateUser",
-        async ({ username, password }) => {
+        async ({ username, password }, { rejectWithValue }) => {
             try {
                 const req = await fetch(`http://localhost:4000/loginUser`)
 
@@ -20,15 +20,10 @@ export const AuthentificateUser = createAsyncThunk
                         email: user.user.email,
                     }
                 } else {
-                    throw new Error(result.message || 'Authentication failed.')
+                    throw new Error('Invalid username or password.')
                 }
 
             } catch (error) {
-                console.error('Error authenticating user:', error)
-                return {
-                    isAuthenticated: false,
-                    name: '',
-                    email: ''
-                }
+                return rejectWithValue(error.message || 'An error occurred.')
             }
         })
