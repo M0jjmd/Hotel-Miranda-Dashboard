@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react'
+import { logout } from '../features/login/loginUserSlice';
+import { useDispatch } from 'react-redux';
 
 const AuthContext = createContext()
 
@@ -10,6 +12,7 @@ const initialState = {
 }
 
 const authReducer = (state, action) => {
+    const dispatch = useDispatch()
     switch (action.type) {
         case 'LOGIN':
             return {
@@ -19,6 +22,7 @@ const authReducer = (state, action) => {
                 email: action.payload.email,
             }
         case 'LOGOUT':
+            dispatch(logout())
             localStorage.removeItem('isAuthenticated')
             localStorage.removeItem('name')
             localStorage.removeItem('email')

@@ -11,6 +11,15 @@ const usersSlice = createSlice({
         name: '',
         email: '',
     },
+    reducers: {
+        logout: (state) => {
+            state.status = "idle";
+            state.isAuthenticated = false;
+            state.name = '';
+            state.email = '';
+            state.error = null;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(AuthentificateUser.pending, (state) => {
@@ -33,4 +42,5 @@ const usersSlice = createSlice({
     }
 })
 
+export const { logout } = usersSlice.actions;
 export default usersSlice.reducer
