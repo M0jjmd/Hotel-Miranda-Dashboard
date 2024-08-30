@@ -41,14 +41,14 @@ const SubmitButton = styled.button`
   padding: 1rem;
   border: none;
   border-radius: 5px;
-  background-color: grey;
+  background-color: ${props => (props.error ? '#dc3545' : 'grey')};
   color: white;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #45a049;
+    background-color: ${props => (props.error ? '#dc3545' : '#45a049')};
   }
 `
 
@@ -96,24 +96,24 @@ const Login = () => {
 
   return (
     <LoginContainer>
-      <LoginForm onSubmit={handleLogin} data-cy="login-username">
+      <LoginForm onSubmit={handleLogin} data-testid="login-form">
         <LoginTitle>Login<br />johndoe<br />password123</LoginTitle>
         <InputField
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          data-cy="username"
+          data-testid="username-input"
         />
         <InputField
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          data-cy="password"
+          data-testid="password-input"
         />
-        {localError && <ErrorMessage>{localError}</ErrorMessage>}
-        <SubmitButton type="submit" data-cy="submit">Login</SubmitButton>
+        {localError && <ErrorMessage data-testid="error-message">{localError}</ErrorMessage>}
+        <SubmitButton type="submit" data-testid="submit-button" error={!!localError}>Login</SubmitButton>
       </LoginForm>
     </LoginContainer>
   )

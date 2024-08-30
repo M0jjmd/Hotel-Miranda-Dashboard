@@ -3,6 +3,8 @@ import { AiOutlineMenuUnfold, AiOutlineMenuFold, AiOutlineSearch, AiOutlineMail,
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
+import { useDispatch } from 'react-redux'
+import { logout } from '../features/login/loginUserSlice'
 
 const HeaderContent = styled.header`
   display: flex;
@@ -65,6 +67,7 @@ const Icon = styled.div`
 const Header = ({ toggleSidebar, isSidebarVisible }) => {
   const { state, dispatch } = useAuth()
   const [title, setTitle] = useState()
+  const logoutDispatch = useDispatch()
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -82,9 +85,12 @@ const Header = ({ toggleSidebar, isSidebarVisible }) => {
     setTitle(titles[location.pathname] || 'Page Not Found')
   }, [[location.pathname]])
 
-  const logOut = () => {
+  const logOutUser = () => {
+    logoutDispatch(logout())
+    localStorage.removeItem('isAuthenticated')
+    localStorage.removeItem('name')
+    localStorage.removeItem('email')
     dispatch({ type: 'LOGOUT' })
-
     navigate("/")
   }
 
@@ -105,7 +111,7 @@ const Header = ({ toggleSidebar, isSidebarVisible }) => {
           <IconSection>
             <Icon as={AiOutlineMail} />
             <Icon as={AiOutlineBell} />
-            <Icon as={AiOutlineLogout} onClick={logOut} />
+            <Icon as={AiOutlineLogout} onClick={logOutUser} />
           </IconSection>
         </HeaderMenu>
       </HeaderContent>

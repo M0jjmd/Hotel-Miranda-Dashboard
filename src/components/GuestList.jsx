@@ -60,10 +60,10 @@ const GuestList = () => {
           value={searchTerm}
           onChange={handleSearchChange}
         />
-        <S.Button active={filterStatus === 'ALL'} onClick={() => handleFilterChange('ALL')}>All Bookings</S.Button>
-        <S.Button active={filterStatus === 'CHECK-IN'} onClick={() => handleFilterChange('CHECK-IN')}>Checking In</S.Button>
-        <S.Button active={filterStatus === 'CHECK-OUT'} onClick={() => handleFilterChange('CHECK-OUT')}>Checking Out</S.Button>
-        <S.Button active={filterStatus === 'IN-PROGRESS'} onClick={() => handleFilterChange('IN-PROGRESS')}>In Progress</S.Button>
+        <S.Button data-testid="all-button" active={filterStatus === 'ALL'} onClick={() => handleFilterChange('ALL')}>All Bookings</S.Button>
+        <S.Button data-testid="check-in-button" active={filterStatus === 'CHECK-IN'} onClick={() => handleFilterChange('CHECK-IN')}>Checking In</S.Button>
+        <S.Button data-testid="check-out-button" active={filterStatus === 'CHECK-OUT'} onClick={() => handleFilterChange('CHECK-OUT')}>Checking Out</S.Button>
+        <S.Button data-testid="in-progress-button" active={filterStatus === 'IN-PROGRESS'} onClick={() => handleFilterChange('IN-PROGRESS')}>In Progress</S.Button>
         <S.AddButton onClick={handleFormToggle}>Add Booking</S.AddButton>
       </S.FilterContainer>
       {state.isFormOpen ? (

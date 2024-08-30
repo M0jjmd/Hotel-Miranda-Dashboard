@@ -646,7 +646,7 @@
       "subject": "Consulta sobre disponibilidad",
       "comment": "Hola, me gustaría saber si hay habitaciones disponibles para el 25 de agosto.",
       "actions": {
-        "archive": false
+        "archive": true
       }
     },
     {
@@ -660,7 +660,7 @@
       "subject": "Pregunta sobre servicios",
       "comment": "¿El hotel cuenta con servicio de traslado al aeropuerto?",
       "actions": {
-        "archive": false
+        "archive": true
       }
     },
     {

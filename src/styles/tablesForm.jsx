@@ -14,7 +14,7 @@ export const FilterContainer = styled.div`
 
 export const Button = styled.button`
   background-color: ${props => (props.active ? '#007bff' : '#f8f9fa')};
-  color: ${props => (props.active ? '#fff' : '#007bff')};
+  color: ${props => (props.active ? '#f8f9fa' : '#007bff')};
   border: 1px solid #007bff;
   border-radius: 4px;
   padding: 0.8rem 1.2rem;
@@ -168,24 +168,6 @@ export const Select = styled.select`
     border-color: #4caf50;
   }
 `
-
-// export const Option = styled.option`
-//   background-color: ${({ selected }) => (selected ? '#4caf50' : '#fff')};
-//   color: ${({ selected }) => (selected ? '#fff' : '#000')};
-//   padding: 8px;
-//   &:hover {
-//     background-color: #f1f1f1;
-//   }
-// `
-
-// export const Dot = styled.span`
-//   height: 10px;
-//   width: 10px;
-//   border-radius: 50%;
-//   background-color: ${({ isSelected }) => (isSelected ? '#4caf50' : '#ccc')};
-//   margin-right: 10px;
-//   transition: background-color 0.3s;
-// `
 
 export const ToggleButton = styled.button`
   padding: 0.8rem 1.2rem;
