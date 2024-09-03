@@ -5,7 +5,7 @@ import Rooms from './pages/Rooms.jsx'
 import Users from './pages/Users.jsx'
 import { Routes, Route } from 'react-router-dom'
 
-import ProtectedRoute from './components/ProtectedRoute.jsx'
+import ProtectedRoute from './components/ProtectedRoute.tsx'
 import Login from './pages/Login.tsx'
 import store from './app/store.ts'
 import { Provider } from 'react-redux'

@@ -64,9 +64,14 @@ const Icon = styled.div`
   cursor: pointer;
 `
 
-const Header = ({ toggleSidebar, isSidebarVisible }) => {
+interface HeaderProps {
+  toggleSidebar: () => void;
+  isVisible: boolean;
+}
+
+const Header: React.FC<HeaderProps> = ({ toggleSidebar, isVisible }) => {
   const { state, dispatch } = useAuth()
-  const [title, setTitle] = useState()
+  const [title, setTitle] = useState<string>('Page Not Found')
   const logoutDispatch = useDispatch()
 
   const location = useLocation()
@@ -74,7 +79,7 @@ const Header = ({ toggleSidebar, isSidebarVisible }) => {
 
 
   useEffect(() => {
-    const titles = {
+    const titles: Record<string, string> = {
       '/dashboard': 'Dashboard',
       '/bookings': 'Bookings',
       '/rooms': 'Rooms',
@@ -99,7 +104,7 @@ const Header = ({ toggleSidebar, isSidebarVisible }) => {
       <HeaderContent>
         <HeaderTitle>
           <ToggleButton onClick={toggleSidebar}>
-            {isSidebarVisible ? <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}
+            {isVisible ? <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}
           </ToggleButton>
           <h1>{title}</h1>
         </HeaderTitle>

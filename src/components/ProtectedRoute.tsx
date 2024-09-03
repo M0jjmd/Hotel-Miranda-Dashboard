@@ -30,9 +30,9 @@ const ProtectedRoute = () => {
     return (
         <>
             <AppContainer>
-                <Sidebar isVisible={isSidebarVisible} />
+                <Sidebar isSidebarVisible={isSidebarVisible} />
                 <MainContent>
-                    <Header toggleSidebar={toggleSidebar} isSidebarVisible={isSidebarVisible} />
+                    <Header toggleSidebar={toggleSidebar} isVisible={isSidebarVisible} />
                     {isAuthenticated() ?
                         <Outlet /> :
                         <Navigate to="/" />}

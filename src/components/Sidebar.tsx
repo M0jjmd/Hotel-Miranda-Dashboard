@@ -6,7 +6,11 @@ import styled from "styled-components"
 import { useState } from "react"
 import { useAuth } from "../context/AuthContext"
 
-const SidebarContainer = styled.aside`
+interface isVisibleInterface {
+  isVisible: boolean
+}
+
+const SidebarContainer = styled.aside<isVisibleInterface>`
   flex: 1 0 15%;
   background-color: #FFFFFF;
   padding: 1rem;
@@ -88,14 +92,18 @@ const EditButton = styled.button`
   }
 `
 
-const Sidebar = ({ isVisible }) => {
-  const { state, dispatch } = useAuth()
-  const localName = localStorage.getItem('name')
-  const localEmail = localStorage.getItem('email')
+interface sidebarProps {
+  isSidebarVisible: boolean
+}
 
-  const [isEditing, setIsEditing] = useState(false)
-  const [name, setName] = useState(localName)
-  const [email, setEmail] = useState(localEmail)
+const Sidebar: React.FC<sidebarProps> = ({ isSidebarVisible }) => {
+  const { state, dispatch } = useAuth()
+  const localName = localStorage.getItem('name') ?? ''
+  const localEmail = localStorage.getItem('email') ?? ''
+
+  const [isEditing, setIsEditing] = useState<boolean>(false)
+  const [name, setName] = useState<string>(localName)
+  const [email, setEmail] = useState<string>(localEmail)
 
   const handleEditButtonClick = () => {
     setIsEditing(true)
@@ -118,7 +126,7 @@ const Sidebar = ({ isVisible }) => {
 
   return (
     <>
-      <SidebarContainer isVisible={isVisible}>
+      <SidebarContainer isVisible={isSidebarVisible}>
         <Logo src={logo} alt="logo" />
         <SidebarList>
           <SidebarItem><SidebarLink to="/dashboard"><DashboardImgs as={LuLayoutDashboard} /> Dashboard</SidebarLink></SidebarItem>
