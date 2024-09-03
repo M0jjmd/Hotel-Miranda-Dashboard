@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { AuthentificateUser } from '../features/login/authenticateUserThunk'
 import { useAuth } from '../context/AuthContext'
+import { AppDispatch, RootState } from '../app/store'
 
 const LoginContainer = styled.div`
   display: flex;
@@ -37,7 +38,11 @@ const InputField = styled.input`
   font-size: 1rem;
 `
 
-const SubmitButton = styled.button`
+interface SubmitButtonProps {
+  error: boolean;
+}
+
+const SubmitButton = styled.button<SubmitButtonProps>`
   padding: 1rem;
   border: none;
   border-radius: 5px;
@@ -58,40 +63,42 @@ const ErrorMessage = styled.p`
 `
 
 const Login = () => {
-  const dispatch = useDispatch()
+  const loginDispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
-  const { isAuthenticated, name, email } = useSelector(state => state.loginUser)
-  const { dispatch: authDispatch } = useAuth()
+
+  const loginDataSelect = (state: RootState) => state.loginUser
+  const { isAuthentificated, name, email } = useSelector(loginDataSelect)
+  const { dispatch } = useAuth()
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [localError, setLocalError] = useState('')
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLocalError('')
 
     try {
-      const actionResult = await dispatch(AuthentificateUser({ username, password })).unwrap();
+      await loginDispatch(AuthentificateUser({ username, password })).unwrap()
     } catch (error) {
-      setLocalError(error.message || 'Invalid username or password')
+      setLocalError('Invalid username or password')
     }
   }
 
   useEffect(() => {
-    if (isAuthenticated) {
-      localStorage.setItem('isAuthenticated', isAuthenticated)
+    if (isAuthentificated) {
+      localStorage.setItem('isAuthentificated', JSON.stringify(isAuthentificated))
       localStorage.setItem('name', name)
       localStorage.setItem('email', email)
 
-      authDispatch({
+      dispatch({
         type: 'LOGIN',
         payload: { name, email }
       })
 
       navigate('/dashboard')
     }
-  }, [isAuthenticated, name, email, authDispatch, navigate])
+  }, [isAuthentificated, name, email, dispatch, navigate])
 
 
   return (

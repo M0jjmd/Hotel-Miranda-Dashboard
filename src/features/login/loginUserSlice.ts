@@ -1,20 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { AuthentificateUser } from "./authenticateUserThunk"
 
+interface UserState {
+    status: 'idle' | 'loading' | 'fulfilled' | 'rejected'
+    error: string | null
+    isAuthentificated: boolean
+    name: string
+    email: string
+}
+
+const initialState: UserState = {
+    status: "idle",
+    error: null,
+    isAuthentificated: false,
+    name: '',
+    email: '',
+}
 
 const usersSlice = createSlice({
     name: "loginUser",
-    initialState: {
-        status: "idle",
-        error: null,
-        isAuthenticated: false,
-        name: '',
-        email: '',
-    },
+    initialState,
     reducers: {
         logout: (state) => {
             state.status = "idle";
-            state.isAuthenticated = false;
+            state.isAuthentificated = false;
             state.name = '';
             state.email = '';
             state.error = null;
@@ -27,17 +36,17 @@ const usersSlice = createSlice({
             })
             .addCase(AuthentificateUser.fulfilled, (state, action) => {
                 state.status = "fulfilled"
-                state.isAuthenticated = action.payload.isAuthenticated
+                state.isAuthentificated = action.payload.isAuthenticated
                 state.name = action.payload.name
                 state.email = action.payload.email
                 state.error = null
             })
             .addCase(AuthentificateUser.rejected, (state, action) => {
-                state.status = "failed"
-                state.isAuthenticated = false
+                state.status = "rejected"
+                state.isAuthentificated = false
                 state.name = ''
                 state.email = ''
-                state.error = action.error.message
+                state.error = action.payload as string || 'An error occurred'
             })
     }
 })

@@ -6,10 +6,10 @@ import Users from './pages/Users.jsx'
 import { Routes, Route } from 'react-router-dom'
 
 import ProtectedRoute from './components/ProtectedRoute.jsx'
-import Login from './pages/Login.jsx'
-import store from './app/store.js'
+import Login from './pages/Login.tsx'
+import store from './app/store.ts'
 import { Provider } from 'react-redux'
-import { AuthProvider } from './context/AuthContext.jsx'
+import { AuthProvider } from './context/AuthContext.tsx'
 
 const App = () => {
   return (
