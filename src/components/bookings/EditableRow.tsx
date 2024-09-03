@@ -1,49 +1,70 @@
 import React, { useState } from 'react'
 import * as S from '../../styles/tablesForm'
-import { useDispatch } from 'react-redux'
 import { EditBooking, DeleteBooking } from '../../features/bookings/bookingsThunk'
+import { Booking } from '../../features/bookings/types'
+import { useAppDispatch } from '../../app/store'
 
-const EditableRow = ({ filteredBookings }) => {
-    const [editRowId, setEditRowId] = useState(null)
-    const [editedBooking, setEditedBooking] = useState({})
-    const [menuOpenId, setMenuOpenId] = useState(null)
+interface EditableRowProps {
+    filteredBookings: Booking[]
+}
 
-    const dispatch = useDispatch()
+const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }) => {
+    const [editRowId, setEditRowId] = useState<string | null>(null)
+    const [editedBooking, setEditedBooking] = useState<Booking | null>(null)
+    const [menuOpenId, setMenuOpenId] = useState<string | null>(null)
 
-    const handleInputChange = (e, field, subField) => {
-        if (subField) {
-            setEditedBooking({
-                ...editedBooking,
-                [field]: {
-                    ...editedBooking[field],
-                    [subField]: e.target.value
+    const dispatch = useAppDispatch()
+
+    const handleInputChange = (
+        e: React.ChangeEvent<HTMLInputElement>,
+        field: keyof Booking,
+        subField?: keyof Booking['RoomType'] | keyof Booking['Guest']
+    ) => {
+        const { value } = e.target
+
+        if (field === 'Guest' && subField) {
+            setEditedBooking(prev => prev ? {
+                ...prev,
+                Guest: {
+                    ...prev.Guest,
+                    [subField]: value
                 }
-            })
+            } : null)
+        } else if (field === 'RoomType' && subField) {
+            setEditedBooking(prev => prev ? {
+                ...prev,
+                RoomType: {
+                    ...prev.RoomType,
+                    [subField]: value
+                }
+            } : null)
         } else {
-            setEditedBooking({
-                ...editedBooking,
-                [field]: e.target.value
-            })
+            setEditedBooking(prev => prev ? {
+                ...prev,
+                [field]: value
+            } : null)
         }
     }
 
-    const handleEditBooking = (booking) => {
+    const handleEditBooking = (booking: Booking) => {
         setEditRowId(booking.id)
         setEditedBooking(booking)
         setMenuOpenId(null)
     }
 
     const handleSaveBooking = () => {
-        dispatch(EditBooking(editedBooking))
-        setEditRowId(null)
+        if (editedBooking) {
+            dispatch(EditBooking(editedBooking))
+            setEditRowId(null)
+        }
     }
 
-    const handleDeleteBooking = (id) => {
+    const handleDeleteBooking = (id: string) => {
         dispatch(DeleteBooking(id))
         setMenuOpenId(null)
     }
 
-    const handleMenuToggle = (id) => {
+    const handleMenuToggle = (id: string) => {
         setMenuOpenId(menuOpenId === id ? null : id)
     }
 
@@ -56,7 +77,7 @@ const EditableRow = ({ filteredBookings }) => {
                             {editRowId === booking.id ? (
                                 <S.Input
                                     type="text"
-                                    value={editedBooking.Guest.Name}
+                                    value={editedBooking?.Guest?.Name || ''}
                                     onChange={(e) => handleInputChange(e, 'Guest', 'Name')}
                                 />
                             ) : (
@@ -67,33 +88,33 @@ const EditableRow = ({ filteredBookings }) => {
                             {editRowId === booking.id ? (
                                 <S.Input
                                     type="date"
-                                    value={editedBooking.OrderDate}
+                                    value={editedBooking?.OrderDate || ''}
                                     onChange={(e) => handleInputChange(e, 'OrderDate')}
                                 />
                             ) : (
-                                booking.OrderDate
+                                new Date(booking.OrderDate).toLocaleDateString()
                             )}
                         </S.TableCell>
                         <S.TableCell>
                             {editRowId === booking.id ? (
                                 <S.Input
                                     type="date"
-                                    value={editedBooking.CheckIn}
+                                    value={editedBooking?.CheckIn || ''}
                                     onChange={(e) => handleInputChange(e, 'CheckIn')}
                                 />
                             ) : (
-                                booking.CheckIn
+                                new Date(booking.CheckIn).toLocaleDateString()
                             )}
                         </S.TableCell>
                         <S.TableCell>
                             {editRowId === booking.id ? (
                                 <S.Input
                                     type="date"
-                                    value={editedBooking.CheckOut}
+                                    value={editedBooking?.CheckOut || ''}
                                     onChange={(e) => handleInputChange(e, 'CheckOut')}
                                 />
                             ) : (
-                                booking.CheckOut
+                                new Date(booking.CheckOut).toLocaleDateString()
                             )}
                         </S.TableCell>
                         <S.TableCell>
@@ -101,12 +122,12 @@ const EditableRow = ({ filteredBookings }) => {
                                 <>
                                     <S.Input
                                         type="text"
-                                        value={editedBooking.RoomType.Type}
+                                        value={editedBooking?.RoomType.Type || ''}
                                         onChange={(e) => handleInputChange(e, 'RoomType', 'Type')}
                                     />
                                     <S.Input
                                         type="text"
-                                        value={editedBooking.RoomType.RoomNumber}
+                                        value={editedBooking?.RoomType.RoomNumber || ''}
                                         onChange={(e) => handleInputChange(e, 'RoomType', 'RoomNumber')}
                                     />
                                 </>
@@ -118,7 +139,7 @@ const EditableRow = ({ filteredBookings }) => {
                             {editRowId === booking.id ? (
                                 <S.Input
                                     type="text"
-                                    value={editedBooking.Status}
+                                    value={editedBooking?.Status || ''}
                                     onChange={(e) => handleInputChange(e, 'Status')}
                                 />
                             ) : (

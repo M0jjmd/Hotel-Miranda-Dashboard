@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
+import { Booking } from "./types"
 
-export const GetBookings = createAsyncThunk(
+export const GetBookings = createAsyncThunk<Booking[]>(
     "bookings/getBookings",
     async () => {
         try {
@@ -19,10 +20,9 @@ export const GetBookings = createAsyncThunk(
     }
 )
 
-export const EditBooking = createAsyncThunk(
+export const EditBooking = createAsyncThunk<Booking, Booking>(
     "bookings/editBooking",
     async (updatedBooking) => {
-        console.log(updatedBooking)
         try {
             const response = await fetch(`http://localhost:4000/guests/${updatedBooking.id}`, {
                 method: 'PUT',
@@ -45,7 +45,7 @@ export const EditBooking = createAsyncThunk(
     }
 )
 
-export const DeleteBooking = createAsyncThunk(
+export const DeleteBooking = createAsyncThunk<string, string>(
     "bookings/deleteBooking",
     async (bookingId) => {
         try {
@@ -65,7 +65,7 @@ export const DeleteBooking = createAsyncThunk(
     }
 )
 
-export const CreateBooking = createAsyncThunk(
+export const CreateBooking = createAsyncThunk<Booking, Booking>(
     "bookings/createBooking",
     async (newBooking) => {
         try {

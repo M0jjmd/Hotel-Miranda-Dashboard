@@ -13,7 +13,7 @@ export const FilterContainer = styled.div`
 `
 
 interface isActiveInterface {
-  active: boolean
+  active?: boolean
 }
 
 export const Button = styled.button<isActiveInterface>`

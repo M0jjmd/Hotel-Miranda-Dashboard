@@ -1,13 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { GetBookings, EditBooking, DeleteBooking } from './bookingsThunk'
+import { Booking } from "./types"
+
+interface nookingsState {
+    data: Booking[]
+    status: 'idle' | 'loading' | 'fulfilled' | 'failed'
+    error: string | null
+}
+
+const initialState: nookingsState = {
+    data: [],
+    status: "idle",
+    error: null,
+}
 
 const bookingsSlice = createSlice({
     name: 'bookings',
-    initialState: {
-        data: [],
-        status: "idle",
-        error: null,
-    },
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -20,7 +29,7 @@ const bookingsSlice = createSlice({
             })
             .addCase(GetBookings.rejected, (state, action) => {
                 state.status = "failed"
-                state.error = action.error.message
+                state.error = action.error.message || null
             })
             .addCase(EditBooking.fulfilled, (state, action) => {
                 state.data = state.data.map(booking =>

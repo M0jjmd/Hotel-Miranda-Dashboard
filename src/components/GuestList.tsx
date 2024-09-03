@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import * as S from '../styles/tablesForm'
-import { useDispatch, useSelector } from 'react-redux'
-import { GetBookings } from '../features/bookings/bookingsThunk'
-import EditableRow from './bookings/EditableRow'
 import { useAuth } from '../context/AuthContext'
+import { GetBookings } from '../features/bookings/bookingsThunk'
+import { useAppDispatch, useAppSelector } from '../app/store'
+import EditableRow from './bookings/EditableRow'
 import AddBooking from './bookings/AddBooking'
 
 const GuestList = () => {
@@ -11,9 +11,9 @@ const GuestList = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const { state, dispatch } = useAuth()
 
-  const dispatchBooking = useDispatch()
-  const bookings = useSelector((state) => state.bookings.data)
-  const bookingsStatus = useSelector((state) => state.bookings.status)
+  const dispatchBooking = useAppDispatch()
+  const bookings = useAppSelector((state) => state.bookings.data)
+  const bookingsStatus = useAppSelector((state) => state.bookings.status)
 
   useEffect(() => {
     if (bookingsStatus === 'idle') {
@@ -25,14 +25,14 @@ const GuestList = () => {
   const sortedBookings = [...bookings].sort((a, b) => {
     const dateA = new Date(a.OrderDate)
     const dateB = new Date(b.OrderDate)
-    return dateB - dateA
+    return dateB.getTime() - dateA.getTime()
   })
 
-  const handleFilterChange = (newFilter) => {
+  const handleFilterChange = (newFilter: string) => {
     setFilterStatus(newFilter)
   }
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value.toLowerCase())
   }
 
