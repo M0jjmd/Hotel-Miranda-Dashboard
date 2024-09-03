@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
+import styled from 'styled-components'
 import * as S from '../styles/tablesForm'
 import * as T from '../styles/contactStyles'
-import { useDispatch, useSelector } from 'react-redux'
 import { GetContacts, GetSingleContact, updateArchiveStatus } from '../features/contacts/contactsThunk'
-import styled from 'styled-components'
+import { useAppDispatch, useAppSelector } from '../app/store'
 
 const ActionButton = styled.button`
     background-color: #007bff;
@@ -18,17 +18,30 @@ const ActionButton = styled.button`
     }
 `
 
+interface Contact {
+    id: string
+    date: string
+    customer: {
+        name: string
+        email: string
+        phone: string
+    };
+    subject: string
+    comment: string
+    actions: {
+        archive: boolean
+    }
+}
+
 function ContactsView() {
-    const [filter, setFilter] = useState('ALL')
-    const [searchTerm, setSearchTerm] = useState('')
-    const [selectedMessage, setSelectedMessage] = useState(null)
+    const [filter, setFilter] = useState<'ALL' | 'ARCHIVED'>('ALL')
+    const [searchTerm, setSearchTerm] = useState<string>('')
+    const [selectedMessage, setSelectedMessage] = useState<string | null>(null)
 
-    const singleMessages = useSelector((state) => state.contacts.singleContact)
-
-    const dispatchContacts = useDispatch()
-
-    const contacts = useSelector((state) => state.contacts.data)
-    const contactsStatus = useSelector((state) => state.contacts.status)
+    const dispatchContacts = useAppDispatch()
+    const contacts = useAppSelector((state) => state.contacts.data)
+    const contactsStatus = useAppSelector((state) => state.contacts.status)
+    const singleMessages = useAppSelector((state) => state.contacts.singleContact)
 
     useEffect(() => {
         if (contactsStatus === 'idle') {
@@ -36,22 +49,21 @@ function ContactsView() {
         }
     }, [dispatchContacts, contactsStatus])
 
-    const filteredContacts = contacts
-        .filter(contact => {
-            if (filter === 'ALL' && contact.actions.archive) return false
-            if (filter === 'ARCHIVED' && !contact.actions.archive) return false
+    const filteredContacts = contacts.filter((contact: Contact) => {
+        if (filter === 'ALL' && contact.actions.archive) return false
+        if (filter === 'ARCHIVED' && !contact.actions.archive) return false
 
-            const combinedString = JSON.stringify(contact).toLowerCase()
-            return combinedString.includes(searchTerm.toLowerCase())
-        })
+        const combinedString = JSON.stringify(contact).toLowerCase()
+        return combinedString.includes(searchTerm.toLowerCase())
+    })
 
     const latestMessages = contacts.slice(-3)
 
-    const handleSearchChange = (e) => {
+    const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value)
     }
 
-    const handleMessageClick = (id) => {
+    const handleMessageClick = (id: string) => {
         setSelectedMessage(id)
         dispatchContacts(GetSingleContact(id))
     }
@@ -60,18 +72,18 @@ function ContactsView() {
         setSelectedMessage(null)
     }
 
-    const handleArchiveToggle = (contactId) => {
-        const contact = contacts.find(c => c.id === contactId)
+    const handleArchiveToggle = async (contactId: string) => {
+        const contact = contacts.find((c: Contact) => c.id === contactId)
 
         if (!contact) {
             console.error('Contact not found')
-            return;
+            return
         }
 
         const updatedArchiveStatus = !contact.actions.archive
 
         try {
-            dispatchContacts(updateArchiveStatus({ id: contactId, archiveStatus: updatedArchiveStatus })).unwrap()
+            await dispatchContacts(updateArchiveStatus({ id: contactId, archiveStatus: updatedArchiveStatus })).unwrap()
             dispatchContacts(GetContacts())
         } catch (error) {
             console.error('Error updating contact:', error)
@@ -104,9 +116,15 @@ function ContactsView() {
                 {selectedMessage && (
                     <T.Popup>
                         <T.PopupContent>
-                            <h3>{singleMessages.subject}</h3>
-                            <p>{singleMessages.comment}</p>
-                            <T.CloseButton onClick={handleClosePopup}>Close</T.CloseButton>
+                            {singleMessages ? (
+                                <>
+                                    <h3>{singleMessages.subject}</h3>
+                                    <p>{singleMessages.comment}</p>
+                                    <T.CloseButton onClick={handleClosePopup}>Close</T.CloseButton>
+                                </>
+                            ) : (
+                                <p>Loading...</p>
+                            )}
                         </T.PopupContent>
                     </T.Popup>
                 )}

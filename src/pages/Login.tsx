@@ -87,7 +87,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthentificated) {
-      localStorage.setItem('isAuthentificated', JSON.stringify(isAuthentificated))
+      localStorage.setItem('isAuthentificated', 'true')
       localStorage.setItem('name', name)
       localStorage.setItem('email', email)
 

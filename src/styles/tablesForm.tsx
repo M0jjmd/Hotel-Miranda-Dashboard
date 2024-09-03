@@ -12,7 +12,11 @@ export const FilterContainer = styled.div`
   gap: 0.8rem;
 `
 
-export const Button = styled.button`
+interface isActiveInterface {
+  active: boolean
+}
+
+export const Button = styled.button<isActiveInterface>`
   background-color: ${props => (props.active ? '#007bff' : '#f8f9fa')};
   color: ${props => (props.active ? '#f8f9fa' : '#007bff')};
   border: 1px solid #007bff;
@@ -115,9 +119,13 @@ export const TextArea = styled.textarea`
 export const SelectContainer = styled.div`
     display: flex;
     flex-direction: column;
-`;
+`
 
-export const Option = styled.div`
+interface isSelectedInterface {
+  isSelected: boolean
+}
+
+export const Option = styled.div<isSelectedInterface>`
     display: flex;
     align-items: center;
     padding: 8px;
@@ -131,16 +139,16 @@ export const Option = styled.div`
     &:hover {
         background: #f5f5f5;
     }
-`;
+`
 
-export const Dot = styled.span`
+export const Dot = styled.span<isSelectedInterface>`
     display: inline-block;
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background: ${props => props.isSelected ? '#007bff' : '#ccc'};
     margin-right: 8px;
-`;
+`
 export const Select = styled.select`
   width: 100%;
   height: auto;
@@ -169,7 +177,7 @@ export const Select = styled.select`
   }
 `
 
-export const ToggleButton = styled.button`
+export const ToggleButton = styled.button<isActiveInterface>`
   padding: 0.8rem 1.2rem;
   font-size: 1rem;
   border-radius: 4px;

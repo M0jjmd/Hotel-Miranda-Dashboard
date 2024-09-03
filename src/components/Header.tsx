@@ -70,7 +70,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ toggleSidebar, isVisible }) => {
-  const { state, dispatch } = useAuth()
+  const { dispatch } = useAuth()
   const [title, setTitle] = useState<string>('Page Not Found')
   const logoutDispatch = useDispatch()
 
@@ -92,7 +92,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isVisible }) => {
 
   const logOutUser = () => {
     logoutDispatch(logout())
-    localStorage.removeItem('isAuthenticated')
+    localStorage.removeItem('isAuthentificated')
     localStorage.removeItem('name')
     localStorage.removeItem('email')
     dispatch({ type: 'LOGOUT' })

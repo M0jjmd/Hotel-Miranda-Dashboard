@@ -1,14 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { GetContacts, updateArchiveStatus, GetSingleContact } from './contactsThunk'
+import { Contact } from './types'
+
+interface ContactsState {
+    data: Contact[]
+    status: 'idle' | 'loading' | 'fulfilled' | 'failed'
+    error: string | null
+    singleContact: Contact | null
+}
+
+const initialState: ContactsState = {
+    data: [],
+    status: 'idle',
+    error: null,
+    singleContact: null,
+}
 
 const contactsSlice = createSlice({
     name: 'contacts',
-    initialState: {
-        data: [],
-        status: "idle",
-        error: null,
-        singleContact: [],
-    },
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -21,7 +31,7 @@ const contactsSlice = createSlice({
             })
             .addCase(GetContacts.rejected, (state, action) => {
                 state.status = "failed"
-                state.error = action.error.message
+                state.error = action.error.message || null
             })
             .addCase(updateArchiveStatus.fulfilled, (state, action) => {
                 state.data = state.data.map(contact =>

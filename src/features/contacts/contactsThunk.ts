@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
+import { Contact, UpdateArchiveStatusPayload } from "./types"
 
-export const GetContacts = createAsyncThunk(
+export const GetContacts = createAsyncThunk<Contact[]>(
     "contacts/getContacts",
     async () => {
         try {
@@ -19,11 +20,11 @@ export const GetContacts = createAsyncThunk(
     }
 )
 
-export const GetSingleContact = createAsyncThunk(
+export const GetSingleContact = createAsyncThunk<Contact, string>(
     "contacts/getSingleContacts",
-    async (contact) => {
+    async (contactId: string) => {
         try {
-            const req = await fetch(`http://localhost:4000/messages/${contact}`)
+            const req = await fetch(`http://localhost:4000/messages/${contactId}`)
 
             if (!req.ok) {
                 throw new Error('Authentication failed.')
@@ -38,9 +39,9 @@ export const GetSingleContact = createAsyncThunk(
     }
 )
 
-export const updateArchiveStatus = createAsyncThunk(
+export const updateArchiveStatus = createAsyncThunk<Contact, UpdateArchiveStatusPayload>(
     'contacts/updateArchiveStatus',
-    async ({ id, archiveStatus }) => {
+    async ({ id, archiveStatus }: UpdateArchiveStatusPayload) => {
         try {
             const response = await fetch(`http://localhost:4000/messages/${id}`, {
                 method: 'PATCH',

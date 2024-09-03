@@ -17,7 +17,7 @@ const MainContent = styled.div`
 `
 
 const isAuthenticated = () => {
-    return localStorage.getItem('isAuthenticated')
+    return localStorage.getItem('isAuthentificated') === 'true'
 };
 
 const ProtectedRoute = () => {
@@ -33,9 +33,11 @@ const ProtectedRoute = () => {
                 <Sidebar isSidebarVisible={isSidebarVisible} />
                 <MainContent>
                     <Header toggleSidebar={toggleSidebar} isVisible={isSidebarVisible} />
-                    {isAuthenticated() ?
-                        <Outlet /> :
-                        <Navigate to="/" />}
+                    {isAuthenticated() ? (
+                        <Outlet />
+                    ) : (
+                        <Navigate to="/" />
+                    )}
                 </MainContent>
             </AppContainer>
         </>
