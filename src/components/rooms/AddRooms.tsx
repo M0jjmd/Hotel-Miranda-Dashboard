@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import * as S from '../../styles/tablesForm'
-import { useDispatch } from 'react-redux'
+import { useAuth } from '../../context/AuthContext'
+import { useAppDispatch } from '../../app/store'
 import { CreateRoom, GetRooms } from '../../features/rooms/roomsThunk'
 
 const AddRooms = () => {
-    const addDispatch = useDispatch()
+    const addDispatch = useAppDispatch()
+    const { dispatch } = useAuth()
     const [formValues, setFormValues] = useState({
-        photos: [],
+        photos: [] as File[],
         roomType: 'Single Bed',
         roomNumber: '',
         description: '',
@@ -14,19 +16,22 @@ const AddRooms = () => {
         price: '',
         discount: '',
         cancellationPolicy: '',
-        facilities: []
+        facilities: [] as string[]
     })
 
     const amenitiesOptions = ['TV', 'Bathtub', 'Sea View', 'WiFi', 'Air Conditioning']
 
-    const handleInputChange = (e) => {
-        const { name, value, files } = e.target
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target
 
-        if (name === 'photos') {
-            setFormValues((prevValues) => ({
-                ...prevValues,
-                [name]: files,
-            }))
+        if (e.target instanceof HTMLInputElement && e.target.type === 'file') {
+            const files = e.target.files
+            if (files) {
+                setFormValues((prevValues) => ({
+                    ...prevValues,
+                    [name]: Array.from(files),
+                }))
+            }
         } else {
             setFormValues((prevValues) => ({
                 ...prevValues,
@@ -35,8 +40,16 @@ const AddRooms = () => {
         }
     }
 
-    const toggleFacility = (facility) => {
-        setFormValues((prevValues) => {
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const { name, value } = e.target
+        setFormValues(prevValues => ({
+            ...prevValues,
+            [name]: value,
+        }))
+    }
+
+    const toggleFacility = (facility: string) => {
+        setFormValues(prevValues => {
             const updatedFacilities = prevValues.facilities.includes(facility)
                 ? prevValues.facilities.filter((item) => item !== facility)
                 : [...prevValues.facilities, facility]
@@ -52,7 +65,7 @@ const AddRooms = () => {
         return Math.floor(1000 + Math.random() * 9000).toString()
     }
 
-    const handleAddRoom = (e) => {
+    const handleAddRoom = (e: React.FormEvent) => {
         e.preventDefault()
 
         const roomWithId = {
@@ -93,7 +106,7 @@ const AddRooms = () => {
             <S.Select
                 name="roomType"
                 value={formValues.roomType}
-                onChange={handleInputChange}
+                onChange={handleSelectChange}
             >
                 <option value="Single Bed">Single Bed</option>
                 <option value="Double Bed">Double Bed</option>

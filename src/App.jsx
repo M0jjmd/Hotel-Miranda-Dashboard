@@ -1,7 +1,7 @@
 import Dasboard from './pages/Dashboard.tsx'
 import Bookings from './pages/Bookings.tsx'
 import Contacts from './pages/Contacts.tsx'
-// import Rooms from './pages/Rooms.jsx'
+import Rooms from './pages/Rooms.tsx'
 // import Users from './pages/Users.jsx'
 import { Provider } from 'react-redux'
 import { AuthProvider } from './context/AuthContext.tsx'
@@ -22,7 +22,7 @@ const App = () => {
               <Route path="dashboard" element={<Dasboard />} />
               <Route path="bookings" element={<Bookings />} />
               <Route path="contact" element={<Contacts />} />
-              {/* <Route path="rooms" element={<Rooms />} /> */}
+              <Route path="rooms" element={<Rooms />} />
               {/* <Route path="users" element={<Users />} /> */}
             </Route>
           </Routes>

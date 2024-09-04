@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
+import { Room } from '../../interfaces/roomInterface'
 
-export const GetRooms = createAsyncThunk(
+export const GetRooms = createAsyncThunk<Room[]>(
     "rooms/getRooms",
     async () => {
         try {
@@ -19,7 +20,7 @@ export const GetRooms = createAsyncThunk(
     }
 )
 
-export const GetSingleRoom = createAsyncThunk(
+export const GetSingleRoom = createAsyncThunk<Room, string>(
     "rooms/getSingleRooms",
     async (roomId) => {
         try {
@@ -38,7 +39,7 @@ export const GetSingleRoom = createAsyncThunk(
     }
 )
 
-export const EditRoom = createAsyncThunk(
+export const EditRoom = createAsyncThunk<Room, Room>(
     "rooms/editRooms",
     async (updatedRoom) => {
         console.log(updatedRoom)
@@ -64,7 +65,7 @@ export const EditRoom = createAsyncThunk(
     }
 )
 
-export const DeleteRoom = createAsyncThunk(
+export const DeleteRoom = createAsyncThunk<string, string>(
     "rooms/deleteRooms",
     async (RoomId) => {
         try {
@@ -84,7 +85,7 @@ export const DeleteRoom = createAsyncThunk(
     }
 )
 
-export const CreateRoom = createAsyncThunk(
+export const CreateRoom = createAsyncThunk<Room, Room>(
     "rooms/createRooms",
     async (newRoom) => {
         try {

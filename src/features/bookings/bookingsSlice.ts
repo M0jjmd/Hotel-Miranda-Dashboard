@@ -2,13 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import { GetBookings, EditBooking, DeleteBooking } from './bookingsThunk'
 import { Booking } from "../../interfaces/bookingInterface"
 
-interface nookingsState {
+interface bookingsState {
     data: Booking[]
     status: 'idle' | 'loading' | 'fulfilled' | 'failed'
     error: string | null
 }
 
-const initialState: nookingsState = {
+const initialState: bookingsState = {
     data: [],
     status: "idle",
     error: null,

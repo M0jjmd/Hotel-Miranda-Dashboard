@@ -1,49 +1,68 @@
 import React, { useState } from 'react'
 import * as S from '../../styles/tablesForm'
 import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../../app/store'
 import { EditRoom, DeleteRoom } from '../../features/rooms/roomsThunk'
+import { Room } from '../../interfaces/roomInterface'
 
-function EditableRow({ filteredRooms }) {
-    const [editRowId, setEditRowId] = useState(null)
-    const [editedRoom, setEditedRoom] = useState({})
-    const [menuOpenId, setMenuOpenId] = useState(null)
+interface EditableRowProps {
+    filteredRooms: Room[]
+}
 
-    const dispatch = useDispatch()
+function EditableRow({ filteredRooms }: EditableRowProps) {
+    // const [editRowId, setEditRowId] = useState(null)
+    // const [editedRoom, setEditedRoom] = useState({})
+    // const [menuOpenId, setMenuOpenId] = useState(null)
+    const [editRowId, setEditRowId] = useState<string | null>(null)
+    const [editedRoom, setEditedRoom] = useState<Partial<Room>>({})
+    const [menuOpenId, setMenuOpenId] = useState<string | null>(null)
 
-    const handleInputChange = (e, field, subField) => {
-        if (subField) {
-            setEditedRoom({
-                ...editedRoom,
-                [field]: {
-                    ...editedRoom[field],
-                    [subField]: e.target.value
-                }
-            })
-        } else {
-            setEditedRoom({
-                ...editedRoom,
-                [field]: e.target.value
-            })
-        }
+    const dispatch = useAppDispatch()
+
+    // const handleInputChange = (e, field, subField) => {
+    //     if (subField) {
+    //         setEditedRoom({
+    //             ...editedRoom,
+    //             [field]: {
+    //                 ...editedRoom[field],
+    //                 [subField]: e.target.value
+    //             }
+    //         })
+    //     } else {
+    //         setEditedRoom({
+    //             ...editedRoom,
+    //             [field]: e.target.value
+    //         })
+    //     }
+    // }
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Room) => {
+        const value = e.target.value
+        setEditedRoom(prevValues => ({
+            ...prevValues,
+            [field]: field === 'Facilities' ? value.split(',').map(item => item.trim()) : value,
+        }))
     }
 
     const handleSaveRoom = () => {
-        dispatch(EditRoom(editedRoom))
-        setEditRowId(null)
+        if (editRowId) {
+            dispatch(EditRoom({ ...editedRoom, id: editRowId } as Room))
+            setEditRowId(null)
+        }
     }
 
-    const handleEditRoom = (room) => {
+    const handleEditRoom = (room: Room) => {
         setEditRowId(room.id)
         setEditedRoom(room)
         setMenuOpenId(null)
     }
 
-    const handleDeleteRoom = (id) => {
+    const handleDeleteRoom = (id: string) => {
         dispatch(DeleteRoom(id))
         setMenuOpenId(null)
     }
 
-    const handleMenuToggle = (id) => {
+    const handleMenuToggle = (id: string) => {
         setMenuOpenId(menuOpenId === id ? null : id)
     }
 
@@ -79,7 +98,7 @@ function EditableRow({ filteredRooms }) {
                             {editRowId === room.id ? (
                                 <S.Input
                                     type="text"
-                                    value={editedRoom.Facilities.join(', ')}
+                                    value={editedRoom.Facilities ? editedRoom.Facilities.join(', ') : ''}
                                     onChange={(e) => handleInputChange(e, 'Facilities')}
                                 />
                             ) : (

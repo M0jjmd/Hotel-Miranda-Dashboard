@@ -1,36 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import * as S from '../styles/tablesForm'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../app/store'
 import { GetRooms } from '../features/rooms/roomsThunk'
 import { useAuth } from '../context/AuthContext'
 import AddRooms from './rooms/AddRooms'
 import EditableRow from './rooms/EditableRow'
 
 const RoomList = () => {
-  const [filterStatus, setFilterStatus] = useState('ALL')
+  const [filterStatus, setFilterStatus] = useState<'ALL' | 'Available' | 'Booked'>('ALL')
   const [isDescending, setIsDescending] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const { state, dispatch } = useAuth()
 
-  const roomDispatch = useDispatch()
-  const rooms = useSelector((state) => state.rooms.data)
-  const roomsStatus = useSelector((state) => state.rooms.status)
+  const roomDispatch = useAppDispatch()
+  const rooms = useAppSelector((state) => state.rooms.data)
+  const roomsStatus = useAppSelector((state) => state.rooms.status)
   useEffect(() => {
     if (roomsStatus === 'idle') {
       roomDispatch(GetRooms())
       dispatch({ type: 'CLOSE_FORM' })
     }
-  }, [roomDispatch, roomsStatus])
-
-  const handleStatusFilterChange = (status) => {
-    setFilterStatus(status)
-  }
+  }, [roomDispatch, roomsStatus, dispatch])
 
   const toggleSortOrder = () => {
     setIsDescending(!isDescending)
   }
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value.toLowerCase())
   }
 
@@ -59,9 +55,9 @@ const RoomList = () => {
           value={searchTerm}
           onChange={handleSearchChange}
         />
-        <S.Button active={filterStatus === 'ALL'} onClick={() => handleStatusFilterChange('ALL')}>All Rooms</S.Button>
-        <S.Button active={filterStatus === 'Available'} onClick={() => handleStatusFilterChange('Available')}>Available</S.Button>
-        <S.Button active={filterStatus === 'Booked'} onClick={() => handleStatusFilterChange('Booked')}>Booked</S.Button>
+        <S.Button active={filterStatus === 'ALL'} onClick={() => setFilterStatus('ALL')}>All Rooms</S.Button>
+        <S.Button active={filterStatus === 'Available'} onClick={() => setFilterStatus('Available')}>Available</S.Button>
+        <S.Button active={filterStatus === 'Booked'} onClick={() => setFilterStatus('Booked')}>Booked</S.Button>
         <S.SortButton onClick={toggleSortOrder}>
           Sort by Price (Desc)
         </S.SortButton>
