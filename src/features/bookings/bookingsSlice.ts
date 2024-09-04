@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { GetBookings, EditBooking, DeleteBooking } from './bookingsThunk'
-import { Booking } from "./types"
+import { Booking } from "../../interfaces/bookingInterface"
 
 interface nookingsState {
     data: Booking[]

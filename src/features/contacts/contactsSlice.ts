@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { GetContacts, updateArchiveStatus, GetSingleContact } from './contactsThunk'
-import { Contact } from './types'
+import { Contact } from '../../interfaces/contactInterface'
 
 interface ContactsState {
     data: Contact[]

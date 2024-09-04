@@ -3,7 +3,7 @@ import * as S from '../../styles/tablesForm'
 import { useAuth } from '../../context/AuthContext'
 import { CreateBooking, GetBookings } from '../../features/bookings/bookingsThunk'
 import { useAppDispatch } from '../../app/store'
-import { Booking } from '../../features/bookings/types'
+import { Booking } from '../../interfaces/bookingInterface'
 
 const AddBooking = () => {
     const [formValues, setFormValues] = useState<Booking>({

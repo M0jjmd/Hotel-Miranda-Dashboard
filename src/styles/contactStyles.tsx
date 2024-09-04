@@ -51,3 +51,16 @@ export const NewMessageContainer = styled.div`
     margin-bottom: 20px;
   }
 `
+
+export const ActionButton = styled.button`
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #0056b3;
+    }
+`

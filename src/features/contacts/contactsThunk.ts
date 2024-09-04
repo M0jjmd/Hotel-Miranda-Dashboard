@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { Contact, UpdateArchiveStatusPayload } from "./types"
+import { Contact, UpdateArchiveStatusPayload } from "../../interfaces/contactInterface"
 
 export const GetContacts = createAsyncThunk<Contact[]>(
     "contacts/getContacts",

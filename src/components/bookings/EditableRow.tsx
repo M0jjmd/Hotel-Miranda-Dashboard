@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import * as S from '../../styles/tablesForm'
 import { EditBooking, DeleteBooking } from '../../features/bookings/bookingsThunk'
-import { Booking } from '../../features/bookings/types'
+import { Booking } from '../../interfaces/bookingInterface'
 import { useAppDispatch } from '../../app/store'
 
 interface EditableRowProps {

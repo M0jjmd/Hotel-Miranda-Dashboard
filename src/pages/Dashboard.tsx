@@ -1,16 +1,11 @@
-import styled from "styled-components"
-
-const DashboardContent = styled.div`
-    background-color: #00000014;
-    height: 100vh;
-`
+import * as S from '../styles/dashboardStyles'
 
 const Dashboard = () => {
     return (
         <>
-            <DashboardContent>
+            <S.DashboardContent>
                 <div>Dashboard</div>
-            </DashboardContent>
+            </S.DashboardContent>
         </>
     )
 }

@@ -1,37 +1,9 @@
 import { ChangeEvent, useEffect, useState } from 'react'
-import styled from 'styled-components'
 import * as S from '../styles/tablesForm'
 import * as T from '../styles/contactStyles'
 import { GetContacts, GetSingleContact, updateArchiveStatus } from '../features/contacts/contactsThunk'
 import { useAppDispatch, useAppSelector } from '../app/store'
-
-const ActionButton = styled.button`
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 0.5em 1em;
-    border-radius: 4px;
-    cursor: pointer;
-
-    &:hover {
-        background-color: #0056b3;
-    }
-`
-
-interface Contact {
-    id: string
-    date: string
-    customer: {
-        name: string
-        email: string
-        phone: string
-    };
-    subject: string
-    comment: string
-    actions: {
-        archive: boolean
-    }
-}
+import { Contact } from '../interfaces/contactInterface'
 
 function ContactsView() {
     const [filter, setFilter] = useState<'ALL' | 'ARCHIVED'>('ALL')
@@ -153,9 +125,9 @@ function ContactsView() {
                                 <S.TableCell>{contact.subject}</S.TableCell>
                                 <S.TableCell>{contact.comment.slice(0, 50)}...</S.TableCell>
                                 <S.TableCell>
-                                    <ActionButton onClick={() => handleArchiveToggle(contact.id)}>
+                                    <T.ActionButton onClick={() => handleArchiveToggle(contact.id)}>
                                         {contact.actions.archive ? (<span>Archived</span>) : (<span>No Archived</span>)}
-                                    </ActionButton>
+                                    </T.ActionButton>
                                 </S.TableCell>
                             </S.TableRow>
                         ))}

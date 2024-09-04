@@ -1,72 +1,14 @@
-import styled from 'styled-components'
-import { AiOutlineMenuUnfold, AiOutlineMenuFold, AiOutlineSearch, AiOutlineMail, AiOutlineBell, AiOutlineLogout } from 'react-icons/ai'
+import * as S from '../styles/headerStyles'
+import { AiOutlineMenuUnfold, AiOutlineMenuFold, AiOutlineMail, AiOutlineBell, AiOutlineLogout } from 'react-icons/ai'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useDispatch } from 'react-redux'
 import { logout } from '../features/login/loginUserSlice'
 
-const HeaderContent = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.8rem 1.2rem;
-  background-color: #f0f0f0;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-`
-const HeaderTitle = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-`
-
-const ToggleButton = styled.button`
-  padding: 0rem 0.5rem;
-  border: none;
-  cursor: pointer;
-  font-size: 1.2rem;
-`
-
-const HeaderMenu = styled.div`
-  display: flex;
-  gap: 1rem;
-`
-
-const SearchContainer = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-`
-
-const SearchIcon = styled(AiOutlineSearch)`
-  position: absolute;
-  left: 0.8rem;
-  font-size: 1rem;
-`
-
-const SearchInput = styled.input`
-  width: 100%;
-  padding: 0.6rem 0.6rem 0.6rem 2rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  background-color: #fff;
-`
-
-const IconSection = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-`
-
-const Icon = styled.div`
-  font-size: 1.5rem;
-  cursor: pointer;
-`
-
 interface HeaderProps {
-  toggleSidebar: () => void;
-  isVisible: boolean;
+  toggleSidebar: () => void
+  isVisible: boolean
 }
 
 const Header: React.FC<HeaderProps> = ({ toggleSidebar, isVisible }) => {
@@ -101,25 +43,25 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isVisible }) => {
 
   return (
     <>
-      <HeaderContent>
-        <HeaderTitle>
-          <ToggleButton onClick={toggleSidebar}>
+      <S.HeaderContent>
+        <S.HeaderTitle>
+          <S.ToggleButton onClick={toggleSidebar}>
             {isVisible ? <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}
-          </ToggleButton>
+          </S.ToggleButton>
           <h1>{title}</h1>
-        </HeaderTitle>
-        <HeaderMenu>
-          <SearchContainer>
-            <SearchInput type="text" placeholder="Buscar..." />
-            <SearchIcon />
-          </SearchContainer>
-          <IconSection>
-            <Icon as={AiOutlineMail} />
-            <Icon as={AiOutlineBell} />
-            <Icon as={AiOutlineLogout} onClick={logOutUser} />
-          </IconSection>
-        </HeaderMenu>
-      </HeaderContent>
+        </S.HeaderTitle>
+        <S.HeaderMenu>
+          <S.SearchContainer>
+            <S.SearchInput type="text" placeholder="Buscar..." />
+            <S.SearchIcon />
+          </S.SearchContainer>
+          <S.IconSection>
+            <S.Icon as={AiOutlineMail} />
+            <S.Icon as={AiOutlineBell} />
+            <S.Icon as={AiOutlineLogout} onClick={logOutUser} />
+          </S.IconSection>
+        </S.HeaderMenu>
+      </S.HeaderContent>
     </>
   )
 }

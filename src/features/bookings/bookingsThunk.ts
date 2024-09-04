@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { Booking } from "./types"
+import { Booking } from "../../interfaces/bookingInterface"
 
 export const GetBookings = createAsyncThunk<Booking[]>(
     "bookings/getBookings",
