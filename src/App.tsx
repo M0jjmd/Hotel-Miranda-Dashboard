@@ -1,15 +1,14 @@
-import Dasboard from './pages/Dashboard.tsx'
-import Bookings from './pages/Bookings.tsx'
-import Contacts from './pages/Contacts.tsx'
-import Rooms from './pages/Rooms.tsx'
-import Users from './pages/Users.tsx'
+import Dasboard from './pages/Dashboard'
+import Bookings from './pages/Bookings'
+import Contacts from './pages/Contacts'
+import Rooms from './pages/Rooms'
+import Users from './pages/Users'
 import { Provider } from 'react-redux'
-import { AuthProvider } from './context/AuthContext.tsx'
+import { AuthProvider } from './context/AuthContext'
 import { Routes, Route } from 'react-router-dom'
-
-import ProtectedRoute from './components/ProtectedRoute.tsx'
-import Login from './pages/Login.tsx'
-import store from './app/store.ts'
+import ProtectedRoute from './components/ProtectedRoute'
+import Login from './pages/Login'
+import store from './app/store'
 
 const App = () => {
   return (

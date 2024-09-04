@@ -22,10 +22,8 @@ export const AuthentificateUser = createAsyncThunk<userData, authUser, { rejectV
             }
 
             const result = await req.json()
-            console.log(result)
             const user = result.find(
                 (user: { username: string, password: string }) => user.username === username && user.password === password)
-            console.log(user)
             if (user) {
                 return {
                     isAuthenticated: true,
