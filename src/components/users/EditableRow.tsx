@@ -1,49 +1,52 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import * as S from '../../styles/tablesForm'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../../app/store'
 import { DeleteUser, EditUser } from '../../features/users/usersThunk'
+import { Users } from '../../interfaces/usersInterface'
 
-function EditableRow({ filteredUsers }) {
-    const [editRowId, setEditRowId] = useState(null)
-    const [editedUser, setEditedUser] = useState({})
-    const [menuOpenId, setMenuOpenId] = useState(null)
+interface EditableRowProps {
+    filteredUsers: Users[]
+}
 
-    const dispatch = useDispatch()
+function EditableRow({ filteredUsers }: EditableRowProps) {
+    const [editRowId, setEditRowId] = useState<string | null>(null)
+    const [editedUser, setEditedUser] = useState<Partial<Users>>({})
+    const [menuOpenId, setMenuOpenId] = useState<string | null>(null)
 
-    const handleInputChange = (e, field, subField) => {
-        if (subField) {
-            setEditedUser({
-                ...editedUser,
-                [field]: {
-                    ...editedUser[field],
-                    [subField]: e.target.value
-                }
-            })
-        } else {
-            setEditedUser({
-                ...editedUser,
-                [field]: e.target.value
-            })
-        }
+    const dispatch = useAppDispatch()
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Users) => {
+        const { value } = e.target
+        setEditedUser(prevValues => ({
+            ...prevValues,
+            [field]: value
+        }))
     }
 
     const handleSaveUser = () => {
-        dispatch(EditUser(editedUser))
-        setEditRowId(null)
+        if (editRowId) {
+            dispatch(EditUser({ ...editedUser, id: editRowId } as Users))
+                .then(() => {
+                    setEditRowId(null)
+                })
+                .catch((error) => {
+                    console.error('Error editing user:', error)
+                })
+        }
     }
 
-    const handleEditUser = (room) => {
+    const handleEditUser = (room: Users) => {
         setEditRowId(room.id)
         setEditedUser(room)
         setMenuOpenId(null)
     }
 
-    const handleDeleteUser = (id) => {
+    const handleDeleteUser = (id: string) => {
         dispatch(DeleteUser(id))
         setMenuOpenId(null)
     }
 
-    const handleMenuToggle = (id) => {
+    const handleMenuToggle = (id: string) => {
         setMenuOpenId(menuOpenId === id ? null : id)
     }
 
@@ -58,7 +61,7 @@ function EditableRow({ filteredUsers }) {
                             {editRowId === user.id ? (
                                 <S.Input
                                     type="text"
-                                    value={editedUser.FullName}
+                                    value={editedUser.FullName ?? ''}
                                     onChange={(e) => handleInputChange(e, 'FullName')}
                                     placeholder="Enter full name"
                                 />
@@ -70,7 +73,7 @@ function EditableRow({ filteredUsers }) {
                             {editRowId === user.id ? (
                                 <S.Input
                                     type="text"
-                                    value={editedUser.PositionDescription}
+                                    value={editedUser.PositionDescription ?? ''}
                                     onChange={(e) => handleInputChange(e, 'PositionDescription')}
                                     placeholder="Enter position description"
                                 />
@@ -82,7 +85,7 @@ function EditableRow({ filteredUsers }) {
                             {editRowId === user.id ? (
                                 <S.Input
                                     type="date"
-                                    value={editedUser.EntryDate}
+                                    value={editedUser.EntryDate ?? ''}
                                     onChange={(e) => handleInputChange(e, 'EntryDate')}
                                 />
                             ) : (
@@ -93,7 +96,7 @@ function EditableRow({ filteredUsers }) {
                             {editRowId === user.id ? (
                                 <S.Input
                                     type="tel"
-                                    value={editedUser.Phone}
+                                    value={editedUser.Phone ?? ''}
                                     onChange={(e) => handleInputChange(e, 'Phone')}
                                     placeholder="Enter phone number"
                                 />
@@ -105,7 +108,7 @@ function EditableRow({ filteredUsers }) {
                             {editRowId === user.id ? (
                                 <S.Input
                                     type="text"
-                                    value={editedUser.State}
+                                    value={editedUser.State ?? ''}
                                     onChange={(e) => handleInputChange(e, 'State')}
                                     placeholder="Enter state"
                                 />
@@ -115,7 +118,7 @@ function EditableRow({ filteredUsers }) {
                         </S.TableCell>
                         <S.TableCell>
                             {editRowId === user.id ? (
-                                <S.Button onClick={() => handleSaveUser(user.id)}>Save</S.Button>
+                                <S.Button onClick={() => handleSaveUser()}>Save</S.Button>
                             ) : (
                                 <S.ActionMenu>
                                     <S.MoreButton onClick={() => handleMenuToggle(user.id)}>

@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import * as S from '../../styles/tablesForm'
-import { useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { useAppDispatch } from '../../app/store'
 import { CreateUser, GetUsers } from '../../features/users/usersThunk'
 import { useAuth } from '../../context/AuthContext'
+import { Users } from '../../interfaces/usersInterface'
+import * as S from '../../styles/tablesForm'
 
 const AddUsers = () => {
-    const userDispatch = useDispatch()
-    const [formValues, setFormValues] = useState({
+    const userDispatch = useAppDispatch()
+    const [formValues, setFormValues] = useState<Partial<Users>>({
         Photo: '',
         FullName: '',
         EmployeeId: '',
@@ -21,7 +22,7 @@ const AddUsers = () => {
         return Math.floor(1000 + Math.random() * 9000).toString()
     }
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target
         setFormValues((prevValues) => ({
             ...prevValues,
@@ -31,33 +32,31 @@ const AddUsers = () => {
 
     const { dispatch } = useAuth()
 
-    const handleAddUser = (e) => {
+    const handleAddUser = (e: React.FormEvent): void => {
         e.preventDefault()
 
         const userWithId = {
-            ...formValues,
+            Photo: formValues.Photo || '',
+            FullName: formValues.FullName || '',
+            EmployeeId: formValues.EmployeeId || '',
+            Email: formValues.Email || '',
+            EntryDate: formValues.EntryDate || '',
+            PositionDescription: formValues.PositionDescription || '',
+            Phone: formValues.Phone || '',
+            State: formValues.State || 'ACTIVE',
             id: generateRandomId(),
-        }
+        } as Users
 
         userDispatch(CreateUser(userWithId))
             .then(() => {
                 userDispatch(GetUsers())
-                setFormValues({
-                    Photo: '',
-                    FullName: '',
-                    EmployeeId: '',
-                    Email: '',
-                    EntryDate: '',
-                    PositionDescription: '',
-                    Phone: '',
-                    State: 'ACTIVE',
-                })
                 dispatch({ type: 'CLOSE_FORM' })
             })
             .catch((error) => {
                 console.error('Error creating user:', error)
             })
     }
+
 
     return (
         <S.FormContainer>

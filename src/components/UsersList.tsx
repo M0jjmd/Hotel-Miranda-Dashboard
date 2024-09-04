@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import * as S from '../styles/tablesForm'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../app/store'
 import { GetUsers } from '../features/users/usersThunk'
 import { useAuth } from '../context/AuthContext'
 import EditableRow from './users/EditableRow'
 import AddUsers from './users/AddUsers'
 
-function Employees() {
-  const [filter, setFilter] = useState('ALL')
+function UsersList() {
+  const [filter, setFilter] = useState<'ALL' | 'ACTIVE' | 'INACTIVE'>('ALL')
   const [searchTerm, setSearchTerm] = useState('')
   const { state, dispatch } = useAuth()
 
-  const dipatchRooms = useDispatch()
+  const dipatchRooms = useAppDispatch()
 
-  const users = useSelector((state) => state.users.data)
-  const usersStatus = useSelector((state) => state.users.status)
+  const users = useAppSelector((state) => state.users.data)
+  const usersStatus = useAppSelector((state) => state.users.status)
 
   useEffect(() => {
     if (usersStatus === 'idle') {
@@ -23,11 +23,7 @@ function Employees() {
     }
   }, [dipatchRooms, usersStatus])
 
-  const handleFilterChange = (newFilter) => {
-    setFilter(newFilter)
-  }
-
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value.toLowerCase())
   }
 
@@ -55,9 +51,9 @@ function Employees() {
           value={searchTerm}
           onChange={handleSearchChange}
         />
-        <S.Button active={filter === 'ALL'} onClick={() => handleFilterChange('ALL')}>All Employees</S.Button>
-        <S.Button active={filter === 'ACTIVE'} onClick={() => handleFilterChange('ACTIVE')}>Active Employees</S.Button>
-        <S.Button active={filter === 'INACTIVE'} onClick={() => handleFilterChange('INACTIVE')}>Inactive Employees</S.Button>
+        <S.Button active={filter === 'ALL'} onClick={() => setFilter('ALL')}>All Employees</S.Button>
+        <S.Button active={filter === 'ACTIVE'} onClick={() => setFilter('ACTIVE')}>Active Employees</S.Button>
+        <S.Button active={filter === 'INACTIVE'} onClick={() => setFilter('INACTIVE')}>Inactive Employees</S.Button>
         <S.AddButton onClick={handleFormToggle}>Add User</S.AddButton>
       </S.FilterContainer>
 
@@ -92,4 +88,4 @@ function Employees() {
   )
 }
 
-export default Employees
+export default UsersList

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import * as S from '../../styles/tablesForm'
-import { useDispatch } from 'react-redux'
 import { useAppDispatch } from '../../app/store'
 import { EditRoom, DeleteRoom } from '../../features/rooms/roomsThunk'
 import { Room } from '../../interfaces/roomInterface'
@@ -10,31 +9,11 @@ interface EditableRowProps {
 }
 
 function EditableRow({ filteredRooms }: EditableRowProps) {
-    // const [editRowId, setEditRowId] = useState(null)
-    // const [editedRoom, setEditedRoom] = useState({})
-    // const [menuOpenId, setMenuOpenId] = useState(null)
     const [editRowId, setEditRowId] = useState<string | null>(null)
     const [editedRoom, setEditedRoom] = useState<Partial<Room>>({})
     const [menuOpenId, setMenuOpenId] = useState<string | null>(null)
 
     const dispatch = useAppDispatch()
-
-    // const handleInputChange = (e, field, subField) => {
-    //     if (subField) {
-    //         setEditedRoom({
-    //             ...editedRoom,
-    //             [field]: {
-    //                 ...editedRoom[field],
-    //                 [subField]: e.target.value
-    //             }
-    //         })
-    //     } else {
-    //         setEditedRoom({
-    //             ...editedRoom,
-    //             [field]: e.target.value
-    //         })
-    //     }
-    // }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Room) => {
         const value = e.target.value

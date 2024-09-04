@@ -1,10 +1,10 @@
-import Employess from '../components/Employees.jsx'
+import UsersList from '../components/UsersList'
 
 const Users = () => {
     return (
         <>
             <div>
-                <Employess />
+                <UsersList />
             </div>
         </>
     )

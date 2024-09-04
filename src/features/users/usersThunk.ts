@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
+import { Users } from '../../interfaces/usersInterface'
 
-export const GetUsers = createAsyncThunk(
+export const GetUsers = createAsyncThunk<Users[]>(
     "users/getUsers",
     async () => {
         try {
@@ -19,7 +20,7 @@ export const GetUsers = createAsyncThunk(
     }
 )
 
-export const EditUser = createAsyncThunk(
+export const EditUser = createAsyncThunk<Users, Users>(
     "users/editUsers",
     async (updatedUser) => {
         console.log(updatedUser)
@@ -45,7 +46,7 @@ export const EditUser = createAsyncThunk(
     }
 )
 
-export const DeleteUser = createAsyncThunk(
+export const DeleteUser = createAsyncThunk<string, string>(
     "users/deleteUsers",
     async (UserId) => {
         try {
@@ -65,7 +66,7 @@ export const DeleteUser = createAsyncThunk(
     }
 )
 
-export const CreateUser = createAsyncThunk(
+export const CreateUser = createAsyncThunk<Users, Users>(
     "users/createUsers",
     async (newUser) => {
         try {

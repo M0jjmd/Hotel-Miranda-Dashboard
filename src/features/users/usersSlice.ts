@@ -1,13 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { GetUsers, EditUser, DeleteUser } from './usersThunk'
+import { Users } from '../../interfaces/usersInterface'
+
+interface usersState {
+    data: Users[]
+    status: 'idle' | 'loading' | 'fulfilled' | 'failed'
+    error: string | null
+}
+
+const initialState: usersState = {
+    data: [],
+    status: "idle",
+    error: null,
+}
 
 const usersSlice = createSlice({
     name: 'users',
-    initialState: {
-        data: [],
-        status: "idle",
-        error: null,
-    },
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -20,7 +29,7 @@ const usersSlice = createSlice({
             })
             .addCase(GetUsers.rejected, (state, action) => {
                 state.status = "failed"
-                state.error = action.error.message
+                state.error = action.error.message || null
             })
             .addCase(EditUser.fulfilled, (state, action) => {
                 state.data = state.data.map(user =>

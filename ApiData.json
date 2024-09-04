@@ -1058,17 +1058,6 @@
   ],
   "users": [
     {
-      "Photo": "https://example.com/photos/emp1.jpg",
-      "FullName": "Ana Lópe",
-      "EmployeeId": "EMP001",
-      "Email": "ana.lopez@empresa.com",
-      "EntryDate": "2021-03-15",
-      "PositionDescription": "Gerente de Proyecta",
-      "Phone": "+34 600 123 001",
-      "State": "ACTIVE",
-      "id": "cea2"
-    },
-    {
       "Photo": "https://example.com/photos/emp2.jpg",
       "FullName": "Carlos García",
       "EmployeeId": "EMP002",

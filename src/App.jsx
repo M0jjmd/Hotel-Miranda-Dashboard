@@ -2,7 +2,7 @@ import Dasboard from './pages/Dashboard.tsx'
 import Bookings from './pages/Bookings.tsx'
 import Contacts from './pages/Contacts.tsx'
 import Rooms from './pages/Rooms.tsx'
-// import Users from './pages/Users.jsx'
+import Users from './pages/Users.tsx'
 import { Provider } from 'react-redux'
 import { AuthProvider } from './context/AuthContext.tsx'
 import { Routes, Route } from 'react-router-dom'
@@ -23,7 +23,7 @@ const App = () => {
               <Route path="bookings" element={<Bookings />} />
               <Route path="contact" element={<Contacts />} />
               <Route path="rooms" element={<Rooms />} />
-              {/* <Route path="users" element={<Users />} /> */}
+              <Route path="users" element={<Users />} />
             </Route>
           </Routes>
         </AuthProvider>

@@ -1,4 +1,4 @@
-import GuestList from '../components/GuestList.js'
+import GuestList from '../components/GuestList'
 
 const Bookings = () => {
     return (
