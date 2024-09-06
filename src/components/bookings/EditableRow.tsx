@@ -8,7 +8,7 @@ interface EditableRowProps {
     filteredBookings: Booking[]
 }
 
-const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }) => {
+const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableRowProps) => {
     const [editRowId, setEditRowId] = useState<string | null>(null)
     const [editedBooking, setEditedBooking] = useState<Booking | null>(null)
     const [menuOpenId, setMenuOpenId] = useState<string | null>(null)

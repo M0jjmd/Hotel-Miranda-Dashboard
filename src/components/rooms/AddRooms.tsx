@@ -3,34 +3,39 @@ import * as S from '../../styles/tablesForm'
 import { useAuth } from '../../context/AuthContext'
 import { useAppDispatch } from '../../app/store'
 import { CreateRoom, GetRooms } from '../../features/rooms/roomsThunk'
+import { Room } from '../../interfaces/roomInterface'
 
 const AddRooms = () => {
     const addDispatch = useAppDispatch()
     const { dispatch } = useAuth()
-    const [formValues, setFormValues] = useState({
-        photos: [] as File[],
-        roomType: 'Single Bed',
-        roomNumber: '',
-        description: '',
-        offer: true,
-        price: '',
-        discount: '',
-        cancellationPolicy: '',
-        facilities: [] as string[]
+    const [offerStatus, setOfferStatus] = useState(false)
+    const [formValues, setFormValues] = useState<Room>({
+        Photo: '',
+        RoomNumber: '',
+        RoomID: '',
+        BedType: 'Single Bed',
+        Facilities: [],
+        Rate: 0,
+        OfferPrice: 0,
+        Status: 'Booked',
+        id: ''
     })
 
-    const amenitiesOptions = ['TV', 'Bathtub', 'Sea View', 'WiFi', 'Air Conditioning']
+    const facilitiesOptions = ['TV', 'Bathtub', 'Sea View', 'WiFi', 'Air Conditioning']
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, type, value, files } = e.target
 
-        if (e.target instanceof HTMLInputElement && e.target.type === 'file') {
-            const files = e.target.files
-            if (files) {
-                setFormValues((prevValues) => ({
-                    ...prevValues,
-                    [name]: Array.from(files),
-                }))
+        if (type === 'file') {
+            if (files && files[0]) {
+                const reader = new FileReader()
+                reader.onloadend = () => {
+                    setFormValues((prevValues) => ({
+                        ...prevValues,
+                        Photo: reader.result as string,
+                    }))
+                }
+                reader.readAsDataURL(files[0])
             }
         } else {
             setFormValues((prevValues) => ({
@@ -39,6 +44,8 @@ const AddRooms = () => {
             }))
         }
     }
+
+
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target
@@ -50,15 +57,23 @@ const AddRooms = () => {
 
     const toggleFacility = (facility: string) => {
         setFormValues(prevValues => {
-            const updatedFacilities = prevValues.facilities.includes(facility)
-                ? prevValues.facilities.filter((item) => item !== facility)
-                : [...prevValues.facilities, facility]
+            const updatedFacilities = prevValues.Facilities.includes(facility)
+                ? prevValues.Facilities.filter((item) => item !== facility)
+                : [...prevValues.Facilities, facility]
 
             return {
                 ...prevValues,
-                facilities: updatedFacilities,
+                Facilities: updatedFacilities,
             }
         })
+    }
+
+    const toggleOfferStatus = () => {
+        setOfferStatus((prevStatus: boolean) => !prevStatus)
+        setFormValues((prevValues: Room) => ({
+            ...prevValues,
+            Status: !offerStatus ? 'Available' : 'Booked',
+        }))
     }
 
     const generateRandomId = () => {
@@ -69,14 +84,14 @@ const AddRooms = () => {
         e.preventDefault()
 
         const roomWithId = {
-            Photo: formValues.photos.length > 0 ? URL.createObjectURL(formValues.photos[0]) : '',
-            RoomNumber: formValues.roomNumber,
+            Photo: formValues.Photo,
+            RoomNumber: formValues.RoomNumber,
             RoomID: `R${generateRandomId()}`,
-            BedType: formValues.roomType,
-            Facilities: formValues.facilities,
-            Rate: parseFloat(formValues.price),
-            OfferPrice: parseFloat(formValues.price) - parseFloat(formValues.discount),
-            Status: formValues.offer ? 'Available' : 'Not Available',
+            BedType: formValues.BedType,
+            Facilities: formValues.Facilities,
+            Rate: parseFloat(formValues.Rate.toString()),
+            OfferPrice: parseFloat(formValues.OfferPrice.toString()),
+            Status: offerStatus ? 'Available' : 'Booked',
             id: generateRandomId(),
         }
 
@@ -93,19 +108,18 @@ const AddRooms = () => {
     return (
         <S.FormContainer>
             <h3>Add New Room</h3>
-            <label>Photos (min 3, max 5)</label>
+            <label>Photos</label>
             <S.Input
                 type="file"
-                name="photos"
-                multiple
+                name="Photo"
                 accept="image/*"
                 onChange={handleInputChange}
             />
 
             <label>Room Type</label>
             <S.Select
-                name="roomType"
-                value={formValues.roomType}
+                name="BedType"
+                value={formValues.BedType}
                 onChange={handleSelectChange}
             >
                 <option value="Single Bed">Single Bed</option>
@@ -117,66 +131,49 @@ const AddRooms = () => {
             <label>Room Number</label>
             <S.Input
                 type="text"
-                name="roomNumber"
+                name="RoomNumber"
                 placeholder="Enter room number"
-                value={formValues.roomNumber}
-                onChange={handleInputChange}
-            />
-
-            <label>Description</label>
-            <S.TextArea
-                name="description"
-                placeholder="Enter room description"
-                value={formValues.description}
+                value={formValues.RoomNumber}
                 onChange={handleInputChange}
             />
 
             <label>Offer</label>
             <S.ToggleButton
-                active={formValues.offer}
-                onClick={() => setFormValues(prevValues => ({
-                    ...prevValues,
-                    offer: !prevValues.offer
-                }))}
+                active={offerStatus}
+                onClick={toggleOfferStatus}
             >
-                {formValues.offer ? 'YES' : 'NO'}
+                {offerStatus ? 'YES' : 'NO'}
             </S.ToggleButton>
 
             <label>Price (per night)</label>
             <S.Input
                 type="number"
-                name="price"
+                name="Rate"
                 placeholder="Enter price per night"
-                value={formValues.price}
+                value={formValues.Rate}
                 onChange={handleInputChange}
             />
 
             <label>Discount (%)</label>
             <S.Input
                 type="number"
-                name="discount"
+                name="OfferPrice"
                 placeholder="Enter discount percentage"
-                value={formValues.discount}
+                value={formValues.OfferPrice}
                 onChange={handleInputChange}
             />
 
             <label>Cancellation Policy</label>
-            <S.TextArea
-                name="cancellationPolicy"
-                placeholder="Enter cancellation policy"
-                value={formValues.cancellationPolicy}
-                onChange={handleInputChange}
-            />
 
             <label>Facilities</label>
             <S.SelectContainer>
-                {amenitiesOptions.map((facility) => (
+                {facilitiesOptions.map((facility) => (
                     <S.Option
                         key={facility}
-                        isSelected={formValues.facilities.includes(facility)}
+                        isSelected={formValues.Facilities.includes(facility)}
                         onClick={() => toggleFacility(facility)}
                     >
-                        <S.Dot isSelected={formValues.facilities.includes(facility)} />
+                        <S.Dot isSelected={formValues.Facilities.includes(facility)} />
                         <span>{facility}</span>
                     </S.Option>
                 ))}
