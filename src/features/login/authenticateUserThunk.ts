@@ -1,34 +1,37 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
+import { Users } from "../../interfaces/usersInterface"
 
-interface userData {
+interface UserData {
     isAuthenticated: boolean
     name: string
     email: string
 }
 
-interface authUser {
+interface AuthUser {
     username: string
     password: string
 }
 
-export const AuthentificateUser = createAsyncThunk<userData, authUser, { rejectValue: string }>(
+export const AuthentificateUser = createAsyncThunk<UserData, AuthUser, { rejectValue: string }>(
     "loginUser/authentificateUser",
     async ({ username, password }, { rejectWithValue }) => {
         try {
-            const req = await fetch(`http://localhost:4000/loginUser`)
+            const req = await fetch(`http://localhost:4000/users`)
 
             if (!req.ok) {
                 throw new Error('Authentication failed.')
             }
 
-            const result = await req.json()
+            const result: Users[] = await req.json()
             const user = result.find(
-                (user: { username: string, password: string }) => user.username === username && user.password === password)
+                (user: Users) => user.username === username && user.password === password
+            )
+
             if (user) {
                 return {
                     isAuthenticated: true,
-                    name: user.username,
-                    email: user.email,
+                    name: user.FullName,
+                    email: user.Email,
                 }
             } else {
                 throw new Error('Invalid username or password.')

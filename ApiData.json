@@ -1,176 +1,5 @@
 {
   "success": true,
-  "loginUser": [
-    {
-      "user": {
-        "id": "1",
-        "username": "johndoe",
-        "email": "johndoe@example.com",
-        "name": "John Doe",
-        "roles": [
-          "user"
-        ],
-        "password": "password123"
-      },
-      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNjE2MjgwMDAwfQ.1nzw2ZrnlpH9Vyk8HLJ9Ey-91Z9AaH0MB4D6mYhLkDk",
-      "id": "5fea"
-    },
-    {
-      "user": {
-        "id": "2",
-        "username": "janedoe",
-        "email": "janedoe@example.com",
-        "name": "Jane Doe",
-        "roles": [
-          "user"
-        ],
-        "password": "password456"
-      },
-      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkxIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNjE2MjgwMDAwfQ.B8Zij-N4_OyHiME1b6HwP2yN6K0cJlz5RdJ8Gzjk3Ek",
-      "id": "23ec"
-    },
-    {
-      "user": {
-        "id": "3",
-        "username": "michaelj",
-        "email": "michaelj@example.com",
-        "name": "Michael Johnson",
-        "roles": [
-          "user"
-        ],
-        "password": "password789"
-      },
-      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkyIiwibmFtZSI6Ik1pY2hhZWwgSm9obnNvbiIsImlhdCI6MTYxNjI4MDAwMH0.4V0brprj2JP4F8GzeSO5zq1VqGsgkZlXIaw1jk9b48c",
-      "id": "c5ab"
-    },
-    {
-      "user": {
-        "id": "4",
-        "username": "emilyr",
-        "email": "emilyr@example.com",
-        "name": "Emily Rogers",
-        "roles": [
-          "user"
-        ],
-        "password": "password012"
-      },
-      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkzIiwibmFtZSI6IkVtaWx5IFJvZ2VycyIsImlhdCI6MTYxNjI4MDAwMH0.5cOdP3bR8LeTh8GR66s9EovWhDh1Oyb14sT8UyKqrTI",
-      "id": "e064"
-    },
-    {
-      "user": {
-        "id": "5",
-        "username": "alexs",
-        "email": "alexs@example.com",
-        "name": "Alex Smith",
-        "roles": [
-          "user"
-        ],
-        "password": "password345"
-      },
-      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODk0IiwibmFtZSI6IkFsZXggU21pdGgiLCJpYXQiOjE2MTYyODAwMDB9.PmP4mH7oHGXj16Q3opPFRy3U8IGy6gFbmXkYpC8LwEc",
-      "id": "725b"
-    },
-    {
-      "user": {
-        "id": "6",
-        "username": "sarahb",
-        "email": "sarahb@example.com",
-        "name": "Sarah Brown",
-        "roles": [
-          "user"
-        ],
-        "password": "password678"
-      },
-      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODk1IiwibmFtZSI6IkNhcmFoIEJyb3duIiwiaWF0IjoxNjE2MjgwMDAwfQ.7Nyrz2ZTYffkF9XKdH9z2ZbYh8p7oX8-VEXGR0V-YI",
-      "id": "2b52"
-    },
-    {
-      "user": {
-        "id": "7",
-        "username": "danielk",
-        "email": "danielk@example.com",
-        "name": "Daniel Kim",
-        "roles": [
-          "user"
-        ],
-        "password": "password901"
-      },
-      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODk2IiwibmFtZSI6IkRhbmllbCBLaW0iLCJpYXQiOjE2MTYyODAwMDB9.dUDdztRo5_kT9tu0pMcFtAZ4aX9G3vK24zw8eG8cs7s",
-      "id": "d066"
-    },
-    {
-      "user": {
-        "id": "8",
-        "username": "laurac",
-        "email": "laurac@example.com",
-        "name": "Laura Carter",
-        "roles": [
-          "user"
-        ],
-        "password": "password234"
-      },
-      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODk3IiwibmFtZSI6IkxhdXJhIENhcnRlciIsImlhdCI6MTYxNjI4MDAwMH0.2oc0V0r1J4XvnS3_A_R2svQ_5G1U_5ibXKJ3LtZj0A",
-      "id": "2ad3"
-    },
-    {
-      "user": {
-        "id": "9",
-        "username": "matthewp",
-        "email": "matthewp@example.com",
-        "name": "Matthew Parker",
-        "roles": [
-          "user"
-        ],
-        "password": "password567"
-      },
-      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODk4IiwibmFtZSI6Ik1hdHRoZXcgUGFya2VyIiwiaWF0IjoxNjE2MjgwMDAwfQ.43xJ2tsoHwZ7w6kOoLcnAUVU_VdSPeM5cXZz2R2H5JI",
-      "id": "bfb2"
-    },
-    {
-      "user": {
-        "id": "10",
-        "username": "natalieb",
-        "email": "natalieb@example.com",
-        "name": "Natalie Brooks",
-        "roles": [
-          "user"
-        ],
-        "password": "password678"
-      },
-      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODk5IiwibmFtZSI6Ik5hdGFsIEJyb29rcyIsImlhdCI6MTYxNjI4MDAwMH0.Uh1XzF8CnKThw5OEBQw9gDj98zJ47WqZqL7ikA5zJd8",
-      "id": "143e"
-    },
-    {
-      "user": {
-        "id": "11",
-        "username": "jamesm",
-        "email": "jamesm@example.com",
-        "name": "James Miller",
-        "roles": [
-          "user"
-        ],
-        "password": "password789"
-      },
-      "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3OTAwIiwibmFtZSI6IkphbWVzIE1pbGxlciIsImlhdCI6MTYxNjI4MDAwMH0.WrYwAETGxmqX8CsZToTn7KzBh4F03ccKQH-tZcDDt1E",
-      "id": "74f8"
-    },
-    {
-      "id": "3c04",
-      "username": "johndoe",
-      "password": "password123"
-    },
-    {
-      "id": "0423",
-      "username": "johndoe",
-      "password": "password123"
-    },
-    {
-      "id": "1d33",
-      "username": "johndoe",
-      "password": "password123"
-    }
-  ],
   "rooms": [
     {
       "Photo": "https://example.com/images/room2.jpg",
@@ -1083,213 +912,394 @@
   ],
   "users": [
     {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1145",
+      "username": "johndoe",
+      "FullName": "John Doe",
+      "password": "password123",
+      "Email": "johndoe@example.com",
       "Photo": "https://example.com/photos/emp2.jpg",
-      "FullName": "Carlos García",
-      "EmployeeId": "EMP002",
-      "Email": "carlos.garcia@empresa.com",
       "EntryDate": "2019-11-22",
       "PositionDescription": "Analista de Datos",
       "Phone": "+34 600 123 002",
       "State": "ACTIVE",
-      "id": "1145"
+      "position": "data analyst"
     },
     {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1146",
+      "username": "carlosgarcia",
+      "FullName": "Carlos García",
+      "password": "",
+      "Email": "carlosgarcia@example.com",
+      "Photo": "https://example.com/photos/emp2.jpg",
+      "EntryDate": "2020-06-22",
+      "PositionDescription": "Manager",
+      "Phone": "+34 600 123 101",
+      "State": "INACTIVE",
+      "position": "manager"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1147",
+      "username": "mariafernandez",
+      "FullName": "María Fernández",
+      "password": "",
+      "Email": "mariafernandez@example.com",
       "Photo": "https://example.com/photos/emp3.jpg",
-      "FullName": "Lucía Martínez",
-      "EmployeeId": "EMP003",
-      "Email": "lucia.martinez@empresa.com",
-      "EntryDate": "2020-01-10",
-      "PositionDescription": "Diseñadora Gráfica",
-      "Phone": "+34 600 123 003",
-      "State": "INACTIVE",
-      "id": "0827"
+      "EntryDate": "2018-09-15",
+      "PositionDescription": "Project Manager",
+      "Phone": "+34 600 123 303",
+      "State": "ACTIVE",
+      "position": "project manager"
     },
     {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1148",
+      "username": "lucaslopez",
+      "FullName": "Lucas López",
+      "password": "",
+      "Email": "lucaslopez@example.com",
       "Photo": "https://example.com/photos/emp4.jpg",
-      "FullName": "Miguel Torres",
-      "EmployeeId": "EMP004",
-      "Email": "miguel.torres@empresa.com",
-      "EntryDate": "2018-07-24",
-      "PositionDescription": "Desarrollador Web",
-      "Phone": "+34 600 123 004",
+      "EntryDate": "2017-12-01",
+      "PositionDescription": "Desarrollador",
+      "Phone": "+34 600 123 404",
       "State": "ACTIVE",
-      "id": "3c93"
+      "position": "developer"
     },
     {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1149",
+      "username": "anaruiz",
+      "FullName": "Ana Ruiz",
+      "password": "",
+      "Email": "anaruiz@example.com",
       "Photo": "https://example.com/photos/emp5.jpg",
-      "FullName": "Elena Rodríguez",
-      "EmployeeId": "EMP005",
-      "Email": "elena.rodriguez@empresa.com",
-      "EntryDate": "2022-05-16",
-      "PositionDescription": "Especialista en Marketing",
-      "Phone": "+34 600 123 005",
+      "EntryDate": "2021-02-18",
+      "PositionDescription": "Diseñadora",
+      "Phone": "+34 600 123 505",
       "State": "INACTIVE",
-      "id": "fb6a"
+      "position": "designer"
     },
     {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1150",
+      "username": "pedrosantos",
+      "FullName": "Pedro Santos",
+      "password": "",
+      "Email": "pedrosantos@example.com",
       "Photo": "https://example.com/photos/emp6.jpg",
-      "FullName": "Jorge Sánchez",
-      "EmployeeId": "EMP006",
-      "Email": "jorge.sanchez@empresa.com",
-      "EntryDate": "2021-09-03",
-      "PositionDescription": "Administrador de Sistemas",
-      "Phone": "+34 600 123 006",
-      "State": "ACTIVE",
-      "id": "52b5"
-    },
-    {
-      "Photo": "https://example.com/photos/emp7.jpg",
-      "FullName": "María Díaz",
-      "EmployeeId": "EMP007",
-      "Email": "maria.diaz@empresa.com",
-      "EntryDate": "2020-06-14",
-      "PositionDescription": "Recursos Humanos",
-      "Phone": "+34 600 123 007",
-      "State": "INACTIVE",
-      "id": "bfcb"
-    },
-    {
-      "Photo": "https://example.com/photos/emp8.jpg",
-      "FullName": "Raúl Pérez",
-      "EmployeeId": "EMP008",
-      "Email": "raul.perez@empresa.com",
       "EntryDate": "2019-04-20",
-      "PositionDescription": "Contador",
-      "Phone": "+34 600 123 008",
+      "PositionDescription": "Especialista de Marketing",
+      "Phone": "+34 600 123 606",
       "State": "ACTIVE",
-      "id": "585c"
+      "position": "marketing specialist"
     },
     {
-      "Photo": "https://example.com/photos/emp9.jpg",
-      "FullName": "Isabel Gómez",
-      "EmployeeId": "EMP009",
-      "Email": "isabel.gomez@empresa.com",
-      "EntryDate": "2018-02-11",
-      "PositionDescription": "Asistente Ejecutiva",
-      "Phone": "+34 600 123 009",
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1151",
+      "username": "andrearodriguez",
+      "FullName": "Andrea Rodríguez",
+      "password": "",
+      "Email": "andrearodriguez@example.com",
+      "Photo": "https://example.com/photos/emp7.jpg",
+      "EntryDate": "2016-05-12",
+      "PositionDescription": "Gerente de Producto",
+      "Phone": "+34 600 123 707",
       "State": "INACTIVE",
-      "id": "12b9"
+      "position": "product manager"
     },
     {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1152",
+      "username": "javierperez",
+      "FullName": "Javier Pérez",
+      "password": "",
+      "Email": "javierperez@example.com",
+      "Photo": "https://example.com/photos/emp8.jpg",
+      "EntryDate": "2022-01-25",
+      "PositionDescription": "Consultor",
+      "Phone": "+34 600 123 808",
+      "State": "ACTIVE",
+      "position": "consultant"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1153",
+      "username": "lauragomez",
+      "FullName": "Laura Gómez",
+      "password": "",
+      "Email": "lauragomez@example.com",
+      "Photo": "https://example.com/photos/emp9.jpg",
+      "EntryDate": "2018-03-05",
+      "PositionDescription": "Analista Financiero",
+      "Phone": "+34 600 123 909",
+      "State": "ACTIVE",
+      "position": "financial analyst"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1154",
+      "username": "victorvazquez",
+      "FullName": "Víctor Vázquez",
+      "password": "",
+      "Email": "victorvazquez@example.com",
       "Photo": "https://example.com/photos/emp10.jpg",
-      "FullName": "David Fernández",
-      "EmployeeId": "EMP010",
-      "Email": "david.fernandez@empresa.com",
-      "EntryDate": "2022-11-02",
-      "PositionDescription": "Ingeniero de Software",
+      "EntryDate": "2023-07-30",
+      "PositionDescription": "Desarrollador Full Stack",
       "Phone": "+34 600 123 010",
       "State": "ACTIVE",
-      "id": "402d"
+      "position": "full stack developer"
     },
     {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1155",
+      "username": "martapena",
+      "FullName": "Marta Peña",
+      "password": "",
+      "Email": "martapena@example.com",
       "Photo": "https://example.com/photos/emp11.jpg",
-      "FullName": "Silvia Ruiz",
-      "EmployeeId": "EMP011",
-      "Email": "silvia.ruiz@empresa.com",
-      "EntryDate": "2021-08-23",
-      "PositionDescription": "Especialista en UX/UI",
-      "Phone": "+34 600 123 011",
+      "EntryDate": "2020-08-21",
+      "PositionDescription": "Especialista en Recursos Humanos",
+      "Phone": "+34 600 123 111",
       "State": "ACTIVE",
-      "id": "4651"
+      "position": "hr specialist"
     },
     {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1156",
+      "username": "enriquemartin",
+      "FullName": "Enrique Martín",
+      "password": "",
+      "Email": "enriquemartin@example.com",
       "Photo": "https://example.com/photos/emp12.jpg",
-      "FullName": "Pedro Romero",
-      "EmployeeId": "EMP012",
-      "Email": "pedro.romero@empresa.com",
-      "EntryDate": "2020-03-05",
-      "PositionDescription": "Soporte Técnico",
-      "Phone": "+34 600 123 012",
-      "State": "INACTIVE",
-      "id": "870b"
+      "EntryDate": "2017-11-13",
+      "PositionDescription": "Analista de Sistemas",
+      "Phone": "+34 600 123 212",
+      "State": "ACTIVE",
+      "position": "systems analyst"
     },
     {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1157",
+      "username": "soniasanchez",
+      "FullName": "Sonia Sánchez",
+      "password": "",
+      "Email": "soniasanchez@example.com",
       "Photo": "https://example.com/photos/emp13.jpg",
-      "FullName": "Laura Jiménez",
-      "EmployeeId": "EMP013",
-      "Email": "laura.jimenez@empresa.com",
-      "EntryDate": "2019-12-18",
-      "PositionDescription": "Coordinadora de Eventos",
-      "Phone": "+34 600 123 013",
+      "EntryDate": "2015-12-14",
+      "PositionDescription": "Administradora de Bases de Datos",
+      "Phone": "+34 600 123 313",
       "State": "ACTIVE",
-      "id": "d07e"
+      "position": "database administrator"
     },
     {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1158",
+      "username": "luishernandez",
+      "FullName": "Luis Hernández",
+      "password": "",
+      "Email": "luishernandez@example.com",
       "Photo": "https://example.com/photos/emp14.jpg",
-      "FullName": "Antonio Ortega",
-      "EmployeeId": "EMP014",
-      "Email": "antonio.ortega@empresa.com",
-      "EntryDate": "2018-10-30",
-      "PositionDescription": "Jefe de Seguridad",
-      "Phone": "+34 600 123 014",
-      "State": "INACTIVE",
-      "id": "88e7"
-    },
-    {
-      "Photo": "https://example.com/photos/emp15.jpg",
-      "FullName": "Rosa Navarro",
-      "EmployeeId": "EMP015",
-      "Email": "rosa.navarro@empresa.com",
-      "EntryDate": "2021-07-19",
-      "PositionDescription": "Redactora de Contenidos",
-      "Phone": "+34 600 123 015",
-      "State": "ACTIVE",
-      "id": "4138"
-    },
-    {
-      "Photo": "https://example.com/photos/emp16.jpg",
-      "FullName": "Alberto Morales",
-      "EmployeeId": "EMP016",
-      "Email": "alberto.morales@empresa.com",
-      "EntryDate": "2020-02-25",
+      "EntryDate": "2021-05-19",
       "PositionDescription": "Consultor de Negocios",
-      "Phone": "+34 600 123 016",
+      "Phone": "+34 600 123 414",
       "State": "INACTIVE",
-      "id": "3344"
+      "position": "business consultant"
     },
     {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1159",
+      "username": "alejandromolina",
+      "FullName": "Alejandro Molina",
+      "password": "",
+      "Email": "alejandromolina@example.com",
+      "Photo": "https://example.com/photos/emp15.jpg",
+      "EntryDate": "2019-10-28",
+      "PositionDescription": "Ingeniero de Software",
+      "Phone": "+34 600 123 515",
+      "State": "ACTIVE",
+      "position": "software engineer"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1160",
+      "username": "veronicaperez",
+      "FullName": "Verónica Pérez",
+      "password": "",
+      "Email": "veronicaperez@example.com",
+      "Photo": "https://example.com/photos/emp16.jpg",
+      "EntryDate": "2022-03-03",
+      "PositionDescription": "Coordinadora de Proyectos",
+      "Phone": "+34 600 123 616",
+      "State": "ACTIVE",
+      "position": "project coordinator"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1161",
+      "username": "eduardolopez",
+      "FullName": "Eduardo López",
+      "password": "",
+      "Email": "eduardolopez@example.com",
       "Photo": "https://example.com/photos/emp17.jpg",
-      "FullName": "Gloria Hernández",
-      "EmployeeId": "EMP017",
-      "Email": "gloria.hernandez@empresa.com",
-      "EntryDate": "2019-08-13",
-      "PositionDescription": "Administrativa",
-      "Phone": "+34 600 123 017",
+      "EntryDate": "2020-04-18",
+      "PositionDescription": "Analista de Seguridad",
+      "Phone": "+34 600 123 717",
       "State": "ACTIVE",
-      "id": "3c7f"
+      "position": "security analyst"
     },
     {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1162",
+      "username": "antonioruiz",
+      "FullName": "Antonio Ruiz",
+      "password": "",
+      "Email": "antonioruiz@example.com",
       "Photo": "https://example.com/photos/emp18.jpg",
-      "FullName": "Manuel Gutiérrez",
-      "EmployeeId": "EMP018",
-      "Email": "manuel.gutierrez@empresa.com",
-      "EntryDate": "2018-06-27",
-      "PositionDescription": "Director de Operaciones",
-      "Phone": "+34 600 123 018",
-      "State": "INACTIVE",
-      "id": "a2e7"
-    },
-    {
-      "Photo": "https://example.com/photos/emp19.jpg",
-      "FullName": "Patricia Reyes",
-      "EmployeeId": "EMP019",
-      "Email": "patricia.reyes@empresa.com",
-      "EntryDate": "2021-04-09",
-      "PositionDescription": "Investigadora de Mercado",
-      "Phone": "+34 600 123 019",
+      "EntryDate": "2017-06-25",
+      "PositionDescription": "Consultor IT",
+      "Phone": "+34 600 123 818",
       "State": "ACTIVE",
-      "id": "b75c"
+      "position": "it consultant"
     },
     {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1163",
+      "username": "camilagonzalez",
+      "FullName": "Camila González",
+      "password": "",
+      "Email": "camilagonzalez@example.com",
+      "Photo": "https://example.com/photos/emp19.jpg",
+      "EntryDate": "2021-08-11",
+      "PositionDescription": "Ingeniera de Redes",
+      "Phone": "+34 600 123 919",
+      "State": "ACTIVE",
+      "position": "network engineer"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1164",
+      "username": "danielmartinez",
+      "FullName": "Daniel Martínez",
+      "password": "",
+      "Email": "danielmartinez@example.com",
       "Photo": "https://example.com/photos/emp20.jpg",
-      "FullName": "Sergio Delgado",
-      "EmployeeId": "EMP020",
-      "Email": "sergio.delgado@empresa.com",
-      "EntryDate": "2020-09-17",
-      "PositionDescription": "Especialista en SEO",
-      "Phone": "+34 006 132 009",
+      "EntryDate": "2022-10-30",
+      "PositionDescription": "Tester",
+      "Phone": "+34 600 123 020",
+      "State": "ACTIVE",
+      "position": "tester"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1165",
+      "username": "laurafernandez",
+      "FullName": "Laura Fernández",
+      "password": "",
+      "Email": "laurafernandez@example.com",
+      "Photo": "https://example.com/photos/emp21.jpg",
+      "EntryDate": "2018-01-02",
+      "PositionDescription": "Especialista de Soporte",
+      "Phone": "+34 600 123 121",
       "State": "INACTIVE",
-      "id": "d532"
+      "position": "support specialist"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1166",
+      "username": "raulmendoza",
+      "FullName": "Raúl Mendoza",
+      "password": "",
+      "Email": "raulmendoza@example.com",
+      "Photo": "https://example.com/photos/emp22.jpg",
+      "EntryDate": "2019-09-15",
+      "PositionDescription": "Ingeniero DevOps",
+      "Phone": "+34 600 123 222",
+      "State": "ACTIVE",
+      "position": "devops engineer"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1167",
+      "username": "antoniamorales",
+      "FullName": "Antonia Morales",
+      "password": "",
+      "Email": "antoniamorales@example.com",
+      "Photo": "https://example.com/photos/emp23.jpg",
+      "EntryDate": "2021-05-19",
+      "PositionDescription": "Especialista en Seguridad",
+      "Phone": "+34 600 123 323",
+      "State": "ACTIVE",
+      "position": "security specialist"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1168",
+      "username": "fernandotorres",
+      "FullName": "Fernando Torres",
+      "password": "",
+      "Email": "fernandotorres@example.com",
+      "Photo": "https://example.com/photos/emp24.jpg",
+      "EntryDate": "2023-03-12",
+      "PositionDescription": "Analista de Datos",
+      "Phone": "+34 600 123 424",
+      "State": "ACTIVE",
+      "position": "data analyst"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1169",
+      "username": "martalopez",
+      "FullName": "Marta López",
+      "password": "",
+      "Email": "martalopez@example.com",
+      "Photo": "https://example.com/photos/emp25.jpg",
+      "EntryDate": "2020-12-22",
+      "PositionDescription": "Desarrolladora Frontend",
+      "Phone": "+34 600 123 525",
+      "State": "ACTIVE",
+      "position": "frontend developer"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1170",
+      "username": "gabrielramirez",
+      "FullName": "Gabriel Ramírez",
+      "password": "",
+      "Email": "gabrielramirez@example.com",
+      "Photo": "https://example.com/photos/emp26.jpg",
+      "EntryDate": "2016-07-23",
+      "PositionDescription": "Especialista en Calidad",
+      "Phone": "+34 600 123 626",
+      "State": "INACTIVE",
+      "position": "quality specialist"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1171",
+      "username": "nataliaaguilar",
+      "FullName": "Natalia Aguilar",
+      "password": "",
+      "Email": "nataliaaguilar@example.com",
+      "Photo": "https://example.com/photos/emp27.jpg",
+      "EntryDate": "2019-11-18",
+      "PositionDescription": "Coordinadora de Ventas",
+      "Phone": "+34 600 123 727",
+      "State": "ACTIVE",
+      "position": "sales coordinator"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1172",
+      "username": "santiagoperez",
+      "FullName": "Santiago Pérez",
+      "password": "",
+      "Email": "santiagoperez@example.com",
+      "Photo": "https://example.com/photos/emp28.jpg",
+      "EntryDate": "2020-03-09",
+      "PositionDescription": "Especialista en Infraestructura",
+      "Phone": "+34 600 123 828",
+      "State": "INACTIVE",
+      "position": "infrastructure specialist"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1173",
+      "username": "claravargas",
+      "FullName": "Clara Vargas",
+      "password": "",
+      "Email": "claravargas@example.com",
+      "Photo": "https://example.com/photos/emp29.jpg",
+      "EntryDate": "2022-09-20",
+      "PositionDescription": "Gerente de Proyectos",
+      "Phone": "+34 600 123 929",
+      "State": "ACTIVE",
+      "position": "project manager"
+    },
+    {
+      "id": "9ebb1d15-d047-31-85c9-63c3ed856afb-1174",
+      "username": "andresgomez",
+      "FullName": "Andrés Gómez",
+      "password": "",
+      "Email": "andresgomez@example.com",
+      "Photo": "https://example.com/photos/emp30.jpg",
+      "EntryDate": "2023-08-01",
+      "PositionDescription": "Arquitecto de Software",
+      "Phone": "+34 600 123 030",
+      "State": "ACTIVE",
+      "position": "software architect"
     }
   ],
   "guests": [

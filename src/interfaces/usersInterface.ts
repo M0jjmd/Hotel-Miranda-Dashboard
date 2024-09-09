@@ -1,11 +1,13 @@
 export interface Users {
-    Photo: string
+    id: string
+    username: string
     FullName: string
-    EmployeeId: string
+    password?: string
     Email: string
+    Photo: string
     EntryDate: string
     PositionDescription: string
     Phone: string
     State: string
-    id: string
+    position: string
 }
