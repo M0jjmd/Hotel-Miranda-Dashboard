@@ -1,11 +1,9 @@
-export interface Room {
+export interface RoomInterface {
     Photo: string
-    RoomNumber: string
-    RoomID: string
+    RoomNumber: number
     BedType: string
     Facilities: string[]
     Rate: number
     OfferPrice: number
     Status: string
-    id: string
 }

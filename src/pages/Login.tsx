@@ -21,9 +21,10 @@ const Login = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLocalError('')
-
+    console.log("has hecho click")
     try {
-      await loginDispatch(AuthentificateUser({ username, password })).unwrap()
+      await loginDispatch(AuthentificateUser({ username, password }))
+      console.log("has hecho click2")
     } catch (error) {
       setLocalError('Invalid username or password')
     }
@@ -31,6 +32,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthentificated) {
+      console.log('test useEffect')
       localStorage.setItem('isAuthentificated', 'true')
       localStorage.setItem('name', name)
       localStorage.setItem('email', email)
@@ -48,7 +50,7 @@ const Login = () => {
   return (
     <S.LoginContainer>
       <S.LoginForm onSubmit={handleLogin} data-testid="login-form">
-        <S.LoginTitle>Login<br />johndoe<br />password123</S.LoginTitle>
+        <S.LoginTitle>Login<br />johndoe<br />miContraseñaSegura</S.LoginTitle>
         <S.InputField
           type="text"
           placeholder="Username"

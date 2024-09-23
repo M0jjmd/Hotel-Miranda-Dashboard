@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { GetUsers, EditUser, DeleteUser } from './usersThunk'
-import { Users } from '../../interfaces/usersInterface'
+import { UserInterface } from '../../interfaces/userInterface'
 
 interface usersState {
-    data: Users[]
+    data: UserInterface[]
     status: 'idle' | 'loading' | 'fulfilled' | 'failed'
     error: string | null
 }
@@ -33,11 +33,11 @@ const usersSlice = createSlice({
             })
             .addCase(EditUser.fulfilled, (state, action) => {
                 state.data = state.data.map(user =>
-                    user.id === action.payload.id ? action.payload : user
+                    user._id === action.payload._id ? action.payload : user
                 )
             })
             .addCase(DeleteUser.fulfilled, (state, action) => {
-                state.data = state.data.filter(user => user.id !== action.payload)
+                state.data = state.data.filter(user => user._id !== action.payload)
             })
     },
 })

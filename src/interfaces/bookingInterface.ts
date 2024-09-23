@@ -1,20 +1,19 @@
+export interface BookingInterface {
+    Guest: Guest
+    OrderDate: Date
+    CheckIn: Date
+    CheckOut: Date
+    SpecialRequest: string
+    RoomType: RoomType
+    Status: string
+}
+
 export interface Guest {
-    Name: string
-    ReservationID: string
+    UserId: string
+    RoomId: string
 }
 
 export interface RoomType {
     Type: string
     RoomNumber: string
-}
-
-export interface Booking {
-    Guest: Guest
-    OrderDate: string
-    CheckIn: string
-    CheckOut: string
-    SpecialRequest: string
-    RoomType: RoomType
-    Status: string
-    id: string
 }

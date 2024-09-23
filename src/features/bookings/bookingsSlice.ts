@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { GetBookings, EditBooking, DeleteBooking } from './bookingsThunk'
-import { Booking } from "../../interfaces/bookingInterface"
+import { BookingInterface } from "../../interfaces/bookingInterface"
 
 interface bookingsState {
-    data: Booking[]
+    data: BookingInterface[]
     status: 'idle' | 'loading' | 'fulfilled' | 'failed'
     error: string | null
 }

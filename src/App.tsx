@@ -1,4 +1,4 @@
-import Dasboard from './pages/Dashboard'
+import Dashboard from './pages/Dashboard'
 import Bookings from './pages/Bookings'
 import Contacts from './pages/Contacts'
 import Rooms from './pages/Rooms'
@@ -18,7 +18,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route element={<ProtectedRoute />}>
-              <Route path="dashboard" element={<Dasboard />} />
+              <Route path="dashboard" element={<Dashboard />} />
               <Route path="bookings" element={<Bookings />} />
               <Route path="contact" element={<Contacts />} />
               <Route path="rooms" element={<Rooms />} />

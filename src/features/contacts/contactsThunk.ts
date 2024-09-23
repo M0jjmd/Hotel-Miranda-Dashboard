@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { Contact, UpdateArchiveStatusPayload } from "../../interfaces/contactInterface"
+import { ContactInterface, UpdateArchiveStatusPayload } from "../../interfaces/contactInterface"
 
-export const GetContacts = createAsyncThunk<Contact[]>(
+export const GetContacts = createAsyncThunk<ContactInterface[]>(
     "contacts/getContacts",
     async () => {
         try {
@@ -20,7 +20,7 @@ export const GetContacts = createAsyncThunk<Contact[]>(
     }
 )
 
-export const GetSingleContact = createAsyncThunk<Contact, string>(
+export const GetSingleContact = createAsyncThunk<ContactInterface, string>(
     "contacts/getSingleContacts",
     async (contactId: string) => {
         try {
@@ -39,7 +39,7 @@ export const GetSingleContact = createAsyncThunk<Contact, string>(
     }
 )
 
-export const updateArchiveStatus = createAsyncThunk<Contact, UpdateArchiveStatusPayload>(
+export const updateArchiveStatus = createAsyncThunk<ContactInterface, UpdateArchiveStatusPayload>(
     'contacts/updateArchiveStatus',
     async ({ id, archiveStatus }: UpdateArchiveStatusPayload) => {
         try {

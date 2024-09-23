@@ -36,7 +36,7 @@ const usersSlice = createSlice({
             })
             .addCase(AuthentificateUser.fulfilled, (state, action) => {
                 state.status = "fulfilled"
-                state.isAuthentificated = action.payload.isAuthenticated
+                state.isAuthentificated = true
                 state.name = action.payload.name
                 state.email = action.payload.email
                 state.error = null

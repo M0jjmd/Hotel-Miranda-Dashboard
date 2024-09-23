@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { GetContacts, updateArchiveStatus, GetSingleContact } from './contactsThunk'
-import { Contact } from '../../interfaces/contactInterface'
+import { ContactInterface } from '../../interfaces/contactInterface'
 
 interface ContactsState {
-    data: Contact[]
+    data: ContactInterface[]
     status: 'idle' | 'loading' | 'fulfilled' | 'failed'
     error: string | null
-    singleContact: Contact | null
+    singleContact: ContactInterface | null
 }
 
 const initialState: ContactsState = {

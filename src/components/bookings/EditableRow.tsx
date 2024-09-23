@@ -1,24 +1,24 @@
 import React, { useState } from 'react'
 import * as S from '../../styles/tablesForm'
 import { EditBooking, DeleteBooking } from '../../features/bookings/bookingsThunk'
-import { Booking } from '../../interfaces/bookingInterface'
+import { BookingInterface } from '../../interfaces/bookingInterface'
 import { useAppDispatch } from '../../app/store'
 
 interface EditableRowProps {
-    filteredBookings: Booking[]
+    filteredBookings: BookingInterface[]
 }
 
 const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableRowProps) => {
     const [editRowId, setEditRowId] = useState<string | null>(null)
-    const [editedBooking, setEditedBooking] = useState<Booking | null>(null)
+    const [editedBooking, setEditedBooking] = useState<BookingInterface | null>(null)
     const [menuOpenId, setMenuOpenId] = useState<string | null>(null)
 
     const dispatch = useAppDispatch()
 
     const handleInputChange = (
         e: React.ChangeEvent<HTMLInputElement>,
-        field: keyof Booking,
-        subField?: keyof Booking['RoomType'] | keyof Booking['Guest']
+        field: keyof BookingInterface,
+        subField?: keyof BookingInterface['RoomType'] | keyof BookingInterface['Guest']
     ) => {
         const { value } = e.target
 
@@ -46,7 +46,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
         }
     }
 
-    const handleEditBooking = (booking: Booking) => {
+    const handleEditBooking = (booking: BookingInterface) => {
         setEditRowId(booking.id)
         setEditedBooking(booking)
         setMenuOpenId(null)

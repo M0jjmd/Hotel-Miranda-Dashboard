@@ -1,44 +1,28 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { Users } from "../../interfaces/usersInterface"
 
-interface UserData {
-    isAuthenticated: boolean
-    name: string
-    email: string
-}
-
-interface AuthUser {
-    username: string
-    password: string
-}
-
-export const AuthentificateUser = createAsyncThunk<UserData, AuthUser, { rejectValue: string }>(
+export const AuthentificateUser = createAsyncThunk(
     "loginUser/authentificateUser",
-    async ({ username, password }, { rejectWithValue }) => {
+    async ({ username, password }: { username: string; password: string }, { rejectWithValue }) => {
         try {
-            const req = await fetch(`http://localhost:4000/users`)
+            console.log(password)
+            const req = await fetch(`http://localhost:8080/api/users/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password })
+            })
 
             if (!req.ok) {
-                throw new Error('Authentication failed.')
+                const errorData = await req.json()
+                return rejectWithValue(errorData.message)
             }
 
-            const result: Users[] = await req.json()
-            const user = result.find(
-                (user: Users) => user.username === username && user.password === password
-            )
-
-            if (user) {
-                return {
-                    isAuthenticated: true,
-                    name: user.FullName,
-                    email: user.Email,
-                }
-            } else {
-                throw new Error('Invalid username or password.')
-            }
-
+            const data = await req.json()
+            localStorage.setItem('token', data.token)
+            return { token: data.token, name: data.name, email: data.email }
         } catch (error) {
-            return rejectWithValue((error as Error).message || 'An error occurred.')
+            return rejectWithValue('An error occurred while trying to log in.')
         }
     }
 )

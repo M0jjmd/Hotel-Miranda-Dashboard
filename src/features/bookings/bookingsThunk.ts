@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { Booking } from "../../interfaces/bookingInterface"
+import { BookingInterface } from "../../interfaces/bookingInterface"
 
-export const GetBookings = createAsyncThunk<Booking[]>(
+export const GetBookings = createAsyncThunk<BookingInterface[]>(
     "bookings/getBookings",
     async () => {
         try {
@@ -20,7 +20,7 @@ export const GetBookings = createAsyncThunk<Booking[]>(
     }
 )
 
-export const EditBooking = createAsyncThunk<Booking, Booking>(
+export const EditBooking = createAsyncThunk<BookingInterface, BookingInterface>(
     "bookings/editBooking",
     async (updatedBooking) => {
         try {
@@ -65,7 +65,7 @@ export const DeleteBooking = createAsyncThunk<string, string>(
     }
 )
 
-export const CreateBooking = createAsyncThunk<Booking, Booking>(
+export const CreateBooking = createAsyncThunk<BookingInterface, BookingInterface>(
     "bookings/createBooking",
     async (newBooking) => {
         try {
