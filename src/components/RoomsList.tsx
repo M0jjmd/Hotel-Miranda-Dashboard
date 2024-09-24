@@ -32,9 +32,9 @@ const RoomList = () => {
 
   const filteredRooms = rooms
     .filter(room => {
-      if (filterStatus !== 'ALL' && room.Status !== filterStatus) return false
+      if (filterStatus !== 'ALL' && room.Status.toLowerCase() !== filterStatus.toLowerCase()) return false
       const combinedString = JSON.stringify(room).toLowerCase()
-      return combinedString.includes(searchTerm)
+      return combinedString.includes(searchTerm.toLowerCase())
     })
     .sort((a, b) => isDescending ? b.OfferPrice - a.OfferPrice : a.OfferPrice - b.OfferPrice)
 

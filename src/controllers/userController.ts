@@ -1,11 +1,10 @@
-import express from 'express'
-import { Request, Response } from 'express'
+import { Request, Response, Router } from 'express'
 import { UserService } from '../services/userService'
 import { UserInterface } from '../interfaces/userInterface'
 import { UserDocument } from '../models/user.model'
 import bcrypt from 'bcrypt'
 
-export const usersController = express.Router()
+export const usersController = Router()
 
 usersController.get("", async (req: Request, res: Response) => {
     const userService = new UserService()

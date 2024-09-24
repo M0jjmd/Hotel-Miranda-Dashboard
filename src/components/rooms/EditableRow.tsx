@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import * as S from '../../styles/tablesForm'
 import { useAppDispatch } from '../../app/store'
 import { EditRoom, DeleteRoom } from '../../features/rooms/roomsThunk'
-import { Room } from '../../interfaces/roomInterface'
+import { RoomInterface } from '../../interfaces/roomInterface'
 
 interface EditableRowProps {
-    filteredRooms: Room[]
+    filteredRooms: RoomInterface[]
 }
 
 const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowProps) => {
     const [editRowId, setEditRowId] = useState<string | null>(null)
-    const [editedRoom, setEditedRoom] = useState<Partial<Room>>({})
+    const [editedRoom, setEditedRoom] = useState<Partial<RoomInterface>>({})
     const [menuOpenId, setMenuOpenId] = useState<string | null>(null)
 
     const dispatch = useAppDispatch()
@@ -25,14 +25,19 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
 
     const handleSaveRoom = () => {
         if (editRowId) {
-            dispatch(EditRoom({ ...editedRoom, id: editRowId } as Room))
+            dispatch(EditRoom({ ...editedRoom, id: editRowId } as RoomInterface))
             setEditRowId(null)
         }
     }
 
-    const handleEditRoom = (room: Room) => {
-        setEditRowId(room.id)
-        setEditedRoom(room)
+    const handleEditRoom = (room: RoomInterface) => {
+        setEditRowId(room._id || '')
+        setEditedRoom({
+            RoomNumber: room.RoomNumber,
+            BedType: room.BedType,
+            Facilities: room.Facilities,
+            _id: room._id
+        })
         setMenuOpenId(null)
     }
 
@@ -62,10 +67,10 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
                     const rateInEuros: number = (room.Rate / 100)
                     const finalPriceInEuros: number = calculateDiscountedPrice(room.Rate, room.OfferPrice)
                     return (
-                        <S.TableRow key={room.id}>
-                            <S.TableCell><S.TablePhoto src={room.Photo} alt={room.RoomNumber} /></S.TableCell>
+                        <S.TableRow key={room._id}>
+                            <S.TableCell><S.TablePhoto src={room.Photo} alt={room.RoomNumber.toString()} /></S.TableCell>
                             <S.TableCell>
-                                {editRowId === room.id ? (
+                                {editRowId === room._id ? (
                                     <S.Input
                                         type="text"
                                         value={editedRoom.RoomNumber || ''}
@@ -76,7 +81,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
                                 )}
                             </S.TableCell>
                             <S.TableCell>
-                                {editRowId === room.id ? (
+                                {editRowId === room._id ? (
                                     <S.Input
                                         type="text"
                                         value={editedRoom.BedType || ''}
@@ -87,7 +92,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
                                 )}
                             </S.TableCell>
                             <S.TableCell>
-                                {editRowId === room.id ? (
+                                {editRowId === room._id ? (
                                     <S.Input
                                         type="text"
                                         value={editedRoom.Facilities ? editedRoom.Facilities.join(', ') : ''}
@@ -101,17 +106,17 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
                             <S.TableCell>${finalPriceInEuros}</S.TableCell>
                             <S.TableCell>{room.Status}</S.TableCell>
                             <S.TableCell>
-                                {editRowId === room.id ? (
+                                {editRowId === room._id ? (
                                     <S.Button onClick={handleSaveRoom}>Save</S.Button>
                                 ) : (
                                     <S.ActionMenu>
-                                        <S.MoreButton onClick={() => handleMenuToggle(room.id!)}>
+                                        <S.MoreButton onClick={() => handleMenuToggle(room._id!)}>
                                             &#x22EE;
                                         </S.MoreButton>
-                                        {menuOpenId === room.id && (
+                                        {menuOpenId === room._id && (
                                             <S.Menu>
                                                 <S.MenuItem onClick={() => handleEditRoom(room)}>Edit</S.MenuItem>
-                                                <S.MenuItem onClick={() => handleDeleteRoom(room.id!)}>Delete</S.MenuItem>
+                                                <S.MenuItem onClick={() => handleDeleteRoom(room._id!)}>Delete</S.MenuItem>
                                             </S.Menu>
                                         )}
                                     </S.ActionMenu>

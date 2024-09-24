@@ -3,22 +3,20 @@ import * as S from '../../styles/tablesForm'
 import { useAuth } from '../../context/AuthContext'
 import { useAppDispatch } from '../../app/store'
 import { CreateRoom, GetRooms } from '../../features/rooms/roomsThunk'
-import { Room } from '../../interfaces/roomInterface'
+import { RoomInterface } from '../../interfaces/roomInterface'
 
 const AddRooms = () => {
     const addDispatch = useAppDispatch()
     const { dispatch } = useAuth()
     const [offerStatus, setOfferStatus] = useState(false)
-    const [formValues, setFormValues] = useState<Room>({
+    const [formValues, setFormValues] = useState<RoomInterface>({
         Photo: '',
-        RoomNumber: '',
-        RoomID: '',
+        RoomNumber: 0,
         BedType: 'Single Bed',
         Facilities: [],
         Rate: 0,
         OfferPrice: 0,
         Status: 'Booked',
-        id: ''
     })
 
     const facilitiesOptions = ['TV', 'Bathtub', 'Sea View', 'WiFi', 'Air Conditioning']
@@ -70,7 +68,7 @@ const AddRooms = () => {
 
     const toggleOfferStatus = () => {
         setOfferStatus((prevStatus: boolean) => !prevStatus)
-        setFormValues((prevValues: Room) => ({
+        setFormValues((prevValues: RoomInterface) => ({
             ...prevValues,
             Status: !offerStatus ? 'Available' : 'Booked',
         }))

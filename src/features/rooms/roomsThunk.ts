@@ -1,17 +1,32 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { Room } from '../../interfaces/roomInterface'
+import { RoomInterface } from '../../interfaces/roomInterface'
 
-export const GetRooms = createAsyncThunk<Room[]>(
+const getAuthHeaders = () => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+        throw new Error('No token found. Please log in.')
+    }
+    return {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+    }
+}
+
+export const GetRooms = createAsyncThunk<RoomInterface[]>(
     "rooms/getRooms",
     async () => {
         try {
-            const req = await fetch(`http://localhost:4000/rooms`)
+            const req = await fetch(`http://localhost:8080/api/rooms`, {
+                method: 'GET',
+                headers: getAuthHeaders(),
+            })
 
             if (!req.ok) {
                 throw new Error('Authentication failed.')
             }
 
             const json = await req.json()
+            console.log(json)
             return json
         } catch (error) {
             console.error('Error fetching Rooms:', error)
@@ -20,11 +35,14 @@ export const GetRooms = createAsyncThunk<Room[]>(
     }
 )
 
-export const GetSingleRoom = createAsyncThunk<Room, string>(
+export const GetSingleRoom = createAsyncThunk<RoomInterface, string>(
     "rooms/getSingleRooms",
     async (roomId) => {
         try {
-            const req = await fetch(`http://localhost:4000/rooms/${roomId}`)
+            const req = await fetch(`http://localhost:8080/api/rooms/${roomId}`, {
+                method: 'GET',
+                headers: getAuthHeaders(),
+            })
 
             if (!req.ok) {
                 throw new Error('Authentication failed.')
@@ -39,16 +57,14 @@ export const GetSingleRoom = createAsyncThunk<Room, string>(
     }
 )
 
-export const EditRoom = createAsyncThunk<Room, Room>(
+export const EditRoom = createAsyncThunk<RoomInterface, RoomInterface>(
     "rooms/editRooms",
     async (updatedRoom) => {
         console.log(updatedRoom)
         try {
-            const response = await fetch(`http://localhost:4000/rooms/${updatedRoom.id}`, {
+            const response = await fetch(`http://localhost:8080/api/rooms/${updatedRoom._id}`, {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: getAuthHeaders(),
                 body: JSON.stringify(updatedRoom),
             })
 
@@ -69,8 +85,9 @@ export const DeleteRoom = createAsyncThunk<string, string>(
     "rooms/deleteRooms",
     async (RoomId) => {
         try {
-            const response = await fetch(`http://localhost:4000/rooms/${RoomId}`, {
+            const response = await fetch(`http://localhost:8080/api/rooms/${RoomId}`, {
                 method: 'DELETE',
+                headers: getAuthHeaders(),
             })
 
             if (!response.ok) {
@@ -85,15 +102,13 @@ export const DeleteRoom = createAsyncThunk<string, string>(
     }
 )
 
-export const CreateRoom = createAsyncThunk<Room, Room>(
+export const CreateRoom = createAsyncThunk<RoomInterface, RoomInterface>(
     "rooms/createRooms",
     async (newRoom) => {
         try {
-            const response = await fetch('http://localhost:4000/rooms', {
+            const response = await fetch('http://localhost:8080/api/rooms', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: getAuthHeaders(),
                 body: JSON.stringify(newRoom)
             })
 
