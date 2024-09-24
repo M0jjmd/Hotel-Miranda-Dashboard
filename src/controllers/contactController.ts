@@ -39,9 +39,12 @@ contactsController.post("", async (req: Request, res: Response) => {
     }
 })
 
-contactsController.patch("/archive-status", async (req: Request, res: Response) => {
+contactsController.patch("/:id/archive-status", async (req: Request, res: Response) => {
     const contactService = new ContactService()
-    const payload: UpdateArchiveStatusPayload = req.body
+    const payload: UpdateArchiveStatusPayload = {
+        id: req.params.id,
+        archiveStatus: req.body.actions.archive
+    }
 
     try {
         const updatedContact = await contactService.updateArchiveStatus(payload)
@@ -51,6 +54,7 @@ contactsController.patch("/archive-status", async (req: Request, res: Response) 
             return res.status(404).send({ message: "Contact not found" })
         }
     } catch (error) {
+        console.error('Error updating archive status:', error)
         return res.status(500).send({ error: "Error updating archive status" })
     }
 })

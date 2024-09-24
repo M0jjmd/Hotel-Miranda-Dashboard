@@ -61,7 +61,7 @@ export const updateArchiveStatus = createAsyncThunk<ContactInterface, UpdateArch
     'contacts/updateArchiveStatus',
     async ({ id, archiveStatus }: UpdateArchiveStatusPayload) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/contacts/${id}`, {
+            const response = await fetch(`http://localhost:8080/api/contacts/${id}/archive-status`, {
                 method: 'PATCH',
                 headers: getAuthHeaders(),
                 body: JSON.stringify({ actions: { archive: archiveStatus } }),

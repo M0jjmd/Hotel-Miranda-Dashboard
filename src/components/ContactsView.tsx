@@ -22,12 +22,22 @@ function ContactsView() {
     }, [dispatchContacts, contactsStatus])
 
     const filteredContacts = contacts.filter((contact: ContactInterface) => {
-        if (filter === 'ALL' && contact.actions.archive) return false
-        if (filter === 'ARCHIVED' && !contact.actions.archive) return false
+        const isArchivedFilter = (filter === 'ALL' && contact.actions.archive) ||
+            (filter === 'ARCHIVED' && !contact.actions.archive)
+        if (isArchivedFilter) return false
 
         const combinedString = JSON.stringify(contact).toLowerCase()
         return combinedString.includes(searchTerm.toLowerCase())
     })
+
+
+    // const filteredContacts = contacts.filter((contact: ContactInterface) => {
+    //     if (filter === 'ALL' && contact.actions.archive) return false
+    //     if (filter === 'ARCHIVED' && !contact.actions.archive) return false
+
+    //     const combinedString = JSON.stringify(contact).toLowerCase()
+    //     return combinedString.includes(searchTerm.toLowerCase())
+    // })
 
     const latestMessages = contacts.slice(-3)
 
@@ -55,7 +65,10 @@ function ContactsView() {
         const updatedArchiveStatus = !contact.actions.archive
 
         try {
-            await dispatchContacts(updateArchiveStatus({ id: contactId, archiveStatus: updatedArchiveStatus })).unwrap()
+            const updatedContact = await dispatchContacts(
+                updateArchiveStatus({ id: contactId, archiveStatus: updatedArchiveStatus }))
+                .unwrap()
+            console.log('Contact updated:', updatedContact)
             dispatchContacts(GetContacts())
         } catch (error) {
             console.error('Error updating contact:', error)
@@ -72,8 +85,8 @@ function ContactsView() {
                         value={searchTerm}
                         onChange={handleSearchChange}
                     />
-                    <S.Button active={filter === 'ALL'} onClick={() => setFilter('ALL')}>Archived</S.Button>
-                    <S.Button active={filter === 'ARCHIVED'} onClick={() => setFilter('ARCHIVED')}>No Archived</S.Button>
+                    <S.Button active={filter === 'ALL'} onClick={() => setFilter('ALL')}>Not Archived</S.Button>
+                    <S.Button active={filter === 'ARCHIVED'} onClick={() => setFilter('ARCHIVED')}>Archived</S.Button>
                 </S.FilterContainer>
 
                 <T.QuickView>
@@ -117,7 +130,7 @@ function ContactsView() {
                     <S.TableBody>
                         {filteredContacts.map(contact => (
                             <S.TableRow key={contact._id}>
-                                <S.TableCell>{new Date(contact.date).toLocaleString()}</S.TableCell>
+                                <S.TableCell>{new Date(contact.date).toLocaleDateString('en-GB')}</S.TableCell>
                                 <S.TableCell>{contact._id}</S.TableCell>
                                 <S.TableCell>{contact.customer.name}</S.TableCell>
                                 <S.TableCell>{contact.customer.email}</S.TableCell>
