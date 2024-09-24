@@ -45,7 +45,7 @@ function ContactsView() {
     }
 
     const handleArchiveToggle = async (contactId: string) => {
-        const contact = contacts.find((c: ContactInterface) => c.id === contactId)
+        const contact = contacts.find((c: ContactInterface) => c._id === contactId)
 
         if (!contact) {
             console.error('Contact not found')
@@ -79,7 +79,7 @@ function ContactsView() {
                 <T.QuickView>
                     <h2>Quick View - Latest Messages</h2>
                     {latestMessages.map(message => (
-                        <T.MessagePreview key={message.id} onClick={() => handleMessageClick(message.id)}>
+                        <T.MessagePreview key={message._id} onClick={() => handleMessageClick(message._id || '')}>
                             <strong>{message.subject}</strong> - {message.comment.slice(0, 50)}...
                         </T.MessagePreview>
                     ))}
@@ -116,16 +116,16 @@ function ContactsView() {
                     </S.TableHeader>
                     <S.TableBody>
                         {filteredContacts.map(contact => (
-                            <S.TableRow key={contact.id}>
+                            <S.TableRow key={contact._id}>
                                 <S.TableCell>{new Date(contact.date).toLocaleString()}</S.TableCell>
-                                <S.TableCell>{contact.id}</S.TableCell>
+                                <S.TableCell>{contact._id}</S.TableCell>
                                 <S.TableCell>{contact.customer.name}</S.TableCell>
                                 <S.TableCell>{contact.customer.email}</S.TableCell>
                                 <S.TableCell>{contact.customer.phone}</S.TableCell>
                                 <S.TableCell>{contact.subject}</S.TableCell>
                                 <S.TableCell>{contact.comment.slice(0, 50)}...</S.TableCell>
                                 <S.TableCell>
-                                    <T.ActionButton onClick={() => handleArchiveToggle(contact.id)}>
+                                    <T.ActionButton onClick={() => handleArchiveToggle(contact._id || '')}>
                                         {contact.actions.archive ? (<span>Archived</span>) : (<span>No Archived</span>)}
                                     </T.ActionButton>
                                 </S.TableCell>

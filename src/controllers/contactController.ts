@@ -9,7 +9,7 @@ contactsController.get("", async (req: Request, res: Response) => {
     const contactService = new ContactService()
     try {
         const contacts = await contactService.getAll()
-        return res.status(200).send({ data: contacts })
+        return res.status(200).send(contacts)
     } catch (error) {
         console.error('Error fetching contacts:', error)
         return res.status(500).send({ error: 'Error fetching contacts' })
@@ -20,7 +20,7 @@ contactsController.get("/:id", async (req: Request<{ id: string }>, res: Respons
     const contactService = new ContactService()
     try {
         const contact = await contactService.getById(req.params.id)
-        return res.status(200).send({ data: contact })
+        return res.status(200).send(contact)
     } catch (error) {
         console.error('Error fetching contact:', error)
         return res.status(500).send({ error: 'Error fetching contact' })
@@ -33,7 +33,7 @@ contactsController.post("", async (req: Request, res: Response) => {
 
     try {
         const createdContact = await contactService.create(newContact)
-        return res.status(201).send({ data: createdContact })
+        return res.status(201).send(createdContact)
     } catch (error) {
         return res.status(500).send({ error: "Error creating the contact" })
     }
@@ -46,7 +46,7 @@ contactsController.patch("/archive-status", async (req: Request, res: Response) 
     try {
         const updatedContact = await contactService.updateArchiveStatus(payload)
         if (updatedContact) {
-            return res.status(200).send({ data: updatedContact })
+            return res.status(200).send(updatedContact)
         } else {
             return res.status(404).send({ message: "Contact not found" })
         }

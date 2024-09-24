@@ -1,8 +1,8 @@
-import { Schema, model, Document, ObjectId } from 'mongoose'
+import { Schema, model, Document } from 'mongoose'
 import { ContactInterface } from '../interfaces/contactInterface'
 
 export interface ContactDocument extends Document, ContactInterface {
-    _id: ObjectId
+    _id: string
 }
 
 const ContactSchema: Schema<ContactDocument> = new Schema({

@@ -1,4 +1,4 @@
-import { Schema, model, Document, ObjectId } from 'mongoose'
+import { Schema, model, Document } from 'mongoose'
 import { UserInterface } from '../interfaces/userInterface'
 
 export interface UserDocument extends Document, UserInterface {
