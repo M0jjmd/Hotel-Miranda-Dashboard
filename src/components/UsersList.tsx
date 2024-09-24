@@ -29,9 +29,9 @@ function UsersList() {
 
   const filteredUsers = users
     .filter(user => {
-      if (filter !== 'ALL' && user.State !== filter) return false
+      if (filter !== 'ALL' && user.State.toLowerCase() !== filter.toLowerCase()) return false
       const combinedString = JSON.stringify(user).toLowerCase()
-      return combinedString.includes(searchTerm)
+      return combinedString.includes(searchTerm.toLowerCase())
     })
 
   const handleFormToggle = () => {

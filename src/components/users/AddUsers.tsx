@@ -2,32 +2,37 @@ import { useState } from 'react'
 import { useAppDispatch } from '../../app/store'
 import { CreateUser, GetUsers } from '../../features/users/usersThunk'
 import { useAuth } from '../../context/AuthContext'
-import { Users } from '../../interfaces/usersInterface'
+import { UserInterface } from '../../interfaces/userInterface'
 import * as S from '../../styles/tablesForm'
 
 const AddUsers = () => {
     const userDispatch = useAppDispatch()
-    const [formValues, setFormValues] = useState<Partial<Users>>({
-        Photo: '',
+    const [formValues, setFormValues] = useState<Partial<UserInterface>>({
+        username: '',
         FullName: '',
-        EmployeeId: '',
+        password: '',
         Email: '',
-        EntryDate: '',
+        Photo: '',
+        EntryDate: new Date,
         PositionDescription: '',
         Phone: '',
         State: 'ACTIVE',
+        position: '',
     })
-
-    const generateRandomId = () => {
-        return Math.floor(1000 + Math.random() * 9000).toString()
-    }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target
-        setFormValues((prevValues) => ({
-            ...prevValues,
-            [name]: value,
-        }))
+        if (name === 'EntryDate') {
+            setFormValues((prevValues) => ({
+                ...prevValues,
+                [name]: new Date(value),
+            }))
+        } else {
+            setFormValues((prevValues) => ({
+                ...prevValues,
+                [name]: value,
+            }))
+        }
     }
 
     const { dispatch } = useAuth()
@@ -36,16 +41,17 @@ const AddUsers = () => {
         e.preventDefault()
 
         const userWithId = {
-            Photo: formValues.Photo || '',
+            username: (formValues.FullName || '').replace(/\s+/g, '').toLowerCase(),
             FullName: formValues.FullName || '',
-            EmployeeId: formValues.EmployeeId || '',
+            password: formValues.password || '',
             Email: formValues.Email || '',
-            EntryDate: formValues.EntryDate || '',
+            Photo: formValues.Photo || '',
+            EntryDate: formValues.EntryDate || new Date,
             PositionDescription: formValues.PositionDescription || '',
             Phone: formValues.Phone || '',
             State: formValues.State || 'ACTIVE',
-            id: generateRandomId(),
-        } as Users
+            position: formValues.PositionDescription || '',
+        }
 
         userDispatch(CreateUser(userWithId))
             .then(() => {
@@ -79,12 +85,12 @@ const AddUsers = () => {
                 onChange={handleChange}
             />
 
-            <label>Employee ID</label>
+            <label>Employee Password</label>
             <S.Input
                 type="text"
-                name="EmployeeId"
-                placeholder="Enter employee ID"
-                value={formValues.EmployeeId}
+                name="password"
+                placeholder="Enter employee password"
+                value={formValues.password}
                 onChange={handleChange}
             />
 
@@ -101,7 +107,7 @@ const AddUsers = () => {
             <S.Input
                 type="date"
                 name="EntryDate"
-                value={formValues.EntryDate}
+                value={formValues.EntryDate ? formValues.EntryDate.toISOString().split('T')[0] : ''}
                 onChange={handleChange}
             />
 

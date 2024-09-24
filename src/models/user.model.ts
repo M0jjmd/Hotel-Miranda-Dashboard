@@ -2,7 +2,7 @@ import { Schema, model, Document, ObjectId } from 'mongoose'
 import { UserInterface } from '../interfaces/userInterface'
 
 export interface UserDocument extends Document, UserInterface {
-    _id: ObjectId
+    _id: string
 }
 const UserSchema: Schema = new Schema<UserDocument>({
     username: { type: String, required: true },

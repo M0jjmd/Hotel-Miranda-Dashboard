@@ -1,19 +1,24 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { UserInterface } from '../../interfaces/userInterface'
 
+const getAuthHeaders = () => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+        throw new Error('No token found. Please log in.')
+    }
+    return {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+    }
+}
+
 export const GetUsers = createAsyncThunk<UserInterface[]>(
     "users/getUsers",
     async () => {
-        const token = localStorage.getItem('token')
-        if (!token) {
-            throw new Error('No token found. Please log in.');
-        }
         try {
-            const req = await fetch(`http://localhost:8001/users`, {
+            const req = await fetch(`http://localhost:8080/api/users`, {
                 method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
+                headers: getAuthHeaders(),
             })
 
             if (!req.ok) {
@@ -32,18 +37,10 @@ export const GetUsers = createAsyncThunk<UserInterface[]>(
 export const EditUser = createAsyncThunk<UserInterface, UserInterface>(
     "users/editUsers",
     async (updatedUser) => {
-        const token = localStorage.getItem('token')
-        if (!token) {
-            throw new Error('No token found. Please log in.');
-        }
-
         try {
-            const response = await fetch(`http://localhost:8001/users/${updatedUser.id}`, {
+            const response = await fetch(`http://localhost:8080/api/users/${updatedUser._id}`, {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
+                headers: getAuthHeaders(),
                 body: JSON.stringify(updatedUser),
             })
 
@@ -65,15 +62,13 @@ export const DeleteUser = createAsyncThunk<string, string>(
     async (UserId) => {
         const token = localStorage.getItem('token')
         if (!token) {
-            throw new Error('No token found. Please log in.');
+            throw new Error('No token found. Please log in.')
         }
 
         try {
-            const response = await fetch(`http://localhost:8001/users/${UserId}`, {
+            const response = await fetch(`http://localhost:8080/api/users/${UserId}`, {
                 method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
+                headers: getAuthHeaders(),
             })
 
             if (!response.ok) {
@@ -91,17 +86,11 @@ export const DeleteUser = createAsyncThunk<string, string>(
 export const CreateUser = createAsyncThunk<UserInterface, UserInterface>(
     "users/createUsers",
     async (newUser) => {
-        const token = localStorage.getItem('token')
-        if (!token) {
-            throw new Error('No token found. Please log in.');
-        }
         try {
-            const response = await fetch('http://localhost:8001/users', {
+            console.log('llega aqui pero peta')
+            const response = await fetch('http://localhost:8080/api/users', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
+                headers: getAuthHeaders(),
                 body: JSON.stringify(newUser)
             })
 

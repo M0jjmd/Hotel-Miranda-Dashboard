@@ -3,7 +3,7 @@ import * as S from '../styles/tablesForm'
 import * as T from '../styles/contactStyles'
 import { GetContacts, GetSingleContact, updateArchiveStatus } from '../features/contacts/contactsThunk'
 import { useAppDispatch, useAppSelector } from '../app/store'
-import { Contact } from '../interfaces/contactInterface'
+import { ContactInterface } from '../interfaces/contactInterface'
 
 function ContactsView() {
     const [filter, setFilter] = useState<'ALL' | 'ARCHIVED'>('ALL')
@@ -21,7 +21,7 @@ function ContactsView() {
         }
     }, [dispatchContacts, contactsStatus])
 
-    const filteredContacts = contacts.filter((contact: Contact) => {
+    const filteredContacts = contacts.filter((contact: ContactInterface) => {
         if (filter === 'ALL' && contact.actions.archive) return false
         if (filter === 'ARCHIVED' && !contact.actions.archive) return false
 
@@ -45,7 +45,7 @@ function ContactsView() {
     }
 
     const handleArchiveToggle = async (contactId: string) => {
-        const contact = contacts.find((c: Contact) => c.id === contactId)
+        const contact = contacts.find((c: ContactInterface) => c.id === contactId)
 
         if (!contact) {
             console.error('Contact not found')

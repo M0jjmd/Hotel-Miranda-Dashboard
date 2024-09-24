@@ -1,4 +1,7 @@
+import { ObjectId } from 'mongoose'
+
 export interface ContactInterface {
+    _id: ObjectId
     date: Date
     customer: {
         userId?: string

@@ -11,76 +11,76 @@ usersController.get("", async (req: Request, res: Response) => {
     const userService = new UserService()
     try {
         const users = await userService.getAll()
-        return res.status(200).send({ data: users })
+        return res.status(200).send(users)
     } catch (error) {
         console.error('Error fetching users:', error)
         return res.status(500).send({ error: 'Error fetching users' })
     }
 })
 
-// usersController.get("/:id", async (req: Request<{ id: string }>, res: Response) => {
-//     const userService = new UserService()
-//     try {
-//         const user = await userService.getById(req.params.id)
-//         return res.status(200).send({ data: user })
-//     } catch (error) {
-//         console.error('Error fetching user:', error)
-//         return res.status(500).send({ error: 'Error fetching user' })
-//     }
-// })
+usersController.get("/:id", async (req: Request<{ id: string }>, res: Response) => {
+    const userService = new UserService()
+    try {
+        const user = await userService.getById(req.params.id)
+        return res.status(200).send(user)
+    } catch (error) {
+        console.error('Error fetching user:', error)
+        return res.status(500).send({ error: 'Error fetching user' })
+    }
+})
 
-// usersController.post("", async (req: Request, res: Response) => {
-//     const userService = new UserService()
-//     const newUser: Omit<UserDocument, '_id'> = req.body
+usersController.post("", async (req: Request, res: Response) => {
+    const userService = new UserService()
+    const newUser: Omit<UserDocument, '_id'> = req.body
 
-//     if (newUser.password) {
-//         try {
-//             const saltRounds = 10
-//             const hashedPassword = await bcrypt.hash(newUser.password, saltRounds)
-//             newUser.password = hashedPassword
-//         } catch (error) {
-//             return res.status(500).send({ error: "Error hashing the password" })
-//         }
+    if (newUser.password) {
+        try {
+            const saltRounds = 10
+            const hashedPassword = await bcrypt.hash(newUser.password, saltRounds)
+            newUser.password = hashedPassword
+        } catch (error) {
+            return res.status(500).send({ error: "Error hashing the password" })
+        }
 
-//         try {
-//             const createdUser = await userService.create(newUser)
-//             return res.status(201).send({ data: createdUser })
-//         } catch (error) {
-//             return res.status(500).send({ error: "Error creating the user" })
-//         }
-//     }
-// })
+        try {
+            const createdUser = await userService.create(newUser)
+            return res.status(201).send(createdUser)
+        } catch (error) {
+            return res.status(500).send({ error: "Error creating the user" })
+        }
+    }
+})
 
-// usersController.put("/:id", async (req: Request<{ id: string }, {}, UserInterface>, res: Response) => {
-//     const userService = new UserService()
-//     const userId = req.params.id
-//     const updatedUserData: UserInterface = req.body
+usersController.put("/:id", async (req: Request<{ id: string }, {}, UserInterface>, res: Response) => {
+    const userService = new UserService()
+    const userId = req.params.id
+    const updatedUserData: UserInterface = req.body
 
-//     try {
-//         const updatedUser = await userService.update(userId, updatedUserData)
-//         if (updatedUser) {
-//             return res.status(200).send({ data: updatedUser })
-//         } else {
-//             return res.status(404).send({ message: "User not found" })
-//         }
-//     } catch (error) {
-//         return res.status(500).send({ error: "Error updating the user" })
-//     }
-// })
+    try {
+        const updatedUser = await userService.update(userId, updatedUserData)
+        if (updatedUser) {
+            return res.status(200).send(updatedUser)
+        } else {
+            return res.status(404).send({ message: "User not found" })
+        }
+    } catch (error) {
+        return res.status(500).send({ error: "Error updating the user" })
+    }
+})
 
-// usersController.delete("/:id", async (req: Request<{ id: string }>, res: Response) => {
-//     const userService = new UserService()
-//     const userId = req.params.id
+usersController.delete("/:id", async (req: Request<{ id: string }>, res: Response) => {
+    const userService = new UserService()
+    const userId = req.params.id
 
-//     try {
-//         const successfulDelete = await userService.delete(userId)
-//         if (successfulDelete) {
-//             return res.status(200).send({ message: "User deleted successfully" })
-//         } else {
-//             return res.status(404).send({ message: "User not found" })
-//         }
+    try {
+        const successfulDelete = await userService.delete(userId)
+        if (successfulDelete) {
+            return res.status(200).send({ message: "User deleted successfully" })
+        } else {
+            return res.status(404).send({ message: "User not found" })
+        }
 
-//     } catch (error) {
-//         return res.status(500).send({ error: "Error deleting the user" })
-//     }
-// })
+    } catch (error) {
+        return res.status(500).send({ error: "Error deleting the user" })
+    }
+})

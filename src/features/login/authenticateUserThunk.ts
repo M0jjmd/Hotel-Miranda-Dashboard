@@ -5,7 +5,7 @@ export const AuthentificateUser = createAsyncThunk(
     async ({ username, password }: { username: string; password: string }, { rejectWithValue }) => {
         try {
             console.log(password)
-            const req = await fetch(`http://localhost:8080/api/users/login`, {
+            const req = await fetch(`http://localhost:8080/api/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

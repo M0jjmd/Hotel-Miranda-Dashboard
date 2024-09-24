@@ -2,20 +2,20 @@ import { useState } from 'react'
 import * as S from '../../styles/tablesForm'
 import { useAppDispatch } from '../../app/store'
 import { DeleteUser, EditUser } from '../../features/users/usersThunk'
-import { Users } from '../../interfaces/usersInterface'
+import { UserInterface } from '../../interfaces/userInterface'
 
 interface EditableRowProps {
-    filteredUsers: Users[]
+    filteredUsers: UserInterface[]
 }
 
 function EditableRow({ filteredUsers }: EditableRowProps) {
     const [editRowId, setEditRowId] = useState<string | null>(null)
-    const [editedUser, setEditedUser] = useState<Partial<Users>>({})
+    const [editedUser, setEditedUser] = useState<Partial<UserInterface>>({})
     const [menuOpenId, setMenuOpenId] = useState<string | null>(null)
 
     const dispatch = useAppDispatch()
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Users) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof UserInterface) => {
         const { value } = e.target
         setEditedUser(prevValues => ({
             ...prevValues,
@@ -25,7 +25,7 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
 
     const handleSaveUser = () => {
         if (editRowId) {
-            dispatch(EditUser({ ...editedUser, id: editRowId } as Users))
+            dispatch(EditUser({ ...editedUser, id: editRowId } as UserInterface))
                 .then(() => {
                     setEditRowId(null)
                 })
@@ -35,8 +35,10 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
         }
     }
 
-    const handleEditUser = (room: Users) => {
-        setEditRowId(room.id)
+    const handleEditUser = (room: UserInterface) => {
+        if (room._id) {
+            setEditRowId(room._id)
+        }
         setEditedUser(room)
         setMenuOpenId(null)
     }
@@ -55,10 +57,10 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
         <>
             <S.TableBody>
                 {filteredUsers.map(user => (
-                    <S.TableRow key={user.id}>
+                    <S.TableRow key={user._id}>
                         <S.TableCell>
                             <S.TablePhoto src={user.Photo} alt={user.FullName} />
-                            {editRowId === user.id ? (
+                            {editRowId === user._id ? (
                                 <S.Input
                                     type="text"
                                     value={editedUser.FullName ?? ''}
@@ -70,7 +72,7 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
                             )}
                         </S.TableCell>
                         <S.TableCell>
-                            {editRowId === user.id ? (
+                            {editRowId === user._id ? (
                                 <S.Input
                                     type="text"
                                     value={editedUser.PositionDescription ?? ''}
@@ -82,18 +84,18 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
                             )}
                         </S.TableCell>
                         <S.TableCell>
-                            {editRowId === user.id ? (
+                            {editRowId === user._id ? (
                                 <S.Input
                                     type="date"
-                                    value={editedUser.EntryDate ?? ''}
+                                    value={editedUser.EntryDate ? new Date(editedUser.EntryDate).toISOString().split('T')[0] : ''}
                                     onChange={(e) => handleInputChange(e, 'EntryDate')}
                                 />
                             ) : (
-                                user.EntryDate
+                                user.EntryDate instanceof Date ? user.EntryDate.toLocaleDateString() : user.EntryDate
                             )}
                         </S.TableCell>
                         <S.TableCell>
-                            {editRowId === user.id ? (
+                            {editRowId === user._id ? (
                                 <S.Input
                                     type="tel"
                                     value={editedUser.Phone ?? ''}
@@ -105,7 +107,7 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
                             )}
                         </S.TableCell>
                         <S.TableCell>
-                            {editRowId === user.id ? (
+                            {editRowId === user._id ? (
                                 <S.Input
                                     type="text"
                                     value={editedUser.State ?? ''}
@@ -117,17 +119,17 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
                             )}
                         </S.TableCell>
                         <S.TableCell>
-                            {editRowId === user.id ? (
+                            {editRowId === user._id ? (
                                 <S.Button onClick={() => handleSaveUser()}>Save</S.Button>
                             ) : (
                                 <S.ActionMenu>
-                                    <S.MoreButton onClick={() => handleMenuToggle(user.id)}>
+                                    <S.MoreButton onClick={() => handleMenuToggle(user._id || '')}>
                                         &#x22EE;
                                     </S.MoreButton>
-                                    {menuOpenId === user.id && (
+                                    {menuOpenId === user._id && (
                                         <S.Menu>
                                             <S.MenuItem onClick={() => handleEditUser(user)}>Edit</S.MenuItem>
-                                            <S.MenuItem onClick={() => handleDeleteUser(user.id)}>Delete</S.MenuItem>
+                                            <S.MenuItem onClick={() => handleDeleteUser(user._id || '')}>Delete</S.MenuItem>
                                         </S.Menu>
                                     )}
                                 </S.ActionMenu>

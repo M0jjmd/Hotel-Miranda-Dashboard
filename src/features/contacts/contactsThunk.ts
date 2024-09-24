@@ -5,7 +5,7 @@ export const GetContacts = createAsyncThunk<ContactInterface[]>(
     "contacts/getContacts",
     async () => {
         try {
-            const req = await fetch(`http://localhost:4000/messages`)
+            const req = await fetch(`http://localhost:4000/contacts`)
 
             if (!req.ok) {
                 throw new Error('Authentication failed.')
@@ -24,7 +24,7 @@ export const GetSingleContact = createAsyncThunk<ContactInterface, string>(
     "contacts/getSingleContacts",
     async (contactId: string) => {
         try {
-            const req = await fetch(`http://localhost:4000/messages/${contactId}`)
+            const req = await fetch(`http://localhost:4000/contacts/${contactId}`)
 
             if (!req.ok) {
                 throw new Error('Authentication failed.')
@@ -43,7 +43,7 @@ export const updateArchiveStatus = createAsyncThunk<ContactInterface, UpdateArch
     'contacts/updateArchiveStatus',
     async ({ id, archiveStatus }: UpdateArchiveStatusPayload) => {
         try {
-            const response = await fetch(`http://localhost:4000/messages/${id}`, {
+            const response = await fetch(`http://localhost:4000/contacts/${id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
