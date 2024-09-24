@@ -26,7 +26,6 @@ loginController.post('/login', async (req: Request, res: Response) => {
         const payload = { username }
         const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' })
 
-        console.log(res)
         return res.status(200).json({
             token,
             name: user.FullName,

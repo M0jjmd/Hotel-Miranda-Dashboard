@@ -52,11 +52,8 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
 
     const calculateDiscountedPrice = (rateInCents: number, discountPercentage: number): number => {
         const rateInEuros = rateInCents / 100
-
         const discountedPriceInEuros = (rateInEuros * discountPercentage) / 100
-
         const FinalPriceInEuros = rateInEuros - discountedPriceInEuros
-        console.log(discountPercentage)
         return FinalPriceInEuros
     }
 

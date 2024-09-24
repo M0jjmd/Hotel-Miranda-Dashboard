@@ -3,7 +3,6 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 const url = process.env.SERVER_URL
-console.log(url)
 
 const connectDB = async () => {
     if (!url) {

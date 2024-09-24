@@ -21,10 +21,8 @@ const Login = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLocalError('')
-    console.log("has hecho click")
     try {
       await loginDispatch(AuthentificateUser({ username, password }))
-      console.log("has hecho click2")
     } catch (error) {
       setLocalError('Invalid username or password')
     }
@@ -32,7 +30,6 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthentificated) {
-      console.log('test useEffect')
       localStorage.setItem('isAuthentificated', 'true')
       localStorage.setItem('token', token)
       localStorage.setItem('name', name)

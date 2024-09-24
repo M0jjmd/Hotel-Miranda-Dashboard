@@ -26,7 +26,6 @@ export const GetContacts = createAsyncThunk<ContactInterface[]>(
             }
 
             const json = await req.json()
-            console.log(json)
             return json
         } catch (error) {
             console.error('Error fetching Contacts:', error)

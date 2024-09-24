@@ -27,51 +27,34 @@ const AddBooking = () => {
 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        const { name, value } = e.target;
+        const { name, value } = e.target
 
-        // Si es CheckIn o CheckOut, convertir el valor a una fecha
         if (name === 'CheckIn' || name === 'CheckOut') {
             setFormValues((prevValues) => ({
                 ...prevValues,
-                [name]: new Date(value), // Convertir a objeto Date
-            }));
-        } else if (name.startsWith('RoomType.')) { // Manejar RoomType como un objeto
-            const key = name.split('.')[1]; // Obtener la propiedad de RoomType
+                [name]: new Date(value),
+            }))
+        } else if (name.startsWith('RoomType.')) {
+            const key = name.split('.')[1]
             setFormValues((prevValues) => ({
                 ...prevValues,
                 RoomType: {
                     ...prevValues.RoomType,
-                    [key]: value, // Actualizar la propiedad específica de RoomType
+                    [key]: value,
                 },
-            }));
+            }))
         } else {
             setFormValues((prevValues) => ({
                 ...prevValues,
                 [name]: value,
-            }));
+            }))
         }
     }
-
-    // const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    //     const { name, value } = e.target
-    //     if (name === 'CheckIn' || name == 'CheckOut') {
-    //         setFormValues((prevValues) => ({
-    //             ...prevValues,
-    //             [name]: new Date(value),
-    //         }))
-    //     } else {
-    //         setFormValues((prevValues) => ({
-    //             ...prevValues,
-    //             [name]: value,
-    //         }))
-    //     }
-    // }
 
     const handleAddBooking = (e: React.FormEvent) => {
         e.preventDefault()
 
         const storedUserId = localStorage.getItem('id') || ''
-        console.log(storedUserId);
 
         const bookingWithUserId = {
             ...formValues,
