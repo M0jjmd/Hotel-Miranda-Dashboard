@@ -31,6 +31,7 @@ loginController.post('/login', async (req: Request, res: Response) => {
             token,
             name: user.FullName,
             email: user.Email,
+            id: user._id,
         })
 
     } catch (error) {

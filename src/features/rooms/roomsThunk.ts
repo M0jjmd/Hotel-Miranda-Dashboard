@@ -26,7 +26,6 @@ export const GetRooms = createAsyncThunk<RoomInterface[]>(
             }
 
             const json = await req.json()
-            console.log(json)
             return json
         } catch (error) {
             console.error('Error fetching Rooms:', error)
@@ -60,7 +59,6 @@ export const GetSingleRoom = createAsyncThunk<RoomInterface, string>(
 export const EditRoom = createAsyncThunk<RoomInterface, RoomInterface>(
     "rooms/editRooms",
     async (updatedRoom) => {
-        console.log(updatedRoom)
         try {
             const response = await fetch(`http://localhost:8080/api/rooms/${updatedRoom._id}`, {
                 method: 'PUT',

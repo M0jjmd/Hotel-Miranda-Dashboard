@@ -3,86 +3,104 @@ import * as S from '../../styles/tablesForm'
 import { useAuth } from '../../context/AuthContext'
 import { CreateBooking, GetBookings } from '../../features/bookings/bookingsThunk'
 import { useAppDispatch } from '../../app/store'
-import { Booking } from '../../interfaces/bookingInterface'
+import { BookingInterface } from '../../interfaces/bookingInterface'
 
 const AddBooking = () => {
-    const [formValues, setFormValues] = useState<Booking>({
+    const [formValues, setFormValues] = useState<BookingInterface>({
         Guest: {
-            Name: '',
-            ReservationID: '',
+            UserId: '',
+            RoomId: 'test',
         },
-        OrderDate: '',
-        CheckIn: '',
-        CheckOut: '',
+        OrderDate: new Date(),
+        CheckIn: new Date(),
+        CheckOut: new Date(),
         SpecialRequest: '',
         RoomType: {
             Type: '',
             RoomNumber: '',
         },
         Status: 'CHECK-IN',
-        id: '',
     })
 
     const addDispatch = useAppDispatch()
     const { dispatch } = useAuth()
 
-    const generateRandomId = () => {
-        return Math.floor(1000 + Math.random() * 9000).toString()
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        const { name, value } = e.target;
+
+        // Si es CheckIn o CheckOut, convertir el valor a una fecha
+        if (name === 'CheckIn' || name === 'CheckOut') {
+            setFormValues((prevValues) => ({
+                ...prevValues,
+                [name]: new Date(value), // Convertir a objeto Date
+            }));
+        } else if (name.startsWith('RoomType.')) { // Manejar RoomType como un objeto
+            const key = name.split('.')[1]; // Obtener la propiedad de RoomType
+            setFormValues((prevValues) => ({
+                ...prevValues,
+                RoomType: {
+                    ...prevValues.RoomType,
+                    [key]: value, // Actualizar la propiedad específica de RoomType
+                },
+            }));
+        } else {
+            setFormValues((prevValues) => ({
+                ...prevValues,
+                [name]: value,
+            }));
+        }
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
-
-        const keys = name.split('.')
-
-        setFormValues(prevValues => {
-            if (!prevValues) return prevValues
-
-            if (keys.length === 1) {
-                return {
-                    ...prevValues,
-                    [keys[0] as keyof Booking]: value,
-                }
-            } else if (keys.length === 2) {
-                const [mainKey, subKey] = keys
-                return {
-                    ...prevValues,
-                    [mainKey as keyof Booking]: {
-                        ...(prevValues[mainKey as keyof Booking] as any),
-                        [subKey]: value,
-                    },
-                }
-            }
-            return prevValues
-        })
-    }
+    // const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    //     const { name, value } = e.target
+    //     if (name === 'CheckIn' || name == 'CheckOut') {
+    //         setFormValues((prevValues) => ({
+    //             ...prevValues,
+    //             [name]: new Date(value),
+    //         }))
+    //     } else {
+    //         setFormValues((prevValues) => ({
+    //             ...prevValues,
+    //             [name]: value,
+    //         }))
+    //     }
+    // }
 
     const handleAddBooking = (e: React.FormEvent) => {
         e.preventDefault()
 
-        const bookingWithId = {
+        const storedUserId = localStorage.getItem('id') || ''
+        console.log(storedUserId);
+
+        const bookingWithUserId = {
             ...formValues,
-            id: generateRandomId(),
+            Guest: {
+                ...formValues.Guest,
+                UserId: storedUserId,
+            },
+            OrderDate: new Date(),
         }
 
-        addDispatch(CreateBooking(bookingWithId))
+        console.log(bookingWithUserId)
+
+        addDispatch(CreateBooking(bookingWithUserId))
             .then(() => {
                 addDispatch(GetBookings())
                 setFormValues({
                     Guest: {
-                        Name: '',
-                        ReservationID: '',
+                        UserId: '',
+                        RoomId: 'test',
                     },
-                    OrderDate: '',
-                    CheckIn: '',
-                    CheckOut: '',
+                    OrderDate: new Date(),
+                    CheckIn: new Date(),
+                    CheckOut: new Date(),
                     SpecialRequest: '',
                     RoomType: {
                         Type: '',
                         RoomNumber: '',
                     },
                     Status: 'CHECK-IN',
-                    id: '',
                 })
                 dispatch({ type: 'CLOSE_FORM' })
             })
@@ -94,41 +112,43 @@ const AddBooking = () => {
     return (
         <S.FormContainer>
             <h3>Add New Booking</h3>
-            <label>Guest Name</label>
+            {/* <label>Guest Name</label>
             <S.Input
                 type="text"
                 name="Guest.Name"
                 placeholder="Guest Name"
                 value={formValues.Guest.Name}
                 onChange={handleChange}
-            />
-            <label>Reservation ID</label>
+            /> */}
+            {/* <label>Reservation ID</label>
             <S.Input
                 type="text"
                 name="Guest.ReservationID"
                 placeholder="Reservation ID"
                 value={formValues.Guest.ReservationID}
                 onChange={handleChange}
-            />
-            <label>Order Date</label>
+            /> */}
+            {/* <label>Order Date</label>
             <S.Input
                 type="date"
                 name="OrderDate"
                 value={formValues.OrderDate}
                 onChange={handleChange}
-            />
+            /> */}
             <label>Check-In Date</label>
             <S.Input
                 type="date"
                 name="CheckIn"
-                value={formValues.CheckIn}
+                // value={formValues.CheckIn}
+                value={formValues.CheckIn.toISOString().split('T')[0]}
                 onChange={handleChange}
             />
             <label>Check-Out Date</label>
             <S.Input
                 type="date"
                 name="CheckOut"
-                value={formValues.CheckOut}
+                // value={formValues.CheckOut}
+                value={formValues.CheckOut.toISOString().split('T')[0]}
                 onChange={handleChange}
             />
             <label>Room Type</label>

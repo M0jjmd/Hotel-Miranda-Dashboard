@@ -1,11 +1,25 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { BookingInterface } from "../../interfaces/bookingInterface"
 
+const getAuthHeaders = () => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+        throw new Error('No token found. Please log in.')
+    }
+    return {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+    }
+}
+
 export const GetBookings = createAsyncThunk<BookingInterface[]>(
     "bookings/getBookings",
     async () => {
         try {
-            const req = await fetch(`http://localhost:4000/guests`)
+            const req = await fetch(`http://localhost:8080/api/bookings`, {
+                method: 'GET',
+                headers: getAuthHeaders(),
+            })
 
             if (!req.ok) {
                 throw new Error('Authentication failed.')
@@ -24,11 +38,9 @@ export const EditBooking = createAsyncThunk<BookingInterface, BookingInterface>(
     "bookings/editBooking",
     async (updatedBooking) => {
         try {
-            const response = await fetch(`http://localhost:4000/guests/${updatedBooking.id}`, {
+            const response = await fetch(`http://localhost:8080/api/bookings/${updatedBooking._id}`, {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: getAuthHeaders(),
                 body: JSON.stringify(updatedBooking),
             })
 
@@ -49,8 +61,9 @@ export const DeleteBooking = createAsyncThunk<string, string>(
     "bookings/deleteBooking",
     async (bookingId) => {
         try {
-            const response = await fetch(`http://localhost:4000/guests/${bookingId}`, {
+            const response = await fetch(`http://localhost:8080/api/bookings/${bookingId}`, {
                 method: 'DELETE',
+                headers: getAuthHeaders(),
             })
 
             if (!response.ok) {
@@ -69,11 +82,9 @@ export const CreateBooking = createAsyncThunk<BookingInterface, BookingInterface
     "bookings/createBooking",
     async (newBooking) => {
         try {
-            const response = await fetch('http://localhost:4000/guests', {
+            const response = await fetch('http://localhost:8080/api/bookings', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: getAuthHeaders(),
                 body: JSON.stringify(newBooking)
             })
 

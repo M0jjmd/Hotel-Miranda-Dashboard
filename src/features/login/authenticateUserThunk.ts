@@ -19,8 +19,7 @@ export const AuthentificateUser = createAsyncThunk(
             }
 
             const data = await req.json()
-            localStorage.setItem('token', data.token)
-            return { token: data.token, name: data.name, email: data.email }
+            return data
         } catch (error) {
             return rejectWithValue('An error occurred while trying to log in.')
         }

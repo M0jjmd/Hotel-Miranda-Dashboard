@@ -33,11 +33,11 @@ const bookingsSlice = createSlice({
             })
             .addCase(EditBooking.fulfilled, (state, action) => {
                 state.data = state.data.map(booking =>
-                    booking.id === action.payload.id ? action.payload : booking
+                    booking._id === action.payload._id ? action.payload : booking
                 )
             })
             .addCase(DeleteBooking.fulfilled, (state, action) => {
-                state.data = state.data.filter(booking => booking.id !== action.payload)
+                state.data = state.data.filter(booking => booking._id !== action.payload)
             })
     },
 })

@@ -36,7 +36,7 @@ roomsController.post("", async (req: Request, res: Response) => {
         const createdRoom = await roomService.create(newRoom)
         return res.status(201).send(createdRoom)
     } catch (error) {
-        return res.status(500).send({ error: "Error creating the room" })
+        return res.status(500).send({ error: "Error creating the room" + error })
     }
 })
 

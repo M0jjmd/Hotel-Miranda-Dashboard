@@ -38,6 +38,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isVisible }) => {
     localStorage.removeItem('name')
     localStorage.removeItem('email')
     localStorage.removeItem('token')
+    localStorage.removeItem('id')
     dispatch({ type: 'LOGOUT' })
     navigate("/")
   }

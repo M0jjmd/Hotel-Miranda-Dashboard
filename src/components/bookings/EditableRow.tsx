@@ -47,7 +47,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
     }
 
     const handleEditBooking = (booking: BookingInterface) => {
-        setEditRowId(booking.id)
+        setEditRowId(booking._id || '')
         setEditedBooking(booking)
         setMenuOpenId(null)
     }
@@ -72,53 +72,55 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
         <>
             <S.TableBody>
                 {filteredBookings.map(booking => (
-                    <S.TableRow key={booking.id}>
+                    <S.TableRow key={booking._id}>
                         <S.TableCell>
-                            {editRowId === booking.id ? (
+                            {editRowId === booking._id ? (
                                 <S.Input
                                     type="text"
-                                    value={editedBooking?.Guest?.Name || ''}
-                                    onChange={(e) => handleInputChange(e, 'Guest', 'Name')}
+                                    value={editedBooking?.Guest?.UserId || ''}
+                                    onChange={(e) => handleInputChange(e, 'Guest', 'UserId')}
                                 />
                             ) : (
-                                booking.Guest.Name
+                                booking.Guest.UserId
                             )}
                         </S.TableCell>
                         <S.TableCell>
-                            {editRowId === booking.id ? (
+                            {editRowId === booking._id ? (
                                 <S.Input
                                     type="date"
-                                    value={editedBooking?.OrderDate || ''}
+                                    value={editedBooking?.OrderDate ? new Date(editedBooking.OrderDate).toISOString().split('T')[0] : ''}
                                     onChange={(e) => handleInputChange(e, 'OrderDate')}
                                 />
                             ) : (
-                                new Date(booking.OrderDate).toLocaleDateString()
+                                booking.OrderDate ? new Date(booking.OrderDate).toLocaleDateString() : ''
                             )}
                         </S.TableCell>
+
                         <S.TableCell>
-                            {editRowId === booking.id ? (
+                            {editRowId === booking._id ? (
                                 <S.Input
                                     type="date"
-                                    value={editedBooking?.CheckIn || ''}
+                                    value={editedBooking?.CheckIn ? new Date(editedBooking.CheckIn).toISOString().split('T')[0] : ''}
                                     onChange={(e) => handleInputChange(e, 'CheckIn')}
                                 />
                             ) : (
-                                new Date(booking.CheckIn).toLocaleDateString()
+                                booking.CheckIn ? new Date(booking.CheckIn).toLocaleDateString() : ''
                             )}
                         </S.TableCell>
+
                         <S.TableCell>
-                            {editRowId === booking.id ? (
+                            {editRowId === booking._id ? (
                                 <S.Input
                                     type="date"
-                                    value={editedBooking?.CheckOut || ''}
+                                    value={editedBooking?.CheckOut ? new Date(editedBooking.CheckOut).toISOString().split('T')[0] : ''}
                                     onChange={(e) => handleInputChange(e, 'CheckOut')}
                                 />
                             ) : (
-                                new Date(booking.CheckOut).toLocaleDateString()
+                                booking.CheckOut ? new Date(booking.CheckOut).toLocaleDateString() : ''
                             )}
                         </S.TableCell>
                         <S.TableCell>
-                            {editRowId === booking.id ? (
+                            {editRowId === booking._id ? (
                                 <>
                                     <S.Input
                                         type="text"
@@ -136,7 +138,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                             )}
                         </S.TableCell>
                         <S.TableCell>
-                            {editRowId === booking.id ? (
+                            {editRowId === booking._id ? (
                                 <S.Input
                                     type="text"
                                     value={editedBooking?.Status || ''}
@@ -147,17 +149,17 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                             )}
                         </S.TableCell>
                         <S.TableCell>
-                            {editRowId === booking.id ? (
+                            {editRowId === booking._id ? (
                                 <S.Button onClick={handleSaveBooking}>Save</S.Button>
                             ) : (
                                 <S.ActionMenu>
-                                    <S.MoreButton onClick={() => handleMenuToggle(booking.id)}>
+                                    <S.MoreButton onClick={() => handleMenuToggle(booking._id || '')}>
                                         &#x22EE;
                                     </S.MoreButton>
-                                    {menuOpenId === booking.id && (
+                                    {menuOpenId === booking._id && (
                                         <S.Menu>
                                             <S.MenuItem onClick={() => handleEditBooking(booking)}>Edit</S.MenuItem>
-                                            <S.MenuItem onClick={() => handleDeleteBooking(booking.id)}>Delete</S.MenuItem>
+                                            <S.MenuItem onClick={() => handleDeleteBooking(booking._id || '')}>Delete</S.MenuItem>
                                         </S.Menu>
                                     )}
                                 </S.ActionMenu>

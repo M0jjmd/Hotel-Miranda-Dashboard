@@ -11,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate()
 
   const loginDataSelect = (state: RootState) => state.loginUser
-  const { isAuthentificated, name, email } = useSelector(loginDataSelect)
+  const { isAuthentificated, token, name, email, id } = useSelector(loginDataSelect)
   const { dispatch } = useAuth()
 
   const [username, setUsername] = useState('')
@@ -34,8 +34,10 @@ const Login = () => {
     if (isAuthentificated) {
       console.log('test useEffect')
       localStorage.setItem('isAuthentificated', 'true')
+      localStorage.setItem('token', token)
       localStorage.setItem('name', name)
       localStorage.setItem('email', email)
+      localStorage.setItem('id', id)
 
       dispatch({
         type: 'LOGIN',

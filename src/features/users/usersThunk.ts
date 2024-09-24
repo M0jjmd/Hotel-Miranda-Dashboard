@@ -87,7 +87,6 @@ export const CreateUser = createAsyncThunk<UserInterface, UserInterface>(
     "users/createUsers",
     async (newUser) => {
         try {
-            console.log('llega aqui pero peta')
             const response = await fetch('http://localhost:8080/api/users', {
                 method: 'POST',
                 headers: getAuthHeaders(),

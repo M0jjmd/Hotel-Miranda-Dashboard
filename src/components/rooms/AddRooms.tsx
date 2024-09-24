@@ -24,26 +24,11 @@ const AddRooms = () => {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, type, value, files } = e.target
 
-        if (type === 'file') {
-            if (files && files[0]) {
-                const reader = new FileReader()
-                reader.onloadend = () => {
-                    setFormValues((prevValues) => ({
-                        ...prevValues,
-                        Photo: reader.result as string,
-                    }))
-                }
-                reader.readAsDataURL(files[0])
-            }
-        } else {
-            setFormValues((prevValues) => ({
-                ...prevValues,
-                [name]: value,
-            }))
-        }
+        setFormValues((prevValues) => ({
+            ...prevValues,
+            [name]: value,
+        }))
     }
-
-
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target
@@ -90,7 +75,6 @@ const AddRooms = () => {
             Rate: parseFloat(formValues.Rate.toString()),
             OfferPrice: parseFloat(formValues.OfferPrice.toString()),
             Status: offerStatus ? 'Available' : 'Booked',
-            id: generateRandomId(),
         }
 
         addDispatch(CreateRoom(roomWithId))
@@ -108,9 +92,10 @@ const AddRooms = () => {
             <h3>Add New Room</h3>
             <label>Photos</label>
             <S.Input
-                type="file"
+                type="text"
                 name="Photo"
-                accept="image/*"
+                placeholder="Enter photo URL"
+                value={formValues.Photo}
                 onChange={handleInputChange}
             />
 
@@ -128,7 +113,7 @@ const AddRooms = () => {
 
             <label>Room Number</label>
             <S.Input
-                type="text"
+                type="number"
                 name="RoomNumber"
                 placeholder="Enter room number"
                 value={formValues.RoomNumber}
