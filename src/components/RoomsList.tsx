@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as S from '../styles/tablesForm'
+import { Toast } from '../components/ToastNotification'
 import { useAppDispatch, useAppSelector } from '../app/store'
 import { GetRooms } from '../features/rooms/roomsThunk'
 import { useAuth } from '../context/AuthContext'
@@ -25,6 +26,7 @@ const RoomList = () => {
     }
     if (roomsStatus === 'failed') {
       localStorage.clear()
+      Toast({ message: 'your session expired, log in again', success: false })
       navigate('/')
     }
   }, [roomDispatch, roomsStatus])

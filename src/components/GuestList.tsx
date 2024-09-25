@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as S from '../styles/tablesForm'
+import { Toast } from '../components/ToastNotification'
 import { useAuth } from '../context/AuthContext'
 import { GetBookings } from '../features/bookings/bookingsThunk'
 import { useAppDispatch, useAppSelector } from '../app/store'
@@ -31,6 +32,7 @@ const GuestList = () => {
     }
     if (bookingsStatus === 'failed') {
       localStorage.clear()
+      Toast({ message: 'your session expired, log in again', success: false })
       navigate('/')
     }
   }, [dispatchBooking, bookingsStatus, bookings.length])

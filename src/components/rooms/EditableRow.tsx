@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import * as S from '../../styles/tablesForm'
+import { Toast } from '../../components/ToastNotification'
 import { useAppDispatch } from '../../app/store'
 import { EditRoom, DeleteRoom } from '../../features/rooms/roomsThunk'
 import { RoomInterface } from '../../interfaces/roomInterface'
@@ -38,11 +39,13 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
             Facilities: room.Facilities,
             _id: room._id
         })
+        Toast({ message: 'Room successfully edited', success: true })
         setMenuOpenId(null)
     }
 
     const handleDeleteRoom = (id: string) => {
         dispatch(DeleteRoom(id))
+        Toast({ message: 'Room successfully deleted', success: true })
         setMenuOpenId(null)
     }
 

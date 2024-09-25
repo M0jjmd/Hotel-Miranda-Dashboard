@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import * as S from '../../styles/tablesForm'
+import { Toast } from '../../components/ToastNotification'
 import { useAuth } from '../../context/AuthContext'
 import { CreateBooking, GetBookings } from '../../features/bookings/bookingsThunk'
 import { useAppDispatch } from '../../app/store'
@@ -85,6 +86,7 @@ const AddBooking = () => {
                     },
                     Status: 'CHECK-IN',
                 })
+                Toast({ message: 'Added booking successfully', success: true })
                 dispatch({ type: 'CLOSE_FORM' })
             })
             .catch((error) => {
@@ -95,34 +97,10 @@ const AddBooking = () => {
     return (
         <S.FormContainer>
             <h3>Add New Booking</h3>
-            {/* <label>Guest Name</label>
-            <S.Input
-                type="text"
-                name="Guest.Name"
-                placeholder="Guest Name"
-                value={formValues.Guest.Name}
-                onChange={handleChange}
-            /> */}
-            {/* <label>Reservation ID</label>
-            <S.Input
-                type="text"
-                name="Guest.ReservationID"
-                placeholder="Reservation ID"
-                value={formValues.Guest.ReservationID}
-                onChange={handleChange}
-            /> */}
-            {/* <label>Order Date</label>
-            <S.Input
-                type="date"
-                name="OrderDate"
-                value={formValues.OrderDate}
-                onChange={handleChange}
-            /> */}
             <label>Check-In Date</label>
             <S.Input
                 type="date"
                 name="CheckIn"
-                // value={formValues.CheckIn}
                 value={formValues.CheckIn.toISOString().split('T')[0]}
                 onChange={handleChange}
             />
@@ -130,7 +108,6 @@ const AddBooking = () => {
             <S.Input
                 type="date"
                 name="CheckOut"
-                // value={formValues.CheckOut}
                 value={formValues.CheckOut.toISOString().split('T')[0]}
                 onChange={handleChange}
             />

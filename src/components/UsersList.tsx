@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as S from '../styles/tablesForm'
+import { Toast } from '../components/ToastNotification'
 import { useAppDispatch, useAppSelector } from '../app/store'
 import { GetUsers } from '../features/users/usersThunk'
 import { useAuth } from '../context/AuthContext'
@@ -32,6 +33,7 @@ function UsersList() {
     }
     if (usersStatus === 'failed') {
       localStorage.clear()
+      Toast({ message: 'your session expired, log in again', success: false })
       navigate('/')
     }
   }, [dipatchRooms, usersStatus, users.length])

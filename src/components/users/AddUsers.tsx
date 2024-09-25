@@ -1,9 +1,10 @@
 import { useState } from 'react'
+import * as S from '../../styles/tablesForm'
+import { Toast } from '../../components/ToastNotification'
 import { useAppDispatch } from '../../app/store'
 import { CreateUser, GetUsers } from '../../features/users/usersThunk'
 import { useAuth } from '../../context/AuthContext'
 import { UserInterface } from '../../interfaces/userInterface'
-import * as S from '../../styles/tablesForm'
 
 const AddUsers = () => {
     const userDispatch = useAppDispatch()
@@ -56,6 +57,7 @@ const AddUsers = () => {
         userDispatch(CreateUser(userWithId))
             .then(() => {
                 userDispatch(GetUsers())
+                Toast({ message: 'Added user successfully', success: true })
                 dispatch({ type: 'CLOSE_FORM' })
             })
             .catch((error) => {

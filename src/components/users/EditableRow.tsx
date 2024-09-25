@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import * as S from '../../styles/tablesForm'
+import { Toast } from '../../components/ToastNotification'
 import { useAppDispatch } from '../../app/store'
 import { DeleteUser, EditUser } from '../../features/users/usersThunk'
 import { UserInterface } from '../../interfaces/userInterface'
@@ -40,11 +41,13 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
             setEditRowId(room._id)
         }
         setEditedUser(room)
+        Toast({ message: 'User successfully edited', success: true })
         setMenuOpenId(null)
     }
 
     const handleDeleteUser = (id: string) => {
         dispatch(DeleteUser(id))
+        Toast({ message: 'User successfully deleted', success: true })
         setMenuOpenId(null)
     }
 

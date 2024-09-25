@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from '../styles/tablesForm'
 import * as T from '../styles/contactStyles'
+import { Toast } from '../components/ToastNotification'
 import { GetContacts, GetSingleContact, updateArchiveStatus } from '../features/contacts/contactsThunk'
 import { useAppDispatch, useAppSelector } from '../app/store'
 import { ContactInterface } from '../interfaces/contactInterface'
@@ -30,6 +31,7 @@ function ContactsView() {
         }
         if (contactsStatus === 'failed') {
             localStorage.clear()
+            Toast({ message: 'your session expired, log in again', success: false })
             navigate('/')
         }
     }, [dispatchContacts, contactsStatus])

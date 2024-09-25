@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import * as S from '../../styles/tablesForm'
+import { Toast } from '../../components/ToastNotification'
 import { EditBooking, DeleteBooking } from '../../features/bookings/bookingsThunk'
 import { BookingInterface } from '../../interfaces/bookingInterface'
 import { useAppDispatch } from '../../app/store'
@@ -49,6 +50,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
     const handleEditBooking = (booking: BookingInterface) => {
         setEditRowId(booking._id || '')
         setEditedBooking(booking)
+        Toast({ message: 'Booking successfully edited', success: true })
         setMenuOpenId(null)
     }
 
@@ -61,6 +63,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
 
     const handleDeleteBooking = (id: string) => {
         dispatch(DeleteBooking(id))
+         Toast({ message: 'Booking successfully deleted', success: true })
         setMenuOpenId(null)
     }
 

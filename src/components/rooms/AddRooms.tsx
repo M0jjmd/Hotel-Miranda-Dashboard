@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import * as S from '../../styles/tablesForm'
+import { Toast } from '../../components/ToastNotification'
 import { useAuth } from '../../context/AuthContext'
 import { useAppDispatch } from '../../app/store'
 import { CreateRoom, GetRooms } from '../../features/rooms/roomsThunk'
@@ -80,6 +81,7 @@ const AddRooms = () => {
         addDispatch(CreateRoom(roomWithId))
             .then(() => {
                 addDispatch(GetRooms())
+                Toast({ message: 'Added room successfully', success: true })
                 dispatch({ type: 'CLOSE_FORM' })
             })
             .catch((error) => {
