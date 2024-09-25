@@ -29,7 +29,7 @@ const roomsSlice = createSlice({
             })
             .addCase(GetRooms.rejected, (state, action) => {
                 state.status = "failed"
-                state.error = action.error.message || null
+                state.error = action.payload as string
             })
             .addCase(EditRoom.fulfilled, (state, action) => {
                 state.data = state.data.map(room =>

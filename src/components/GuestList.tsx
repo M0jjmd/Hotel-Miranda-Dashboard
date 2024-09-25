@@ -5,6 +5,7 @@ import { GetBookings } from '../features/bookings/bookingsThunk'
 import { useAppDispatch, useAppSelector } from '../app/store'
 import EditableRow from './bookings/EditableRow'
 import AddBooking from './bookings/AddBooking'
+import { useNavigate } from 'react-router-dom'
 
 const GuestList = () => {
   const [filterStatus, setFilterStatus] = useState('ALL')
@@ -14,13 +15,25 @@ const GuestList = () => {
   const dispatchBooking = useAppDispatch()
   const bookings = useAppSelector((state) => state.bookings.data)
   const bookingsStatus = useAppSelector((state) => state.bookings.status)
+  const navigate = useNavigate()
 
   useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      localStorage.clear()
+      navigate('/')
+      return
+    }
+
     if (bookingsStatus === 'idle') {
       dispatchBooking(GetBookings())
       dispatch({ type: 'CLOSE_FORM' })
     }
-  }, [dispatchBooking, bookingsStatus])
+    if (bookingsStatus === 'failed') {
+      localStorage.clear()
+      navigate('/')
+    }
+  }, [dispatchBooking, bookingsStatus, bookings.length])
 
   const sortedBookings = [...bookings].sort((a, b) => {
     const dateA = new Date(a.OrderDate)

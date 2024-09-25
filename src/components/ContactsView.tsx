@@ -4,6 +4,7 @@ import * as T from '../styles/contactStyles'
 import { GetContacts, GetSingleContact, updateArchiveStatus } from '../features/contacts/contactsThunk'
 import { useAppDispatch, useAppSelector } from '../app/store'
 import { ContactInterface } from '../interfaces/contactInterface'
+import { useNavigate } from 'react-router-dom'
 
 function ContactsView() {
     const [filter, setFilter] = useState<'ALL' | 'ARCHIVED'>('ALL')
@@ -14,10 +15,22 @@ function ContactsView() {
     const contacts = useAppSelector((state) => state.contacts.data)
     const contactsStatus = useAppSelector((state) => state.contacts.status)
     const singleMessages = useAppSelector((state) => state.contacts.singleContact)
+    const navigate = useNavigate()
 
     useEffect(() => {
+        const token = localStorage.getItem('token')
+        if (!token) {
+            localStorage.clear()
+            navigate('/')
+            return
+        }
+
         if (contactsStatus === 'idle') {
             dispatchContacts(GetContacts())
+        }
+        if (contactsStatus === 'failed') {
+            localStorage.clear()
+            navigate('/')
         }
     }, [dispatchContacts, contactsStatus])
 
@@ -29,15 +42,6 @@ function ContactsView() {
         const combinedString = JSON.stringify(contact).toLowerCase()
         return combinedString.includes(searchTerm.toLowerCase())
     })
-
-
-    // const filteredContacts = contacts.filter((contact: ContactInterface) => {
-    //     if (filter === 'ALL' && contact.actions.archive) return false
-    //     if (filter === 'ARCHIVED' && !contact.actions.archive) return false
-
-    //     const combinedString = JSON.stringify(contact).toLowerCase()
-    //     return combinedString.includes(searchTerm.toLowerCase())
-    // })
 
     const latestMessages = contacts.slice(-3)
 

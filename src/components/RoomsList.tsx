@@ -5,6 +5,7 @@ import { GetRooms } from '../features/rooms/roomsThunk'
 import { useAuth } from '../context/AuthContext'
 import AddRooms from './rooms/AddRooms'
 import EditableRow from './rooms/EditableRow'
+import { useNavigate } from 'react-router-dom'
 
 const RoomList = () => {
   const [filterStatus, setFilterStatus] = useState<'ALL' | 'Available' | 'Booked'>('ALL')
@@ -15,12 +16,18 @@ const RoomList = () => {
   const roomDispatch = useAppDispatch()
   const rooms = useAppSelector((state) => state.rooms.data)
   const roomsStatus = useAppSelector((state) => state.rooms.status)
+  const navigate = useNavigate()
+
   useEffect(() => {
     if (roomsStatus === 'idle') {
       roomDispatch(GetRooms())
       dispatch({ type: 'CLOSE_FORM' })
     }
-  }, [roomDispatch, roomsStatus, dispatch])
+    if (roomsStatus === 'failed') {
+      localStorage.clear()
+      navigate('/')
+    }
+  }, [roomDispatch, roomsStatus])
 
   const toggleSortOrder = () => {
     setIsDescending(!isDescending)

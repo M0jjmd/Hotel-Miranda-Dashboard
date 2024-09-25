@@ -34,11 +34,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isVisible }) => {
 
   const logOutUser = () => {
     logoutDispatch(logout())
-    localStorage.removeItem('isAuthentificated')
-    localStorage.removeItem('name')
-    localStorage.removeItem('email')
-    localStorage.removeItem('token')
-    localStorage.removeItem('id')
+    localStorage.clear()
     dispatch({ type: 'LOGOUT' })
     navigate("/")
   }

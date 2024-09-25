@@ -1,7 +1,7 @@
 import React, { createContext, ReactNode, useContext, useReducer } from 'react'
 
 interface userAuthentification {
-    isAuthenticated: string
+    isAuthenticated: boolean
     name: string
     email: string
     isFormOpen: boolean
@@ -15,7 +15,7 @@ type Action =
     | { type: 'CLOSE_FORM' }
 
 const initialState: userAuthentification = {
-    isAuthenticated: '',
+    isAuthenticated: false,
     name: '',
     email: '',
     isFormOpen: false,
@@ -26,7 +26,7 @@ const authReducer = (state: userAuthentification, action: Action): userAuthentif
         case 'LOGIN':
             return {
                 ...state,
-                isAuthenticated: 'true',
+                isAuthenticated: true,
                 name: action.payload.name,
                 email: action.payload.email,
             }
@@ -54,7 +54,7 @@ const authReducer = (state: userAuthentification, action: Action): userAuthentif
 }
 
 export interface AuthContextType {
-    state: userAuthentification;
+    state: userAuthentification
     dispatch: React.Dispatch<Action>
 }
 

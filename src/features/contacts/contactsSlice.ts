@@ -31,7 +31,7 @@ const contactsSlice = createSlice({
             })
             .addCase(GetContacts.rejected, (state, action) => {
                 state.status = "failed"
-                state.error = action.error.message || null
+                state.error = action.payload as string
             })
             .addCase(updateArchiveStatus.fulfilled, (state, action) => {
                 state.data = state.data.map(contact =>

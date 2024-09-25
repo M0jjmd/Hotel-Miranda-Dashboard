@@ -5,6 +5,7 @@ import { GetUsers } from '../features/users/usersThunk'
 import { useAuth } from '../context/AuthContext'
 import EditableRow from './users/EditableRow'
 import AddUsers from './users/AddUsers'
+import { useNavigate } from 'react-router-dom'
 
 function UsersList() {
   const [filter, setFilter] = useState<'ALL' | 'ACTIVE' | 'INACTIVE'>('ALL')
@@ -15,13 +16,25 @@ function UsersList() {
 
   const users = useAppSelector((state) => state.users.data)
   const usersStatus = useAppSelector((state) => state.users.status)
+  const navigate = useNavigate()
 
   useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      localStorage.clear()
+      navigate('/')
+      return
+    }
+
     if (usersStatus === 'idle') {
       dipatchRooms(GetUsers())
       dispatch({ type: 'CLOSE_FORM' })
     }
-  }, [dipatchRooms, usersStatus])
+    if (usersStatus === 'failed') {
+      localStorage.clear()
+      navigate('/')
+    }
+  }, [dipatchRooms, usersStatus, users.length])
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value.toLowerCase())

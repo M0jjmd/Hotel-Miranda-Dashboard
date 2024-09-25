@@ -4,6 +4,7 @@ import { BookingInterface } from "../../interfaces/bookingInterface"
 const getAuthHeaders = () => {
     const token = localStorage.getItem('token')
     if (!token) {
+        localStorage.clear()
         throw new Error('No token found. Please log in.')
     }
     return {
@@ -14,7 +15,7 @@ const getAuthHeaders = () => {
 
 export const GetBookings = createAsyncThunk<BookingInterface[]>(
     "bookings/getBookings",
-    async () => {
+    async (_, { rejectWithValue }) => {
         try {
             const req = await fetch(`http://localhost:8080/api/bookings`, {
                 method: 'GET',
@@ -22,6 +23,11 @@ export const GetBookings = createAsyncThunk<BookingInterface[]>(
             })
 
             if (!req.ok) {
+                if (req.status === 401) {
+                    return rejectWithValue('Token is invalid')
+                } else if (req.status === 403) {
+                    return rejectWithValue('Access forbidden')
+                }
                 throw new Error('Authentication failed.')
             }
 
@@ -29,7 +35,7 @@ export const GetBookings = createAsyncThunk<BookingInterface[]>(
             return json
         } catch (error) {
             console.error('Error fetching bookings:', error)
-            throw Error('Failed to fetch bookings.')
+            return rejectWithValue('Failed to fetch bookings.')
         }
     }
 )

@@ -4,6 +4,7 @@ import { UserInterface } from '../../interfaces/userInterface'
 const getAuthHeaders = () => {
     const token = localStorage.getItem('token')
     if (!token) {
+        localStorage.clear()
         throw new Error('No token found. Please log in.')
     }
     return {
@@ -14,7 +15,7 @@ const getAuthHeaders = () => {
 
 export const GetUsers = createAsyncThunk<UserInterface[]>(
     "users/getUsers",
-    async () => {
+    async (_, { rejectWithValue }) => {
         try {
             const req = await fetch(`http://localhost:8080/api/users`, {
                 method: 'GET',
@@ -22,6 +23,11 @@ export const GetUsers = createAsyncThunk<UserInterface[]>(
             })
 
             if (!req.ok) {
+                if (req.status === 401) {
+                    return rejectWithValue('Token is invalid')
+                } else if (req.status === 403) {
+                    return rejectWithValue('Access forbidden')
+                }
                 throw new Error('Authentication failed.')
             }
 
@@ -29,7 +35,7 @@ export const GetUsers = createAsyncThunk<UserInterface[]>(
             return json
         } catch (error) {
             console.error('Error fetching Users:', error)
-            throw Error('Failed to fetch Users.')
+            return rejectWithValue('Failed to fetch bookings.')
         }
     }
 )
