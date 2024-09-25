@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import * as S from '../styles/loginStyles'
+import { Toast } from '../components/ToastNotification'
 import { AuthentificateUser } from '../features/login/authenticateUserThunk'
 import { useAuth } from '../context/AuthContext'
 import { AppDispatch, RootState } from '../app/store'
@@ -21,15 +22,33 @@ const Login = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLocalError('')
+
+    if (!username || !password) {
+      setLocalError('Please enter both username and password')
+      Toast({ message: 'Please enter both username and password', success: false })
+      return
+    }
+
     try {
-      await loginDispatch(AuthentificateUser({ username, password }))
+      const response = await loginDispatch(AuthentificateUser({ username, password })).unwrap()
+
+      if (AuthentificateUser.rejected.match(response)) {
+        const message = typeof response.payload === 'string' ? response.payload : 'Invalid username or password'
+        setLocalError(message)
+        Toast({ message, success: false })
+      }
+
     } catch (error) {
-      setLocalError('Invalid username or password')
+      const message = 'An unexpected error occurred. Please try again.'
+      setLocalError(message)
+      Toast({ message, success: false })
+      console.error('Login failed:', error)
     }
   }
 
   useEffect(() => {
     if (isAuthentificated) {
+      Toast({ message: `¡Bienvenido, ${name}!`, success: true })
       localStorage.setItem('isAuthentificated', 'true')
       localStorage.setItem('token', token)
       localStorage.setItem('name', name)

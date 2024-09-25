@@ -7,9 +7,13 @@ import User from '../models/user.model'
 export const loginController = express.Router()
 
 loginController.post('/login', async (req: Request, res: Response) => {
-    console.log('POST /login route hit')
     const SECRET_KEY = process.env.SECRET_KEY || 'fallback_secret_key'
     const { username, password } = req.body
+
+    if (!username || !password) {
+        return res.status(400).json({ message: 'Username and password are required' });
+    }
+
     try {
         const user = await User.findOne({ username })
 

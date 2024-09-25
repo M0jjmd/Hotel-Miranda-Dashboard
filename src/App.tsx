@@ -3,6 +3,7 @@ import Bookings from './pages/Bookings'
 import Contacts from './pages/Contacts'
 import Rooms from './pages/Rooms'
 import Users from './pages/Users'
+import { Toasty } from './components/ToastNotification'
 import { Provider } from 'react-redux'
 import { AuthProvider } from './context/AuthContext'
 import { Routes, Route } from 'react-router-dom'
@@ -14,6 +15,7 @@ const App = () => {
   return (
     <>
       <Provider store={store}>
+        <Toasty />
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Login />} />

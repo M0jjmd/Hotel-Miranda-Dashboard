@@ -14,12 +14,14 @@ export const AuthentificateUser = createAsyncThunk(
 
             if (!req.ok) {
                 const errorData = await req.json()
+                console.log('Error data:', errorData)
                 return rejectWithValue(errorData.message)
             }
 
             const data = await req.json()
             return data
         } catch (error) {
+            console.log('Catch error:', error)
             return rejectWithValue('An error occurred while trying to log in.')
         }
     }
