@@ -1,10 +1,26 @@
 export interface RoomInterface {
-    _id?: string
+    id?: number
     Photo: string
     RoomNumber: number
     BedType: string
-    Facilities: string[]
+    Facilities?: FacilityInterface[]
     Rate: number
     OfferPrice: number
-    Status: string
+    Status: 'available' | 'booked'
 }
+
+export interface FacilityInterface {
+    id: number
+    name: string
+}
+
+// export interface RoomInterface {
+//     _id?: string
+//     Photo: string
+//     RoomNumber: number
+//     BedType: string
+//     Facilities: string[]
+//     Rate: number
+//     OfferPrice: number
+//     Status: string
+// }

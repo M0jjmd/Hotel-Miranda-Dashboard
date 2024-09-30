@@ -1,16 +1,31 @@
 export interface UserInterface {
-    _id?: string
+    id?: number
     username: string
     FullName: string
-    password?: string
+    password: string
     Email: string
-    Photo: string
+    Photo?: string
     EntryDate: Date
     PositionDescription: string
     Phone: string
-    State: string
+    State: 'active' | 'inactive'
     position: string
 }
+
+
+// export interface UserInterface {
+//     _id?: string
+//     username: string
+//     FullName: string
+//     password?: string
+//     Email: string
+//     Photo: string
+//     EntryDate: Date
+//     PositionDescription: string
+//     Phone: string
+//     State: string
+//     position: string
+// }
 
 export interface JwtPayload {
     username: string

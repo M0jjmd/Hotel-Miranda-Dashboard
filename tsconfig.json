@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "ESNext",
         "target": "es6",
         "useDefineForClassFields": true,
         "lib": [
@@ -28,10 +28,15 @@
     "include": [
         "src",
         "cypress/**/*.ts",
+        "seeds/**/*.ts",
+        "src/**/*.ts",
     ],
     "references": [
         {
             "path": "./tsconfig.node.json"
         }
+    ],
+    "exclude": [
+        "node_modules"
     ]
 }
