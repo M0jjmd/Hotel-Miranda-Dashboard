@@ -27,6 +27,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
     const handleSaveRoom = () => {
         if (editRowId) {
             dispatch(EditRoom({ ...editedRoom, id: editRowId } as RoomInterface))
+            Toast({ message: 'Room successfully edited', success: true })
             setEditRowId(null)
         }
     }
@@ -39,7 +40,6 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
             Facilities: room.Facilities,
             _id: room._id
         })
-        Toast({ message: 'Room successfully edited', success: true })
         setMenuOpenId(null)
     }
 
