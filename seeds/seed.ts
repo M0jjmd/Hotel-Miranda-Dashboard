@@ -8,7 +8,6 @@ import { ContactInterface } from '../src/interfaces/contactInterface'
 import connectDB from '../src/config/db'
 
 async function createTables(connection: mysql.Connection) {
-    // Crear tabla usersv  `CREATE DATABASE IF NOT EXISTS dashboardDB`
     await connection.query(`CREATE DATABASE IF NOT EXISTS dashboardDB`)
 
     await connection.query(`
@@ -27,7 +26,6 @@ async function createTables(connection: mysql.Connection) {
         )
     `)
 
-    // Crear tabla rooms
     await connection.query(`
         CREATE TABLE IF NOT EXISTS rooms (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -40,7 +38,6 @@ async function createTables(connection: mysql.Connection) {
         )
     `)
 
-    // Crear tabla facilities
     await connection.query(`
         CREATE TABLE IF NOT EXISTS facilities (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -48,7 +45,6 @@ async function createTables(connection: mysql.Connection) {
         )
     `)
 
-    // Crear tabla room_facilities
     await connection.query(`
         CREATE TABLE IF NOT EXISTS room_facilities (
             room_id INT NOT NULL,
@@ -59,7 +55,6 @@ async function createTables(connection: mysql.Connection) {
         )
     `)
 
-    // Crear tabla bookings
     await connection.query(`
         CREATE TABLE IF NOT EXISTS bookings (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -77,7 +72,6 @@ async function createTables(connection: mysql.Connection) {
         )
     `)
 
-    // Crear tabla contacts
     await connection.query(`
         CREATE TABLE IF NOT EXISTS contacts (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -103,8 +97,6 @@ async function seedDatabase() {
         const insertedUserIds = await seedUsers(connection)
         const insertedRoomIds = await seedRooms(connection)
         await seedBookings(connection, insertedUserIds, insertedRoomIds)
-        // await seedFacilities(connection)
-        // await seedBookings(connection)
         await seedContacts(connection, insertedUserIds)
 
         console.log('Datos ficticios añadidos exitosamente')
@@ -142,7 +134,6 @@ async function seedUsers(connection: mysql.Connection) {
         const number = faker.phone.number().split(' ')
         console.log(number)
         const newUser: UserInterface = {
-            // id: 0,
             username: faker.internet.userName(),
             FullName: faker.person.fullName(),
             password: hashedUserPassword,
@@ -171,10 +162,10 @@ async function seedUsers(connection: mysql.Connection) {
             ]
         )
 
-        insertedUserIds.push(result.insertId);
+        insertedUserIds.push(result.insertId)
     }
 
-    console.log('IDs de usuarios insertados:', insertedUserIds);
+    console.log('IDs de usuarios insertados:', insertedUserIds)
     return insertedUserIds
 }
 
@@ -185,13 +176,13 @@ async function seedRooms(connection: mysql.Connection) {
         { name: 'Minibar' },
         { name: 'Air Conditioning' },
         { name: 'Safe' },
-    ];
+    ]
 
     await connection.query('INSERT INTO facilities (FacilityName) VALUES ?', [
         facilities.map(facility => [facility.name])
-    ]);
+    ])
 
-    const rooms: RoomInterface[] = [];
+    const rooms: RoomInterface[] = []
     for (let i = 0; i < 10; i++) {
         const room = {
             Photo: faker.image.url(),
@@ -200,91 +191,35 @@ async function seedRooms(connection: mysql.Connection) {
             Rate: faker.number.int({ min: 5000, max: 20000 }),
             OfferPrice: faker.number.int({ min: 0, max: 100 }),
             Status: faker.helpers.arrayElement(['available', 'booked']),
-        };
-        rooms.push(room);
+        }
+        rooms.push(room)
     }
 
     const [result] = await connection.query<mysql.ResultSetHeader>(
         'INSERT INTO rooms (Photo, RoomNumber, BedType, Rate, OfferPrice, Status) VALUES ?',
         [rooms.map(room => [room.Photo, room.RoomNumber, room.BedType, room.Rate, room.OfferPrice, room.Status])]
-    );
+    )
 
-    // Obtenemos el primer ID insertado
-    const firstRoomId = result.insertId;
+    const firstRoomId = result.insertId
 
-    // Calcular los IDs de las habitaciones insertadas
-    const roomIds = Array.from({ length: rooms.length }, (_, index) => firstRoomId + index);
+    const roomIds = Array.from({ length: rooms.length }, (_, index) => firstRoomId + index)
 
-    // Obtener los facility IDs
-    const [facilitiesRows] = await connection.query('SELECT id FROM facilities');
-    const facilityIds = facilitiesRows as { id: number }[];
+    const [facilitiesRows] = await connection.query('SELECT id FROM facilities')
+    const facilityIds = facilitiesRows as { id: number }[]
 
-    // Asignar facilities a las rooms
-    const roomFacilities: [number, number][] = [];
+    const roomFacilities: [number, number][] = []
     for (let i = 0; i < rooms.length; i++) {
-        const randomFacilities = faker.helpers.arrayElements(facilityIds, 2);
+        const randomFacilities = faker.helpers.arrayElements(facilityIds, 2)
         randomFacilities.forEach(facility => {
-            roomFacilities.push([roomIds[i], facility.id]); // Usamos roomIds[i]
-        });
+            roomFacilities.push([roomIds[i], facility.id])
+        })
     }
 
-    await connection.query('INSERT INTO room_facilities (room_id, facility_id) VALUES ?', [roomFacilities]);
-    return roomIds;
+    await connection.query('INSERT INTO room_facilities (room_id, facility_id) VALUES ?', [roomFacilities])
+    return roomIds
 }
 
-// async function seedRooms(connection: mysql.Connection) {
-//     const facilities = [
-//         { name: 'WiFi' },
-//         { name: 'TV' },
-//         { name: 'Minibar' },
-//         { name: 'Air Conditioning' },
-//         { name: 'Safe' },
-//     ];
-
-//     await connection.query('INSERT INTO facilities (name) VALUES ?', [
-//         facilities.map(facility => [facility.name])
-//     ])
-
-//     const rooms: RoomInterface[] = [];
-//     for (let i = 0; i < 10; i++) {
-//         const room = {
-//             Photo: faker.image.url(),
-//             RoomNumber: faker.number.int({ min: 100, max: 500 }),
-//             BedType: faker.helpers.arrayElement(['Single', 'Double', 'Queen', 'King']),
-//             Rate: faker.number.int({ min: 5000, max: 20000 }),
-//             OfferPrice: faker.number.int({ min: 0, max: 100 }),
-//             Status: faker.helpers.arrayElement(['available', 'booked']),
-//         }
-//         rooms.push(room)
-//     }
-
-//     const [result] = await connection.query(
-//         'INSERT INTO rooms (Photo, RoomNumber, BedType, Rate, OfferPrice, Status) VALUES ?',
-//         [rooms.map(room => [room.Photo, room.RoomNumber, room.BedType, room.Rate, room.OfferPrice, room.Status])]
-//     )
-
-//     const roomIds = (result[0] as mysql.ResultSetHeader).insertId
-
-//     // Obtener los facility IDs
-//     const [facilitiesRows] = await connection.query('SELECT id FROM facilities')
-//     const facilityIds = facilitiesRows as { id: number }[]
-
-//     // Asignar facilities a las rooms
-//     const roomFacilities: [number, number][] = []
-//     for (let i = 0; i < rooms.length; i++) {
-//         const randomFacilities = faker.helpers.arrayElements(facilityIds, 2)
-//         randomFacilities.forEach(facility => {
-//             roomFacilities.push([roomIds + i, facility.id])
-//         })
-//     }
-
-//     await connection.query('INSERT INTO room_facilities (room_id, facility_id) VALUES ?', [roomFacilities])
-//     return roomIds
-// }
-
 async function seedBookings(connection: mysql.Connection, userIds: number[], roomIds: number[]) {
-    // const bookings: BookingInterface[] = [];
-
     for (let i = 0; i < 10; i++) {
         const booking: BookingInterface = {
             UserId: faker.helpers.arrayElement(userIds),
@@ -296,12 +231,12 @@ async function seedBookings(connection: mysql.Connection, userIds: number[], roo
             RoomType: faker.helpers.arrayElement(['Single', 'Double', 'Suite']),
             RoomNumber: faker.number.int({ min: 100, max: 500 }),
             Status: faker.helpers.arrayElement(['checked-in', 'checked-out']),
-        };
+        }
 
         await connection.query<ResultSetHeader>(
             'INSERT INTO bookings (UserId, RoomId, OrderDate, CheckIn, CheckOut, SpecialRequest, RoomType, RoomNumber, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
             [booking.UserId, booking.RoomId, booking.OrderDate, booking.CheckIn, booking.CheckOut, booking.SpecialRequest, booking.RoomType, booking.RoomNumber, booking.Status]
-        );
+        )
     }
 }
 
@@ -313,12 +248,12 @@ async function seedContacts(connection: mysql.Connection, userIds: number[]) {
             subject: faker.lorem.sentence(),
             comment: faker.lorem.paragraph(),
             archive: faker.datatype.boolean(),
-        };
+        }
 
         await connection.query<ResultSetHeader>(
             'INSERT INTO contacts (date, userId, subject, comment, archive) VALUES (?, ?, ?, ?, ?)',
             [contact.date, contact.userId, contact.subject, contact.comment, contact.archive]
-        );
+        )
     }
 }
 
