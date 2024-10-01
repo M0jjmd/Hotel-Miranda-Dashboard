@@ -14,14 +14,14 @@ async function createTables(connection: mysql.Connection) {
         CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             username VARCHAR(50) NOT NULL UNIQUE,
-            FullName VARCHAR(100) NOT NULL,
+            fullname VARCHAR(100) NOT NULL,
             password VARCHAR(255) NOT NULL,
-            Email VARCHAR(100) NOT NULL UNIQUE,
-            Photo VARCHAR(255),
-            EntryDate DATETIME NOT NULL,
-            PositionDescription VARCHAR(100) NOT NULL,
-            Phone VARCHAR(15) NOT NULL,
-            State ENUM('active', 'inactive') NOT NULL,
+            email VARCHAR(100) NOT NULL UNIQUE,
+            photo VARCHAR(255),
+            entry_date DATETIME NOT NULL,
+            position_description VARCHAR(100) NOT NULL,
+            phone VARCHAR(15) NOT NULL,
+            state ENUM('active', 'inactive') NOT NULL,
             position VARCHAR(50) NOT NULL
         )
     `)
@@ -29,19 +29,19 @@ async function createTables(connection: mysql.Connection) {
     await connection.query(`
         CREATE TABLE IF NOT EXISTS rooms (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            Photo VARCHAR(255) NOT NULL,
-            RoomNumber INT NOT NULL,
-            BedType ENUM('Single', 'Double', 'Queen', 'King') NOT NULL,
-            Rate INT NOT NULL,
-            OfferPrice INT NOT NULL,
-            Status ENUM('available', 'booked') NOT NULL
+            photo VARCHAR(255) NOT NULL,
+            room_number INT NOT NULL,
+            bed_type ENUM('Single', 'Double', 'Queen', 'King') NOT NULL,
+            rate INT NOT NULL,
+            offer_price INT NOT NULL,
+            status ENUM('available', 'booked') NOT NULL
         )
     `)
 
     await connection.query(`
         CREATE TABLE IF NOT EXISTS facilities (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            FacilityName VARCHAR(100) NOT NULL
+            facility_name VARCHAR(100) NOT NULL
         )
     `)
 
@@ -58,17 +58,15 @@ async function createTables(connection: mysql.Connection) {
     await connection.query(`
         CREATE TABLE IF NOT EXISTS bookings (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            UserId INT NOT NULL,
-            RoomId INT NOT NULL,
-            OrderDate DATETIME NOT NULL,
-            CheckIn DATETIME NOT NULL,
-            CheckOut DATETIME NOT NULL,
-            SpecialRequest TEXT,
-            RoomType ENUM('Single', 'Double', 'Suite') NOT NULL,
-            RoomNumber INT NOT NULL,
-            Status ENUM('checked-in', 'checked-out') NOT NULL,
-            FOREIGN KEY (UserId) REFERENCES users(id),
-            FOREIGN KEY (RoomId) REFERENCES rooms(id)
+            room_id INT NOT NULL,
+            order_date DATETIME NOT NULL,
+            check_in DATETIME NOT NULL,
+            check_out DATETIME NOT NULL,
+            special_request TEXT,
+            room_type ENUM('Single', 'Double', 'Suite') NOT NULL,
+            room_number INT NOT NULL,
+            status ENUM('checked-in', 'checked-out') NOT NULL,
+            FOREIGN KEY (room_id) REFERENCES rooms(id)
         )
     `)
 
@@ -76,11 +74,9 @@ async function createTables(connection: mysql.Connection) {
         CREATE TABLE IF NOT EXISTS contacts (
             id INT AUTO_INCREMENT PRIMARY KEY,
             date DATETIME NOT NULL,
-            userId INT NOT NULL,
             subject VARCHAR(255) NOT NULL,
             comment TEXT NOT NULL,
-            archive BOOLEAN NOT NULL,
-            FOREIGN KEY (userId) REFERENCES users(id)
+            archive BOOLEAN NOT NULL
         )
     `)
 }
@@ -94,10 +90,10 @@ async function seedDatabase() {
 
         await createTables(connection)
 
-        const insertedUserIds = await seedUsers(connection)
+        await seedUsers(connection)
         const insertedRoomIds = await seedRooms(connection)
-        await seedBookings(connection, insertedUserIds, insertedRoomIds)
-        await seedContacts(connection, insertedUserIds)
+        await seedBookings(connection, insertedRoomIds)
+        await seedContacts(connection)
 
         console.log('Datos ficticios añadidos exitosamente')
     } catch (error) {
@@ -113,19 +109,37 @@ async function seedUsers(connection: mysql.Connection) {
     const password = 'miContraseñaSegura'
     const hashedPassword = await bcrypt.hash(password, saltRounds)
 
-    users.push({
-        id: 0,
+    const johnDoe: UserInterface = {
+        id: 1,
         username: 'johndoe',
-        FullName: 'John Doe',
+        fullname: 'John Doe',
         password: hashedPassword,
-        Email: 'johndoe@example.com',
-        Photo: faker.image.avatar(),
-        EntryDate: new Date(),
-        PositionDescription: 'Manager',
-        Phone: '1234567890',
-        State: 'active',
+        email: 'johndoe@example.com',
+        photo: faker.image.avatar(),
+        entry_date: new Date(),
+        position_description: 'Manager',
+        phone: '1234567890',
+        state: 'active',
         position: 'manager',
-    })
+    }
+
+    await connection.query<ResultSetHeader>(
+        'INSERT INTO users (username, fullname, password, email, photo, entry_date, position_description, phone, state, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [
+            johnDoe.username,
+            johnDoe.fullname,
+            johnDoe.password,
+            johnDoe.email,
+            johnDoe.photo,
+            johnDoe.entry_date,
+            johnDoe.position_description,
+            johnDoe.phone,
+            johnDoe.state,
+            johnDoe.position,
+        ]
+    )
+
+    users.push(johnDoe)
 
     const insertedUserIds: number[] = []
 
@@ -135,29 +149,29 @@ async function seedUsers(connection: mysql.Connection) {
         console.log(number)
         const newUser: UserInterface = {
             username: faker.internet.userName(),
-            FullName: faker.person.fullName(),
+            fullname: faker.person.fullName(),
             password: hashedUserPassword,
-            Email: faker.internet.email(),
-            Photo: faker.image.avatar(),
-            EntryDate: faker.date.past(),
-            PositionDescription: faker.lorem.sentence(),
-            Phone: number[0],
-            State: faker.helpers.arrayElement(['active', 'inactive']),
+            email: faker.internet.email(),
+            photo: faker.image.avatar(),
+            entry_date: faker.date.past(),
+            position_description: faker.lorem.sentence(),
+            phone: number[0],
+            state: faker.helpers.arrayElement(['active', 'inactive']),
             position: faker.helpers.arrayElement(['receptionist', 'manager', 'cleaner']),
         }
 
         const [result] = await connection.query<ResultSetHeader>(
-            'INSERT INTO users (username, FullName, password, Email, Photo, EntryDate, PositionDescription, Phone, State, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            'INSERT INTO users (username, fullname, password, email, photo, entry_date, position_description, phone, state, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
             [
                 newUser.username,
-                newUser.FullName,
+                newUser.fullname,
                 newUser.password,
-                newUser.Email,
-                newUser.Photo,
-                newUser.EntryDate,
-                newUser.PositionDescription,
-                newUser.Phone,
-                newUser.State,
+                newUser.email,
+                newUser.photo,
+                newUser.entry_date,
+                newUser.position_description,
+                newUser.phone,
+                newUser.state,
                 newUser.position,
             ]
         )
@@ -178,26 +192,26 @@ async function seedRooms(connection: mysql.Connection) {
         { name: 'Safe' },
     ]
 
-    await connection.query('INSERT INTO facilities (FacilityName) VALUES ?', [
+    await connection.query('INSERT INTO facilities (facility_name) VALUES ?', [
         facilities.map(facility => [facility.name])
     ])
 
     const rooms: RoomInterface[] = []
     for (let i = 0; i < 10; i++) {
         const room = {
-            Photo: faker.image.url(),
-            RoomNumber: faker.number.int({ min: 100, max: 500 }),
-            BedType: faker.helpers.arrayElement(['Single', 'Double', 'Queen', 'King']),
-            Rate: faker.number.int({ min: 5000, max: 20000 }),
-            OfferPrice: faker.number.int({ min: 0, max: 100 }),
-            Status: faker.helpers.arrayElement(['available', 'booked']),
+            photo: faker.image.url(),
+            room_number: faker.number.int({ min: 100, max: 500 }),
+            bed_type: faker.helpers.arrayElement(['Single', 'Double', 'Queen', 'King']),
+            rate: faker.number.int({ min: 5000, max: 20000 }),
+            offer_price: faker.number.int({ min: 0, max: 100 }),
+            status: faker.helpers.arrayElement(['available', 'booked']),
         }
         rooms.push(room)
     }
 
     const [result] = await connection.query<mysql.ResultSetHeader>(
-        'INSERT INTO rooms (Photo, RoomNumber, BedType, Rate, OfferPrice, Status) VALUES ?',
-        [rooms.map(room => [room.Photo, room.RoomNumber, room.BedType, room.Rate, room.OfferPrice, room.Status])]
+        'INSERT INTO rooms (photo, room_number, bed_type, rate, offer_price, status) VALUES ?',
+        [rooms.map(room => [room.photo, room.room_number, room.bed_type, room.rate, room.offer_price, room.status])]
     )
 
     const firstRoomId = result.insertId
@@ -219,40 +233,38 @@ async function seedRooms(connection: mysql.Connection) {
     return roomIds
 }
 
-async function seedBookings(connection: mysql.Connection, userIds: number[], roomIds: number[]) {
+async function seedBookings(connection: mysql.Connection, roomIds: number[]) {
     for (let i = 0; i < 10; i++) {
         const booking: BookingInterface = {
-            UserId: faker.helpers.arrayElement(userIds),
-            RoomId: faker.helpers.arrayElement(roomIds),
-            OrderDate: faker.date.past(),
-            CheckIn: faker.date.future(),
-            CheckOut: faker.date.future(),
-            SpecialRequest: faker.lorem.sentence(),
-            RoomType: faker.helpers.arrayElement(['Single', 'Double', 'Suite']),
-            RoomNumber: faker.number.int({ min: 100, max: 500 }),
-            Status: faker.helpers.arrayElement(['checked-in', 'checked-out']),
+            room_id: faker.helpers.arrayElement(roomIds),
+            order_date: faker.date.past(),
+            check_in: faker.date.future(),
+            check_out: faker.date.future(),
+            special_request: faker.lorem.sentence(),
+            room_type: faker.helpers.arrayElement(['Single', 'Double', 'Suite']),
+            room_number: faker.number.int({ min: 100, max: 500 }),
+            status: faker.helpers.arrayElement(['checked-in', 'checked-out']),
         }
 
         await connection.query<ResultSetHeader>(
-            'INSERT INTO bookings (UserId, RoomId, OrderDate, CheckIn, CheckOut, SpecialRequest, RoomType, RoomNumber, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [booking.UserId, booking.RoomId, booking.OrderDate, booking.CheckIn, booking.CheckOut, booking.SpecialRequest, booking.RoomType, booking.RoomNumber, booking.Status]
+            'INSERT INTO bookings ( room_id, order_date, check_in, check_out, special_request, room_type, room_number, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+            [booking.room_id, booking.order_date, booking.check_in, booking.check_out, booking.special_request, booking.room_type, booking.room_number, booking.status]
         )
     }
 }
 
-async function seedContacts(connection: mysql.Connection, userIds: number[]) {
+async function seedContacts(connection: mysql.Connection) {
     for (let i = 0; i < 5; i++) {
         const contact: ContactInterface = {
             date: new Date(),
-            userId: faker.helpers.arrayElement(userIds),
             subject: faker.lorem.sentence(),
             comment: faker.lorem.paragraph(),
             archive: faker.datatype.boolean(),
         }
 
         await connection.query<ResultSetHeader>(
-            'INSERT INTO contacts (date, userId, subject, comment, archive) VALUES (?, ?, ?, ?, ?)',
-            [contact.date, contact.userId, contact.subject, contact.comment, contact.archive]
+            'INSERT INTO contacts (date, subject, comment, archive) VALUES (?, ?, ?, ?)',
+            [contact.date, contact.subject, contact.comment, contact.archive]
         )
     }
 }

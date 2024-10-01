@@ -10,23 +10,33 @@ interface EditableRowProps {
 }
 
 function EditableRow({ filteredUsers }: EditableRowProps) {
-    const [editRowId, setEditRowId] = useState<string | null>(null)
+    const [editRowId, setEditRowId] = useState<number | null>(null)
     const [editedUser, setEditedUser] = useState<Partial<UserInterface>>({})
     const [menuOpenId, setMenuOpenId] = useState<string | null>(null)
 
     const dispatch = useAppDispatch()
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof UserInterface) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, field: keyof UserInterface) => {
         const { value } = e.target
+        const newValue = field === 'entry_date' ? new Date(value) : value
+
         setEditedUser(prevValues => ({
             ...prevValues,
-            [field]: value
+            [field]: newValue
         }))
     }
 
     const handleSaveUser = () => {
         if (editRowId) {
-            dispatch(EditUser({ ...editedUser, id: editRowId } as UserInterface))
+            const userToSave = {
+                ...editedUser,
+                id: editRowId,
+                entry_date: editedUser.entry_date instanceof Date
+                    ? formatDateForMySQL(editedUser.entry_date)
+                    : editedUser.entry_date
+            } as UserInterface
+
+            dispatch(EditUser(userToSave))
                 .then(() => {
                     setEditRowId(null)
                 })
@@ -36,11 +46,12 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
         }
     }
 
-    const handleEditUser = (room: UserInterface) => {
-        if (room._id) {
-            setEditRowId(room._id)
-        }
-        setEditedUser(room)
+    const handleEditUser = (user: UserInterface) => {
+        setEditRowId(user.id ?? null)
+        setEditedUser({
+            ...user,
+            entry_date: user.entry_date instanceof Date ? user.entry_date : new Date(user.entry_date)
+        })
         Toast({ message: 'User successfully edited', success: true })
         setMenuOpenId(null)
     }
@@ -55,84 +66,100 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
         setMenuOpenId(menuOpenId === id ? null : id)
     }
 
+    const formatDate = (dateString: string): string => {
+        if (!dateString) return ''
+        const date = new Date(dateString)
+        return date.toLocaleString()
+    }
 
+    const formatDateForMySQL = (date: Date): string => {
+        const year = date.getFullYear()
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const day = String(date.getDate()).padStart(2, '0')
+        const hours = String(date.getHours()).padStart(2, '0')
+        const minutes = String(date.getMinutes()).padStart(2, '0')
+
+        return `${year}-${month}-${day} ${hours}:${minutes}:00`
+    }
     return (
         <>
             <S.TableBody>
+
                 {filteredUsers.map(user => (
-                    <S.TableRow key={user._id}>
+                    <S.TableRow key={user.id}>
                         <S.TableCell>
-                            <S.TablePhoto src={user.Photo} alt={user.FullName} />
-                            {editRowId === user._id ? (
+                            <S.TablePhoto src={user.photo} alt={user.fullname} />
+                            {editRowId === user.id ? (
                                 <S.Input
                                     type="text"
-                                    value={editedUser.FullName ?? ''}
-                                    onChange={(e) => handleInputChange(e, 'FullName')}
+                                    value={editedUser.fullname ?? ''}
+                                    onChange={(e) => handleInputChange(e, 'fullname')}
                                     placeholder="Enter full name"
                                 />
                             ) : (
-                                user.FullName
+                                user.fullname
                             )}
                         </S.TableCell>
                         <S.TableCell>
-                            {editRowId === user._id ? (
+                            {editRowId === user.id ? (
                                 <S.Input
                                     type="text"
-                                    value={editedUser.PositionDescription ?? ''}
-                                    onChange={(e) => handleInputChange(e, 'PositionDescription')}
+                                    value={editedUser.position_description ?? ''}
+                                    onChange={(e) => handleInputChange(e, 'position_description')}
                                     placeholder="Enter position description"
                                 />
                             ) : (
-                                user.PositionDescription
+                                user.position_description
                             )}
                         </S.TableCell>
                         <S.TableCell>
-                            {editRowId === user._id ? (
+                            {editRowId === user.id ? (
                                 <S.Input
                                     type="date"
-                                    value={editedUser.EntryDate ? new Date(editedUser.EntryDate).toISOString().split('T')[0] : ''}
-                                    onChange={(e) => handleInputChange(e, 'EntryDate')}
+                                    value={editedUser.entry_date ? new Date(editedUser.entry_date).toISOString().slice(0, 10) : ''}
+                                    onChange={(e) => handleInputChange(e, 'entry_date')}
                                 />
                             ) : (
-                                user.EntryDate instanceof Date ? user.EntryDate.toLocaleDateString() : user.EntryDate
+                                formatDate(user.entry_date instanceof Date ? user.entry_date.toISOString() : user.entry_date)
                             )}
                         </S.TableCell>
                         <S.TableCell>
-                            {editRowId === user._id ? (
+                            {editRowId === user.id ? (
                                 <S.Input
                                     type="tel"
-                                    value={editedUser.Phone ?? ''}
-                                    onChange={(e) => handleInputChange(e, 'Phone')}
+                                    value={editedUser.phone ?? ''}
+                                    onChange={(e) => handleInputChange(e, 'phone')}
                                     placeholder="Enter phone number"
                                 />
                             ) : (
-                                user.Phone
+                                user.phone
                             )}
                         </S.TableCell>
                         <S.TableCell>
-                            {editRowId === user._id ? (
-                                <S.Input
-                                    type="text"
-                                    value={editedUser.State ?? ''}
-                                    onChange={(e) => handleInputChange(e, 'State')}
-                                    placeholder="Enter state"
-                                />
+                            {editRowId === user.id ? (
+                                <S.Select
+                                    value={editedUser.state ?? 'active'}
+                                    onChange={(e) => handleInputChange(e, 'state')}
+                                >
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </S.Select>
                             ) : (
-                                user.State
+                                user.state
                             )}
                         </S.TableCell>
                         <S.TableCell>
-                            {editRowId === user._id ? (
+                            {editRowId === user.id ? (
                                 <S.Button onClick={() => handleSaveUser()}>Save</S.Button>
                             ) : (
                                 <S.ActionMenu>
-                                    <S.MoreButton onClick={() => handleMenuToggle(user._id || '')}>
+                                    <S.MoreButton onClick={() => handleMenuToggle(user.id?.toString() || '')}>
                                         &#x22EE;
                                     </S.MoreButton>
-                                    {menuOpenId === user._id && (
+                                    {menuOpenId === user.id?.toString() && (
                                         <S.Menu>
                                             <S.MenuItem onClick={() => handleEditUser(user)}>Edit</S.MenuItem>
-                                            <S.MenuItem onClick={() => handleDeleteUser(user._id || '')}>Delete</S.MenuItem>
+                                            <S.MenuItem onClick={() => handleDeleteUser(user.id?.toString() || '')}>Delete</S.MenuItem>
                                         </S.Menu>
                                     )}
                                 </S.ActionMenu>

@@ -13,6 +13,18 @@ const getAuthHeaders = () => {
     }
 }
 
+const tokenVaidation = (req: Response) => {
+    if (!req.ok) {
+        if (req.status === 401) {
+            return { error: 'Token is invalid' }
+        } else if (req.status === 403) {
+            return { error: 'Access forbidden' }
+        }
+        throw new Error('Authentication failed.')
+    }
+    return null
+}
+
 export const GetUsers = createAsyncThunk<UserInterface[]>(
     "users/getUsers",
     async (_, { rejectWithValue }) => {
@@ -22,13 +34,10 @@ export const GetUsers = createAsyncThunk<UserInterface[]>(
                 headers: getAuthHeaders(),
             })
 
-            if (!req.ok) {
-                if (req.status === 401) {
-                    return rejectWithValue('Token is invalid')
-                } else if (req.status === 403) {
-                    return rejectWithValue('Access forbidden')
-                }
-                throw new Error('Authentication failed.')
+            const responseError = tokenVaidation(req)
+
+            if (responseError) {
+                return rejectWithValue(responseError.error)
             }
 
             const json = await req.json()
@@ -44,7 +53,7 @@ export const EditUser = createAsyncThunk<UserInterface, UserInterface>(
     "users/editUsers",
     async (updatedUser) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/users/${updatedUser._id}`, {
+            const response = await fetch(`http://localhost:8080/api/users/${updatedUser.id}`, {
                 method: 'PUT',
                 headers: getAuthHeaders(),
                 body: JSON.stringify(updatedUser),

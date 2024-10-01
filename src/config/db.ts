@@ -21,8 +21,6 @@ const connectDB = async () => {
         })
 
         await tempConnection.query(`CREATE DATABASE IF NOT EXISTS ${database}`)
-        console.log(`Base de datos '${database}' creada o ya existe.`)
-
         await tempConnection.end()
 
         const connection = await mysql.createConnection({

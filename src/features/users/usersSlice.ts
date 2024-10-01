@@ -33,11 +33,11 @@ const usersSlice = createSlice({
             })
             .addCase(EditUser.fulfilled, (state, action) => {
                 state.data = state.data.map(user =>
-                    user._id === action.payload._id ? action.payload : user
+                    user.id === action.payload.id ? action.payload : user
                 )
             })
             .addCase(DeleteUser.fulfilled, (state, action) => {
-                state.data = state.data.filter(user => user._id !== action.payload)
+                state.data = state.data.filter(user => user.id !== Number(action.payload))
             })
     },
 })

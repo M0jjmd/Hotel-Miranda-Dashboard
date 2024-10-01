@@ -25,9 +25,38 @@ export const authenticateTokenMiddleware = (req: Request, res: Response, next: N
         if (err) {
             return res.status(403).json({ message: 'Token is invalid' })
         }
+
+        if (!decoded) {
+            return res.status(403).json({ message: 'Token is invalid' });
+        }
+
         const payload = decoded as JwtPayload
         req.user = payload
 
         next()
     })
+}
+
+export const getAuthHeaders = () => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+        localStorage.clear()
+        throw new Error('No token found. Please log in.')
+    }
+    return {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+    }
+}
+
+export const tokenVaidation = (req: Response): { error?: string } | null => {
+    if (req.statusCode !== 200) {
+        if (req.statusCode === 401) {
+            return { error: 'Token is invalid' }
+        } else if (req.statusCode === 403) {
+            return { error: 'Access forbidden' }
+        }
+        throw new Error('Authentication failed.')
+    }
+    return null
 }

@@ -35,7 +35,7 @@ const contactsSlice = createSlice({
             })
             .addCase(updateArchiveStatus.fulfilled, (state, action) => {
                 state.data = state.data.map(contact =>
-                    contact._id === action.payload._id ? action.payload : contact
+                    contact.id === action.payload.id ? action.payload : contact
                 )
             })
             .addCase(GetSingleContact.fulfilled, (state, action) => {

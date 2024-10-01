@@ -13,7 +13,7 @@ function UsersList() {
   const [searchTerm, setSearchTerm] = useState('')
   const { state, dispatch } = useAuth()
 
-  const dipatchRooms = useAppDispatch()
+  const dispatchUsers = useAppDispatch()
 
   const users = useAppSelector((state) => state.users.data)
   const usersStatus = useAppSelector((state) => state.users.status)
@@ -28,7 +28,7 @@ function UsersList() {
     }
 
     if (usersStatus === 'idle') {
-      dipatchRooms(GetUsers())
+      dispatchUsers(GetUsers())
       dispatch({ type: 'CLOSE_FORM' })
     }
     if (usersStatus === 'failed') {
@@ -36,7 +36,7 @@ function UsersList() {
       Toast({ message: 'your session expired, log in again', success: false })
       navigate('/')
     }
-  }, [dipatchRooms, usersStatus, users.length])
+  }, [dispatchUsers, usersStatus, users.length])
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value.toLowerCase())
@@ -44,7 +44,7 @@ function UsersList() {
 
   const filteredUsers = users
     .filter(user => {
-      if (filter !== 'ALL' && user.State.toLowerCase() !== filter.toLowerCase()) return false
+      if (filter !== 'ALL' && user.state.toLowerCase() !== filter.toLowerCase()) return false
       const combinedString = JSON.stringify(user).toLowerCase()
       return combinedString.includes(searchTerm.toLowerCase())
     })

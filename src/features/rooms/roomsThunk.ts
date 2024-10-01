@@ -66,7 +66,7 @@ export const EditRoom = createAsyncThunk<RoomInterface, RoomInterface>(
     "rooms/editRooms",
     async (updatedRoom) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/rooms/${updatedRoom._id}`, {
+            const response = await fetch(`http://localhost:8080/api/rooms/${updatedRoom.id}`, {
                 method: 'PUT',
                 headers: getAuthHeaders(),
                 body: JSON.stringify(updatedRoom),

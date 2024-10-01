@@ -10,20 +10,20 @@ const AddUsers = () => {
     const userDispatch = useAppDispatch()
     const [formValues, setFormValues] = useState<Partial<UserInterface>>({
         username: '',
-        FullName: '',
+        fullname: '',
         password: '',
-        Email: '',
-        Photo: '',
-        EntryDate: new Date,
-        PositionDescription: '',
-        Phone: '',
-        State: 'ACTIVE',
+        email: '',
+        photo: '',
+        entry_date: new Date(),
+        position_description: '',
+        phone: '',
+        state: 'active',
         position: '',
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target
-        if (name === 'EntryDate') {
+        if (name === 'entry_date') {
             setFormValues((prevValues) => ({
                 ...prevValues,
                 [name]: new Date(value),
@@ -38,20 +38,32 @@ const AddUsers = () => {
 
     const { dispatch } = useAuth()
 
+    const formatDateForMySQL = (date: Date): string => {
+        const year = date.getFullYear()
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const day = String(date.getDate()).padStart(2, '0')
+        const hours = String(date.getHours()).padStart(2, '0')
+        const minutes = String(date.getMinutes()).padStart(2, '0')
+
+        return `${year}-${month}-${day} ${hours}:${minutes}:00`
+    }
+
     const handleAddUser = (e: React.FormEvent): void => {
         e.preventDefault()
 
         const userWithId = {
-            username: (formValues.FullName || '').replace(/\s+/g, '').toLowerCase(),
-            FullName: formValues.FullName || '',
+            username: (formValues.fullname || '').replace(/\s+/g, '').toLowerCase(),
+            fullname: formValues.fullname || '',
             password: formValues.password || '',
-            Email: formValues.Email || '',
-            Photo: formValues.Photo || '',
-            EntryDate: formValues.EntryDate || new Date,
-            PositionDescription: formValues.PositionDescription || '',
-            Phone: formValues.Phone || '',
-            State: formValues.State || 'ACTIVE',
-            position: formValues.PositionDescription || '',
+            email: formValues.email || '',
+            photo: formValues.photo || '',
+            entry_date: formValues.entry_date instanceof Date
+                ? formatDateForMySQL(formValues.entry_date)
+                : (typeof formValues.entry_date === 'string' ? formValues.entry_date : new Date()),
+            position_description: formValues.position_description || '',
+            phone: formValues.phone || '',
+            state: formValues.state || 'active',
+            position: formValues.position_description || '',
         }
 
         userDispatch(CreateUser(userWithId))
@@ -65,25 +77,24 @@ const AddUsers = () => {
             })
     }
 
-
     return (
         <S.FormContainer>
             <h3>Add New User</h3>
             <label>Photo URL</label>
             <S.Input
                 type="text"
-                name="Photo"
+                name="photo"
                 placeholder="Enter photo URL"
-                value={formValues.Photo}
+                value={formValues.photo}
                 onChange={handleChange}
             />
 
             <label>Full Name</label>
             <S.Input
                 type="text"
-                name="FullName"
+                name="fullname"
                 placeholder="Enter full name"
-                value={formValues.FullName}
+                value={formValues.fullname}
                 onChange={handleChange}
             />
 
@@ -99,47 +110,47 @@ const AddUsers = () => {
             <label>Email</label>
             <S.Input
                 type="email"
-                name="Email"
+                name="email"
                 placeholder="Enter email"
-                value={formValues.Email}
+                value={formValues.email}
                 onChange={handleChange}
             />
 
             <label>Entry Date</label>
             <S.Input
                 type="date"
-                name="EntryDate"
-                value={formValues.EntryDate ? formValues.EntryDate.toISOString().split('T')[0] : ''}
+                name="entry_date"
+                value={formValues.entry_date ? new Date(formValues.entry_date).toISOString().slice(0, 10) : ''}
                 onChange={handleChange}
             />
 
             <label>Position Description</label>
             <S.Input
                 type="text"
-                name="PositionDescription"
+                name="position_description"
                 placeholder="Enter position description"
-                value={formValues.PositionDescription}
+                value={formValues.position_description}
                 onChange={handleChange}
             />
 
             <label>Phone</label>
             <S.Input
                 type="tel"
-                name="Phone"
+                name="phone"
                 placeholder="Enter phone number"
-                value={formValues.Phone}
+                value={formValues.phone}
                 onChange={handleChange}
             />
 
             <label>Status</label>
             <S.ToggleButton
-                active={formValues.State === 'ACTIVE'}
+                active={formValues.state === 'active'}
                 onClick={() => setFormValues(prevValues => ({
                     ...prevValues,
-                    State: prevValues.State === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
+                    state: prevValues.state === 'active' ? 'inactive' : 'active'
                 }))}
             >
-                {formValues.State}
+                {formValues.state}
             </S.ToggleButton>
 
             <S.Button onClick={handleAddUser}>Add User</S.Button>
@@ -147,4 +158,4 @@ const AddUsers = () => {
     )
 }
 
-export default AddUsers
+export default AddUsers 
