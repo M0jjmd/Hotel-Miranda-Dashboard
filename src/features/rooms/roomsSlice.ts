@@ -33,11 +33,11 @@ const roomsSlice = createSlice({
             })
             .addCase(EditRoom.fulfilled, (state, action) => {
                 state.data = state.data.map(room =>
-                    room._id === action.payload._id ? action.payload : room
+                    room.id === action.payload.id ? action.payload : room
                 )
             })
             .addCase(DeleteRoom.fulfilled, (state, action) => {
-                state.data = state.data.filter(room => room._id !== action.payload)
+                state.data = state.data.filter(room => room.id !== Number(action.payload))
             })
     },
 })

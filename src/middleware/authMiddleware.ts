@@ -27,7 +27,7 @@ export const authenticateTokenMiddleware = (req: Request, res: Response, next: N
         }
 
         if (!decoded) {
-            return res.status(403).json({ message: 'Token is invalid' });
+            return res.status(403).json({ message: 'Token is invalid' })
         }
 
         const payload = decoded as JwtPayload

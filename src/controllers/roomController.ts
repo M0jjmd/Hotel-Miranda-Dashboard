@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express'
 import { RoomServices } from '../services/roomServices'
-import { RoomInterface } from '../interfaces/roomInterface'
+import { Facility, RoomInterface } from '../interfaces/roomInterface'
 import mysql from 'mysql2/promise'
 
 export const roomsController = (connection: mysql.Connection) => {
@@ -33,9 +33,14 @@ export const roomsController = (connection: mysql.Connection) => {
 
     roomController.post("", async (req: Request, res: Response) => {
         const newRoom: RoomInterface = req.body
+        const facilityIds: number[] = req.body.facilities
+
+        if (!facilityIds || facilityIds.length === 0) {
+            return res.status(400).send({ error: "Facilities are required." })
+        }
 
         try {
-            const createdRoom = await roomService.create(newRoom)
+            const createdRoom = await roomService.create(newRoom, facilityIds)
             return res.status(201).send(createdRoom)
         } catch (error) {
             console.log(error)

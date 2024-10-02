@@ -4,26 +4,31 @@ import { Toast } from '../../components/ToastNotification'
 import { useAuth } from '../../context/AuthContext'
 import { useAppDispatch } from '../../app/store'
 import { CreateRoom, GetRooms } from '../../features/rooms/roomsThunk'
-import { RoomInterface } from '../../interfaces/roomInterface'
+import { RoomInterface, Facility } from '../../interfaces/roomInterface'
 
 const AddRooms = () => {
     const addDispatch = useAppDispatch()
     const { dispatch } = useAuth()
-    const [offerStatus, setOfferStatus] = useState(false)
     const [formValues, setFormValues] = useState<RoomInterface>({
-        Photo: '',
-        RoomNumber: 0,
-        BedType: 'Single Bed',
-        Facilities: [],
-        Rate: 0,
-        OfferPrice: 0,
-        Status: 'Booked',
+        photo: '',
+        room_number: 0,
+        bed_type: 'Single',
+        facilities: [],
+        rate: 0,
+        offer_price: 0,
+        status: 'available',
     })
 
-    const facilitiesOptions = ['TV', 'Bathtub', 'Sea View', 'WiFi', 'Air Conditioning']
+    const facilitiesOptions: Facility[] = [
+        { id: 1, facility_name: 'TV' },
+        { id: 2, facility_name: 'Bathtub' },
+        { id: 3, facility_name: 'Sea View' },
+        { id: 4, facility_name: 'WiFi' },
+        { id: 5, facility_name: 'Air Conditioning' },
+    ]
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, type, value, files } = e.target
+        const { name, value } = e.target
 
         setFormValues((prevValues) => ({
             ...prevValues,
@@ -33,60 +38,60 @@ const AddRooms = () => {
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target
-        setFormValues(prevValues => ({
+        setFormValues((prevValues) => ({
             ...prevValues,
             [name]: value,
         }))
     }
 
-    const toggleFacility = (facility: string) => {
-        setFormValues(prevValues => {
-            const updatedFacilities = prevValues.Facilities.includes(facility)
-                ? prevValues.Facilities.filter((item) => item !== facility)
-                : [...prevValues.Facilities, facility]
+    const toggleFacility = (facility: Facility) => {
+        setFormValues((prevValues) => {
+            const updatedFacilities = (prevValues.facilities ?? []).some(f => f.id === facility.id)
+                ? (prevValues.facilities ?? []).filter(f => f.id !== facility.id)
+                : [...(prevValues.facilities ?? []), facility]
 
             return {
                 ...prevValues,
-                Facilities: updatedFacilities,
+                facilities: updatedFacilities,
             }
         })
     }
 
-    const toggleOfferStatus = () => {
-        setOfferStatus((prevStatus: boolean) => !prevStatus)
-        setFormValues((prevValues: RoomInterface) => ({
-            ...prevValues,
-            Status: !offerStatus ? 'Available' : 'Booked',
-        }))
-    }
-
-    const generateRandomId = () => {
-        return Math.floor(1000 + Math.random() * 9000).toString()
-    }
-
-    const handleAddRoom = (e: React.FormEvent) => {
+    const handleAddRoom = async (e: React.FormEvent) => {
         e.preventDefault()
 
-        const roomWithId = {
-            Photo: formValues.Photo,
-            RoomNumber: formValues.RoomNumber,
-            RoomID: `R${generateRandomId()}`,
-            BedType: formValues.BedType,
-            Facilities: formValues.Facilities,
-            Rate: parseFloat(formValues.Rate.toString()),
-            OfferPrice: parseFloat(formValues.OfferPrice.toString()),
-            Status: offerStatus ? 'Available' : 'Booked',
+        const roomWithFacilities: RoomInterface = {
+            photo: formValues.photo,
+            room_number: formValues.room_number,
+            bed_type: formValues.bed_type,
+            rate: parseFloat(formValues.rate.toString()),
+            offer_price: parseFloat(formValues.offer_price.toString()),
+            status: 'available',
+            facilities: formValues.facilities ?? [],
         }
+        console.log(roomWithFacilities)
+        try {
+            await addDispatch(CreateRoom(roomWithFacilities)).unwrap()
 
-        addDispatch(CreateRoom(roomWithId))
-            .then(() => {
-                addDispatch(GetRooms())
-                Toast({ message: 'Added room successfully', success: true })
-                dispatch({ type: 'CLOSE_FORM' })
+            await addDispatch(GetRooms())
+
+            Toast({ message: 'Added room successfully', success: true })
+            dispatch({ type: 'CLOSE_FORM' })
+
+            setFormValues({
+                photo: '',
+                room_number: 0,
+                bed_type: 'Single',
+                facilities: [],
+                rate: 0,
+                offer_price: 0,
+                status: 'available',
             })
-            .catch((error) => {
-                console.error('Error creating room:', error)
-            })
+
+        } catch (error) {
+            console.error('Error creating room:', error)
+            Toast({ message: 'Failed to add room', success: false })
+        }
     }
 
     return (
@@ -95,71 +100,61 @@ const AddRooms = () => {
             <label>Photos</label>
             <S.Input
                 type="text"
-                name="Photo"
+                name="photo"
                 placeholder="Enter photo URL"
-                value={formValues.Photo}
+                value={formValues.photo}
                 onChange={handleInputChange}
             />
 
             <label>Room Type</label>
             <S.Select
-                name="BedType"
-                value={formValues.BedType}
+                name="bed_type"
+                value={formValues.bed_type}
                 onChange={handleSelectChange}
             >
-                <option value="Single Bed">Single Bed</option>
-                <option value="Double Bed">Double Bed</option>
-                <option value="Suite">Suite</option>
-                <option value="Family Room">Family Room</option>
+                <option value="Single">Single Bed</option>
+                <option value="Double">Double Bed</option>
+                <option value="Queen">Queen</option>
+                <option value="King">King</option>
             </S.Select>
 
             <label>Room Number</label>
             <S.Input
                 type="number"
-                name="RoomNumber"
+                name="room_number"
                 placeholder="Enter room number"
-                value={formValues.RoomNumber}
+                value={formValues.room_number}
                 onChange={handleInputChange}
             />
-
-            <label>Offer</label>
-            <S.ToggleButton
-                active={offerStatus}
-                onClick={toggleOfferStatus}
-            >
-                {offerStatus ? 'YES' : 'NO'}
-            </S.ToggleButton>
 
             <label>Price (per night)</label>
             <S.Input
                 type="number"
-                name="Rate"
+                name="rate"
                 placeholder="Enter price per night"
-                value={formValues.Rate}
+                value={formValues.rate}
                 onChange={handleInputChange}
             />
 
             <label>Discount (%)</label>
             <S.Input
                 type="number"
-                name="OfferPrice"
+                name="offer_price"
                 placeholder="Enter discount percentage"
-                value={formValues.OfferPrice}
+                value={formValues.offer_price}
                 onChange={handleInputChange}
             />
-
-            <label>Cancellation Policy</label>
 
             <label>Facilities</label>
             <S.SelectContainer>
                 {facilitiesOptions.map((facility) => (
                     <S.Option
-                        key={facility}
-                        isSelected={formValues.Facilities.includes(facility)}
+                        key={facility.id}
+                        isSelected={formValues.facilities?.some(f => f.id === facility.id) ?? false}
                         onClick={() => toggleFacility(facility)}
                     >
-                        <S.Dot isSelected={formValues.Facilities.includes(facility)} />
-                        <span>{facility}</span>
+                        <S.Dot isSelected={formValues.facilities?.some(f => f.id === facility.id) ?? false} />
+                        <span>{facility.facility_name}</span>
                     </S.Option>
                 ))}
             </S.SelectContainer>

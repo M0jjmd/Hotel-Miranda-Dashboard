@@ -11,7 +11,7 @@ export const loginController = (connection: mysql.Connection) => {
         const userService = new UserServices(connection)
 
         if (!username || !password) {
-            return res.status(400).json({ message: 'Username and password are required' });
+            return res.status(400).json({ message: 'Username and password are required' })
         }
 
         try {
@@ -22,7 +22,7 @@ export const loginController = (connection: mysql.Connection) => {
             }
 
             if (!user.password) {
-                return res.status(500).json({ message: 'User does not have a password set' });
+                return res.status(500).json({ message: 'User does not have a password set' })
             }
 
             const isMatch = await bcrypt.compare(password, user.password)

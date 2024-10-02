@@ -109,11 +109,12 @@ export const DeleteRoom = createAsyncThunk<string, string>(
 export const CreateRoom = createAsyncThunk<RoomInterface, RoomInterface>(
     "rooms/createRooms",
     async (newRoom) => {
+        const facilityIds: number[] = newRoom.facilities ? newRoom.facilities.map(f => f.id) : []
         try {
             const response = await fetch('http://localhost:8080/api/rooms', {
                 method: 'POST',
                 headers: getAuthHeaders(),
-                body: JSON.stringify(newRoom)
+                body: JSON.stringify({ ...newRoom, facilities: facilityIds })
             })
 
             if (!response.ok) {

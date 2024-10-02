@@ -20,6 +20,13 @@ const RoomList = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      localStorage.clear()
+      navigate('/')
+      return
+    }
+
     if (roomsStatus === 'idle') {
       roomDispatch(GetRooms())
       dispatch({ type: 'CLOSE_FORM' })
@@ -29,7 +36,7 @@ const RoomList = () => {
       Toast({ message: 'your session expired, log in again', success: false })
       navigate('/')
     }
-  }, [roomDispatch, roomsStatus])
+  }, [roomDispatch, roomsStatus, rooms.length])
 
   const toggleSortOrder = () => {
     setIsDescending(!isDescending)
@@ -41,11 +48,11 @@ const RoomList = () => {
 
   const filteredRooms = rooms
     .filter(room => {
-      if (filterStatus !== 'ALL' && room.Status.toLowerCase() !== filterStatus.toLowerCase()) return false
+      if (filterStatus !== 'ALL' && room.status.toLowerCase() !== filterStatus.toLowerCase()) return false
       const combinedString = JSON.stringify(room).toLowerCase()
       return combinedString.includes(searchTerm.toLowerCase())
     })
-    .sort((a, b) => isDescending ? b.OfferPrice - a.OfferPrice : a.OfferPrice - b.OfferPrice)
+    .sort((a, b) => isDescending ? b.offer_price - a.offer_price : a.offer_price - b.offer_price)
 
   const handleFormToggle = () => {
     if (state.isFormOpen) {
@@ -89,7 +96,7 @@ const RoomList = () => {
                   <S.HeaderCell>Facilities</S.HeaderCell>
                   <S.HeaderCell>Rate</S.HeaderCell>
                   <S.HeaderCell>Offer Price</S.HeaderCell>
-                  <S.HeaderCell>Status</S.HeaderCell>
+                  <S.HeaderCell>status</S.HeaderCell>
                   <S.HeaderCell>Actions</S.HeaderCell>
                 </tr>
               </S.TableHeader>

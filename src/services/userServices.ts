@@ -5,7 +5,7 @@ export class UserServices {
     private connection: mysql.Connection
 
     constructor(connection: mysql.Connection) {
-        this.connection = connection;
+        this.connection = connection
     }
 
     async getAll(): Promise<UserInterface[]> {
@@ -38,30 +38,30 @@ export class UserServices {
 
     async create(newUser: UserInterface): Promise<UserInterface> {
         if (Object.keys(newUser).length === 0) {
-            throw new Error("No fields to update.");
+            throw new Error("No fields to update.")
         }
 
-        const columns = Object.keys(newUser).join(', ');
-        const placeholders = Object.keys(newUser).map(() => '?').join(', ');
+        const columns = Object.keys(newUser).join(', ')
+        const placeholders = Object.keys(newUser).map(() => '?').join(', ')
 
-        const values = Object.values(newUser);
+        const values = Object.values(newUser)
 
-        const query = `INSERT INTO users (${columns}) VALUES (${placeholders})`;
+        const query = `INSERT INTO users (${columns}) VALUES (${placeholders})`
 
         try {
-            const [result] = await this.connection.execute<mysql.ResultSetHeader>(query, values);
+            const [result] = await this.connection.execute<mysql.ResultSetHeader>(query, values)
 
-            const createdUser = { ...newUser, id: result.insertId };
-            return createdUser;
+            const createdUser = { ...newUser, id: result.insertId }
+            return createdUser
         } catch (error) {
-            console.error('Error creating user:', error);
-            throw new Error('Failed to create user');
+            console.error('Error creating user:', error)
+            throw new Error('Failed to create user')
         }
     }
 
     async update(id: number, updatedUser: Partial<UserInterface>): Promise<UserInterface> {
         if (Object.keys(updatedUser).length === 0) {
-            throw new Error("No fields to update.");
+            throw new Error("No fields to update.")
         }
 
 

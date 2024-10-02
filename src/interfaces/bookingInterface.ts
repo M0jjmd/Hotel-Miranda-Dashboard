@@ -8,16 +8,3 @@ export interface BookingInterface {
     room_type: 'Single' | 'Double' | 'Suite'
     status: 'checked-in' | 'checked-out' | 'in-progress'
 }
-
-// export interface BookingInterface {
-//     id?: number
-//     UserId: number
-//     RoomId: number
-//     OrderDate: Date
-//     CheckIn: Date
-//     CheckOut: Date
-//     SpecialRequest: string
-//     RoomType: string
-//     RoomNumber: number
-//     Status: 'checked-in' | 'checked-out'
-// }
