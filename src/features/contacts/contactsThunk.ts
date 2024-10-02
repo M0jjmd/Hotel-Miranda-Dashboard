@@ -40,9 +40,9 @@ export const GetContacts = createAsyncThunk<ContactInterface[]>(
     }
 )
 
-export const GetSingleContact = createAsyncThunk<ContactInterface, string>(
+export const GetSingleContact = createAsyncThunk<ContactInterface, number>(
     "contacts/getSingleContacts",
-    async (contactId: string) => {
+    async (contactId: number) => {
         try {
             const req = await fetch(`http://localhost:8080/api/contacts/${contactId}`, {
                 method: 'GET',

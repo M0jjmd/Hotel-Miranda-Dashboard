@@ -8,9 +8,9 @@ import { ContactInterface } from '../interfaces/contactInterface'
 import { useNavigate } from 'react-router-dom'
 
 function ContactsView() {
-    const [filter, setFilter] = useState<'ALL' | 'ARCHIVED'>('ALL')
+    const [filter, setFilter] = useState<'NOT-ARCHIVED' | 'ARCHIVED'>('NOT-ARCHIVED')
     const [searchTerm, setSearchTerm] = useState<string>('')
-    const [selectedMessage, setSelectedMessage] = useState<string | null>(null)
+    const [selectedMessage, setSelectedMessage] = useState<number | null>(null)
 
     const dispatchContacts = useAppDispatch()
     const contacts = useAppSelector((state) => state.contacts.data)
@@ -37,8 +37,8 @@ function ContactsView() {
     }, [dispatchContacts, contactsStatus])
 
     const filteredContacts = contacts.filter((contact: ContactInterface) => {
-        const isArchivedFilter = (filter === 'ALL' && contact.actions.archive) ||
-            (filter === 'ARCHIVED' && !contact.actions.archive)
+        const isArchivedFilter = (filter === 'NOT-ARCHIVED' && contact.archive) ||
+            (filter === 'ARCHIVED' && !contact.archive)
         if (isArchivedFilter) return false
 
         const combinedString = JSON.stringify(contact).toLowerCase()
@@ -51,7 +51,7 @@ function ContactsView() {
         setSearchTerm(e.target.value)
     }
 
-    const handleMessageClick = (id: string) => {
+    const handleMessageClick = (id: number) => {
         setSelectedMessage(id)
         dispatchContacts(GetSingleContact(id))
     }
@@ -60,19 +60,19 @@ function ContactsView() {
         setSelectedMessage(null)
     }
 
-    const handleArchiveToggle = async (contactId: string) => {
-        const contact = contacts.find((c: ContactInterface) => c._id === contactId)
+    const handleArchiveToggle = async (contactId: number) => {
+        const contact = contacts.find((c: ContactInterface) => c.id === contactId)
 
         if (!contact) {
             console.error('Contact not found')
             return
         }
 
-        const updatedArchiveStatus = !contact.actions.archive
+        const updatedArchiveStatus = !contact.archive
 
         try {
             const updatedContact = await dispatchContacts(
-                updateArchiveStatus({ id: contactId, archiveStatus: updatedArchiveStatus }))
+                updateArchiveStatus({ id: String(contactId), archiveStatus: updatedArchiveStatus }))
                 .unwrap()
             console.log('Contact updated:', updatedContact)
             dispatchContacts(GetContacts())
@@ -91,67 +91,70 @@ function ContactsView() {
                         value={searchTerm}
                         onChange={handleSearchChange}
                     />
-                    <S.Button active={filter === 'ALL'} onClick={() => setFilter('ALL')}>Not Archived</S.Button>
+                    <S.Button active={filter === 'NOT-ARCHIVED'} onClick={() => setFilter('NOT-ARCHIVED')}>Not Archived</S.Button>
                     <S.Button active={filter === 'ARCHIVED'} onClick={() => setFilter('ARCHIVED')}>Archived</S.Button>
                 </S.FilterContainer>
+                {filteredContacts.length === 0 ? (
+                    <tr>
+                        <S.TableCell colSpan={5}>No hay registros</S.TableCell>
+                    </tr>
+                ) : (
+                    <>
+                        <T.QuickView>
+                            <h2>Quick View - Latest Messages</h2>
+                            {latestMessages.map(message => (
+                                <T.MessagePreview key={message.id} onClick={() => handleMessageClick(Number(message.id))}>
+                                    <strong>{message.subject}</strong> - {message.comment.slice(0, 50)}...
+                                </T.MessagePreview>
+                            ))}
+                        </T.QuickView>
 
-                <T.QuickView>
-                    <h2>Quick View - Latest Messages</h2>
-                    {latestMessages.map(message => (
-                        <T.MessagePreview key={message._id} onClick={() => handleMessageClick(message._id || '')}>
-                            <strong>{message.subject}</strong> - {message.comment.slice(0, 50)}...
-                        </T.MessagePreview>
-                    ))}
-                </T.QuickView>
+                        {selectedMessage && (
+                            <T.Popup>
+                                <T.PopupContent>
+                                    {singleMessages ? (
+                                        <>
+                                            <h3>{singleMessages.subject}</h3>
+                                            <p>{singleMessages.comment}</p>
+                                            <T.CloseButton onClick={handleClosePopup}>Close</T.CloseButton>
+                                        </>
+                                    ) : (
+                                        <p>Loading...</p>
+                                    )}
+                                </T.PopupContent>
+                            </T.Popup>
+                        )}
 
-                {selectedMessage && (
-                    <T.Popup>
-                        <T.PopupContent>
-                            {singleMessages ? (
-                                <>
-                                    <h3>{singleMessages.subject}</h3>
-                                    <p>{singleMessages.comment}</p>
-                                    <T.CloseButton onClick={handleClosePopup}>Close</T.CloseButton>
-                                </>
-                            ) : (
-                                <p>Loading...</p>
-                            )}
-                        </T.PopupContent>
-                    </T.Popup>
-                )}
-
-                <S.Table>
-                    <S.TableHeader>
-                        <tr>
-                            <S.HeaderCell>Date</S.HeaderCell>
-                            <S.HeaderCell>ID</S.HeaderCell>
-                            <S.HeaderCell>Customer</S.HeaderCell>
-                            <S.HeaderCell>Email</S.HeaderCell>
-                            <S.HeaderCell>Phone</S.HeaderCell>
-                            <S.HeaderCell>Subject</S.HeaderCell>
-                            <S.HeaderCell>Comment</S.HeaderCell>
-                            <S.HeaderCell>Action</S.HeaderCell>
-                        </tr>
-                    </S.TableHeader>
-                    <S.TableBody>
-                        {filteredContacts.map(contact => (
-                            <S.TableRow key={contact._id}>
-                                <S.TableCell>{new Date(contact.date).toLocaleDateString('en-GB')}</S.TableCell>
-                                <S.TableCell>{contact._id}</S.TableCell>
-                                <S.TableCell>{contact.customer.name}</S.TableCell>
-                                <S.TableCell>{contact.customer.email}</S.TableCell>
-                                <S.TableCell>{contact.customer.phone}</S.TableCell>
-                                <S.TableCell>{contact.subject}</S.TableCell>
-                                <S.TableCell>{contact.comment.slice(0, 50)}...</S.TableCell>
-                                <S.TableCell>
-                                    <T.ActionButton onClick={() => handleArchiveToggle(contact._id || '')}>
-                                        {contact.actions.archive ? (<span>Archived</span>) : (<span>No Archived</span>)}
-                                    </T.ActionButton>
-                                </S.TableCell>
-                            </S.TableRow>
-                        ))}
-                    </S.TableBody>
-                </S.Table>
+                        <S.Table>
+                            <S.TableHeader>
+                                <tr>
+                                    <S.HeaderCell>ID</S.HeaderCell>
+                                    <S.HeaderCell>Date</S.HeaderCell>
+                                    <S.HeaderCell>Subject</S.HeaderCell>
+                                    <S.HeaderCell>Comment</S.HeaderCell>
+                                    <S.HeaderCell>Action</S.HeaderCell>
+                                </tr>
+                            </S.TableHeader>
+                            <S.TableBody>
+                                {filteredContacts.map(contact => (
+                                    <S.TableRow
+                                        key={contact.id}
+                                        onClick={() => handleMessageClick(Number(contact.id))}
+                                    >
+                                        <S.TableCell>{contact.id}</S.TableCell>
+                                        <S.TableCell>{new Date(contact.date).toLocaleDateString('en-GB')}</S.TableCell>
+                                        <S.TableCell>{contact.subject}</S.TableCell>
+                                        <S.TableCell>{contact.comment.slice(0, 50)}...</S.TableCell>
+                                        <S.TableCell>
+                                            <T.ActionButton onClick={(e) => { e.stopPropagation(); handleArchiveToggle(Number(contact.id)) }}>
+                                                {contact.archive ? (<span>Archived</span>) : (<span>No Archived</span>)}
+                                            </T.ActionButton>
+                                        </S.TableCell>
+                                    </S.TableRow>
+                                ))}
+                            </S.TableBody>
+                        </S.Table>
+                    </>)}
             </S.Container>
         </>
     )

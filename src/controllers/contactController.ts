@@ -28,16 +28,16 @@ export const contactsController = (connection: mysql.Connection) => {
         }
     })
 
-    contactController.post("", async (req: Request, res: Response) => {
-        const newContact: ContactInterface = req.body
+    // contactController.post("", async (req: Request, res: Response) => {
+    //     const newContact: ContactInterface = req.body
 
-        try {
-            const createdContact = await contactService.create(newContact)
-            return res.status(201).send(createdContact)
-        } catch (error) {
-            return res.status(500).send({ error: "Error creating the contact" })
-        }
-    })
+    //     try {
+    //         const createdContact = await contactService.create(newContact)
+    //         return res.status(201).send(createdContact)
+    //     } catch (error) {
+    //         return res.status(500).send({ error: "Error creating the contact" })
+    //     }
+    // })
 
     contactController.patch("/:id/archive-status", async (req: Request, res: Response) => {
         const payload: UpdateArchiveStatusPayload = {

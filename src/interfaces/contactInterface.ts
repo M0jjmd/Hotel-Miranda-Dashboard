@@ -1,6 +1,6 @@
 export interface ContactInterface {
     id?: number
-    date: Date
+    date: Date | string
     subject: string
     comment: string
     archive: boolean

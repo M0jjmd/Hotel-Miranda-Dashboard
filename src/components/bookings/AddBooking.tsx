@@ -112,7 +112,6 @@ const AddBooking: React.FC = () => {
             <S.Input
                 type="date"
                 name="check_in"
-                // value={newBooking.check_in ? new Date(newBooking.check_in).toISOString().slice(0, 10) : ''}
                 value={newBooking.check_in ? new Date(newBooking.check_in).toISOString().slice(0, 10) : ''}
                 onChange={handleNewBookingChange}
             />
