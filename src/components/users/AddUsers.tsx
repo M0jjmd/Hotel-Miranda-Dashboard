@@ -36,8 +36,6 @@ const AddUsers = () => {
         }
     }
 
-    const { dispatch } = useAuth()
-
     const formatDateForMySQL = (date: Date): string => {
         const year = date.getFullYear()
         const month = String(date.getMonth() + 1).padStart(2, '0')
@@ -47,6 +45,8 @@ const AddUsers = () => {
 
         return `${year}-${month}-${day} ${hours}:${minutes}:00`
     }
+
+    const { dispatch } = useAuth()
 
     const handleAddUser = (e: React.FormEvent): void => {
         e.preventDefault()

@@ -16,13 +16,17 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
 
     const dispatch = useAppDispatch()
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, field: keyof UserInterface) => {
+    const handleInputChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+        field: keyof UserInterface
+    ) => {
         const { value } = e.target
-        const newValue = field === 'entry_date' ? new Date(value) : value
+        const newValue =
+            field === "entry_date" ? new Date(value) : value
 
-        setEditedUser(prevValues => ({
+        setEditedUser((prevValues) => ({
             ...prevValues,
-            [field]: newValue
+            [field]: newValue,
         }))
     }
 
@@ -31,17 +35,19 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
             const userToSave = {
                 ...editedUser,
                 id: editRowId,
-                entry_date: editedUser.entry_date instanceof Date
-                    ? formatDateForMySQL(editedUser.entry_date)
-                    : editedUser.entry_date
+                entry_date:
+                    editedUser.entry_date instanceof Date
+                        ? formatDateForMySQL(editedUser.entry_date)
+                        : editedUser.entry_date,
             } as UserInterface
 
             dispatch(EditUser(userToSave))
                 .then(() => {
                     setEditRowId(null)
+                    Toast({ message: 'User successfully edited', success: true })
                 })
                 .catch((error) => {
-                    console.error('Error editing user:', error)
+                    console.error("Error editing user:", error)
                 })
         }
     }
@@ -52,7 +58,6 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
             ...user,
             entry_date: user.entry_date instanceof Date ? user.entry_date : new Date(user.entry_date)
         })
-        Toast({ message: 'User successfully edited', success: true })
         setMenuOpenId(null)
     }
 
@@ -66,10 +71,11 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
         setMenuOpenId(menuOpenId === id ? null : id)
     }
 
-    const formatDate = (dateString: string): string => {
-        if (!dateString) return ''
-        const date = new Date(dateString)
-        return date.toLocaleString()
+    const formatDate = (dateString: string | Date): string => {
+        if (!dateString) return ""
+        const date =
+            dateString instanceof Date ? dateString : new Date(dateString)
+        return date.toLocaleDateString()
     }
 
     const formatDateForMySQL = (date: Date): string => {
@@ -81,6 +87,7 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
 
         return `${year}-${month}-${day} ${hours}:${minutes}:00`
     }
+
     return (
         <>
             <S.TableBody>
@@ -116,8 +123,12 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
                             {editRowId === user.id ? (
                                 <S.Input
                                     type="date"
-                                    value={editedUser.entry_date ? new Date(editedUser.entry_date).toISOString().slice(0, 10) : ''}
-                                    onChange={(e) => handleInputChange(e, 'entry_date')}
+                                    value={
+                                        editedUser.entry_date
+                                            ? new Date(editedUser.entry_date).toISOString().slice(0, 10)
+                                            : ""
+                                    }
+                                    onChange={(e) => handleInputChange(e, "entry_date")}
                                 />
                             ) : (
                                 formatDate(user.entry_date instanceof Date ? user.entry_date.toISOString() : user.entry_date)

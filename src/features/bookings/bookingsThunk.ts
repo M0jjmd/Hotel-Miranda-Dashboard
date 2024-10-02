@@ -44,7 +44,7 @@ export const EditBooking = createAsyncThunk<BookingInterface, BookingInterface>(
     "bookings/editBooking",
     async (updatedBooking) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/bookings/${updatedBooking._id}`, {
+            const response = await fetch(`http://localhost:8080/api/bookings/${updatedBooking.id}`, {
                 method: 'PUT',
                 headers: getAuthHeaders(),
                 body: JSON.stringify(updatedBooking),

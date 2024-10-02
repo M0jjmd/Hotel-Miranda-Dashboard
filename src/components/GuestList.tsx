@@ -38,8 +38,8 @@ const GuestList = () => {
   }, [dispatchBooking, bookingsStatus, bookings.length])
 
   const sortedBookings = [...bookings].sort((a, b) => {
-    const dateA = new Date(a.OrderDate)
-    const dateB = new Date(b.OrderDate)
+    const dateA = new Date(a.order_date)
+    const dateB = new Date(b.order_date)
     return dateB.getTime() - dateA.getTime()
   })
 
@@ -61,7 +61,7 @@ const GuestList = () => {
 
   const filteredBookings = sortedBookings
     .filter(booking => {
-      if (filterStatus !== 'ALL' && booking.Status !== filterStatus) return false
+      if (filterStatus !== 'ALL' && booking.status !== filterStatus) return false
       const combinedString = JSON.stringify(booking).toLowerCase()
       return combinedString.includes(searchTerm)
     })
@@ -76,9 +76,9 @@ const GuestList = () => {
           onChange={handleSearchChange}
         />
         <S.Button data-testid="all-button" active={filterStatus === 'ALL'} onClick={() => handleFilterChange('ALL')}>All Bookings</S.Button>
-        <S.Button data-testid="check-in-button" active={filterStatus === 'CHECK-IN'} onClick={() => handleFilterChange('CHECK-IN')}>Checking In</S.Button>
-        <S.Button data-testid="check-out-button" active={filterStatus === 'CHECK-OUT'} onClick={() => handleFilterChange('CHECK-OUT')}>Checking Out</S.Button>
-        <S.Button data-testid="in-progress-button" active={filterStatus === 'IN-PROGRESS'} onClick={() => handleFilterChange('IN-PROGRESS')}>In Progress</S.Button>
+        <S.Button data-testid="check-in-button" active={filterStatus === 'checked-in'} onClick={() => handleFilterChange('checked-in')}>Checking In</S.Button>
+        <S.Button data-testid="check-out-button" active={filterStatus === 'checked-out'} onClick={() => handleFilterChange('checked-out')}>Checking Out</S.Button>
+        <S.Button data-testid="in-progress-button" active={filterStatus === 'in-progress'} onClick={() => handleFilterChange('in-progress')}>In Progress</S.Button>
         <S.AddButton onClick={handleFormToggle}>Add Booking</S.AddButton>
       </S.FilterContainer>
       {state.isFormOpen ? (
@@ -91,12 +91,12 @@ const GuestList = () => {
             <S.Table>
               <S.TableHeader>
                 <tr>
-                  <S.HeaderCell>Guest</S.HeaderCell>
-                  <S.HeaderCell>Order Date</S.HeaderCell>
+                  <S.HeaderCell>Room Number</S.HeaderCell>
+                  <S.HeaderCell>Bed Type</S.HeaderCell>
+                  <S.HeaderCell>Order-Date</S.HeaderCell>
                   <S.HeaderCell>Check-In</S.HeaderCell>
                   <S.HeaderCell>Check-Out</S.HeaderCell>
-                  <S.HeaderCell>Room</S.HeaderCell>
-                  <S.HeaderCell>Status</S.HeaderCell>
+                  <S.HeaderCell>Special Request</S.HeaderCell>
                   <S.HeaderCell>Actions</S.HeaderCell>
                 </tr>
               </S.TableHeader>

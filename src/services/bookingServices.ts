@@ -23,17 +23,53 @@ export class BookingServices {
     }
 
     async create(newBooking: BookingInterface): Promise<BookingInterface> {
-        const [result] = await this.connection.execute<mysql.ResultSetHeader>('INSERT INTO bookings SET ?', newBooking)
-        const bookingId = result.insertId
-        return { ...newBooking, id: bookingId } as BookingInterface
+        if (Object.keys(newBooking).length === 0) {
+            throw new Error("No fields to update.")
+        }
+        const columns = Object.keys(newBooking).join(', ')
+        const placeholders = Object.keys(newBooking).map(() => '?').join(', ')
+
+        const values = Object.values(newBooking)
+
+        const query = `INSERT INTO bookings (${columns}) VALUES (${placeholders})`
+
+        try {
+            const [result] = await this.connection.execute<mysql.ResultSetHeader>(query, values)
+
+            const createdUser = { ...newBooking, id: result.insertId }
+            return createdUser
+        } catch (error) {
+            console.error('Error creating booking:', error)
+            throw new Error('Failed to create booking')
+        }
     }
 
     async update(id: number, updatedBooking: Partial<BookingInterface>): Promise<BookingInterface> {
-        const [result] = await this.connection.execute<mysql.ResultSetHeader>('UPDATE bookings SET ? WHERE id = ?', [updatedBooking, id])
-        if (result.affectedRows === 0) {
-            throw new Error(`Booking with id: ${id} not found`)
+        if (Object.keys(updatedBooking).length === 0) {
+            throw new Error("No fields to update.")
         }
-        return this.getById(id)
+
+
+        const columns = Object.keys(updatedBooking)
+            .map(key => `${key} = ?`)
+            .join(', ')
+
+
+        const values = Object.values(updatedBooking)
+
+        values.push(id)
+
+        const query = `UPDATE bookings SET ${columns} WHERE id = ?`
+        try {
+            const [result] = await this.connection.execute<mysql.ResultSetHeader>(query, values)
+            if (result.affectedRows === 0) {
+                throw new Error(`Booking with id: ${id} not found`)
+            }
+            return this.getById(id)
+        } catch (error) {
+            console.error('Error updating booking:', error)
+            throw new Error('Failed to update booking')
+        }
     }
 
     async delete(id: number): Promise<boolean> {

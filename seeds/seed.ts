@@ -18,9 +18,9 @@ async function createTables(connection: mysql.Connection) {
             password VARCHAR(255) NOT NULL,
             email VARCHAR(100) NOT NULL UNIQUE,
             photo VARCHAR(255),
-            entry_date DATETIME NOT NULL,
+            entry_date DATE NOT NULL,
             position_description VARCHAR(100) NOT NULL,
-            phone VARCHAR(15) NOT NULL,
+            phone VARCHAR(25) NOT NULL,
             state ENUM('active', 'inactive') NOT NULL,
             position VARCHAR(50) NOT NULL
         )
@@ -59,13 +59,12 @@ async function createTables(connection: mysql.Connection) {
         CREATE TABLE IF NOT EXISTS bookings (
             id INT AUTO_INCREMENT PRIMARY KEY,
             room_id INT NOT NULL,
-            order_date DATETIME NOT NULL,
-            check_in DATETIME NOT NULL,
-            check_out DATETIME NOT NULL,
+            order_date DATE NOT NULL,
+            check_in DATE NOT NULL,
+            check_out DATE NOT NULL,
             special_request TEXT,
             room_type ENUM('Single', 'Double', 'Suite') NOT NULL,
-            room_number INT NOT NULL,
-            status ENUM('checked-in', 'checked-out') NOT NULL,
+            status ENUM('checked-in', 'checked-out', 'in-progress') NOT NULL,
             FOREIGN KEY (room_id) REFERENCES rooms(id)
         )
     `)
@@ -73,7 +72,7 @@ async function createTables(connection: mysql.Connection) {
     await connection.query(`
         CREATE TABLE IF NOT EXISTS contacts (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            date DATETIME NOT NULL,
+            date DATE NOT NULL,
             subject VARCHAR(255) NOT NULL,
             comment TEXT NOT NULL,
             archive BOOLEAN NOT NULL
@@ -242,13 +241,12 @@ async function seedBookings(connection: mysql.Connection, roomIds: number[]) {
             check_out: faker.date.future(),
             special_request: faker.lorem.sentence(),
             room_type: faker.helpers.arrayElement(['Single', 'Double', 'Suite']),
-            room_number: faker.number.int({ min: 100, max: 500 }),
-            status: faker.helpers.arrayElement(['checked-in', 'checked-out']),
+            status: faker.helpers.arrayElement(['checked-in', 'checked-out', 'in-progress']),
         }
 
         await connection.query<ResultSetHeader>(
-            'INSERT INTO bookings ( room_id, order_date, check_in, check_out, special_request, room_type, room_number, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-            [booking.room_id, booking.order_date, booking.check_in, booking.check_out, booking.special_request, booking.room_type, booking.room_number, booking.status]
+            'INSERT INTO bookings ( room_id, order_date, check_in, check_out, special_request, room_type, status) VALUES (?, ?, ?, ?, ?, ?, ?)',
+            [booking.room_id, booking.order_date, booking.check_in, booking.check_out, booking.special_request, booking.room_type, booking.status]
         )
     }
 }
