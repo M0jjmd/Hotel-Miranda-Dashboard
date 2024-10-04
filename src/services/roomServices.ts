@@ -59,9 +59,8 @@ export class RoomServices {
         await this.connection.beginTransaction()
 
         try {
-            // Solo usa las columnas que existen en la tabla `rooms`
             const columns = ['photo', 'room_number', 'bed_type', 'rate', 'offer_price', 'status'].join(', ')
-            const placeholders = new Array(6).fill('?').join(', ') // Cambiar 6 si hay más columnas
+            const placeholders = new Array(6).fill('?').join(', ')
 
             const values = [newRoom.photo, newRoom.room_number, newRoom.bed_type, newRoom.rate, newRoom.offer_price, newRoom.status]
             const query = `INSERT INTO rooms (${columns}) VALUES (${placeholders})`
@@ -69,7 +68,6 @@ export class RoomServices {
             const [result] = await this.connection.execute<mysql.ResultSetHeader>(query, values)
             const createdRoomId = result.insertId
 
-            // Solo insertar en room_facilities si hay facilityIds
             if (facilityIds.length > 0) {
                 const facilityInsertPromises = facilityIds.map(facilityId => {
                     return this.connection.execute(
