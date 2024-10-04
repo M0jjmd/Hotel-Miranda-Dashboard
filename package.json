@@ -6,7 +6,6 @@
   "type": "module",
   "scripts": {
     "dev": "npm run vite",
-    "server": "nodemon",
     "vite": "vite",
     "build": "vite build",
     "serve": "vite preview"
