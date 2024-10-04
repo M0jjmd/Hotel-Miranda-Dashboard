@@ -3,7 +3,6 @@ import { Navigate, Outlet } from 'react-router-dom'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import * as S from '../styles/appContainer'
-import { useAuth } from '../context/AuthContext'
 
 const isAuthenticated = () => {
     return localStorage.getItem('isAuthentificated') === "true"
