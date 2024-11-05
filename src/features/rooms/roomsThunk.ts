@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { RoomInterface } from '../../interfaces/roomInterface'
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const getAuthHeaders = () => {
     const token = localStorage.getItem('token')
     if (!token) {
@@ -17,7 +19,7 @@ export const GetRooms = createAsyncThunk<RoomInterface[]>(
     "rooms/getRooms",
     async (_, { rejectWithValue }) => {
         try {
-            const req = await fetch(`http://localhost:8080/api/rooms`, {
+            const req = await fetch(`${apiUrl}rooms`, {
                 method: 'GET',
                 headers: getAuthHeaders(),
             })
@@ -44,7 +46,7 @@ export const GetSingleRoom = createAsyncThunk<RoomInterface, string>(
     "rooms/getSingleRooms",
     async (roomId) => {
         try {
-            const req = await fetch(`http://localhost:8080/api/rooms/${roomId}`, {
+            const req = await fetch(`${apiUrl}rooms/${roomId}`, {
                 method: 'GET',
                 headers: getAuthHeaders(),
             })
@@ -66,7 +68,7 @@ export const EditRoom = createAsyncThunk<RoomInterface, RoomInterface>(
     "rooms/editRooms",
     async (updatedRoom) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/rooms/${updatedRoom._id}`, {
+            const response = await fetch(`${apiUrl}rooms/${updatedRoom._id}`, {
                 method: 'PUT',
                 headers: getAuthHeaders(),
                 body: JSON.stringify(updatedRoom),
@@ -89,7 +91,7 @@ export const DeleteRoom = createAsyncThunk<string, string>(
     "rooms/deleteRooms",
     async (RoomId) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/rooms/${RoomId}`, {
+            const response = await fetch(`${apiUrl}rooms/${RoomId}`, {
                 method: 'DELETE',
                 headers: getAuthHeaders(),
             })
@@ -110,7 +112,7 @@ export const CreateRoom = createAsyncThunk<RoomInterface, RoomInterface>(
     "rooms/createRooms",
     async (newRoom) => {
         try {
-            const response = await fetch('http://localhost:8080/api/rooms', {
+            const response = await fetch('${apiUrl}rooms', {
                 method: 'POST',
                 headers: getAuthHeaders(),
                 body: JSON.stringify(newRoom)

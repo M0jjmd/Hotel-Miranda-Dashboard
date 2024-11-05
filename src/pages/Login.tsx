@@ -15,8 +15,8 @@ const Login = () => {
   const { isAuthentificated, token, name, email, id } = useSelector(loginDataSelect)
   const { dispatch } = useAuth()
 
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('johndoe')
+  const [password, setPassword] = useState('miContraseñaSegura')
   const [localError, setLocalError] = useState('')
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -68,7 +68,7 @@ const Login = () => {
   return (
     <S.LoginContainer>
       <S.LoginForm onSubmit={handleLogin} data-testid="login-form">
-        <S.LoginTitle>Login<br />johndoe<br />miContraseñaSegura</S.LoginTitle>
+        <S.LoginTitle>Login</S.LoginTitle>
         <S.InputField
           type="text"
           placeholder="Username"

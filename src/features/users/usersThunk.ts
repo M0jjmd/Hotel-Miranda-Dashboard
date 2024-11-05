@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { UserInterface } from '../../interfaces/userInterface'
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const getAuthHeaders = () => {
     const token = localStorage.getItem('token')
     if (!token) {
@@ -17,7 +19,7 @@ export const GetUsers = createAsyncThunk<UserInterface[]>(
     "users/getUsers",
     async (_, { rejectWithValue }) => {
         try {
-            const req = await fetch(`http://localhost:8080/api/users`, {
+            const req = await fetch(`${apiUrl}users`, {
                 method: 'GET',
                 headers: getAuthHeaders(),
             })
@@ -44,7 +46,7 @@ export const EditUser = createAsyncThunk<UserInterface, UserInterface>(
     "users/editUsers",
     async (updatedUser) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/users/${updatedUser._id}`, {
+            const response = await fetch(`${apiUrl}users/${updatedUser._id}`, {
                 method: 'PUT',
                 headers: getAuthHeaders(),
                 body: JSON.stringify(updatedUser),
@@ -72,7 +74,7 @@ export const DeleteUser = createAsyncThunk<string, string>(
         }
 
         try {
-            const response = await fetch(`http://localhost:8080/api/users/${UserId}`, {
+            const response = await fetch(`${apiUrl}users/${UserId}`, {
                 method: 'DELETE',
                 headers: getAuthHeaders(),
             })
@@ -93,7 +95,7 @@ export const CreateUser = createAsyncThunk<UserInterface, UserInterface>(
     "users/createUsers",
     async (newUser) => {
         try {
-            const response = await fetch('http://localhost:8080/api/users', {
+            const response = await fetch('${apiUrl}users', {
                 method: 'POST',
                 headers: getAuthHeaders(),
                 body: JSON.stringify(newUser)

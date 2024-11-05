@@ -1,12 +1,12 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "esnext",
         "target": "es6",
         "useDefineForClassFields": true,
         "lib": [
             "DOM",
             "DOM.Iterable",
-            "ESNext"
+            "esnext"
         ],
         "allowJs": true,
         "skipLibCheck": true,

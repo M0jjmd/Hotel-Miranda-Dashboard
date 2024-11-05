@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { ContactInterface, UpdateArchiveStatusPayload } from "../../interfaces/contactInterface"
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const getAuthHeaders = () => {
     const token = localStorage.getItem('token')
     if (!token) {
@@ -17,7 +19,7 @@ export const GetContacts = createAsyncThunk<ContactInterface[]>(
     "contacts/getContacts",
     async (_, { rejectWithValue }) => {
         try {
-            const req = await fetch(`http://localhost:8080/api/contacts`, {
+            const req = await fetch(`${apiUrl}contacts`, {
                 method: 'GET',
                 headers: getAuthHeaders(),
             })
@@ -44,7 +46,7 @@ export const GetSingleContact = createAsyncThunk<ContactInterface, string>(
     "contacts/getSingleContacts",
     async (contactId: string) => {
         try {
-            const req = await fetch(`http://localhost:8080/api/contacts/${contactId}`, {
+            const req = await fetch(`${apiUrl}contacts/${contactId}`, {
                 method: 'GET',
                 headers: getAuthHeaders(),
             })
@@ -66,7 +68,7 @@ export const updateArchiveStatus = createAsyncThunk<ContactInterface, UpdateArch
     'contacts/updateArchiveStatus',
     async ({ id, archiveStatus }: UpdateArchiveStatusPayload) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/contacts/${id}/archive-status`, {
+            const response = await fetch(`${apiUrl}contacts/${id}/archive-status`, {
                 method: 'PATCH',
                 headers: getAuthHeaders(),
                 body: JSON.stringify({ actions: { archive: archiveStatus } }),

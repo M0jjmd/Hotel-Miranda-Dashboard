@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { BookingInterface } from "../../interfaces/bookingInterface"
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const getAuthHeaders = () => {
     const token = localStorage.getItem('token')
     if (!token) {
@@ -17,7 +19,7 @@ export const GetBookings = createAsyncThunk<BookingInterface[]>(
     "bookings/getBookings",
     async (_, { rejectWithValue }) => {
         try {
-            const req = await fetch(`http://localhost:8080/api/bookings`, {
+            const req = await fetch(`${apiUrl}bookings`, {
                 method: 'GET',
                 headers: getAuthHeaders(),
             })
@@ -44,7 +46,7 @@ export const EditBooking = createAsyncThunk<BookingInterface, BookingInterface>(
     "bookings/editBooking",
     async (updatedBooking) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/bookings/${updatedBooking._id}`, {
+            const response = await fetch(`${apiUrl}bookings/${updatedBooking._id}`, {
                 method: 'PUT',
                 headers: getAuthHeaders(),
                 body: JSON.stringify(updatedBooking),
@@ -67,7 +69,7 @@ export const DeleteBooking = createAsyncThunk<string, string>(
     "bookings/deleteBooking",
     async (bookingId) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/bookings/${bookingId}`, {
+            const response = await fetch(`${apiUrl}bookings/${bookingId}`, {
                 method: 'DELETE',
                 headers: getAuthHeaders(),
             })
@@ -88,7 +90,7 @@ export const CreateBooking = createAsyncThunk<BookingInterface, BookingInterface
     "bookings/createBooking",
     async (newBooking) => {
         try {
-            const response = await fetch('http://localhost:8080/api/bookings', {
+            const response = await fetch('${apiUrl}bookings', {
                 method: 'POST',
                 headers: getAuthHeaders(),
                 body: JSON.stringify(newBooking)
