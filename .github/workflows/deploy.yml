@@ -34,5 +34,5 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         SOURCE_DIR: './dist'
 
-      -name: Run cypress tests
+    - name: Run cypress tests
         run: npx cypress run
