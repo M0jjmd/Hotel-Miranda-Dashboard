@@ -38,4 +38,4 @@ jobs:
         SOURCE_DIR: './dist'
 
     - name: Run cypress tests
-        run: npx cypress run
+      run: npx cypress run
