@@ -39,7 +39,7 @@ const Login = () => {
       }
 
     } catch (error) {
-      const message = 'An unexpected error occurred. Please try again.'
+      const message = 'Invalid username or password'
       setLocalError(message)
       Toast({ message, success: false })
       console.error('Login failed:', error)
