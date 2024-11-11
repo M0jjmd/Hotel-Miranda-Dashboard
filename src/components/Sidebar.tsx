@@ -40,7 +40,10 @@ const Sidebar: React.FC<sidebarProps> = ({ isSidebarVisible }) => {
   return (
     <>
       <S.SidebarContainer isVisible={isSidebarVisible}>
-        <S.Logo src={logo} alt="logo" />
+        <S.LogoContainer>
+          <S.Logo src={logo} alt="logo" />
+          <S.Title>Hotel Miranda Dashboard</S.Title>
+        </S.LogoContainer>
         <S.SidebarList>
           <S.SidebarItem><S.SidebarLink to="/dashboard"><S.DashboardImgs as={LuLayoutDashboard} /> Dashboard</S.SidebarLink></S.SidebarItem>
           <S.SidebarItem><S.SidebarLink to="/bookings"><S.DashboardImgs as={LuCalendarRange} /> Bookings</S.SidebarLink></S.SidebarItem>
@@ -50,8 +53,10 @@ const Sidebar: React.FC<sidebarProps> = ({ isSidebarVisible }) => {
         </S.SidebarList>
         <S.ProfileSection>
           <S.ProfilePic src={profileImg} alt="profile-pic" />
-          <S.ProfileName>{name}</S.ProfileName>
-          <S.ProfileEmail>{email}</S.ProfileEmail>
+          <S.ProfileInfo>
+            <S.ProfileName>{name}</S.ProfileName>
+            <S.ProfileEmail>{email}</S.ProfileEmail>
+          </S.ProfileInfo>
           <S.EditButton onClick={handleEditButtonClick}>Edit Profile</S.EditButton>
         </S.ProfileSection>
       </S.SidebarContainer>
