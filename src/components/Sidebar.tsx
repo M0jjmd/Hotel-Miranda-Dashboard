@@ -48,7 +48,7 @@ const Sidebar: React.FC<sidebarProps> = ({ isSidebarVisible }) => {
           <S.SidebarItem><S.SidebarLink to="/dashboard"><S.DashboardImgs as={LuLayoutDashboard} /> Dashboard</S.SidebarLink></S.SidebarItem>
           <S.SidebarItem><S.SidebarLink to="/bookings"><S.DashboardImgs as={LuCalendarRange} /> Bookings</S.SidebarLink></S.SidebarItem>
           <S.SidebarItem><S.SidebarLink to="/rooms"><S.DashboardImgs as={LuKeyRound} /> Rooms</S.SidebarLink></S.SidebarItem>
-          <S.SidebarItem><S.SidebarLink to="/contact"><S.DashboardImgs as={LuPhoneCall} /> Contact</S.SidebarLink></S.SidebarItem>
+          <S.SidebarItem><S.SidebarLink to="/contacts"><S.DashboardImgs as={LuPhoneCall} /> Contact</S.SidebarLink></S.SidebarItem>
           <S.SidebarItem><S.SidebarLink to="/users"><S.DashboardImgs as={LuUser2} /> Users</S.SidebarLink></S.SidebarItem>
         </S.SidebarList>
         <S.ProfileSection>

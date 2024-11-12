@@ -7,7 +7,7 @@ describe('Login Component', () => {
         '/bookings',
         '/users',
         '/rooms',
-        '/contact',
+        '/contacts',
         '/dashboard'
     ]
 

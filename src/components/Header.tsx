@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isVisible }) => {
       '/dashboard': 'Dashboard',
       '/bookings': 'Bookings',
       '/rooms': 'Rooms',
-      '/contact': 'Contact',
+      '/contacts': 'Contact',
       '/users': 'Users',
     }
 
