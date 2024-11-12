@@ -28,9 +28,11 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
         if (editRowId) {
             dispatch(EditUser({ ...editedUser, id: editRowId } as UserInterface))
                 .then(() => {
+                    Toast({ message: 'User successfully edited', success: true })
                     setEditRowId(null)
                 })
                 .catch((error) => {
+                    Toast({ message: 'Error deleting user', success: true })
                     console.error('Error editing user:', error)
                 })
         }
@@ -41,7 +43,6 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
             setEditRowId(room._id)
         }
         setEditedUser(room)
-        Toast({ message: 'User successfully edited', success: true })
         setMenuOpenId(null)
     }
 
