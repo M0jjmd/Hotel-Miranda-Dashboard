@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
 import Bookings from './pages/Bookings'
 import Contacts from './pages/Contacts'
@@ -13,25 +13,21 @@ import store from './app/store'
 
 const App = () => {
   return (
-    <>
-      <Router>
-        <Provider store={store}>
-          <Toasty />
-          <AuthProvider>
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path="dashboard" element={<Dashboard />} />
-                <Route path="bookings" element={<Bookings />} />
-                <Route path="contact" element={<Contacts />} />
-                <Route path="rooms" element={<Rooms />} />
-                <Route path="users" element={<Users />} />
-              </Route>
-            </Routes>
-          </AuthProvider>
-        </Provider>
-      </Router>
-    </>
+    <Provider store={store}>
+      <Toasty />
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="bookings" element={<Bookings />} />
+            <Route path="contacts" element={<Contacts />} />
+            <Route path="rooms" element={<Rooms />} />
+            <Route path="users" element={<Users />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
+    </Provider>
   )
 }
 
