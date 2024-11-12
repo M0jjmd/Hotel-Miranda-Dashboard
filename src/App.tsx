@@ -13,23 +13,25 @@ import store from './app/store'
 
 const App = () => {
   return (
-    <Router>
-      <Provider store={store}>
-        <Toasty />
-        <AuthProvider>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route element={<ProtectedRoute />}>
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="bookings" element={<Bookings />} />
-              <Route path="contact" element={<Contacts />} />
-              <Route path="rooms" element={<Rooms />} />
-              <Route path="users" element={<Users />} />
-            </Route>
-          </Routes>
-        </AuthProvider>
-      </Provider>
-    </Router>
+    <>
+      <Router>
+        <Provider store={store}>
+          <Toasty />
+          <AuthProvider>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="bookings" element={<Bookings />} />
+                <Route path="contact" element={<Contacts />} />
+                <Route path="rooms" element={<Rooms />} />
+                <Route path="users" element={<Users />} />
+              </Route>
+            </Routes>
+          </AuthProvider>
+        </Provider>
+      </Router>
+    </>
   )
 }
 
