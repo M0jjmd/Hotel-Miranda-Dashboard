@@ -1,14 +1,14 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
 import Bookings from './pages/Bookings'
 import Contacts from './pages/Contacts'
 import Rooms from './pages/Rooms'
 import Users from './pages/Users'
+import Login from './pages/Login'
 import { Toasty } from './components/ToastNotification'
 import { Provider } from 'react-redux'
 import { AuthProvider } from './context/AuthContext'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute'
-import Login from './pages/Login'
 import store from './app/store'
 
 const App = () => {
