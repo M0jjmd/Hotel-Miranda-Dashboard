@@ -6,14 +6,14 @@ import Users from './pages/Users'
 import { Toasty } from './components/ToastNotification'
 import { Provider } from 'react-redux'
 import { AuthProvider } from './context/AuthContext'
-import { Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute'
 import Login from './pages/Login'
 import store from './app/store'
 
 const App = () => {
   return (
-    <>
+    <Router>
       <Provider store={store}>
         <Toasty />
         <AuthProvider>
@@ -29,7 +29,7 @@ const App = () => {
           </Routes>
         </AuthProvider>
       </Provider>
-    </>
+    </Router>
   )
 }
 
