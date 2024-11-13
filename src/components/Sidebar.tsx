@@ -61,7 +61,7 @@ const Sidebar: React.FC<sidebarProps> = ({ isSidebarVisible }) => {
         </S.ProfileSection>
       </S.SidebarContainer>
 
-      {isEditing && (
+      {/* {isEditing && (
         <div className="popup">
           <h2>Edit Profile</h2>
           <label>
@@ -83,6 +83,31 @@ const Sidebar: React.FC<sidebarProps> = ({ isSidebarVisible }) => {
           <button onClick={handleSaveChanges}>Save</button>
           <button onClick={handleClosePopup}>Cancel</button>
         </div>
+      )} */}
+      {isEditing && (
+        <S.PopupContainer>
+          <S.PopupTitle>Edit Profile</S.PopupTitle>
+          <S.InputLabel>
+            Name:
+            <S.InputField
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </S.InputLabel>
+          <S.InputLabel>
+            Email:
+            <S.InputField
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </S.InputLabel>
+          <S.PopupButtonContainer>
+            <S.SaveButton onClick={handleSaveChanges}>Save</S.SaveButton>
+            <S.CancelButton onClick={handleClosePopup}>Cancel</S.CancelButton>
+          </S.PopupButtonContainer>
+        </S.PopupContainer>
       )}
     </>
   )
