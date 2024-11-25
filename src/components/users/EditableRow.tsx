@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import * as S from '../../styles/tablesForm'
+import * as E from '../../styles/editViewStyles'
 import { Toast } from '../../components/ToastNotification'
 import { useAppDispatch } from '../../app/store'
 import { DeleteUser, EditUser } from '../../features/users/usersThunk'
@@ -22,6 +23,16 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
             ...prevValues,
             [field]: value
         }))
+    }
+
+    const handleStatusToggle = () => {
+        if (editRowId) {
+            const newState = editedUser.State === 'Active' ? 'Inactive' : 'Active'
+            setEditedUser(prevValues => ({
+                ...prevValues,
+                State: newState
+            }))
+        }
     }
 
     const handleSaveUser = () => {
@@ -59,11 +70,11 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
 
     return (
         <>
-            <S.TableBody>
+            <E.TableBody>
                 {filteredUsers.map(user => (
-                    <S.TableRow key={user._id}>
-                        <S.TableCell>
-                            <S.TablePhoto src={user.Photo} alt={user.FullName} />
+                    <E.TableRow key={user._id}>
+                        <E.TableCell>
+                            <E.TablePhoto src={user.Photo} alt={user.FullName} />
                             {editRowId === user._id ? (
                                 <S.Input
                                     type="text"
@@ -74,8 +85,8 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
                             ) : (
                                 user.FullName
                             )}
-                        </S.TableCell>
-                        <S.TableCell>
+                        </E.TableCell>
+                        <E.TableCell>
                             {editRowId === user._id ? (
                                 <S.Input
                                     type="text"
@@ -86,8 +97,8 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
                             ) : (
                                 user.PositionDescription
                             )}
-                        </S.TableCell>
-                        <S.TableCell>
+                        </E.TableCell>
+                        <E.TableCell>
                             {editRowId === user._id ? (
                                 <S.Input
                                     type="date"
@@ -97,8 +108,8 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
                             ) : (
                                 user.EntryDate instanceof Date ? user.EntryDate.toLocaleDateString() : user.EntryDate
                             )}
-                        </S.TableCell>
-                        <S.TableCell>
+                        </E.TableCell>
+                        <E.TableCell>
                             {editRowId === user._id ? (
                                 <S.Input
                                     type="tel"
@@ -109,39 +120,41 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
                             ) : (
                                 user.Phone
                             )}
-                        </S.TableCell>
-                        <S.TableCell>
+                        </E.TableCell>
+                        <E.TableCell>
                             {editRowId === user._id ? (
-                                <S.Input
-                                    type="text"
-                                    value={editedUser.State ?? ''}
-                                    onChange={(e) => handleInputChange(e, 'State')}
-                                    placeholder="Enter state"
-                                />
+                                <E.StatusButton
+                                    active={editedUser.State === 'Active'}
+                                    onClick={handleStatusToggle}
+                                >
+                                    {editedUser.State === 'Active' ? 'Active' : 'Inactive'}
+                                </E.StatusButton>
                             ) : (
-                                user.State
+                                <E.StatusSpan active={user.State === 'Active'}>
+                                    {user.State}
+                                </E.StatusSpan>
                             )}
-                        </S.TableCell>
-                        <S.TableCell>
+                        </E.TableCell>
+                        <E.TableCell>
                             {editRowId === user._id ? (
                                 <S.Button onClick={() => handleSaveUser()}>Save</S.Button>
                             ) : (
-                                <S.ActionMenu>
-                                    <S.MoreButton onClick={() => handleMenuToggle(user._id || '')}>
+                                <E.ActionMenu>
+                                    <E.MoreButton onClick={() => handleMenuToggle(user._id || '')}>
                                         &#x22EE;
-                                    </S.MoreButton>
+                                    </E.MoreButton>
                                     {menuOpenId === user._id && (
-                                        <S.Menu>
-                                            <S.MenuItem onClick={() => handleEditUser(user)}>Edit</S.MenuItem>
-                                            <S.MenuItem onClick={() => handleDeleteUser(user._id || '')}>Delete</S.MenuItem>
-                                        </S.Menu>
+                                        <E.Menu>
+                                            <E.MenuItem onClick={() => handleEditUser(user)}>Edit</E.MenuItem>
+                                            <E.MenuItem onClick={() => handleDeleteUser(user._id || '')}>Delete</E.MenuItem>
+                                        </E.Menu>
                                     )}
-                                </S.ActionMenu>
+                                </E.ActionMenu>
                             )}
-                        </S.TableCell>
-                    </S.TableRow>
+                        </E.TableCell>
+                    </E.TableRow>
                 ))}
-            </S.TableBody>
+            </E.TableBody>
         </>
     )
 }
