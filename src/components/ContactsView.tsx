@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from '../styles/tablesForm'
 import * as T from '../styles/contactStyles'
+import * as E from '../styles/editViewStyles'
 import { Toast } from '../components/ToastNotification'
 import { GetContacts, GetSingleContact, updateArchiveStatus } from '../features/contacts/contactsThunk'
 import { useAppDispatch, useAppSelector } from '../app/store'
@@ -133,24 +134,24 @@ function ContactsView() {
                             <S.HeaderCell>Action</S.HeaderCell>
                         </tr>
                     </S.TableHeader>
-                    <S.TableBody>
+                    <E.TableBody>
                         {filteredContacts.map(contact => (
-                            <S.TableRow key={contact._id}>
-                                <S.TableCell>{new Date(contact.date).toLocaleDateString('en-GB')}</S.TableCell>
-                                <S.TableCell>{contact._id}</S.TableCell>
-                                <S.TableCell>{contact.customer.name}</S.TableCell>
-                                <S.TableCell>{contact.customer.email}</S.TableCell>
-                                <S.TableCell>{contact.customer.phone}</S.TableCell>
-                                <S.TableCell>{contact.subject}</S.TableCell>
-                                <S.TableCell>{contact.comment.slice(0, 50)}...</S.TableCell>
-                                <S.TableCell>
+                            <E.TableRow key={contact._id}>
+                                <E.TableCell>{new Date(contact.date).toLocaleDateString('en-GB')}</E.TableCell>
+                                <E.TableCell>{contact._id}</E.TableCell>
+                                <E.TableCell>{contact.customer.name}</E.TableCell>
+                                <E.TableCell>{contact.customer.email}</E.TableCell>
+                                <E.TableCell>{contact.customer.phone}</E.TableCell>
+                                <E.TableCell>{contact.subject}</E.TableCell>
+                                <E.TableCell>{contact.comment.slice(0, 50)}...</E.TableCell>
+                                <E.TableCell>
                                     <T.ActionButton onClick={() => handleArchiveToggle(contact._id || '')}>
                                         {contact.actions.archive ? (<span>Archived</span>) : (<span>No Archived</span>)}
                                     </T.ActionButton>
-                                </S.TableCell>
-                            </S.TableRow>
+                                </E.TableCell>
+                            </E.TableRow>
                         ))}
-                    </S.TableBody>
+                    </E.TableBody>
                 </S.Table>
             </S.Container>
         </>

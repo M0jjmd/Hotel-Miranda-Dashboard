@@ -71,7 +71,7 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
     return (
         <>
             <E.TableBody>
-                {filteredUsers.map(user => (
+                {filteredUsers.filter(user => user.position.toLowerCase() !== 'admin').map(user => (
                     <E.TableRow key={user._id}>
                         <E.TableCell>
                             <E.TablePhoto src={user.Photo} alt={user.FullName} />
