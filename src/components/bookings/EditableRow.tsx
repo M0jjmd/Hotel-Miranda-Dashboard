@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import * as S from '../../styles/tablesForm'
+import * as E from '../../styles/editViewStyles'
 import { Toast } from '../../components/ToastNotification'
 import { EditBooking, DeleteBooking } from '../../features/bookings/bookingsThunk'
 import { BookingInterface } from '../../interfaces/bookingInterface'
@@ -63,7 +64,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
 
     const handleDeleteBooking = (id: string) => {
         dispatch(DeleteBooking(id))
-         Toast({ message: 'Booking successfully deleted', success: true })
+        Toast({ message: 'Booking successfully deleted', success: true })
         setMenuOpenId(null)
     }
 
@@ -73,10 +74,10 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
 
     return (
         <>
-            <S.TableBody>
+            <E.TableBody>
                 {filteredBookings.map(booking => (
-                    <S.TableRow key={booking._id}>
-                        <S.TableCell>
+                    <E.TableRow key={booking._id}>
+                        <E.TableCell>
                             {editRowId === booking._id ? (
                                 <S.Input
                                     type="text"
@@ -86,8 +87,8 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                             ) : (
                                 booking.Guest.UserId
                             )}
-                        </S.TableCell>
-                        <S.TableCell>
+                        </E.TableCell>
+                        <E.TableCell>
                             {editRowId === booking._id ? (
                                 <S.Input
                                     type="date"
@@ -97,9 +98,9 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                             ) : (
                                 booking.OrderDate ? new Date(booking.OrderDate).toLocaleDateString() : ''
                             )}
-                        </S.TableCell>
+                        </E.TableCell>
 
-                        <S.TableCell>
+                        <E.TableCell>
                             {editRowId === booking._id ? (
                                 <S.Input
                                     type="date"
@@ -109,9 +110,9 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                             ) : (
                                 booking.CheckIn ? new Date(booking.CheckIn).toLocaleDateString() : ''
                             )}
-                        </S.TableCell>
+                        </E.TableCell>
 
-                        <S.TableCell>
+                        <E.TableCell>
                             {editRowId === booking._id ? (
                                 <S.Input
                                     type="date"
@@ -121,8 +122,8 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                             ) : (
                                 booking.CheckOut ? new Date(booking.CheckOut).toLocaleDateString() : ''
                             )}
-                        </S.TableCell>
-                        <S.TableCell>
+                        </E.TableCell>
+                        <E.TableCell>
                             {editRowId === booking._id ? (
                                 <>
                                     <S.Input
@@ -139,8 +140,8 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                             ) : (
                                 `${booking.RoomType.Type} (${booking.RoomType.RoomNumber})`
                             )}
-                        </S.TableCell>
-                        <S.TableCell>
+                        </E.TableCell>
+                        <E.TableCell>
                             {editRowId === booking._id ? (
                                 <S.Input
                                     type="text"
@@ -150,27 +151,27 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                             ) : (
                                 booking.Status
                             )}
-                        </S.TableCell>
-                        <S.TableCell>
+                        </E.TableCell>
+                        <E.TableCell>
                             {editRowId === booking._id ? (
                                 <S.Button onClick={handleSaveBooking}>Save</S.Button>
                             ) : (
-                                <S.ActionMenu>
-                                    <S.MoreButton onClick={() => handleMenuToggle(booking._id || '')}>
+                                <E.ActionMenu>
+                                    <E.MoreButton onClick={() => handleMenuToggle(booking._id || '')}>
                                         &#x22EE;
-                                    </S.MoreButton>
+                                    </E.MoreButton>
                                     {menuOpenId === booking._id && (
-                                        <S.Menu>
-                                            <S.MenuItem onClick={() => handleEditBooking(booking)}>Edit</S.MenuItem>
-                                            <S.MenuItem onClick={() => handleDeleteBooking(booking._id || '')}>Delete</S.MenuItem>
-                                        </S.Menu>
+                                        <E.Menu>
+                                            <E.MenuItem onClick={() => handleEditBooking(booking)}>Edit</E.MenuItem>
+                                            <E.MenuItem onClick={() => handleDeleteBooking(booking._id || '')}>Delete</E.MenuItem>
+                                        </E.Menu>
                                     )}
-                                </S.ActionMenu>
+                                </E.ActionMenu>
                             )}
-                        </S.TableCell>
-                    </S.TableRow>
+                        </E.TableCell>
+                    </E.TableRow>
                 ))}
-            </S.TableBody>
+            </E.TableBody>
 
         </>
     )
