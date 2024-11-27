@@ -172,7 +172,6 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                     </E.TableRow>
                 ))}
             </E.TableBody>
-
         </>
     )
 }
