@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import * as S from '../../styles/tablesForm'
+import * as E from '../../styles/editViewStyles'
 import { Toast } from '../../components/ToastNotification'
 import { useAppDispatch } from '../../app/store'
 import { EditRoom, DeleteRoom } from '../../features/rooms/roomsThunk'
