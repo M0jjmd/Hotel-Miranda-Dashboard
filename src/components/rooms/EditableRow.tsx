@@ -63,14 +63,14 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
 
     return (
         <>
-            <S.TableBody>
+            <E.TableBody>
                 {filteredRooms.map(room => {
                     const rateInEuros: number = (room.Rate / 100)
                     const finalPriceInEuros: number = calculateDiscountedPrice(room.Rate, room.OfferPrice)
                     return (
-                        <S.TableRow key={room._id}>
-                            <S.TableCell><S.TablePhoto src={room.Photo} alt={room.RoomNumber.toString()} /></S.TableCell>
-                            <S.TableCell>
+                        <E.TableRow key={room._id}>
+                            <E.TableCell><E.TablePhoto src={room.Photo} alt={room.RoomNumber.toString()} /></E.TableCell>
+                            <E.TableCell>
                                 {editRowId === room._id ? (
                                     <S.Input
                                         type="text"
@@ -80,8 +80,8 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
                                 ) : (
                                     room.RoomNumber
                                 )}
-                            </S.TableCell>
-                            <S.TableCell>
+                            </E.TableCell>
+                            <E.TableCell>
                                 {editRowId === room._id ? (
                                     <S.Input
                                         type="text"
@@ -91,8 +91,8 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
                                 ) : (
                                     room.BedType
                                 )}
-                            </S.TableCell>
-                            <S.TableCell>
+                            </E.TableCell>
+                            <E.TableCell>
                                 {editRowId === room._id ? (
                                     <S.Input
                                         type="text"
@@ -102,31 +102,31 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
                                 ) : (
                                     room.Facilities.join(', ')
                                 )}
-                            </S.TableCell>
-                            <S.TableCell>${rateInEuros}</S.TableCell>
-                            <S.TableCell>${finalPriceInEuros}</S.TableCell>
-                            <S.TableCell>{room.Status}</S.TableCell>
-                            <S.TableCell>
+                            </E.TableCell>
+                            <E.TableCell>${rateInEuros}</E.TableCell>
+                            <E.TableCell>${finalPriceInEuros}</E.TableCell>
+                            <E.TableCell>{room.Status}</E.TableCell>
+                            <E.TableCell>
                                 {editRowId === room._id ? (
                                     <S.Button onClick={handleSaveRoom}>Save</S.Button>
                                 ) : (
-                                    <S.ActionMenu>
-                                        <S.MoreButton onClick={() => handleMenuToggle(room._id!)}>
+                                    <E.ActionMenu>
+                                        <E.MoreButton onClick={() => handleMenuToggle(room._id!)}>
                                             &#x22EE;
-                                        </S.MoreButton>
+                                        </E.MoreButton>
                                         {menuOpenId === room._id && (
-                                            <S.Menu>
-                                                <S.MenuItem onClick={() => handleEditRoom(room)}>Edit</S.MenuItem>
-                                                <S.MenuItem onClick={() => handleDeleteRoom(room._id!)}>Delete</S.MenuItem>
-                                            </S.Menu>
+                                            <E.Menu>
+                                                <E.MenuItem onClick={() => handleEditRoom(room)}>Edit</E.MenuItem>
+                                                <E.MenuItem onClick={() => handleDeleteRoom(room._id!)}>Delete</E.MenuItem>
+                                            </E.Menu>
                                         )}
-                                    </S.ActionMenu>
+                                    </E.ActionMenu>
                                 )}
-                            </S.TableCell>
-                        </S.TableRow>
+                            </E.TableCell>
+                        </E.TableRow>
                     )
                 })}
-            </S.TableBody>
+            </E.TableBody>
         </>
     )
 }
