@@ -75,6 +75,7 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
                     <E.TableRow key={user._id}>
                         <E.TableCell>
                             <E.TableCellUserInfo>
+                                <E.TablePhoto src={user.Photo} alt={'User photo'} />
                                 {editRowId === user._id ? (
                                     <S.Input
                                         type="text"
@@ -86,7 +87,6 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
                                     user.FullName
                                 )}
                             </E.TableCellUserInfo>
-                            <E.TablePhoto src={user.Photo} alt={'No foto'} />
                         </E.TableCell>
                         <E.TableCell>
                             {editRowId === user._id ? (
