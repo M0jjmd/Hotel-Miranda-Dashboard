@@ -22,34 +22,46 @@ export const TableRow = styled.tr`
 `
 
 export const TableCell = styled.td`
-   padding: 1rem;
-   font-size: ${fontSize.small};
-   border-bottom: 1px solid #ddd;
+  padding: 1rem;
+  font-size: ${fontSize.small};
+  border-bottom: 1px solid #ddd;
  `
 
+export const TableCellUserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+  gap: 0.5rem; 
+  width: 100%; 
+`
+
 export const TablePhoto = styled.img`
+  display: block; 
+  margin: 0 auto;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 65px;
+  height: 65px;
   object-fit: cover;
 `
 
 export const StatusButton = styled.button<{ active: boolean }>`
-    padding: 8px 12px;
-    font-size: 14px;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: ${({ active }) => (active ? '#28a745' : '#dc3545')};
-    &:hover {
-        opacity: 0.9;
-    }
+  padding: 8px 12px;
+  font-size: 14px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: ${({ active }) => (active ? '#28a745' : '#dc3545')};
+  &:hover {
+    opacity: 0.9;
+  }
 `
 
 export const StatusSpan = styled.span<{ active: boolean }>`
-    font-weight: bold;
-    color: ${({ active }) => (active ? '#28a745' : '#dc3545')};
+  font-weight: bold;
+  color: ${({ active }) => (active ? '#28a745' : '#dc3545')};
 `
 
 export const ActionMenu = styled.div`

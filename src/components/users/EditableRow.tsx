@@ -74,17 +74,19 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
                 {filteredUsers.filter(user => user.position.toLowerCase() !== 'admin').map(user => (
                     <E.TableRow key={user._id}>
                         <E.TableCell>
-                            <E.TablePhoto src={user.Photo} alt={user.FullName} />
-                            {editRowId === user._id ? (
-                                <S.Input
-                                    type="text"
-                                    value={editedUser.FullName ?? ''}
-                                    onChange={(e) => handleInputChange(e, 'FullName')}
-                                    placeholder="Enter full name"
-                                />
-                            ) : (
-                                user.FullName
-                            )}
+                            <E.TableCellUserInfo>
+                                {editRowId === user._id ? (
+                                    <S.Input
+                                        type="text"
+                                        value={editedUser.FullName ?? ''}
+                                        onChange={(e) => handleInputChange(e, 'FullName')}
+                                        placeholder="Enter full name"
+                                    />
+                                ) : (
+                                    user.FullName
+                                )}
+                            </E.TableCellUserInfo>
+                            <E.TablePhoto src={user.Photo} alt={'No foto'} />
                         </E.TableCell>
                         <E.TableCell>
                             {editRowId === user._id ? (
