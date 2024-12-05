@@ -51,15 +51,23 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
     const handleEditBooking = (booking: BookingInterface) => {
         setEditRowId(booking._id || '')
         setEditedBooking(booking)
-        Toast({ message: 'Booking successfully edited', success: true })
         setMenuOpenId(null)
     }
 
     const handleSaveBooking = () => {
         if (editedBooking) {
-            dispatch(EditBooking(editedBooking))
-            setEditRowId(null)
+            const originalBooking = filteredBookings.find(booking => booking._id === editRowId)
+            if (JSON.stringify(originalBooking) !== JSON.stringify(editedBooking)) {
+                dispatch(EditBooking(editedBooking))
+                Toast({ message: 'Booking successfully edited', success: true })
+                setEditRowId(null)
+            }
         }
+    }
+
+    const handleCloseEdit = () => {
+        setEditRowId('')
+        setEditRowId(null)
     }
 
     const handleDeleteBooking = (id: string) => {
@@ -78,15 +86,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                 {filteredBookings.map(booking => (
                     <E.TableRow key={booking._id}>
                         <E.TableCell>
-                            {editRowId === booking._id ? (
-                                <S.Input
-                                    type="text"
-                                    value={editedBooking?.Guest?.UserId || ''}
-                                    onChange={(e) => handleInputChange(e, 'Guest', 'UserId')}
-                                />
-                            ) : (
-                                booking.Guest.UserId
-                            )}
+                            {booking.Guest.UserId}
                         </E.TableCell>
                         <E.TableCell>
                             {editRowId === booking._id ? (
@@ -124,37 +124,32 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                             )}
                         </E.TableCell>
                         <E.TableCell>
-                            {editRowId === booking._id ? (
-                                <>
-                                    <S.Input
-                                        type="text"
-                                        value={editedBooking?.RoomType.Type || ''}
-                                        onChange={(e) => handleInputChange(e, 'RoomType', 'Type')}
-                                    />
-                                    <S.Input
-                                        type="text"
-                                        value={editedBooking?.RoomType.RoomNumber || ''}
-                                        onChange={(e) => handleInputChange(e, 'RoomType', 'RoomNumber')}
-                                    />
-                                </>
-                            ) : (
-                                `${booking.RoomType.Type} (${booking.RoomType.RoomNumber})`
-                            )}
+                            {`${booking.RoomType.Type} (${booking.RoomType.RoomNumber})`}
                         </E.TableCell>
                         <E.TableCell>
                             {editRowId === booking._id ? (
-                                <S.Input
-                                    type="text"
-                                    value={editedBooking?.Status || ''}
-                                    onChange={(e) => handleInputChange(e, 'Status')}
-                                />
+                                <S.Button
+                                    onClick={() =>
+                                        setEditedBooking(prev => prev ? {
+                                            ...prev,
+                                            Status: prev.Status === "Checked-in" ? "Checked-out" : "Checked-in"
+                                        } : null)
+                                    }
+                                >
+                                    {editedBooking?.Status === "Checked-in" ? "Checked-in" : "Checked-out"}
+                                </S.Button>
                             ) : (
                                 booking.Status
                             )}
                         </E.TableCell>
+
+
                         <E.TableCell>
                             {editRowId === booking._id ? (
-                                <S.Button onClick={handleSaveBooking}>Save</S.Button>
+                                <>
+                                    <S.Button onClick={handleSaveBooking}>Save</S.Button>
+                                    <S.Button onClick={handleCloseEdit}>Close</S.Button>
+                                </>
                             ) : (
                                 <E.ActionMenu>
                                     <E.MoreButton onClick={() => handleMenuToggle(booking._id || '')}>
