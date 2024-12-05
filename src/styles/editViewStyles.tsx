@@ -77,7 +77,8 @@ export const MoreButton = styled.button`
 
 export const Menu = styled.div`
   position: absolute;
-  right: 0;
+  left: 1rem;
+  top: 0;
   background-color: white;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
