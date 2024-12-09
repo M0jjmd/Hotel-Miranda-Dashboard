@@ -128,6 +128,7 @@ export const TextArea = styled.textarea`
 export const SelectContainer = styled.div`
     display: flex;
     flex-direction: column;
+    margin-bottom: 0.8rem;
 `
 
 interface isSelectedInterface {
@@ -188,7 +189,7 @@ export const Select = styled.select`
 
 export const ToggleButton = styled.button<isActiveInterface>`
   padding: 0.8rem 1.2rem;
-  margin: 8px 0;
+  margin-bottom: 0.8rem;
   font-size: 1rem;
   border-radius: 4px;
   border: none;

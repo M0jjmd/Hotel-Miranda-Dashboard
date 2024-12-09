@@ -148,8 +148,6 @@ const AddRooms = () => {
                 onChange={handleInputChange}
             />
 
-            <label>Cancellation Policy</label>
-
             <label>Facilities</label>
             <S.SelectContainer>
                 {facilitiesOptions.map((facility) => (
