@@ -188,6 +188,7 @@ export const Select = styled.select`
 
 export const ToggleButton = styled.button<isActiveInterface>`
   padding: 0.8rem 1.2rem;
+  margin: 8px 0;
   font-size: 1rem;
   border-radius: 4px;
   border: none;
