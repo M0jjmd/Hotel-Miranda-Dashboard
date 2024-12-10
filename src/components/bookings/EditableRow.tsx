@@ -80,6 +80,11 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
         setMenuOpenId(menuOpenId === id ? null : id)
     }
 
+    const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedStatus = e.target.value;
+        setEditedBooking(prev => prev ? { ...prev, Status: selectedStatus } : null)
+    }
+
     return (
         <>
             <E.TableBody>
@@ -126,7 +131,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                         <E.TableCell>
                             {`${booking.RoomType.Type} (${booking.RoomType.RoomNumber})`}
                         </E.TableCell>
-                        <E.TableCell>
+                        {/* <E.TableCell>
                             {editRowId === booking._id ? (
                                 <S.Button
                                     onClick={() =>
@@ -138,6 +143,21 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                                 >
                                     {editedBooking?.Status === "Checked-in" ? "Checked-in" : "Checked-out"}
                                 </S.Button>
+                            ) : (
+                                booking.Status
+                            )}
+                        </E.TableCell> */}
+
+                        <E.TableCell>
+                            {editRowId === booking._id ? (
+                                <S.Select
+                                    value={editedBooking?.Status}
+                                    onChange={handleStatusChange}
+                                >
+                                    <option value="Checked-in">Checked-in</option>
+                                    <option value="Checked-out">Checked-out</option>
+                                    <option value="Reserved">Reserved</option>
+                                </S.Select>
                             ) : (
                                 booking.Status
                             )}
