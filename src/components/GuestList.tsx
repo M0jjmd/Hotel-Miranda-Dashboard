@@ -78,7 +78,7 @@ const GuestList = () => {
         <S.Button data-testid="all-button" active={filterStatus === 'ALL'} onClick={() => handleFilterChange('ALL')}>All Bookings</S.Button>
         <S.Button data-testid="check-in-button" active={filterStatus === 'checked-in'} onClick={() => handleFilterChange('checked-in')}>Checking In</S.Button>
         <S.Button data-testid="check-out-button" active={filterStatus === 'checked-out'} onClick={() => handleFilterChange('checked-out')}>Checking Out</S.Button>
-        <S.Button data-testid="in-progress-button" active={filterStatus === 'IN-PROGRESS'} onClick={() => handleFilterChange('IN-PROGRESS')}>In Progress</S.Button>
+        <S.Button data-testid="in-progress-button" active={filterStatus === 'in-progress'} onClick={() => handleFilterChange('in-progress')}>In Progress</S.Button>
         <S.AddButton onClick={handleFormToggle}>Add Booking</S.AddButton>
       </S.FilterContainer>
       {state.isFormOpen ? (

@@ -131,22 +131,6 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                         <E.TableCell>
                             {`${booking.RoomType.Type} (${booking.RoomType.RoomNumber})`}
                         </E.TableCell>
-                        {/* <E.TableCell>
-                            {editRowId === booking._id ? (
-                                <S.Button
-                                    onClick={() =>
-                                        setEditedBooking(prev => prev ? {
-                                            ...prev,
-                                            Status: prev.Status === "Checked-in" ? "Checked-out" : "Checked-in"
-                                        } : null)
-                                    }
-                                >
-                                    {editedBooking?.Status === "Checked-in" ? "Checked-in" : "Checked-out"}
-                                </S.Button>
-                            ) : (
-                                booking.Status
-                            )}
-                        </E.TableCell> */}
 
                         <E.TableCell>
                             {editRowId === booking._id ? (
@@ -156,7 +140,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
                                 >
                                     <option value="Checked-in">Checked-in</option>
                                     <option value="Checked-out">Checked-out</option>
-                                    <option value="Reserved">Reserved</option>
+                                    <option value="in-progress">In-progress</option>
                                 </S.Select>
                             ) : (
                                 booking.Status
