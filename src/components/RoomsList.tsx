@@ -9,7 +9,7 @@ import EditableRow from './rooms/EditableRow'
 import { useNavigate } from 'react-router-dom'
 
 const RoomList = () => {
-  const [filterStatus, setFilterStatus] = useState<'ALL' | 'Available' | 'Booked'>('ALL')
+  const [filterStatus, setFilterStatus] = useState<'ALL' | 'Available' | 'Booked' | 'Reserved'>('ALL')
   const [isDescending, setIsDescending] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const { state, dispatch } = useAuth()
@@ -67,6 +67,7 @@ const RoomList = () => {
         <S.Button active={filterStatus === 'ALL'} onClick={() => setFilterStatus('ALL')}>All Rooms</S.Button>
         <S.Button active={filterStatus === 'Available'} onClick={() => setFilterStatus('Available')}>Available</S.Button>
         <S.Button active={filterStatus === 'Booked'} onClick={() => setFilterStatus('Booked')}>Booked</S.Button>
+        <S.Button active={filterStatus === 'Reserved'} onClick={() => setFilterStatus('Reserved')}>Reserved</S.Button>
         <S.SortButton onClick={toggleSortOrder}>
           Sort by Price (Desc)
         </S.SortButton>
