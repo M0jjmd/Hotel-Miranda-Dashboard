@@ -24,13 +24,25 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
             [field]: value,
         }))
     }
-    
+
 
     const handleSaveRoom = () => {
         if (editRowId) {
-            console.log(editedRoom)
-            dispatch(EditRoom({ ...editedRoom, id: editRowId } as RoomInterface))
-            Toast({ message: 'Room successfully edited', success: true })
+            const originalRoom = filteredRooms.find(room => room._id === editRowId)
+
+            if (originalRoom) {
+                const isChanged =
+                    originalRoom.RoomNumber !== editedRoom.RoomNumber ||
+                    originalRoom.BedType !== editedRoom.BedType ||
+                    originalRoom.Facilities?.join(', ') !== (editedRoom.Facilities ? editedRoom.Facilities.join(', ') : '') ||
+                    originalRoom.Status !== editedRoom.Status
+
+                if (isChanged) {
+                    dispatch(EditRoom({ ...editedRoom, id: editRowId } as RoomInterface))
+                    Toast({ message: 'Room successfully edited', success: true })
+                }
+            }
+
             setEditRowId(null)
         }
     }
@@ -41,6 +53,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
             RoomNumber: room.RoomNumber,
             BedType: room.BedType,
             Facilities: room.Facilities,
+            Status: room.Status,
             _id: room._id
         })
         setMenuOpenId(null)
@@ -110,7 +123,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
                             <E.TableCell>
                                 {editRowId === room._id ? (
                                     <S.Select
-                                        value={editedRoom.Status || ''}
+                                        value={editedRoom.Status || 'Available'}
                                         onChange={(e) => handleInputChange(e, 'Status')}
                                     >
                                         <option value="Booked">Booked</option>
