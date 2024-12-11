@@ -17,16 +17,18 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
 
     const dispatch = useAppDispatch()
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: 'RoomNumber' | 'BedType' | 'Facilities') => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, field: keyof RoomInterface) => {
         const value = e.target.value
         setEditedRoom(prevValues => ({
             ...prevValues,
-            [field]: field === 'Facilities' ? value.split(',').map(item => item.trim()) : value,
+            [field]: value,
         }))
     }
+    
 
     const handleSaveRoom = () => {
         if (editRowId) {
+            console.log(editedRoom)
             dispatch(EditRoom({ ...editedRoom, id: editRowId } as RoomInterface))
             Toast({ message: 'Room successfully edited', success: true })
             setEditRowId(null)
@@ -105,7 +107,20 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
                             </E.TableCell>
                             <E.TableCell>${rateInEuros}</E.TableCell>
                             <E.TableCell>${finalPriceInEuros}</E.TableCell>
-                            <E.TableCell>{room.Status}</E.TableCell>
+                            <E.TableCell>
+                                {editRowId === room._id ? (
+                                    <S.Select
+                                        value={editedRoom.Status || ''}
+                                        onChange={(e) => handleInputChange(e, 'Status')}
+                                    >
+                                        <option value="Booked">Booked</option>
+                                        <option value="Available">Available</option>
+                                        <option value="Reserved">Reserved</option>
+                                    </S.Select>
+                                ) : (
+                                    room.Status
+                                )}
+                            </E.TableCell>
                             <E.TableCell>
                                 {editRowId === room._id ? (
                                     <S.Button onClick={handleSaveRoom}>Save</S.Button>
