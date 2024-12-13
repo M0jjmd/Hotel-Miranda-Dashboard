@@ -12,19 +12,29 @@ interface EditableRowProps {
 
 const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowProps) => {
     const [editRowId, setEditRowId] = useState<string | null>(null)
-    const [editedRoom, setEditedRoom] = useState<Partial<RoomInterface>>({})
+    const [editedRoom, setEditedRoom] = useState<Partial<RoomInterface>>({
+        Facilities: []
+    })
     const [menuOpenId, setMenuOpenId] = useState<string | null>(null)
 
     const dispatch = useAppDispatch()
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, field: keyof RoomInterface) => {
         const value = e.target.value
-        setEditedRoom(prevValues => ({
-            ...prevValues,
-            [field]: value,
-        }))
-    }
 
+        if (field === 'Facilities' && e.target instanceof HTMLSelectElement) {
+            const selectedOptions = Array.from(e.target.selectedOptions, option => option.value)
+            setEditedRoom(prevValues => ({
+                ...prevValues,
+                [field]: selectedOptions,
+            }))
+        } else {
+            setEditedRoom(prevValues => ({
+                ...prevValues,
+                [field]: value,
+            }))
+        }
+    }
 
     const handleSaveRoom = () => {
         if (editRowId) {
@@ -76,6 +86,19 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
         return FinalPriceInEuros
     }
 
+    const toggleFacility = (facility: string) => {
+        setEditedRoom(prevValues => {
+            const facilities = prevValues.Facilities || []
+            const isSelected = facilities.includes(facility)
+            return {
+                ...prevValues,
+                Facilities: isSelected
+                    ? facilities.filter(item => item !== facility)
+                    : [...facilities, facility],
+            }
+        })
+    }
+
     return (
         <>
             <E.TableBody>
@@ -109,11 +132,18 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
                             </E.TableCell>
                             <E.TableCell>
                                 {editRowId === room._id ? (
-                                    <S.Input
-                                        type="text"
-                                        value={editedRoom.Facilities ? editedRoom.Facilities.join(', ') : ''}
-                                        onChange={(e) => handleInputChange(e, 'Facilities')}
-                                    />
+                                    <S.SelectContainer>
+                                        {["TV", "Bathtub", "Sea View", "WiFi", "Air Conditioning"].map(facility => (
+                                            <S.Option
+                                                key={facility}
+                                                isSelected={editedRoom.Facilities?.includes(facility) || false}
+                                                onClick={() => toggleFacility(facility)}
+                                            >
+                                                <S.Dot isSelected={editedRoom.Facilities?.includes(facility) || false} />
+                                                <span>{facility}</span>
+                                            </S.Option>
+                                        ))}
+                                    </S.SelectContainer>
                                 ) : (
                                     room.Facilities.join(', ')
                                 )}
