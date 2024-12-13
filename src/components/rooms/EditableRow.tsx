@@ -39,7 +39,6 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
     const handleSaveRoom = () => {
         if (editRowId) {
             const originalRoom = filteredRooms.find(room => room._id === editRowId)
-
             if (originalRoom) {
                 const isChanged =
                     originalRoom.RoomNumber !== editedRoom.RoomNumber ||
@@ -50,10 +49,9 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
                 if (isChanged) {
                     dispatch(EditRoom({ ...editedRoom, id: editRowId } as RoomInterface))
                     Toast({ message: 'Room successfully edited', success: true })
+                    setEditRowId(null)
                 }
             }
-
-            setEditRowId(null)
         }
     }
 
@@ -97,6 +95,11 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
                     : [...facilities, facility],
             }
         })
+    }
+
+    const handleCloseEdit = () => {
+        setEditRowId('')
+        setEditRowId(null)
     }
 
     return (
@@ -166,7 +169,10 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredRooms }: EditableRowP
                             </E.TableCell>
                             <E.TableCell>
                                 {editRowId === room._id ? (
-                                    <S.Button onClick={handleSaveRoom}>Save</S.Button>
+                                    <>
+                                        <S.Button onClick={handleSaveRoom}>Save</S.Button>
+                                        <S.Button onClick={handleCloseEdit}>Close</S.Button>
+                                    </>
                                 ) : (
                                     <E.ActionMenu>
                                         <E.MoreButton onClick={() => handleMenuToggle(room._id!)}>

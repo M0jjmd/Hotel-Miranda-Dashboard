@@ -37,16 +37,24 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
 
     const handleSaveUser = () => {
         if (editRowId) {
-            dispatch(EditUser({ ...editedUser, id: editRowId } as UserInterface))
-                .then(() => {
-                    Toast({ message: 'User successfully edited', success: true })
-                    setEditRowId(null)
-                })
-                .catch((error) => {
-                    Toast({ message: 'Error deleting user', success: true })
-                    console.error('Error editing user:', error)
-                })
+            const originalUser = filteredUsers.find(user => user._id === editRowId)
+            if (JSON.stringify(originalUser) !== JSON.stringify(editedUser)) {
+                dispatch(EditUser({ ...editedUser, id: editRowId } as UserInterface))
+                    .then(() => {
+                        Toast({ message: 'User successfully edited', success: true })
+                        setEditRowId(null)
+                    })
+                    .catch((error) => {
+                        Toast({ message: 'Error deleting user', success: true })
+                        console.error('Error editing user:', error)
+                    })
+            }
         }
+    }
+
+    const handleCloseEdit = () => {
+        setEditRowId('')
+        setEditRowId(null)
     }
 
     const handleEditUser = (room: UserInterface) => {
@@ -139,7 +147,11 @@ function EditableRow({ filteredUsers }: EditableRowProps) {
                         </E.TableCell>
                         <E.TableCell>
                             {editRowId === user._id ? (
-                                <S.Button onClick={() => handleSaveUser()}>Save</S.Button>
+                                <>
+                                    <S.Button onClick={() => handleSaveUser()}>Save</S.Button>
+                                    <S.Button onClick={handleCloseEdit}>Close</S.Button>
+                                </>
+
                             ) : (
                                 <E.ActionMenu>
                                     <E.MoreButton onClick={() => handleMenuToggle(user._id || '')}>
