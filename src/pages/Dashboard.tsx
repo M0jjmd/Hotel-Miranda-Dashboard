@@ -6,7 +6,7 @@ const Dashboard = () => {
         <>
             <S.DashboardContent>
                 <div>Dashboard</div>
-                <DashboardStats />
+                {/* <DashboardStats /> */}
             </S.DashboardContent>
         </>
     )
