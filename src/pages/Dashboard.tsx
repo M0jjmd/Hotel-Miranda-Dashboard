@@ -1,3 +1,4 @@
+import DashboardStats from '../components/DashboardStats'
 import * as S from '../styles/dashboardStyles'
 
 const Dashboard = () => {
@@ -5,6 +6,7 @@ const Dashboard = () => {
         <>
             <S.DashboardContent>
                 <div>Dashboard</div>
+                <DashboardStats />
             </S.DashboardContent>
         </>
     )

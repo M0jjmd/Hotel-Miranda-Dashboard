@@ -1,10 +1,10 @@
 import * as S from '../styles/DashboardStatsStyles'
 
 interface DashboardStatsProps {
-  totalBookings: number;
-  reservedRooms: number;
-  checkInsToday: number;
-  checkOutsToday: number;
+  totalBookings: number
+  reservedRooms: number
+  checkInsToday: number
+  checkOutsToday: number
 }
 
 const DashboardStats: React.FC<DashboardStatsProps> = ({ totalBookings, reservedRooms, checkInsToday, checkOutsToday }) => {
@@ -25,7 +25,7 @@ const DashboardStats: React.FC<DashboardStatsProps> = ({ totalBookings, reserved
         </S.StatCard>
       ))}
     </S.Container>
-  );
-};
+  )
+}
 
-export default DashboardStats;
+export default DashboardStats
