@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 // import { useAppSelector } from '../app/store'
 import { GetBookings } from '../features/bookings/bookingsThunk'
+import { GetUsers } from '../features/users/usersThunk'
 import { useAppDispatch, useAppSelector } from '../app/store'
 import * as S from '../styles/DashboardStatsStyles'
 
@@ -8,10 +9,15 @@ const DashboardStats = () => {
   const dispatch = useAppDispatch()
   const bookings = useAppSelector((state) => state.bookings.data)
   const bookingsStatus = useAppSelector((state) => state.bookings.status)
+  const usersStatus = useAppSelector((state) => state.users.status)
 
   useEffect(() => {
     if (bookingsStatus === 'idle') {
       dispatch(GetBookings())
+      dispatch({ type: 'CLOSE_FORM' })
+    }
+    if (usersStatus === 'idle') {
+      dispatch(GetUsers())
       dispatch({ type: 'CLOSE_FORM' })
     }
     // if (bookingsStatus === 'failed') {
