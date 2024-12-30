@@ -1,8 +1,26 @@
-import { useAppSelector } from '../app/store'
+import { useEffect } from 'react'
+// import { useAppSelector } from '../app/store'
+import { GetBookings } from '../features/bookings/bookingsThunk'
+import { useAppDispatch, useAppSelector } from '../app/store'
 import * as S from '../styles/DashboardStatsStyles'
 
 const DashboardStats = () => {
+  const dispatch = useAppDispatch()
   const bookings = useAppSelector((state) => state.bookings.data)
+  const bookingsStatus = useAppSelector((state) => state.bookings.status)
+
+  useEffect(() => {
+    if (bookingsStatus === 'idle') {
+      dispatch(GetBookings())
+      dispatch({ type: 'CLOSE_FORM' })
+    }
+    // if (bookingsStatus === 'failed') {
+
+    //   localStorage.clear()
+    //   Toast({ message: 'your session expired, log in again', success: false })
+    //   navigate('/')
+    // }
+  })
 
   const totalCheckIns = bookings.filter(
     (booking) => booking.Status === 'check-in'
