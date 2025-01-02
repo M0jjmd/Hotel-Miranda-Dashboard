@@ -30,15 +30,15 @@ const DashboardStats = () => {
   })
 
   const totalCheckIns = bookings.filter(
-    (booking) => booking.Status === 'check-in'
+    (booking) => booking.Status === 'checked-in'
   ).length
 
   const totalCheckOuts = bookings.filter(
-    (booking) => booking.Status === 'check-out'
+    (booking) => booking.Status === 'checked-out'
   ).length
 
   const totalOnProgress = bookings.filter(
-    (booking) => booking.Status === 'on-progress'
+    (booking) => booking.Status === 'in-progress'
   ).length
 
   return (
@@ -49,15 +49,15 @@ const DashboardStats = () => {
       </S.StatsCard>
       <S.StatsCard>
         <S.CardHeader>Total Check-ins</S.CardHeader>
-        <S.CardContent>{users.length}</S.CardContent>
+        <S.CardContent>{totalCheckIns}</S.CardContent>
       </S.StatsCard>
       <S.StatsCard>
         <S.CardHeader>Total Check-outs</S.CardHeader>
-        <S.CardContent>{rooms.length}</S.CardContent>
+        <S.CardContent>{totalCheckOuts}</S.CardContent>
       </S.StatsCard>
       <S.StatsCard>
         <S.CardHeader>Total On Progress</S.CardHeader>
-        <S.CardContent>{rooms.length}</S.CardContent>
+        <S.CardContent>{totalOnProgress}</S.CardContent>
       </S.StatsCard>
     </S.StatsContainer>
   )
