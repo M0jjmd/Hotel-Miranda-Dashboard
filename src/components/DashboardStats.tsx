@@ -1,15 +1,18 @@
 import { useEffect } from 'react'
-// import { useAppSelector } from '../app/store'
 import { GetBookings } from '../features/bookings/bookingsThunk'
 import { GetUsers } from '../features/users/usersThunk'
 import { useAppDispatch, useAppSelector } from '../app/store'
 import * as S from '../styles/DashboardStatsStyles'
+import { GetRooms } from '../features/rooms/roomsThunk'
 
 const DashboardStats = () => {
   const dispatch = useAppDispatch()
-  const bookings = useAppSelector((state) => state.bookings.data)
   const bookingsStatus = useAppSelector((state) => state.bookings.status)
   const usersStatus = useAppSelector((state) => state.users.status)
+  const roomStatus = useAppSelector((state) => state.rooms.status)
+  const bookings = useAppSelector((state) => state.bookings.data)
+  const users = useAppSelector((state) => state.users.data)
+  const rooms = useAppSelector((state) => state.rooms.data)
 
   useEffect(() => {
     if (bookingsStatus === 'idle') {
@@ -20,12 +23,10 @@ const DashboardStats = () => {
       dispatch(GetUsers())
       dispatch({ type: 'CLOSE_FORM' })
     }
-    // if (bookingsStatus === 'failed') {
-
-    //   localStorage.clear()
-    //   Toast({ message: 'your session expired, log in again', success: false })
-    //   navigate('/')
-    // }
+    if (roomStatus === 'idle') {
+      dispatch(GetRooms())
+      dispatch({ type: 'CLOSE_FORM' })
+    }
   })
 
   const totalCheckIns = bookings.filter(
@@ -48,15 +49,15 @@ const DashboardStats = () => {
       </S.StatsCard>
       <S.StatsCard>
         <S.CardHeader>Total Check-ins</S.CardHeader>
-        <S.CardContent>{totalCheckIns}</S.CardContent>
+        <S.CardContent>{users.length}</S.CardContent>
       </S.StatsCard>
       <S.StatsCard>
         <S.CardHeader>Total Check-outs</S.CardHeader>
-        <S.CardContent>{totalCheckOuts}</S.CardContent>
+        <S.CardContent>{rooms.length}</S.CardContent>
       </S.StatsCard>
       <S.StatsCard>
         <S.CardHeader>Total On Progress</S.CardHeader>
-        <S.CardContent>{totalOnProgress}</S.CardContent>
+        <S.CardContent>{rooms.length}</S.CardContent>
       </S.StatsCard>
     </S.StatsContainer>
   )
