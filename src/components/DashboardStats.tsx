@@ -1,15 +1,17 @@
 import { useEffect } from 'react'
-import { GetBookings } from '../features/bookings/bookingsThunk'
-import { GetUsers } from '../features/users/usersThunk'
 import { useAppDispatch, useAppSelector } from '../app/store'
 import * as S from '../styles/DashboardStatsStyles'
 import { GetRooms } from '../features/rooms/roomsThunk'
+import { GetContacts } from '../features/contacts/contactsThunk'
+import { GetBookings } from '../features/bookings/bookingsThunk'
+import { GetUsers } from '../features/users/usersThunk'
 
 const DashboardStats = () => {
   const dispatch = useAppDispatch()
   const bookingsStatus = useAppSelector((state) => state.bookings.status)
   const usersStatus = useAppSelector((state) => state.users.status)
   const roomStatus = useAppSelector((state) => state.rooms.status)
+  const contactsStatus = useAppSelector((state) => state.contacts.status)
   const bookings = useAppSelector((state) => state.bookings.data)
   const users = useAppSelector((state) => state.users.data)
   const rooms = useAppSelector((state) => state.rooms.data)
@@ -25,6 +27,10 @@ const DashboardStats = () => {
     }
     if (roomStatus === 'idle') {
       dispatch(GetRooms())
+      dispatch({ type: 'CLOSE_FORM' })
+    }
+    if (contactsStatus === 'idle') {
+      dispatch(GetContacts())
       dispatch({ type: 'CLOSE_FORM' })
     }
   })
