@@ -50,6 +50,10 @@ const DashboardStats = () => {
   return (
     <S.StatsContainer>
       <S.StatsCard>
+        <S.CardHeader>Total users</S.CardHeader>
+        <S.CardContent>{users.length}</S.CardContent>
+      </S.StatsCard>
+      <S.StatsCard>
         <S.CardHeader>Bookings</S.CardHeader>
         <S.CardContent>{bookings.length}</S.CardContent>
       </S.StatsCard>
@@ -60,10 +64,6 @@ const DashboardStats = () => {
       <S.StatsCard>
         <S.CardHeader>Total Check-outs</S.CardHeader>
         <S.CardContent>{totalCheckOuts}</S.CardContent>
-      </S.StatsCard>
-      <S.StatsCard>
-        <S.CardHeader>Total On Progress</S.CardHeader>
-        <S.CardContent>{totalOnProgress}</S.CardContent>
       </S.StatsCard>
     </S.StatsContainer>
   )
