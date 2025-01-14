@@ -1,4 +1,5 @@
 import DashboardStats from '../components/DashboardStats'
+import Calendar from '../components/Calendar'
 import * as S from '../styles/dashboardStyles'
 
 const Dashboard = () => {
@@ -7,6 +8,7 @@ const Dashboard = () => {
             <S.DashboardContent>
                 <div>Dashboard</div>
                 <DashboardStats />
+                <Calendar />
             </S.DashboardContent>
         </>
     )
