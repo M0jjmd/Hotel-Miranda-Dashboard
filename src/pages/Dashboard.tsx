@@ -6,7 +6,6 @@ const Dashboard = () => {
     return (
         <>
             <S.DashboardContent>
-                <div>Dashboard</div>
                 <DashboardStats />
                 <InteractiveCalendar />
             </S.DashboardContent>

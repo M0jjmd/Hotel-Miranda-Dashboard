@@ -49,12 +49,12 @@ const CalendarContainer = styled.div`
 `
 
 const MyInteractiveCalendar: React.FC = () => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+  const [selectedDate, setSelectedDate] = useState<Date | [Date, Date] | null>(null)
 
-  const handleDateChange = (date: Date) => {
-    setSelectedDate(date)
-    console.log('Selected date:', date)
-  };
+  const handleDateChange = (value: Date | [Date, Date]) => {
+    setSelectedDate(value)
+    console.log('Selected date:', value)
+  }
 
   return (
     <CalendarContainer>
@@ -64,11 +64,14 @@ const MyInteractiveCalendar: React.FC = () => {
       />
       {selectedDate && (
         <p className="selected-date">
-          Fecha seleccionada: {selectedDate.toLocaleDateString()}
+          Fecha seleccionada:{' '}
+          {Array.isArray(selectedDate)
+            ? `${selectedDate[0]?.toLocaleDateString()} - ${selectedDate[1]?.toLocaleDateString()}`
+            : selectedDate.toLocaleDateString()}
         </p>
       )}
     </CalendarContainer>
-  );
-};
+  )
+}
 
 export default MyInteractiveCalendar
