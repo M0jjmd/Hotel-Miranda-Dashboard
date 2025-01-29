@@ -24,13 +24,6 @@ const FullWidthSection = styled.div`
 
 const Dashboard = () => {
     return (
-        // <>
-        //     <S.DashboardContent>
-        //         <DashboardStats />
-        //         <InteractiveCalendar />
-        //         <LatestMessages />
-        //     </S.DashboardContent>
-        // </>
         <DashboardContent>
             <TopSection>
                 <DashboardStats />
