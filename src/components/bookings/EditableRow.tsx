@@ -81,7 +81,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ filteredBookings }: EditableR
     }
 
     const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedStatus = e.target.value;
+        const selectedStatus = e.target.value
         setEditedBooking(prev => prev ? { ...prev, Status: selectedStatus } : null)
     }
 
