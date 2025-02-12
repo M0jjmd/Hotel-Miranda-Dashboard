@@ -1,6 +1,5 @@
 import * as S from '../styles/dashboardStyles'
 import DashboardStats from '../components/DashboardStats'
-import InteractiveCalendar from '../components/InteractiveCalendar'
 import LatestMessages from '../components/LatestMessages'
 
 const Dashboard = () => {
@@ -8,7 +7,6 @@ const Dashboard = () => {
         <S.DashboardContent>
             <S.TopSection>
                 <DashboardStats />
-                <InteractiveCalendar />
             </S.TopSection>
             <S.FullWidthSection>
                 <LatestMessages />
