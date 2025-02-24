@@ -1,7 +1,7 @@
 import logo from '../assets/dashboardLogo.png'
 import profileImg from '../assets/profileImg.jpeg'
 import * as S from '../styles/sidebarStyles'
-import { LuLayoutDashboard, LuKeyRound, LuCalendarRange, LuUser2, LuPhoneCall } from "react-icons/lu"
+import { LuLayoutDashboard, LuKeyRound, LuCalendarRange, LuUser, LuPhoneCall } from "react-icons/lu"
 import { useState } from "react"
 import { useAuth } from "../context/AuthContext"
 
@@ -49,7 +49,7 @@ const Sidebar: React.FC<sidebarProps> = ({ isSidebarVisible }) => {
           <S.SidebarItem><S.SidebarLink to="/bookings"><S.DashboardImgs as={LuCalendarRange} /> Bookings</S.SidebarLink></S.SidebarItem>
           <S.SidebarItem><S.SidebarLink to="/rooms"><S.DashboardImgs as={LuKeyRound} /> Rooms</S.SidebarLink></S.SidebarItem>
           <S.SidebarItem><S.SidebarLink to="/contacts"><S.DashboardImgs as={LuPhoneCall} /> Contact</S.SidebarLink></S.SidebarItem>
-          <S.SidebarItem><S.SidebarLink to="/users"><S.DashboardImgs as={LuUser2} /> Users</S.SidebarLink></S.SidebarItem>
+          <S.SidebarItem><S.SidebarLink to="/users"><S.DashboardImgs as={LuUser} /> Users</S.SidebarLink></S.SidebarItem>
         </S.SidebarList>
         <S.ProfileSection>
           <S.ProfilePic src={profileImg} alt="profile-pic" />
