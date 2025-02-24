@@ -60,30 +60,6 @@ const Sidebar: React.FC<sidebarProps> = ({ isSidebarVisible }) => {
           <S.EditButton onClick={handleEditButtonClick}>Edit Profile</S.EditButton>
         </S.ProfileSection>
       </S.SidebarContainer>
-
-      {/* {isEditing && (
-        <div className="popup">
-          <h2>Edit Profile</h2>
-          <label>
-            Name:
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-          <label>
-            Email:
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
-          <button onClick={handleSaveChanges}>Save</button>
-          <button onClick={handleClosePopup}>Cancel</button>
-        </div>
-      )} */}
       {isEditing && (
         <S.PopupContainer>
           <S.PopupTitle>Edit Profile</S.PopupTitle>
