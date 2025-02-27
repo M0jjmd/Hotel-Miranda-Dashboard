@@ -32,8 +32,8 @@ const Sidebar: React.FC<sidebarProps> = ({ isSidebarVisible }) => {
   }
 
   const handleSaveChanges = () => {
-    setTempName(name)
-    setTempEmail(email)
+    setName(tempName)
+    setEmail(tempEmail)
 
     dispatch({
       type: 'EDIT',
@@ -75,8 +75,8 @@ const Sidebar: React.FC<sidebarProps> = ({ isSidebarVisible }) => {
             Name:
             <S.InputField
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={tempName}
+              onChange={(e) => setTempName(e.target.value)}
             />
           </S.InputLabel>
           <S.InputLabel>
@@ -84,7 +84,7 @@ const Sidebar: React.FC<sidebarProps> = ({ isSidebarVisible }) => {
             <S.InputField
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setTempEmail(e.target.value)}
             />
           </S.InputLabel>
           <S.PopupButtonContainer>
