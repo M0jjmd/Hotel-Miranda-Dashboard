@@ -18,7 +18,12 @@ const Sidebar: React.FC<sidebarProps> = ({ isSidebarVisible }) => {
   const [name, setName] = useState<string>(localName)
   const [email, setEmail] = useState<string>(localEmail)
 
+  const [tempName, setTempName] = useState<string>(name)
+  const [tempEmail, setTempEmail] = useState<string>(email)
+
   const handleEditButtonClick = () => {
+    setTempName(name)
+    setTempEmail(email)
     setIsEditing(true)
   }
 
@@ -27,6 +32,9 @@ const Sidebar: React.FC<sidebarProps> = ({ isSidebarVisible }) => {
   }
 
   const handleSaveChanges = () => {
+    setTempName(name)
+    setTempEmail(email)
+
     dispatch({
       type: 'EDIT',
       payload: { name, email }
