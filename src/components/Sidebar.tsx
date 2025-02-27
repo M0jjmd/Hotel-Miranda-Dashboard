@@ -83,7 +83,7 @@ const Sidebar: React.FC<sidebarProps> = ({ isSidebarVisible }) => {
             Email:
             <S.InputField
               type="email"
-              value={email}
+              value={tempEmail}
               onChange={(e) => setTempEmail(e.target.value)}
             />
           </S.InputLabel>
