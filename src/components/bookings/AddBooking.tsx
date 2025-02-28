@@ -26,18 +26,17 @@ const AddBooking = () => {
     const addDispatch = useAppDispatch()
     const { dispatch } = useAuth()
 
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
         const { name, value } = e.target
 
         if (name === 'CheckIn' || name === 'CheckOut') {
-            setFormValues((prevValues) => ({
+            setFormValues(prevValues => ({
                 ...prevValues,
                 [name]: new Date(value),
             }))
         } else if (name.startsWith('RoomType.')) {
             const key = name.split('.')[1]
-            setFormValues((prevValues) => ({
+            setFormValues(prevValues => ({
                 ...prevValues,
                 RoomType: {
                     ...prevValues.RoomType,
@@ -45,15 +44,29 @@ const AddBooking = () => {
                 },
             }))
         } else {
-            setFormValues((prevValues) => ({
+            setFormValues(prevValues => ({
                 ...prevValues,
                 [name]: value,
             }))
         }
     }
 
+    const validateRoomNumber = (roomNumber: string): boolean => {
+        return /^[0-9]+$/.test(roomNumber)
+    }
+
     const handleAddBooking = (e: React.FormEvent) => {
         e.preventDefault()
+
+        if (!formValues.RoomType.Type) {
+            Toast({ message: 'Please select a room type', success: false })
+            return
+        }
+
+        if (!validateRoomNumber(formValues.RoomType.RoomNumber)) {
+            Toast({ message: 'Room number must be numeric', success: false })
+            return
+        }
 
         const storedUserId = localStorage.getItem('id') || ''
 
@@ -65,8 +78,6 @@ const AddBooking = () => {
             },
             OrderDate: new Date(),
         }
-
-        console.log(bookingWithUserId)
 
         addDispatch(CreateBooking(bookingWithUserId))
             .then(() => {
@@ -97,6 +108,7 @@ const AddBooking = () => {
     return (
         <S.FormContainer>
             <h3>Add New Booking</h3>
+
             <label>Check-In Date</label>
             <S.Input
                 type="date"
@@ -104,6 +116,7 @@ const AddBooking = () => {
                 value={formValues.CheckIn.toISOString().split('T')[0]}
                 onChange={handleChange}
             />
+
             <label>Check-Out Date</label>
             <S.Input
                 type="date"
@@ -111,14 +124,19 @@ const AddBooking = () => {
                 value={formValues.CheckOut.toISOString().split('T')[0]}
                 onChange={handleChange}
             />
+
             <label>Room Type</label>
-            <S.Input
-                type="text"
+            <S.Select
                 name="RoomType.Type"
-                placeholder="Room Type"
                 value={formValues.RoomType.Type}
                 onChange={handleChange}
-            />
+            >
+                <option value="">Select Room Type</option>
+                <option value="single">Single</option>
+                <option value="double">Double</option>
+                <option value="suite">Suite</option>
+            </S.Select>
+
             <label>Room Number</label>
             <S.Input
                 type="text"
@@ -127,6 +145,7 @@ const AddBooking = () => {
                 value={formValues.RoomType.RoomNumber}
                 onChange={handleChange}
             />
+
             <label>Special Request</label>
             <S.Input
                 type="text"
@@ -135,6 +154,7 @@ const AddBooking = () => {
                 value={formValues.SpecialRequest}
                 onChange={handleChange}
             />
+
             <S.Button onClick={handleAddBooking}>Add Booking</S.Button>
         </S.FormContainer>
     )
