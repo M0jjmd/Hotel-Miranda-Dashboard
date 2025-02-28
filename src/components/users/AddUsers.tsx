@@ -14,7 +14,7 @@ const AddUsers = () => {
         password: '',
         Email: '',
         Photo: '',
-        EntryDate: new Date,
+        EntryDate: new Date(),
         PositionDescription: '',
         Phone: '',
         State: 'ACTIVE',
@@ -23,17 +23,28 @@ const AddUsers = () => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target
+
         if (name === 'EntryDate') {
-            setFormValues((prevValues) => ({
+            setFormValues(prevValues => ({
                 ...prevValues,
                 [name]: new Date(value),
             }))
         } else {
-            setFormValues((prevValues) => ({
+            setFormValues(prevValues => ({
                 ...prevValues,
                 [name]: value,
             }))
         }
+    }
+
+    const validateEmail = (email: string): boolean => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return emailRegex.test(email)
+    }
+
+    const validatePhone = (phone: string): boolean => {
+        const phoneRegex = /^[0-9]+$/
+        return phoneRegex.test(phone) && phone.length >= 7
     }
 
     const { dispatch } = useAuth()
@@ -41,13 +52,23 @@ const AddUsers = () => {
     const handleAddUser = (e: React.FormEvent): void => {
         e.preventDefault()
 
+        if (!validateEmail(formValues.Email || '')) {
+            Toast({ message: 'Invalid email format', success: false })
+            return
+        }
+
+        if (!validatePhone(formValues.Phone || '')) {
+            Toast({ message: 'Phone number must contain only digits and be at least 7 characters long', success: false })
+            return
+        }
+
         const userWithId = {
             username: (formValues.FullName || '').replace(/\s+/g, '').toLowerCase(),
             FullName: formValues.FullName || '',
             password: formValues.password || '',
             Email: formValues.Email || '',
             Photo: formValues.Photo || '',
-            EntryDate: formValues.EntryDate || new Date,
+            EntryDate: formValues.EntryDate || new Date(),
             PositionDescription: formValues.PositionDescription || '',
             Phone: formValues.Phone || '',
             State: formValues.State || 'ACTIVE',
@@ -64,7 +85,6 @@ const AddUsers = () => {
                 console.error('Error creating user:', error)
             })
     }
-
 
     return (
         <S.FormContainer>
@@ -137,8 +157,7 @@ const AddUsers = () => {
                 onClick={() => setFormValues(prevValues => ({
                     ...prevValues,
                     State: prevValues.State === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
-                }))}
-            >
+                }))}>
                 {formValues.State}
             </S.ToggleButton>
 
