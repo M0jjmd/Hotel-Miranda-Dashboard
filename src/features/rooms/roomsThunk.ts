@@ -112,7 +112,7 @@ export const CreateRoom = createAsyncThunk<RoomInterface, RoomInterface>(
     "rooms/createRooms",
     async (newRoom) => {
         try {
-            const response = await fetch('${apiUrl}rooms', {
+            const response = await fetch(`${apiUrl}rooms`, {
                 method: 'POST',
                 headers: getAuthHeaders(),
                 body: JSON.stringify(newRoom)
