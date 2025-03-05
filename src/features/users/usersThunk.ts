@@ -95,7 +95,7 @@ export const CreateUser = createAsyncThunk<UserInterface, UserInterface>(
     "users/createUsers",
     async (newUser) => {
         try {
-            const response = await fetch('${apiUrl}users', {
+            const response = await fetch(`${apiUrl}users`, {
                 method: 'POST',
                 headers: getAuthHeaders(),
                 body: JSON.stringify(newUser)
