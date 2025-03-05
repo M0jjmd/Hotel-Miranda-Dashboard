@@ -90,7 +90,7 @@ export const CreateBooking = createAsyncThunk<BookingInterface, BookingInterface
     "bookings/createBooking",
     async (newBooking) => {
         try {
-            const response = await fetch('${apiUrl}bookings', {
+            const response = await fetch(`${apiUrl}bookings`, {
                 method: 'POST',
                 headers: getAuthHeaders(),
                 body: JSON.stringify(newBooking)
